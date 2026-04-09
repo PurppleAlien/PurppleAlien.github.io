@@ -941,15 +941,17 @@ td { padding: 12px 18px; font-size: 0.9rem; color: var(--text); }
 
 .fade-in {
   opacity: 0;
+  will-change: opacity, transform;
+}
+
+.fade-in.visible {
   animation: fadeUp 0.7s ease forwards;
 }
 
-.fade-in.visible { opacity: 1; }
-
-.delay-1 { animation-delay: 0.15s; }
-.delay-2 { animation-delay: 0.30s; }
-.delay-3 { animation-delay: 0.45s; }
-.delay-4 { animation-delay: 0.60s; }
+.fade-in.visible.delay-1 { animation-delay: 0.15s; }
+.fade-in.visible.delay-2 { animation-delay: 0.30s; }
+.fade-in.visible.delay-3 { animation-delay: 0.45s; }
+.fade-in.visible.delay-4 { animation-delay: 0.60s; }
 
 /* ===== UTILITIES ===== */
 .text-center { text-align: center; }

@@ -917,8 +917,18 @@
       .profile-image { max-width: 250px; margin: 0 auto; }
     }
 
+    @media (max-width: 768px) {
+      .hero {
+        min-height: 100vh;
+        min-height: 100svh;
+        align-items: flex-start;
+        padding-top: 86px;
+        padding-bottom: 50px;
+      }
+    }
+
     @media (max-width: 640px) {
-      .hero { padding: 80px 16px 50px; }
+      .hero { padding: 86px 16px 50px; }
       .profile-ring img { width: 110px; height: 110px; }
       .services-grid, .skills-grid, .projects-grid, .contact-grid { grid-template-columns: 1fr; }
       .process-steps { grid-template-columns: repeat(2, 1fr); }

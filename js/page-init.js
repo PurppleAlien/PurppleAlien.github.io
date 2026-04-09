@@ -164,16 +164,12 @@ function initScrollAnimations() {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        entry.target.style.animationPlayState = 'running';
         observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.12 });
 
-  elements.forEach(el => {
-    el.style.animationPlayState = 'paused';
-    observer.observe(el);
-  });
+  elements.forEach(el => observer.observe(el));
 }
 
 /* ============================================================
