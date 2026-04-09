@@ -1,0 +1,82 @@
+/* ================================================================
+   fab.css — Floating Action Button group
+   Usado en: index.html (y cualquier página que lo importe)
+   ================================================================ */
+
+.fab-group {
+  position: fixed;
+  bottom: 24px; right: 20px;
+  z-index: 850;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  opacity: 0.38;
+  transition: opacity 0.4s ease;
+}
+.fab-group:hover,
+.fab-group.fab-visible { opacity: 1; }
+
+.fab-items {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 7px;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.38s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease;
+}
+.fab-items.open { max-height: 200px; opacity: 1; }
+
+.fab-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 12px 0 10px;
+  height: 36px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.1);
+  font-family: 'Source Code Pro', monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, opacity 0.22s ease;
+  transform: translateX(10px);
+  opacity: 0;
+}
+.fab-items.open .fab-item            { transform: translateX(0); opacity: 1; }
+.fab-items.open .fab-item:nth-child(1) { transition-delay: 0.06s; }
+.fab-items.open .fab-item:nth-child(2) { transition-delay: 0.12s; }
+
+.fab-item i { font-size: 0.82rem; }
+.fab-item:hover { transform: translateX(-3px) scale(1.04); }
+
+.fab-item-wa   { background: rgba(37,211,102,0.15); border-color: rgba(37,211,102,0.3); color: #25D366; }
+.fab-item-wa:hover { box-shadow: 0 4px 18px rgba(37,211,102,0.35); color: #25D366; }
+
+.fab-item-term { background: rgba(97,218,251,0.1); border-color: rgba(97,218,251,0.25); color: #61dafb; }
+.fab-item-term:hover { box-shadow: 0 4px 18px rgba(97,218,251,0.3); }
+.fab-item-term.active { background: rgba(97,218,251,0.2); border-color: #61dafb; }
+
+.fab-toggle {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(97,218,251,0.25);
+  background: rgba(8,12,17,0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: rgba(97,218,251,0.7);
+  font-size: 0.85rem;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+.fab-toggle:hover { border-color: #61dafb; color: #61dafb; box-shadow: 0 4px 18px rgba(97,218,251,0.3); }
+.fab-toggle.open  { background: rgba(97,218,251,0.12); border-color: rgba(97,218,251,0.4); color: #61dafb; transform: rotate(45deg); }

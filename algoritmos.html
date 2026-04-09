@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visualizador de Algoritmos — Antonio Soria</title>
+  <meta name="description" content="Visualizador interactivo de BFS, DFS y A* sobre grafos en tiempo real. Portfolio de Antonio Soria — Matemático y Desarrollador.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Roboto:wght@300;400;500&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/shared.css">
+  <script src="js/translations.js"></script>
+
+  <!-- Analytics (configure en plausible.io) -->
+  <script defer data-domain="antoniosoria.com" src="https://plausible.io/js/script.js"></script>
+
+  <style>
+    body { background:#0d1117; color:#e2e8f0; }
+    .site-header { background:rgba(13,17,23,0.96)!important; border-bottom-color:rgba(97,218,251,0.12)!important; }
+    .nav-menu a { color:#c9d1d9!important; }
+    .nav-menu a:hover,.nav-menu a.active { color:#61dafb!important; background:rgba(97,218,251,0.08)!important; }
+    .logo { color:#e2e8f0!important; } .logo span { color:#61dafb!important; }
+    .theme-btn,.language-btn,.hamburger-btn { background:rgba(97,218,251,0.07)!important; border-color:rgba(97,218,251,0.2)!important; color:#e2e8f0!important; }
+    .theme-btn:hover,.language-btn:hover,.hamburger-btn:hover { background:#61dafb!important; color:#0d1117!important; border-color:#61dafb!important; }
+    .mobile-nav { background:#0d1117!important; border-top-color:rgba(97,218,251,0.12)!important; }
+    .mobile-nav a { color:#c9d1d9!important; }
+    .mobile-nav a:hover,.mobile-nav a.active { color:#61dafb!important; }
+    .mobile-nav a i { color:#61dafb!important; }
+    footer { background:#0d1117!important; border-top:1px solid rgba(97,218,251,0.1)!important; }
+    .footer-logo { color:#e6edf3!important; } .footer-logo span { color:#61dafb!important; }
+    .footer-links a { color:#8b949e!important; } .footer-links a:hover { color:#61dafb!important; }
+    .copyright { color:#8b949e!important; }
+    .scroll-top { background:linear-gradient(135deg,#61dafb,#3d85c6)!important; color:#0d1117!important; }
+
+    /* ── Hero */
+    .algo-hero { text-align:center; padding:80px 20px 36px; }
+    .algo-hero h1 { font-family:'Oswald',sans-serif; font-size:clamp(2rem,5vw,3.2rem); color:#e6edf3; margin-bottom:10px; }
+    .algo-hero h1 span { color:#61dafb; }
+    .algo-hero p { font-family:'Source Code Pro',monospace; font-size:0.85rem; color:#8b949e; max-width:560px; margin:0 auto; }
+    .algo-hero p::before { content:'// '; color:#61dafb; }
+
+    /* ── Wrapper */
+    .viz-wrap { max-width:960px; margin:0 auto; padding:0 20px 80px; }
+
+    /* ── Algo tabs */
+    .algo-tabs { display:flex; gap:8px; justify-content:center; margin-bottom:18px; flex-wrap:wrap; }
+    .algo-tab {
+      padding:8px 22px; border-radius:8px;
+      border:1px solid rgba(97,218,251,0.2);
+      background:rgba(97,218,251,0.04);
+      color:#8b949e; font-family:'Source Code Pro',monospace; font-size:0.85rem;
+      cursor:pointer; transition:all .2s ease;
+    }
+    .algo-tab:hover { border-color:rgba(97,218,251,0.4); color:#e6edf3; }
+    .algo-tab.active    { background:rgba(97,218,251,0.12); border-color:#61dafb; color:#61dafb; font-weight:600; }
+    .algo-tab.act-dfs   { background:rgba(198,120,221,0.12); border-color:#c678dd; color:#c678dd; font-weight:600; }
+    .algo-tab.act-astar { background:rgba(251,188,5,0.12); border-color:#fbbc05; color:#fbbc05; font-weight:600; }
+
+    /* ── Canvas */
+    .canvas-wrap {
+      position:relative; border:1px solid rgba(97,218,251,0.15);
+      border-radius:14px; overflow:hidden; background:#08090d; margin-bottom:12px;
+    }
+    #algo-canvas { display:block; width:100%; height:auto; }
+    .canvas-hint {
+      position:absolute; bottom:10px; left:12px;
+      font-family:'Source Code Pro',monospace; font-size:0.67rem;
+      color:rgba(97,218,251,0.28); pointer-events:none;
+    }
+    .mode-badge {
+      position:absolute; top:10px; right:10px;
+      padding:4px 10px; background:rgba(97,218,251,0.1);
+      border:1px solid rgba(97,218,251,0.3); border-radius:6px;
+      font-family:'Source Code Pro',monospace; font-size:0.67rem; color:#61dafb;
+      display:none; animation:modePulse 1s ease-in-out infinite;
+    }
+    .mode-badge.show { display:block; }
+    @keyframes modePulse { 0%,100%{opacity:1} 50%{opacity:0.55} }
+
+    /* ── Progress */
+    .frame-bar { height:2px; background:rgba(97,218,251,0.08); border-radius:1px; margin-bottom:14px; overflow:hidden; }
+    .frame-fill { height:100%; width:0%; background:linear-gradient(90deg,#61dafb,#c678dd); transition:width .25s ease; }
+
+    /* ── Controls */
+    .ctrl-row { display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:center; margin-bottom:12px; }
+    .ctrl-btn {
+      display:flex; align-items:center; gap:5px;
+      padding:6px 14px; border-radius:8px;
+      border:1px solid rgba(97,218,251,0.2); background:rgba(97,218,251,0.04);
+      color:#c9d1d9; font-family:'Source Code Pro',monospace; font-size:0.78rem;
+      cursor:pointer; transition:all .2s ease; white-space:nowrap;
+    }
+    .ctrl-btn:hover:not(:disabled) { background:rgba(97,218,251,0.1); border-color:#61dafb; color:#61dafb; }
+    .ctrl-btn:disabled { opacity:.3; cursor:not-allowed; }
+    .ctrl-btn.primary { background:rgba(97,218,251,0.1); border-color:#61dafb; color:#61dafb; }
+    .ctrl-btn.danger  { border-color:rgba(248,113,113,0.3); color:#f87171; }
+    .ctrl-btn.danger:hover:not(:disabled) { background:rgba(248,113,113,0.08); border-color:#f87171; }
+    .speed-wrap { display:flex; align-items:center; gap:6px; }
+    .speed-wrap span { font-size:0.75rem; }
+    #speed-slider { -webkit-appearance:none; width:70px; height:3px; background:rgba(97,218,251,0.2); border-radius:2px; outline:none; }
+    #speed-slider::-webkit-slider-thumb { -webkit-appearance:none; width:13px; height:13px; border-radius:50%; background:#61dafb; cursor:pointer; }
+
+    /* ── Node select */
+    .node-row { display:flex; gap:8px; justify-content:center; margin-bottom:14px; flex-wrap:wrap; }
+    .node-btn {
+      display:flex; align-items:center; gap:6px; padding:6px 14px;
+      border-radius:8px; border:1px solid; font-family:'Source Code Pro',monospace;
+      font-size:0.76rem; cursor:pointer; transition:all .2s ease; background:transparent;
+    }
+    .node-btn strong { min-width:14px; display:inline-block; text-align:center; }
+    .nb-start { border-color:rgba(0,255,136,0.35); color:#00ff88; }
+    .nb-start:hover,.nb-start.sel { background:rgba(0,255,136,0.1); border-color:#00ff88; }
+    .nb-end   { border-color:rgba(248,113,113,0.35); color:#f87171; }
+    .nb-end:hover,.nb-end.sel { background:rgba(248,113,113,0.1); border-color:#f87171; }
+    .node-btn.sel { animation:selPulse 1s ease-in-out infinite; }
+    @keyframes selPulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+
+    /* ── Info panels */
+    .info-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:20px; }
+    @media(max-width:580px){ .info-grid { grid-template-columns:1fr; } }
+    .info-panel { background:#0d1117; border:1px solid rgba(97,218,251,0.1); border-radius:10px; padding:14px 16px; font-family:'Source Code Pro',monospace; }
+    .info-ttl { font-size:0.67rem; color:rgba(97,218,251,0.35); text-transform:uppercase; letter-spacing:1.2px; margin-bottom:8px; }
+    .info-txt { font-size:0.79rem; color:rgba(97,218,251,0.65); line-height:1.7; min-height:36px; }
+    .stats-row-inner { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+    .sitem { text-align:center; padding:8px 4px; background:rgba(97,218,251,0.03); border:1px solid rgba(97,218,251,0.07); border-radius:8px; }
+    .sv { display:block; font-family:'Oswald',sans-serif; font-size:1.7rem; font-weight:700; color:#61dafb; line-height:1; margin-bottom:3px; }
+    .sl { font-size:0.6rem; color:rgba(97,218,251,0.3); font-family:'Source Code Pro',monospace; text-transform:uppercase; }
+    .struct-line { margin-top:8px; font-size:0.69rem; color:rgba(97,218,251,0.3); word-break:break-all; }
+
+    /* ── Legend */
+    .legend { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-bottom:40px; }
+    .leg-item { display:flex; align-items:center; gap:5px; font-family:'Source Code Pro',monospace; font-size:0.7rem; color:#8b949e; }
+    .leg-dot { width:11px; height:11px; border-radius:50%; border:2px solid; flex-shrink:0; }
+
+    /* ── Algo cards */
+    .algo-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; margin-bottom:60px; }
+    .algo-card { background:#161b22; border:1px solid rgba(97,218,251,0.1); border-radius:14px; padding:22px 20px; transition:all .3s ease; }
+    .algo-card:hover { border-color:rgba(97,218,251,0.3); transform:translateY(-4px); box-shadow:0 12px 32px rgba(97,218,251,0.08); }
+    .algo-card-ico { font-size:1.6rem; margin-bottom:12px; }
+    .algo-card h3 { font-family:'Oswald',sans-serif; font-size:1.1rem; color:#e6edf3; margin-bottom:10px; }
+    .algo-card p { color:#8b949e; font-size:0.87rem; line-height:1.7; margin-bottom:8px; }
+    .algo-badges { display:flex; flex-wrap:wrap; gap:5px; margin-top:12px; }
+    .abadge { padding:2px 9px; border-radius:5px; font-family:'Source Code Pro',monospace; font-size:0.7rem; }
+    .ab-c { background:rgba(97,218,251,0.07); border:1px solid rgba(97,218,251,0.2); color:#61dafb; }
+    .ab-p { background:rgba(198,120,221,0.07); border:1px solid rgba(198,120,221,0.2); color:#c678dd; }
+    .ab-y { background:rgba(251,188,5,0.07); border:1px solid rgba(251,188,5,0.2); color:#fbbc05; }
+    .ab-g { background:rgba(0,212,170,0.07); border:1px solid rgba(0,212,170,0.2); color:#00d4aa; }
+
+    .section-title { text-align:center; font-family:'Oswald',sans-serif; font-size:clamp(1.4rem,3vw,2rem); color:#e6edf3; margin-bottom:28px; position:relative; }
+    .section-title::after { content:''; display:block; width:50px; height:3px; background:linear-gradient(90deg,#61dafb,#c678dd); margin:10px auto 0; border-radius:2px; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-image"><img src="images/mifoto.jpg" alt="Antonio Soria" loading="lazy"></div>
+        <span class="logo-text">Antonio <span>Soria</span></span>
+      </a>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="sobre-mi.html">Sobre Mí</a></li>
+        <li><a href="portafolio.html">Portafolio</a></li>
+        <li><a href="algoritmos.html" class="active">Algoritmos</a></li>
+        <li><a href="divulgacion.html">Divulgación</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+      <div class="header-buttons">
+        <button class="theme-btn" id="theme-toggle" title="Modo oscuro"><i class="fas fa-moon"></i></button>
+        <button class="language-btn" id="language-toggle" title="Cambiar idioma"><span class="language-flag">🇲🇽</span></button>
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Menú" aria-expanded="false">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobile-nav">
+    <a href="index.html"><i class="fas fa-home"></i><span>Inicio</span></a>
+    <a href="sobre-mi.html"><i class="fas fa-user"></i><span>Sobre Mí</span></a>
+    <a href="portafolio.html"><i class="fas fa-code-branch"></i><span>Portafolio</span></a>
+    <a href="algoritmos.html" class="active"><i class="fas fa-project-diagram"></i><span>Algoritmos</span></a>
+    <a href="contacto.html"><i class="fas fa-envelope"></i><span>Contacto</span></a>
+  </nav>
+
+  <main>
+    <!-- Hero -->
+    <section class="algo-hero container">
+      <h1>Visualizador de <span>Algoritmos</span></h1>
+      <p>BFS · DFS · A* sobre grafos en tiempo real — selecciona nodos de inicio/fin y observa cómo exploran el grafo</p>
+    </section>
+
+    <div class="viz-wrap">
+
+      <!-- Algo selector -->
+      <div class="algo-tabs">
+        <button class="algo-tab active" id="tab-BFS"   onclick="selAlgo('BFS')"><i class="fas fa-wave-square"></i> BFS</button>
+        <button class="algo-tab"        id="tab-DFS"   onclick="selAlgo('DFS')"><i class="fas fa-project-diagram"></i> DFS</button>
+        <button class="algo-tab"        id="tab-ASTAR" onclick="selAlgo('ASTAR')"><i class="fas fa-star"></i> A*</button>
+      </div>
+
+      <!-- Canvas -->
+      <div class="canvas-wrap" id="canvas-wrap">
+        <canvas id="algo-canvas"></canvas>
+        <div class="canvas-hint">click en un nodo para seleccionar inicio o fin · ↑↓ para mover paso</div>
+        <div class="mode-badge" id="mode-badge">Seleccionando inicio…</div>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="frame-bar"><div class="frame-fill" id="frame-fill"></div></div>
+
+      <!-- Playback controls -->
+      <div class="ctrl-row">
+        <button class="ctrl-btn primary" id="btn-play"  onclick="play()"><i class="fas fa-play"></i> Play</button>
+        <button class="ctrl-btn"         id="btn-pause" onclick="pause()" disabled><i class="fas fa-pause"></i> Pausar</button>
+        <button class="ctrl-btn"         id="btn-prev"  onclick="stepBack()"><i class="fas fa-step-backward"></i></button>
+        <button class="ctrl-btn"         id="btn-next"  onclick="stepFwd()"><i class="fas fa-step-forward"></i></button>
+        <button class="ctrl-btn danger"  id="btn-reset" onclick="reset()"><i class="fas fa-redo"></i> Reset</button>
+        <div class="speed-wrap">
+          <span>🐢</span>
+          <input type="range" id="speed-slider" min="1" max="10" value="5">
+          <span>🐇</span>
+        </div>
+      </div>
+
+      <!-- Node selector -->
+      <div class="node-row">
+        <button class="node-btn nb-start" id="btn-start" onclick="toggleMode('start')">
+          <i class="fas fa-circle" style="font-size:.6rem"></i> Inicio: <strong id="lbl-start">A</strong>
+        </button>
+        <button class="node-btn nb-end" id="btn-end" onclick="toggleMode('end')">
+          <i class="fas fa-bullseye" style="font-size:.6rem"></i> Fin: <strong id="lbl-end">N</strong>
+        </button>
+      </div>
+
+      <!-- Info panels -->
+      <div class="info-grid">
+        <div class="info-panel">
+          <div class="info-ttl">// descripción del paso</div>
+          <div class="info-txt" id="step-desc">Presiona Play para iniciar la visualización.</div>
+        </div>
+        <div class="info-panel">
+          <div class="info-ttl">// estadísticas</div>
+          <div class="stats-row-inner">
+            <div class="sitem"><span class="sv" id="stat-step">0</span><span class="sl">pasos</span></div>
+            <div class="sitem"><span class="sv" id="stat-vis">0</span><span class="sl">visitados</span></div>
+            <div class="sitem"><span class="sv" id="stat-q">0</span><span class="sl">cola</span></div>
+          </div>
+          <div class="struct-line" id="struct-line"></div>
+        </div>
+      </div>
+
+      <!-- Legend -->
+      <div class="legend">
+        <div class="leg-item"><div class="leg-dot" style="background:rgba(0,255,136,0.18);border-color:#00ff88"></div>Inicio</div>
+        <div class="leg-item"><div class="leg-dot" style="background:rgba(248,113,113,0.18);border-color:#f87171"></div>Fin</div>
+        <div class="leg-item"><div class="leg-dot" style="background:rgba(255,255,255,0.13);border-color:#fff"></div>Procesando</div>
+        <div class="leg-item"><div class="leg-dot" style="background:rgba(251,188,5,0.13);border-color:#fbbc05"></div>En cola / Frontera</div>
+        <div class="leg-item"><div class="leg-dot" style="background:rgba(97,218,251,0.12);border-color:#61dafb"></div>Visitado</div>
+        <div class="leg-item"><div class="leg-dot" style="background:rgba(198,120,221,0.18);border-color:#c678dd"></div>Camino encontrado</div>
+      </div>
+
+      <!-- Algo info cards -->
+      <h2 class="section-title">Los tres algoritmos</h2>
+      <div class="algo-cards">
+        <div class="algo-card">
+          <div class="algo-card-ico">🌊</div>
+          <h3>BFS — Breadth-First Search</h3>
+          <p>Explora nivel por nivel usando una <strong style="color:#61dafb">cola FIFO</strong>. Garantiza encontrar el <strong style="color:#61dafb">camino más corto</strong> en grafos sin pesos.</p>
+          <p>Idea: visita todos los vecinos del nivel actual antes de bajar al siguiente.</p>
+          <div class="algo-badges">
+            <span class="abadge ab-c">O(V+E)</span>
+            <span class="abadge ab-g">Óptimo</span>
+            <span class="abadge ab-c">Cola FIFO</span>
+            <span class="abadge ab-g">Completo</span>
+          </div>
+        </div>
+        <div class="algo-card">
+          <div class="algo-card-ico">🌲</div>
+          <h3>DFS — Depth-First Search</h3>
+          <p>Explora tan profundo como pueda usando una <strong style="color:#c678dd">pila LIFO</strong>. No garantiza el camino más corto — puede encontrar rutas subóptimas.</p>
+          <p>Útil para ciclos, ordenamiento topológico y exploración exhaustiva.</p>
+          <div class="algo-badges">
+            <span class="abadge ab-p">O(V+E)</span>
+            <span class="abadge ab-p">No óptimo</span>
+            <span class="abadge ab-p">Pila LIFO</span>
+            <span class="abadge ab-g">Completo</span>
+          </div>
+        </div>
+        <div class="algo-card">
+          <div class="algo-card-ico">⭐</div>
+          <h3>A* — A-Star</h3>
+          <p>Usa <strong style="color:#fbbc05">f(n) = g(n) + h(n)</strong>: costo real + estimación. Garantiza el camino óptimo con heurística admisible.</p>
+          <p>h(n) = distancia euclidiana al nodo fin. El más eficiente de los tres para grafos con pesos.</p>
+          <div class="algo-badges">
+            <span class="abadge ab-y">O(E log V)</span>
+            <span class="abadge ab-g">Óptimo</span>
+            <span class="abadge ab-y">Cola de prioridad</span>
+            <span class="abadge ab-y">Heurístico</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">Antonio <span>Soria</span></div>
+      <div class="footer-links">
+        <a href="index.html">Inicio</a>
+        <a href="portafolio.html">Portafolio</a>
+        <a href="algoritmos.html">Algoritmos</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+      <p class="copyright">© 2024 Antonio Soria. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scroll-top" title="Volver arriba"><i class="fas fa-arrow-up"></i></button>
+  <script src="js/page-init.js"></script>
+
+  <script>
+  /* ============================================================
+     GRAPH DATA
+  ============================================================ */
+  const NODES = [
+    {id:0,  label:'A', px:0.08, py:0.14},
+    {id:1,  label:'B', px:0.27, py:0.07},
+    {id:2,  label:'C', px:0.48, py:0.13},
+    {id:3,  label:'D', px:0.68, py:0.07},
+    {id:4,  label:'E', px:0.88, py:0.14},
+    {id:5,  label:'F', px:0.07, py:0.50},
+    {id:6,  label:'G', px:0.28, py:0.44},
+    {id:7,  label:'H', px:0.50, py:0.50},
+    {id:8,  label:'I', px:0.70, py:0.44},
+    {id:9,  label:'J', px:0.90, py:0.50},
+    {id:10, label:'K', px:0.14, py:0.83},
+    {id:11, label:'L', px:0.38, py:0.77},
+    {id:12, label:'M', px:0.60, py:0.83},
+    {id:13, label:'N', px:0.83, py:0.77},
+  ];
+
+  const EPAIRS = [
+    [0,1],[1,2],[2,3],[3,4],
+    [5,6],[6,7],[7,8],[8,9],
+    [10,11],[11,12],[12,13],
+    [0,5],[1,6],[2,7],[3,8],[4,9],
+    [5,10],[6,11],[7,12],[8,13],
+    [1,7],[6,2],[3,9],[8,12],
+  ];
+
+  const ek  = (a,b) => `${Math.min(a,b)}-${Math.max(a,b)}`;
+  const nl  = id  => NODES[id].label;
+  const dst = (n1,n2) => Math.sqrt((n1.px-n2.px)**2+(n1.py-n2.py)**2);
+
+  function buildAdj() {
+    const adj = {};
+    NODES.forEach(n => adj[n.id]=[]);
+    EPAIRS.forEach(([a,b]) => {
+      const w = Math.round(dst(NODES[a],NODES[b])*100);
+      adj[a].push({node:b, weight:w, key:ek(a,b)});
+      adj[b].push({node:a, weight:w, key:ek(a,b)});
+    });
+    return adj;
+  }
+  const ADJ = buildAdj();
+
+  /* ============================================================
+     FRAME HELPERS
+  ============================================================ */
+  function initSt() {
+    const ns={}, es={};
+    NODES.forEach(n  => ns[n.id]='unvisited');
+    EPAIRS.forEach(([a,b]) => es[ek(a,b)]='unvisited');
+    return {ns,es};
+  }
+  const snap = (ns,es,desc,stats) => ({ns:{...ns},es:{...es},desc,stats:{...stats}});
+
+  function tracePath(parent, start, end) {
+    if (!parent.hasOwnProperty(end) && start!==end) return [];
+    const path=[]; let cur=end, guard=0;
+    while (cur!==null && cur!==undefined && guard++<NODES.length+2) {
+      path.unshift(cur);
+      if (cur===start) break;
+      cur=parent[cur];
+    }
+    return path[0]===start ? path : [];
+  }
+
+  /* ============================================================
+     BFS
+  ============================================================ */
+  function computeBFS(start, end) {
+    const {ns,es}=initSt(); const frames=[];
+    const visited=new Set([start]), parent={[start]:null}, queue=[start];
+    ns[start]='start'; ns[end]='end';
+    let step=0, vis=0;
+    const qd=()=>queue.map(nl).join(', ');
+    frames.push(snap(ns,es,`🚀 BFS iniciado: ${nl(start)} → ${nl(end)}. Cola: [${qd()}]`,{step,vis,q:queue.length,str:`Cola: [${qd()}]`}));
+
+    while (queue.length>0) {
+      const cur=queue.shift(); step++; vis++;
+      if (cur!==start && cur!==end) ns[cur]='current';
+      frames.push(snap(ns,es,`📍 Procesando nodo ${nl(cur)}. Cola: [${qd()}]`,{step,vis,q:queue.length,str:`Cola: [${qd()}]`}));
+      if (cur===end) break;
+      for (const {node:nb,key} of ADJ[cur]) {
+        if (!visited.has(nb)) {
+          visited.add(nb); parent[nb]=cur;
+          if (nb!==end) ns[nb]='frontier';
+          es[key]='traversed'; queue.push(nb); step++;
+          frames.push(snap(ns,es,`🔍 Descubriendo ${nl(nb)} desde ${nl(cur)}. Cola: [${qd()}]`,{step,vis,q:queue.length,str:`Cola: [${qd()}]`}));
+        }
+      }
+      if (cur!==start && cur!==end) ns[cur]='visited';
+      frames.push(snap(ns,es,`✅ ${nl(cur)} marcado visitado.`,{step,vis,q:queue.length,str:`Cola: [${qd()}]`}));
+    }
+    const path=tracePath(parent,start,end);
+    if (path.length>1) {
+      path.forEach((n,i)=>{ ns[n]=n===start?'start':n===end?'end':'path'; if(i>0) es[ek(path[i-1],n)]='path'; });
+      frames.push(snap(ns,es,`🎯 Camino BFS óptimo: ${path.map(nl).join(' → ')} — ${path.length-1} aristas`,{step,vis,q:0,str:`Longitud: ${path.length-1} pasos`}));
+    } else {
+      frames.push(snap(ns,es,`❌ Sin camino entre ${nl(start)} y ${nl(end)}.`,{step,vis,q:0,str:'Sin camino'}));
+    }
+    return frames;
+  }
+
+  /* ============================================================
+     DFS
+  ============================================================ */
+  function computeDFS(start, end) {
+    const {ns,es}=initSt(); const frames=[];
+    const visited=new Set(), parent={[start]:null}, stack=[start];
+    ns[start]='start'; ns[end]='end';
+    let step=0, vis=0, found=false;
+    const sd=()=>[...stack].reverse().map(nl).join(', ');
+    frames.push(snap(ns,es,`🚀 DFS iniciado: ${nl(start)} → ${nl(end)}. Pila: [${sd()}]`,{step,vis,q:stack.length,str:`Pila: [${sd()}]`}));
+
+    while (stack.length>0 && !found) {
+      const cur=stack.pop();
+      if (visited.has(cur)) continue;
+      visited.add(cur); step++; vis++;
+      if (cur!==start && cur!==end) ns[cur]='current';
+      frames.push(snap(ns,es,`📍 Visitando ${nl(cur)}.`,{step,vis,q:stack.length,str:`Pila: [${sd()}]`}));
+      if (cur===end) { found=true; break; }
+      [...ADJ[cur]].reverse().forEach(({node:nb,key})=>{
+        if (!visited.has(nb)) {
+          if (!parent.hasOwnProperty(nb)) parent[nb]=cur;
+          if (nb!==end) ns[nb]='frontier';
+          es[key]='traversed'; stack.push(nb); step++;
+          frames.push(snap(ns,es,`🔍 Apilando ${nl(nb)} desde ${nl(cur)}.`,{step,vis,q:stack.length,str:`Pila: [${sd()}]`}));
+        }
+      });
+      if (cur!==start && cur!==end) ns[cur]='visited';
+      frames.push(snap(ns,es,`✅ ${nl(cur)} explorado.`,{step,vis,q:stack.length,str:`Pila: [${sd()}]`}));
+    }
+    const path=tracePath(parent,start,end);
+    if (found && path.length>1) {
+      path.forEach((n,i)=>{ ns[n]=n===start?'start':n===end?'end':'path'; if(i>0) es[ek(path[i-1],n)]='path'; });
+      frames.push(snap(ns,es,`🎯 Camino DFS: ${path.map(nl).join(' → ')} — puede NO ser el más corto`,{step,vis,q:0,str:`Longitud: ${path.length-1} pasos`}));
+    } else {
+      frames.push(snap(ns,es,`❌ Sin camino entre ${nl(start)} y ${nl(end)}.`,{step,vis,q:0,str:'Sin camino'}));
+    }
+    return frames;
+  }
+
+  /* ============================================================
+     A*
+  ============================================================ */
+  function heur(nodeId, goalId) { return Math.round(dst(NODES[nodeId],NODES[goalId])*100); }
+
+  function computeAStar(start, end) {
+    const {ns,es}=initSt(); const frames=[];
+    const open=[{node:start,f:0,g:0}], closed=new Set();
+    const parent={[start]:null}, gScore={[start]:0};
+    ns[start]='start'; ns[end]='end';
+    let step=0, vis=0, found=false;
+    const od=()=>open.map(e=>`${nl(e.node)}(${e.f})`).join(', ');
+    frames.push(snap(ns,es,`🚀 A* iniciado: ${nl(start)} → ${nl(end)}.`,{step,vis,q:open.length,str:`Open: [${od()}]`}));
+
+    while (open.length>0 && !found) {
+      open.sort((a,b)=>a.f-b.f);
+      const {node:cur,f,g}=open.shift();
+      if (closed.has(cur)) continue;
+      closed.add(cur); step++; vis++;
+      if (cur!==start && cur!==end) ns[cur]='current';
+      frames.push(snap(ns,es,`📍 ${nl(cur)}: f=${f}, g=${g}, h=${f-g}`,{step,vis,q:open.length,str:`Open: [${od()}]`}));
+      if (cur===end) { found=true; break; }
+      for (const {node:nb,weight,key} of ADJ[cur]) {
+        if (closed.has(nb)) continue;
+        const tg=gScore[cur]+weight;
+        if (tg<(gScore[nb]??Infinity)) {
+          parent[nb]=cur; gScore[nb]=tg;
+          const h=heur(nb,end), f2=tg+h;
+          const xi=open.findIndex(e=>e.node===nb);
+          if (xi>=0) open.splice(xi,1);
+          open.push({node:nb,f:f2,g:tg});
+          if (nb!==end && nb!==start) ns[nb]='frontier';
+          es[key]='traversed'; step++;
+          frames.push(snap(ns,es,`🔍 ${nl(nb)}: g=${tg}, h=${h}, f=${f2}`,{step,vis,q:open.length,str:`Open: [${od()}]`}));
+        }
+      }
+      if (cur!==start && cur!==end) ns[cur]='visited';
+      frames.push(snap(ns,es,`✅ ${nl(cur)} cerrado.`,{step,vis,q:open.length,str:`Open: [${od()}]`}));
+    }
+    const path=tracePath(parent,start,end);
+    if (path.length>1 && path[path.length-1]===end) {
+      const cost=gScore[end]??'?';
+      path.forEach((n,i)=>{ ns[n]=n===start?'start':n===end?'end':'path'; if(i>0) es[ek(path[i-1],n)]='path'; });
+      frames.push(snap(ns,es,`🎯 Camino A* óptimo: ${path.map(nl).join(' → ')} — costo total: ${cost}`,{step,vis,q:0,str:`Costo óptimo: ${cost}`}));
+    } else {
+      frames.push(snap(ns,es,`❌ Sin camino entre ${nl(start)} y ${nl(end)}.`,{step,vis,q:0,str:'Sin camino'}));
+    }
+    return frames;
+  }
+
+  /* ============================================================
+     CANVAS RENDERER
+  ============================================================ */
+  const canvas = document.getElementById('algo-canvas');
+  const ctx    = canvas.getContext('2d');
+
+  const NCOL = {
+    unvisited:{fill:'rgba(22,27,34,0.95)',    stroke:'rgba(97,218,251,0.2)',  glow:null,      lw:1.5},
+    frontier: {fill:'rgba(251,188,5,0.12)',   stroke:'#fbbc05',              glow:'#fbbc05', lw:2},
+    current:  {fill:'rgba(255,255,255,0.12)', stroke:'#e6edf3',              glow:'#ffffff', lw:2.5},
+    visited:  {fill:'rgba(97,218,251,0.1)',   stroke:'#61dafb',              glow:null,      lw:2},
+    path:     {fill:'rgba(198,120,221,0.16)', stroke:'#c678dd',              glow:'#c678dd', lw:2.5},
+    start:    {fill:'rgba(0,255,136,0.14)',   stroke:'#00ff88',              glow:'#00ff88', lw:2.5},
+    end:      {fill:'rgba(248,113,113,0.14)', stroke:'#f87171',              glow:'#f87171', lw:2.5},
+  };
+  const ECOL = {
+    unvisited:{stroke:'rgba(97,218,251,0.08)', lw:1.5, glow:null},
+    traversed:{stroke:'rgba(97,218,251,0.55)', lw:2.5, glow:null},
+    path:     {stroke:'#c678dd',               lw:3.5, glow:'#c678dd'},
+  };
+
+  let CW=0, CH=0;
+  const PAD = ()=>Math.max(24, CW*0.035);
+  const NR  = ()=>Math.max(13, Math.round(CW*0.018));
+  const nx  = n => PAD() + n.px*(CW-PAD()*2);
+  const ny  = n => PAD() + n.py*(CH-PAD()*2);
+
+  function resize() {
+    CW = document.getElementById('canvas-wrap').clientWidth;
+    CH = Math.round(CW * 0.52);
+    canvas.width=CW; canvas.height=CH;
+    redraw();
+  }
+
+  function renderFrame(frame) {
+    ctx.clearRect(0,0,CW,CH);
+    ctx.fillStyle='#08090d'; ctx.fillRect(0,0,CW,CH);
+    // Grid
+    ctx.strokeStyle='rgba(97,218,251,0.022)'; ctx.lineWidth=1;
+    for(let x=0;x<CW;x+=44){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,CH);ctx.stroke();}
+    for(let y=0;y<CH;y+=44){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(CW,y);ctx.stroke();}
+    // Edges
+    EPAIRS.forEach(([a,b])=>{
+      const st=frame.es[ek(a,b)]||'unvisited', c=ECOL[st]||ECOL.unvisited;
+      const x1=nx(NODES[a]),y1=ny(NODES[a]),x2=nx(NODES[b]),y2=ny(NODES[b]);
+      ctx.beginPath();
+      ctx.strokeStyle=c.stroke; ctx.lineWidth=c.lw;
+      if(c.glow){ctx.shadowColor=c.glow;ctx.shadowBlur=8;}else ctx.shadowBlur=0;
+      ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke(); ctx.shadowBlur=0;
+      // Weight for A*
+      if(currentAlgo==='ASTAR'){
+        const w=ADJ[a].find(e=>e.node===b)?.weight??'';
+        ctx.font=`${Math.max(8,Math.round(CW*0.011))}px Source Code Pro,monospace`;
+        ctx.fillStyle='rgba(251,188,5,0.4)'; ctx.textAlign='center';
+        ctx.fillText(w,(x1+x2)/2,(y1+y2)/2-5);
+      }
+    });
+    // Nodes
+    const r=NR();
+    NODES.forEach(node=>{
+      const st=frame.ns[node.id]||'unvisited', c=NCOL[st]||NCOL.unvisited;
+      const x=nx(node),y=ny(node);
+      if(c.glow){ctx.shadowColor=c.glow;ctx.shadowBlur=16;}else ctx.shadowBlur=0;
+      ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fillStyle=c.fill; ctx.fill();
+      ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.strokeStyle=c.stroke; ctx.lineWidth=c.lw; ctx.stroke();
+      ctx.shadowBlur=0;
+      ctx.font=`bold ${Math.max(10,Math.round(CW*0.015))}px Oswald,sans-serif`;
+      ctx.fillStyle=st==='current'?'#08090d':'#e6edf3';
+      ctx.textAlign='center'; ctx.textBaseline='middle';
+      ctx.fillText(node.label,x,y);
+    });
+  }
+
+  function getEmptyFrame() {
+    const ns={},es={};
+    NODES.forEach(n=>ns[n.id]='unvisited');
+    EPAIRS.forEach(([a,b])=>es[ek(a,b)]='unvisited');
+    ns[startNode]='start'; ns[endNode]='end';
+    return {ns,es,desc:'',stats:{}};
+  }
+
+  function redraw() {
+    renderFrame(frames.length>0 ? frames[frameIdx] : getEmptyFrame());
+  }
+
+  /* ============================================================
+     STATE & CONTROLS
+  ============================================================ */
+  let frames=[], frameIdx=0, playing=false, playTimer=null;
+  let currentAlgo='BFS', startNode=0, endNode=13, mode='idle';
+
+  function getSpeed(){ return Math.round(1300 - parseInt(document.getElementById('speed-slider').value)*110); }
+
+  function updateUI(frame){
+    document.getElementById('step-desc').textContent  = frame.desc||'';
+    document.getElementById('stat-step').textContent  = frame.stats.step??0;
+    document.getElementById('stat-vis').textContent   = frame.stats.vis??0;
+    document.getElementById('stat-q').textContent     = frame.stats.q??0;
+    document.getElementById('struct-line').textContent= frame.stats.str||'';
+    const pct = frames.length>1 ? frameIdx/(frames.length-1)*100 : 0;
+    document.getElementById('frame-fill').style.width = pct+'%';
+  }
+
+  function runAlgo(){
+    const fn={BFS:computeBFS,DFS:computeDFS,ASTAR:computeAStar};
+    frames=(fn[currentAlgo]||computeBFS)(startNode,endNode);
+    frameIdx=0; renderFrame(frames[0]); updateUI(frames[0]);
+  }
+
+  function play(){
+    if(!frames.length) runAlgo();
+    if(frameIdx>=frames.length-1){frameIdx=0; renderFrame(frames[0]); updateUI(frames[0]);}
+    playing=true;
+    document.getElementById('btn-play').disabled=true;
+    document.getElementById('btn-pause').disabled=false;
+    tick();
+  }
+  function tick(){
+    if(!playing||frameIdx>=frames.length-1){
+      playing=false;
+      document.getElementById('btn-play').disabled=false;
+      document.getElementById('btn-pause').disabled=true;
+      return;
+    }
+    frameIdx++; renderFrame(frames[frameIdx]); updateUI(frames[frameIdx]);
+    playTimer=setTimeout(tick,getSpeed());
+  }
+  function pause(){
+    playing=false; clearTimeout(playTimer);
+    document.getElementById('btn-play').disabled=false;
+    document.getElementById('btn-pause').disabled=true;
+  }
+  function stepFwd(){
+    pause();
+    if(!frames.length) runAlgo();
+    if(frameIdx<frames.length-1){ frameIdx++; renderFrame(frames[frameIdx]); updateUI(frames[frameIdx]); }
+  }
+  function stepBack(){
+    pause();
+    if(frameIdx>0){ frameIdx--; renderFrame(frames[frameIdx]); updateUI(frames[frameIdx]); }
+  }
+  function reset(){
+    pause(); frames=[]; frameIdx=0;
+    document.getElementById('step-desc').textContent='Presiona Play para iniciar la visualización.';
+    document.getElementById('stat-step').textContent='0';
+    document.getElementById('stat-vis').textContent='0';
+    document.getElementById('stat-q').textContent='0';
+    document.getElementById('struct-line').textContent='';
+    document.getElementById('frame-fill').style.width='0%';
+    document.getElementById('btn-play').disabled=false;
+    document.getElementById('btn-pause').disabled=true;
+    redraw();
+  }
+  function selAlgo(algo){
+    currentAlgo=algo;
+    ['BFS','DFS','ASTAR'].forEach(a=>{
+      const t=document.getElementById('tab-'+a);
+      if(!t) return;
+      t.classList.remove('active','act-dfs','act-astar');
+      if(a===algo){
+        if(algo==='BFS')   t.classList.add('active');
+        if(algo==='DFS')   t.classList.add('act-dfs');
+        if(algo==='ASTAR') t.classList.add('act-astar');
+      }
+    });
+    reset();
+  }
+  function toggleMode(m){
+    mode=(mode===m)?'idle':m;
+    const badge=document.getElementById('mode-badge');
+    badge.textContent=mode==='start'?'Haz clic en el nodo de INICIO':mode==='end'?'Haz clic en el nodo de FIN':'';
+    badge.classList.toggle('show',mode!=='idle');
+    document.getElementById('btn-start').classList.toggle('sel',mode==='start');
+    document.getElementById('btn-end').classList.toggle('sel',mode==='end');
+  }
+
+  canvas.addEventListener('click', e=>{
+    if(mode==='idle') return;
+    const rect=canvas.getBoundingClientRect();
+    const mx=(e.clientX-rect.left)*(CW/rect.width);
+    const my=(e.clientY-rect.top)*(CH/rect.height);
+    const r=NR()+4;
+    for(const node of NODES){
+      const dx=mx-nx(node),dy=my-ny(node);
+      if(Math.sqrt(dx*dx+dy*dy)<=r){
+        if(mode==='start'&&node.id!==endNode){
+          startNode=node.id; document.getElementById('lbl-start').textContent=node.label;
+        } else if(mode==='end'&&node.id!==startNode){
+          endNode=node.id; document.getElementById('lbl-end').textContent=node.label;
+        }
+        toggleMode('idle'); reset(); break;
+      }
+    }
+  });
+
+  // Keyboard shortcuts
+  document.addEventListener('keydown',e=>{
+    if(['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName)) return;
+    if(e.key==='ArrowRight'||e.key==='ArrowDown') stepFwd();
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp') stepBack();
+    if(e.key===' '){ e.preventDefault(); playing?pause():play(); }
+  });
+
+  window.addEventListener('resize',resize,{passive:true});
+  resize();
+  </script>
+</body>
+</html>

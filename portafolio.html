@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portafolio — Antonio Soria</title>
+  <meta name="description" content="Proyectos de Antonio Soria: algoritmos de IA, teoría de grafos, matemáticas aplicadas y sistemas en Java, C y Python.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Shared styles -->
+  <link rel="stylesheet" href="assets/css/shared.css">
+
+  <!-- Translations -->
+  <script src="js/translations.js"></script>
+
+  <style>
+    /* ── Portfolio-specific ── */
+
+    /* Filter buttons */
+    .filters-section { margin-bottom: 36px; }
+
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .filter-btn {
+      padding: 8px 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+      box-shadow: 0 4px 12px rgba(61,133,198,0.35);
+    }
+
+    body.dark-mode .filter-btn:hover,
+    body.dark-mode .filter-btn.active {
+      background: var(--neon);
+      border-color: var(--neon);
+      color: #0d1117;
+      box-shadow: 0 4px 12px rgba(97,218,251,0.35);
+    }
+
+    /* Projects grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 28px;
+      margin-top: 36px;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+
+    body.dark-mode .project-card:hover {
+      border-color: rgba(97,218,251,0.2);
+      box-shadow: 0 12px 40px rgba(97,218,251,0.08);
+    }
+
+    .project-card.hidden { display: none; }
+
+    .project-image {
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .project-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .project-card:hover .project-image img { transform: scale(1.06); }
+
+    .project-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent 50%, rgba(0,0,0,0.4));
+    }
+
+    .project-content { padding: 22px; flex: 1; display: flex; flex-direction: column; }
+
+    .project-category {
+      display: inline-block;
+      padding: 3px 12px;
+      background: rgba(61,133,198,0.1);
+      border: 1px solid rgba(61,133,198,0.2);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    body.dark-mode .project-category {
+      background: rgba(97,218,251,0.08);
+      border-color: rgba(97,218,251,0.2);
+      color: var(--neon);
+    }
+
+    .project-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .project-description {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      flex: 1;
+      line-height: 1.7;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .project-tag {
+      padding: 3px 10px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    body.dark-mode .project-tag { background: rgba(255,255,255,0.04); }
+    .project-tag:hover { color: var(--primary); border-color: var(--primary); }
+    body.dark-mode .project-tag:hover { color: var(--neon); border-color: var(--neon); }
+
+    .project-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .project-actions .btn { padding: 8px 16px; font-size: 0.85rem; }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal.open { display: flex; }
+
+    .modal-content {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      max-width: 700px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: var(--shadow-lg);
+      animation: fadeUp 0.3s ease;
+    }
+
+    .modal-image { height: 260px; overflow: hidden; }
+    .modal-image img { width: 100%; height: 100%; object-fit: cover; }
+
+    .modal-body { padding: 28px; }
+
+    .modal-close {
+      position: absolute;
+      top: 14px; right: 14px;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.5);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 0.9rem;
+      z-index: 10;
+    }
+
+    .modal-close:hover { background: rgba(0,0,0,0.8); transform: scale(1.1); }
+
+    .modal-category {
+      display: inline-block;
+      padding: 3px 12px;
+      background: rgba(61,133,198,0.1);
+      border: 1px solid rgba(61,133,198,0.2);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    body.dark-mode .modal-category {
+      background: rgba(97,218,251,0.08);
+      border-color: rgba(97,218,251,0.2);
+      color: var(--neon);
+    }
+
+    .modal-body h2 { font-size: 1.6rem; margin-bottom: 12px; }
+
+    .modal-description { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 20px; line-height: 1.8; }
+
+    .modal-details {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .detail-item {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+    }
+
+    .detail-item h4 { font-size: 0.8rem; color: var(--primary); margin-bottom: 4px; }
+    body.dark-mode .detail-item h4 { color: var(--neon); }
+    .detail-item p { font-size: 0.9rem; margin: 0; color: var(--text); }
+
+    .modal-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+
+    .modal-tag {
+      padding: 3px 10px;
+      background: rgba(61,133,198,0.1);
+      border: 1px solid rgba(61,133,198,0.2);
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      color: var(--primary);
+    }
+
+    body.dark-mode .modal-tag {
+      background: rgba(97,218,251,0.08);
+      border-color: rgba(97,218,251,0.2);
+      color: var(--neon);
+    }
+
+    .modal-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    @media (max-width: 640px) {
+      .projects-grid { grid-template-columns: 1fr; }
+      .modal-details { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <!-- Analytics sin cookies (configura tu dominio en plausible.io) -->
+  <script defer data-domain="antoniosoria.com" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+
+  <div class="progress-bar" id="progress-bar"></div>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-image">
+          <img src="images/mifoto.jpg" alt="Antonio Soria">
+        </div>
+        <span class="logo-text">Antonio <span>Soria</span></span>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="index.html"       data-i18n="nav.home">Inicio</a></li>
+        <li><a href="sobre-mi.html"    data-i18n="nav.about">Sobre Mí</a></li>
+        <li><a href="portafolio.html" class="active" data-i18n="nav.portfolio">Portafolio</a></li>
+        <li><a href="divulgacion.html" data-i18n="nav.outreach">Divulgación</a></li>
+        <li><a href="contacto.html"    data-i18n="nav.contact">Contacto</a></li>
+      </ul>
+
+      <div class="header-buttons">
+        <button class="theme-btn"    id="theme-toggle"    title="Modo oscuro"><i class="fas fa-moon"></i></button>
+        <button class="language-btn" id="language-toggle" title="Cambiar idioma">
+          <span class="language-flag">🇲🇽</span>
+        </button>
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Menú" aria-expanded="false">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile nav -->
+  <nav class="mobile-nav" id="mobile-nav">
+    <a href="index.html">       <i class="fas fa-home"></i>      <span data-i18n="nav.home">Inicio</span></a>
+    <a href="sobre-mi.html">    <i class="fas fa-user"></i>      <span data-i18n="nav.about">Sobre Mí</span></a>
+    <a href="portafolio.html" class="active"><i class="fas fa-code"></i> <span data-i18n="nav.portfolio">Portafolio</span></a>
+    <a href="divulgacion.html"> <i class="fas fa-flask"></i>     <span data-i18n="nav.outreach">Divulgación</span></a>
+    <a href="contacto.html">    <i class="fas fa-envelope"></i>  <span data-i18n="nav.contact">Contacto</span></a>
+  </nav>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main-content">
+
+    <!-- Hero -->
+    <section class="page-hero container fade-in">
+      <div class="page-hero-decoration"></div>
+      <h1 data-i18n="portfolio.hero.title">Mi Portafolio</h1>
+      <p data-i18n="portfolio.hero.text">Una selección de proyectos que combinan rigor matemático con implementación elegante en código.</p>
+    </section>
+
+    <!-- Filters -->
+    <section class="filters-section container">
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">Todos / All</button>
+        <button class="filter-btn" data-filter="ia">IA</button>
+        <button class="filter-btn" data-filter="matematicas">Matemáticas</button>
+        <button class="filter-btn" data-filter="programacion">Programación</button>
+        <button class="filter-btn" data-filter="sistemas">Sistemas</button>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="container" style="padding-bottom: 60px;">
+      <h2 class="section-title" data-i18n="portfolio.projects.title">Proyectos Destacados</h2>
+      <div class="projects-grid" id="projects-grid">
+
+        <!-- Project 1 -->
+        <div class="project-card fade-in" data-category="ia programacion">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                 alt="Algoritmos de IA" loading="lazy">
+          </div>
+          <div class="project-content">
+            <span class="project-category">IA &amp; Programación</span>
+            <h3 data-i18n="portfolio.p1.title">Algoritmos de IA en Java</h3>
+            <p class="project-description" data-i18n="portfolio.p1.desc">Implementación de algoritmos de inteligencia artificial como BFS, DFS, A* y Minimax para resolver problemas complejos.</p>
+            <div class="project-tags">
+              <span class="project-tag">Java</span>
+              <span class="project-tag">BFS / DFS</span>
+              <span class="project-tag">A*</span>
+              <span class="project-tag">Minimax</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn view-project" data-modal="modal-1"><i class="fas fa-eye"></i> <span data-i18n="portfolio.p1.btn">Ver Proyecto</span></button>
+              <a href="https://github.com/PurppleAlien" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card fade-in delay-1" data-category="sistemas programacion">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1534723328310-e82dad3ee43f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                 alt="Sistemas en C" loading="lazy">
+          </div>
+          <div class="project-content">
+            <span class="project-category">Sistemas</span>
+            <h3 data-i18n="portfolio.p2.title">Desarrollo de Sistemas en C</h3>
+            <p class="project-description" data-i18n="portfolio.p2.desc">Desarrollo de sistemas eficientes y de bajo nivel utilizando lenguaje C para aplicaciones de alto rendimiento.</p>
+            <div class="project-tags">
+              <span class="project-tag">C</span>
+              <span class="project-tag">Optimización</span>
+              <span class="project-tag">Low-level</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn view-project" data-modal="modal-2"><i class="fas fa-eye"></i> <span data-i18n="portfolio.p2.btn">Ver Proyecto</span></button>
+              <a href="https://github.com/PurppleAlien" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card fade-in delay-2" data-category="matematicas programacion">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                 alt="Algoritmo de Wang" loading="lazy">
+          </div>
+          <div class="project-content">
+            <span class="project-category">Matemáticas</span>
+            <h3 data-i18n="portfolio.p3.title">Algoritmo de Wang</h3>
+            <p class="project-description" data-i18n="portfolio.p3.desc">Implementación del algoritmo de Wang para demostración automática de teoremas en lógica proposicional.</p>
+            <div class="project-tags">
+              <span class="project-tag">Java</span>
+              <span class="project-tag">Lógica</span>
+              <span class="project-tag">Teoremas</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn view-project" data-modal="modal-3"><i class="fas fa-eye"></i> <span data-i18n="portfolio.p3.btn">Ver Proyecto</span></button>
+              <a href="https://github.com/PurppleAlien" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card fade-in" data-category="ia matematicas">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                 alt="Teoría de Grafos" loading="lazy">
+          </div>
+          <div class="project-content">
+            <span class="project-category">Matemáticas Aplicadas</span>
+            <h3 data-i18n="portfolio.p4.title">Algoritmos de Teoría de Grafos</h3>
+            <p class="project-description" data-i18n="portfolio.p4.desc">Implementación de algoritmos de grafos para resolver problemas de optimización y análisis de redes.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">Grafos</span>
+              <span class="project-tag">Dijkstra</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn view-project" data-modal="modal-4"><i class="fas fa-eye"></i> <span data-i18n="portfolio.p4.btn">Ver Proyecto</span></button>
+              <a href="https://github.com/PurppleAlien" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-card fade-in delay-1" data-category="programacion">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                 alt="Estructuras de Datos" loading="lazy">
+          </div>
+          <div class="project-content">
+            <span class="project-category">Programación</span>
+            <h3 data-i18n="portfolio.p5.title">Estructuras de Datos Avanzadas</h3>
+            <p class="project-description" data-i18n="portfolio.p5.desc">Implementación de estructuras de datos complejas y algoritmos de manipulación para optimizar el rendimiento.</p>
+            <div class="project-tags">
+              <span class="project-tag">Java</span>
+              <span class="project-tag">B-Trees</span>
+              <span class="project-tag">Heaps</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn view-project" data-modal="modal-5"><i class="fas fa-eye"></i> <span data-i18n="portfolio.p5.btn">Ver Proyecto</span></button>
+              <a href="https://github.com/PurppleAlien" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="project-card fade-in delay-2" data-category="ia">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                 alt="Sistema de Recomendación" loading="lazy">
+          </div>
+          <div class="project-content">
+            <span class="project-category">Inteligencia Artificial</span>
+            <h3 data-i18n="portfolio.p6.title">Sistema de Recomendación</h3>
+            <p class="project-description" data-i18n="portfolio.p6.desc">Desarrollo de un sistema de recomendación utilizando técnicas de machine learning y filtrado colaborativo.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">ML</span>
+              <span class="project-tag">Collaborative Filtering</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn view-project" data-modal="modal-6"><i class="fas fa-eye"></i> <span data-i18n="portfolio.p6.btn">Ver Proyecto</span></button>
+              <a href="https://github.com/PurppleAlien" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== MODALS ===== -->
+  <div id="modal-1" class="modal" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <div class="modal-close" id="close-1" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
+      <div class="modal-image"><img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Algoritmos de IA" loading="lazy"></div>
+      <div class="modal-body">
+        <span class="modal-category">IA &amp; Programación</span>
+        <h2>Algoritmos de IA en Java</h2>
+        <p class="modal-description">Implementación completa de algoritmos de inteligencia artificial en Java: BFS, DFS, A*, Minimax con poda alfa-beta. Demuestra cómo aplicar principios matemáticos y computacionales para resolver problemas complejos de manera eficiente.</p>
+        <div class="modal-details">
+          <div class="detail-item"><h4>Tecnologías</h4><p>Java, Swing</p></div>
+          <div class="detail-item"><h4>Duración</h4><p>6 meses</p></div>
+          <div class="detail-item"><h4>Complejidad</h4><p>Avanzada</p></div>
+          <div class="detail-item"><h4>Estado</h4><p>Completado</p></div>
+        </div>
+        <div class="modal-tags">
+          <span class="modal-tag">Java</span><span class="modal-tag">BFS</span><span class="modal-tag">DFS</span>
+          <span class="modal-tag">A*</span><span class="modal-tag">Minimax</span><span class="modal-tag">Alfa-Beta</span>
+        </div>
+        <div class="modal-actions">
+          <a href="https://github.com/PurppleAlien" class="btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Ver Código</a>
+          <a href="contacto.html" class="btn btn-outline"><i class="fas fa-envelope"></i> Contactar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-2" class="modal" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <div class="modal-close" id="close-2" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
+      <div class="modal-image"><img src="https://images.unsplash.com/photo-1534723328310-e82dad3ee43f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sistemas en C" loading="lazy"></div>
+      <div class="modal-body">
+        <span class="modal-category">Sistemas</span>
+        <h2>Desarrollo de Sistemas en C</h2>
+        <p class="modal-description">Desarrollo de sistemas de bajo nivel en C, optimizados para aplicaciones de alto rendimiento. Incluye gestión manual de memoria, punteros avanzados y estructuras de datos eficientes.</p>
+        <div class="modal-details">
+          <div class="detail-item"><h4>Tecnologías</h4><p>C, GCC, GDB</p></div>
+          <div class="detail-item"><h4>Duración</h4><p>4 meses</p></div>
+          <div class="detail-item"><h4>Complejidad</h4><p>Alta</p></div>
+          <div class="detail-item"><h4>Estado</h4><p>Completado</p></div>
+        </div>
+        <div class="modal-tags">
+          <span class="modal-tag">C</span><span class="modal-tag">Punteros</span><span class="modal-tag">Memoria</span><span class="modal-tag">Optimización</span>
+        </div>
+        <div class="modal-actions">
+          <a href="https://github.com/PurppleAlien" class="btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Ver Código</a>
+          <a href="contacto.html" class="btn btn-outline"><i class="fas fa-envelope"></i> Contactar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-3" class="modal" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <div class="modal-close" id="close-3" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
+      <div class="modal-image"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Wang Algorithm" loading="lazy"></div>
+      <div class="modal-body">
+        <span class="modal-category">Matemáticas</span>
+        <h2>Algoritmo de Wang</h2>
+        <p class="modal-description">Implementación del algoritmo de Wang (Wang's algorithm) para la demostración automática de teoremas en lógica proposicional. El sistema recibe fórmulas lógicas y determina su validez mediante reglas de transformación.</p>
+        <div class="modal-details">
+          <div class="detail-item"><h4>Tecnologías</h4><p>Java, Lógica Formal</p></div>
+          <div class="detail-item"><h4>Duración</h4><p>3 meses</p></div>
+          <div class="detail-item"><h4>Complejidad</h4><p>Teórica / Alta</p></div>
+          <div class="detail-item"><h4>Estado</h4><p>Completado</p></div>
+        </div>
+        <div class="modal-tags">
+          <span class="modal-tag">Java</span><span class="modal-tag">Lógica Proposicional</span><span class="modal-tag">Teoremas</span>
+        </div>
+        <div class="modal-actions">
+          <a href="https://github.com/PurppleAlien" class="btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Ver Código</a>
+          <a href="contacto.html" class="btn btn-outline"><i class="fas fa-envelope"></i> Contactar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-4" class="modal" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <div class="modal-close" id="close-4" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
+      <div class="modal-image"><img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Graph Theory" loading="lazy"></div>
+      <div class="modal-body">
+        <span class="modal-category">Matemáticas Aplicadas</span>
+        <h2>Algoritmos de Teoría de Grafos</h2>
+        <p class="modal-description">Implementación completa de algoritmos clásicos de grafos: Dijkstra, Bellman-Ford, Floyd-Warshall, Kruskal, Prim. Aplicados a problemas de optimización de rutas y análisis de redes.</p>
+        <div class="modal-details">
+          <div class="detail-item"><h4>Tecnologías</h4><p>Python, NetworkX</p></div>
+          <div class="detail-item"><h4>Duración</h4><p>5 meses</p></div>
+          <div class="detail-item"><h4>Complejidad</h4><p>Media / Alta</p></div>
+          <div class="detail-item"><h4>Estado</h4><p>En desarrollo</p></div>
+        </div>
+        <div class="modal-tags">
+          <span class="modal-tag">Python</span><span class="modal-tag">Dijkstra</span><span class="modal-tag">Grafos</span><span class="modal-tag">NetworkX</span>
+        </div>
+        <div class="modal-actions">
+          <a href="https://github.com/PurppleAlien" class="btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Ver Código</a>
+          <a href="contacto.html" class="btn btn-outline"><i class="fas fa-envelope"></i> Contactar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-5" class="modal" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <div class="modal-close" id="close-5" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
+      <div class="modal-image"><img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Data Structures" loading="lazy"></div>
+      <div class="modal-body">
+        <span class="modal-category">Programación</span>
+        <h2>Estructuras de Datos Avanzadas</h2>
+        <p class="modal-description">Librería de estructuras de datos avanzadas en Java: B-Trees, AVL Trees, Heaps Fibonacci, Tries, Segment Trees. Con análisis de complejidad y comparativas de rendimiento.</p>
+        <div class="modal-details">
+          <div class="detail-item"><h4>Tecnologías</h4><p>Java, JUnit</p></div>
+          <div class="detail-item"><h4>Duración</h4><p>4 meses</p></div>
+          <div class="detail-item"><h4>Complejidad</h4><p>Avanzada</p></div>
+          <div class="detail-item"><h4>Estado</h4><p>Completado</p></div>
+        </div>
+        <div class="modal-tags">
+          <span class="modal-tag">Java</span><span class="modal-tag">B-Trees</span><span class="modal-tag">AVL</span><span class="modal-tag">Tries</span>
+        </div>
+        <div class="modal-actions">
+          <a href="https://github.com/PurppleAlien" class="btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Ver Código</a>
+          <a href="contacto.html" class="btn btn-outline"><i class="fas fa-envelope"></i> Contactar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-6" class="modal" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <div class="modal-close" id="close-6" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
+      <div class="modal-image"><img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Recommendation System" loading="lazy"></div>
+      <div class="modal-body">
+        <span class="modal-category">Inteligencia Artificial</span>
+        <h2>Sistema de Recomendación</h2>
+        <p class="modal-description">Sistema de recomendación con filtrado colaborativo y content-based filtering. Implementa Singular Value Decomposition (SVD) y cosine similarity para generar recomendaciones personalizadas.</p>
+        <div class="modal-details">
+          <div class="detail-item"><h4>Tecnologías</h4><p>Python, scikit-learn</p></div>
+          <div class="detail-item"><h4>Duración</h4><p>3 meses</p></div>
+          <div class="detail-item"><h4>Complejidad</h4><p>Media</p></div>
+          <div class="detail-item"><h4>Estado</h4><p>Completado</p></div>
+        </div>
+        <div class="modal-tags">
+          <span class="modal-tag">Python</span><span class="modal-tag">SVD</span><span class="modal-tag">ML</span><span class="modal-tag">scikit-learn</span>
+        </div>
+        <div class="modal-actions">
+          <a href="https://github.com/PurppleAlien" class="btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Ver Código</a>
+          <a href="contacto.html" class="btn btn-outline"><i class="fas fa-envelope"></i> Contactar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">Antonio <span>Soria</span></div>
+      <div class="footer-links">
+        <a href="index.html"       data-i18n="nav.home">Inicio</a>
+        <a href="sobre-mi.html"    data-i18n="nav.about">Sobre Mí</a>
+        <a href="portafolio.html"  data-i18n="nav.portfolio">Portafolio</a>
+        <a href="divulgacion.html" data-i18n="nav.outreach">Divulgación</a>
+        <a href="contacto.html"    data-i18n="nav.contact">Contacto</a>
+      </div>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/antonio-soria/" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/PurppleAlien"             class="social-link" title="GitHub"   target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+        <a href="https://www.instagram.com/antoniosoria/"      class="social-link" title="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+        <a href="mailto:antonio.soria8r@gmail.com"             class="social-link" title="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+      <p class="copyright" data-i18n="footer.rights">© 2024 Antonio Soria. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scroll-top" title="Volver arriba"><i class="fas fa-arrow-up"></i></button>
+
+  <script src="js/page-init.js"></script>
+  <script>
+    /* ── Portfolio filter ── */
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const filter = this.dataset.filter;
+        document.querySelectorAll('.project-card').forEach(card => {
+          const cats = card.dataset.category || '';
+          card.classList.toggle('hidden', filter !== 'all' && !cats.includes(filter));
+        });
+      });
+    });
+
+    /* ── Project modals ── */
+    document.querySelectorAll('.view-project').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const modalId = this.dataset.modal;
+        const modal = document.getElementById(modalId);
+        if (modal) {
+          modal.classList.add('open');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    });
+
+    function closeModal(modal) {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.modal').forEach(modal => {
+      modal.addEventListener('click', function(e) {
+        if (e.target === this) closeModal(this);
+      });
+    });
+
+    document.querySelectorAll('.modal-close').forEach(btn => {
+      btn.addEventListener('click', function() {
+        closeModal(this.closest('.modal'));
+      });
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal.open').forEach(m => closeModal(m));
+      }
+    });
+  </script>
+</body>
+</html>
