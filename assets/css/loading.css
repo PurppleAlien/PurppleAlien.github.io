@@ -1,0 +1,74 @@
+/* ================================================================
+   loading.css — Loading screen + custom cursor
+   Usado en: index.html
+   ================================================================ */
+
+/* ── Loading screen ── */
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  background: #060a0f;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: opacity 0.7s ease, visibility 0.7s ease;
+}
+#loading-screen.ls-done { opacity: 0; visibility: hidden; pointer-events: none; }
+
+.ls-scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent 0px, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px);
+  pointer-events: none;
+}
+.ls-content { position: relative; z-index: 1; text-align: center; }
+.ls-logo { font-family: 'Oswald', sans-serif; font-size: clamp(2rem,6vw,3rem); font-weight: 700; color: #e6edf3; letter-spacing: 3px; margin-bottom: 8px; }
+.ls-logo span { color: #61dafb; }
+.ls-tagline { font-family: 'Source Code Pro', monospace; font-size: 0.72rem; color: rgba(97,218,251,0.35); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 40px; }
+.ls-terminal { font-family: 'Source Code Pro', monospace; font-size: 0.8rem; color: rgba(97,218,251,0.55); margin-bottom: 28px; width: 320px; text-align: left; min-height: 72px; }
+.ls-line { line-height: 2.2; }
+.ls-line::before { content: '$ '; color: #00ff88; }
+.ls-line.typing::after { content: '▋'; color: #61dafb; animation: lsBlink 0.6s step-end infinite; }
+@keyframes lsBlink { 0%,100%{opacity:1} 50%{opacity:0} }
+.ls-bar-wrap { display: flex; align-items: center; gap: 12px; }
+.ls-bar { flex: 1; height: 2px; background: rgba(97,218,251,0.1); border-radius: 2px; overflow: hidden; }
+.ls-fill { height: 100%; width: 0%; background: linear-gradient(90deg,#61dafb,#c678dd); border-radius: 2px; transition: width 0.4s ease; box-shadow: 0 0 8px rgba(97,218,251,0.5); }
+.ls-pct { font-family: 'Source Code Pro', monospace; font-size: 0.68rem; color: rgba(97,218,251,0.4); width: 36px; text-align: right; }
+
+/* ── Custom cursor ── */
+@media (hover: hover) and (pointer: fine) { * { cursor: none !important; } }
+
+.cur-dot {
+  position: fixed;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #61dafb;
+  box-shadow: 0 0 10px rgba(97,218,251,0.9), 0 0 22px rgba(97,218,251,0.4);
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%,-50%);
+  will-change: left, top;
+  transition: width .12s ease, height .12s ease, background .15s ease, box-shadow .15s ease;
+}
+.cur-ring {
+  position: fixed;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(97,218,251,0.35);
+  pointer-events: none;
+  z-index: 99997;
+  transform: translate(-50%,-50%);
+  will-change: left, top;
+  transition: width .2s ease, height .2s ease, border-color .2s ease;
+}
+.cur-dot.hover  { width:12px; height:12px; background:#c678dd; box-shadow: 0 0 14px rgba(198,120,221,0.9); }
+.cur-ring.hover { width:50px; height:50px; border-color: rgba(198,120,221,0.4); }
+.cur-dot.click  { width:5px;  height:5px;  transition: width .05s, height .05s; }
+.cur-ring.click { width:60px; height:60px; border-color: rgba(97,218,251,0.7); transition: all .08s ease; }
+
+@media (max-width: 640px) {
+  .ls-terminal { width: 90vw; }
+  .ls-bar-wrap { width: 90vw; }
+}

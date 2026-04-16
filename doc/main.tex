@@ -1,0 +1,313 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,english]{babel}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{fontawesome5}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{background}
+
+% Configuración de geometría
+\geometry{left=1.2cm, right=1.2cm, top=2cm, bottom=2cm}
+
+% Colores corporativos
+\definecolor{primary}{RGB}{0, 51, 102}      % Azul profundo
+\definecolor{secondary}{RGB}{70, 70, 70}     % Gris oscuro
+\definecolor{accent}{RGB}{200, 170, 100}     % Dorado suave
+\definecolor{lightgray}{RGB}{245, 245, 245}  % Gris muy claro
+
+% Configuración de títulos de sección
+\titleformat{\section}
+  {\Large\scshape\bfseries\color{primary}}
+  {}{0em}
+  {}[\color{primary!30}\titlerule[1pt]]
+
+% Configuración de listas
+\setlist{nosep, left=0pt, labelwidth=0.5cm, leftmargin=0.5cm}
+
+% Fondo decorativo para separación de secciones
+\backgroundsetup{
+  contents={},
+  opacity=1,
+  angle=0
+}
+
+% Comando para separador elegante entre currículums
+\newcommand{\cvseparator}{
+  \vspace{1.5cm}
+  \begin{center}
+    \begin{tikzpicture}
+      \draw[color=primary!40, line width=0.5pt] (0,0) -- (5,0);
+      \node at (5.8,0) {\Large\color{primary}$\star$};
+      \node at (6.5,0) {\Large\color{primary}$\star$};
+      \node at (7.2,0) {\Large\color{primary}$\star$};
+      \draw[color=primary!40, line width=0.5pt] (8,0) -- (13,0);
+    \end{tikzpicture}
+  \end{center}
+  \vspace{1cm}
+}
+
+% Comando para el encabezado personalizado
+\newcommand{\cvheader}[3]{
+  \begin{center}
+    {\Huge\bfseries\color{primary} #1} \\[0.4cm]
+    {\large\color{secondary} #2} \\[0.5cm]
+    \begin{tabular}{c}
+      \faMapMarker\ \hspace{0.2cm} #3 \\
+    \end{tabular}
+    \hspace{0.5cm}
+    \begin{tabular}{c}
+      \faEnvelope\ \hspace{0.2cm} \href{mailto:antonio.soria8r@gmail.com}{antonio.soria8r@gmail.com}
+    \end{tabular}
+    \hspace{0.5cm}
+    \begin{tabular}{c}
+      \faGithub\ \hspace{0.2cm} \href{https://github.com/PurppleAlien}{github.com/PurppleAlien}
+    \end{tabular}
+  \end{center}
+  \vspace{0.5cm}
+}
+
+% Comando para caja de habilidades
+\newcommand{\skillbox}[2]{
+  \begin{center}
+    \begin{tikzpicture}
+      \fill[rounded corners=3pt, primary!10] (0,0) rectangle (\textwidth,0.8);
+      \node at (0.4,0.4) [anchor=west] {\textbf{\color{primary}#1}};
+      \node at (\textwidth-0.4,0.4) [anchor=east] {\color{secondary}#2};
+    \end{tikzpicture}
+  \end{center}
+}
+
+\begin{document}
+
+% ==================== ENGLISH VERSION ====================
+\selectlanguage{english}
+
+\cvheader{Juan Antonio G. Soria Rodriguez}
+         {Computer Science Student | Software Developer}
+         {Álvaro Obregón, Ciudad de México, México}
+
+% Professional Summary
+\section*{Professional Summary}
+\vspace{0.2cm}
+Computer Science student at Universidad Autónoma Metropolitana (UAM) with a strong background in applied mathematics and algorithmic thinking. Experienced in developing academic, freelance, and personal projects ranging from web systems to artificial intelligence algorithms. Passionate about building efficient, elegant, and creative software solutions that combine mathematics, programming, and problem-solving. Actively seeking junior roles, internships, freelance opportunities, and projects related to backend, full stack development, and AI.
+
+% Education
+\section*{Education}
+\textbf{Bachelor's Degree in Computer Science} \hfill \textit{Expected 2026}\\
+Universidad Autónoma Metropolitana (UAM), Mexico City\\
+\vspace{0.1cm}
+\textbf{Studies in Applied Mathematics and Computer Science} \hfill \textit{2011–2016}\\
+Universidad Nacional Autónoma de México (UNAM), FES Acatlán
+% Technical Skills
+\section*{Technical Skills}
+\begin{multicols}{2}
+\textbf{Programming Languages:}
+\begin{itemize}
+    \item Java (Experienced)
+    \item C (Intermediate)
+    \item C++ (Intermediate)
+    \item JavaScript (Intermediate)
+    \item Python (Beginner)
+    \item PHP (Beginner)
+\end{itemize}
+\textbf{Web Technologies:}
+\begin{itemize}
+    \item HTML (Intermediate)
+    \item CSS (Beginner)
+    \item React
+    \item Bootstrap
+\end{itemize}
+\textbf{Databases:}
+\begin{itemize}
+    \item SQL (Intermediate)
+    \item MySQL
+    \item MongoDB
+\end{itemize}
+\textbf{Tools \& Environments:}
+\begin{itemize}
+    \item Git \& GitHub
+    \item Jupyter Notebook
+    \item Linux / macOS
+\end{itemize}
+\textbf{AI \& Algorithms:}
+\begin{itemize}
+    \item BFS, DFS, A*
+    \item Minimax, Negamax
+    \item Alpha-Beta Pruning
+    \item Graph theory
+\end{itemize}
+\end{multicols}
+
+
+% Projects & Academic Experience
+\section*{Projects \& Academic Experience}
+\textbf{Artificial Intelligence \& Algorithms (Java)}\\
+\vspace{0.1cm}
+- Implementation of classic AI search and decision algorithms: BFS, DFS, A*, Minimax, Negamax, and Alpha-Beta pruning.\\
+- Development of intelligent game logic for Connect 4, Word Search, Linear Puzzle, 4-Puzzle and 8-Puzzle using Java Swing.\\[0.2cm]
+\textbf{Software Development Projects}\\
+\vspace{0.1cm}
+- Design and development of small-scale systems including web applications, scripts, and automation tools.\\
+- Collaboration on informal and freelance projects, delivering functional solutions.\\[0.2cm]
+\textbf{Web Development}\\
+\vspace{0.1cm}
+- Development of responsive websites using HTML, CSS, JavaScript, React, and Bootstrap.\\
+- Backend experimentation with Node.js and REST-style logic.\\[0.2cm]
+\textbf{Data Analysis \& Simulation (Python / MATLAB)}\\
+\vspace{0.1cm}
+- Introductory data analysis using Python and Jupyter Notebooks.\\
+- Discrete simulation and probabilistic modeling.
+
+% Courses
+\section*{Courses}
+\vspace{0.2cm}
+\noindent
+Linear Algebra | Calculus | Discrete Mathematics | Probability and Statistics | Software Engineering | Operating Systems | Artificial Intelligence | Machine Learning | Databases | Discrete Simulation | Telecommunications Networks
+
+% Soft Skills and Languages
+\vspace{0.3cm}
+\begin{multicols}{2}
+\textbf{Soft Skills:}
+\begin{itemize}
+    \item Responsibility
+    \item Adaptability
+    \item Proactivity
+    \item Self-learning
+\end{itemize}
+\columnbreak
+\textbf{Languages:}
+\begin{itemize}
+    \item Spanish: Native
+    \item English: Intermediate / Technical
+\end{itemize}
+\end{multicols}
+
+% Additional Information
+\section*{Additional Information}
+\vspace{0.2cm}
+Mexican nationality. Born on December 12, 1991, in Mexico City.\\
+Available for junior developer roles, internships, freelance projects, and collaborative initiatives.
+
+% ==================== ELEGANT SEPARATOR ====================
+\cvseparator
+
+
+
+
+\newpage
+% ==================== SPANISH VERSION ====================
+\selectlanguage{spanish}
+
+\cvheader{Juan Antonio G. Soria Rodriguez}
+         {Estudiante de Licenciatura en Computación | Desarrollador de Software}
+         {Álvaro Obregón, Ciudad de México, México}
+
+% Resumen Profesional
+\section*{Resumen Profesional}
+\vspace{0.2cm}
+Estudiante de Licenciatura en Computación en la Universidad Autónoma Metropolitana (UAM) con sólida formación en matemáticas aplicadas y pensamiento algorítmico. Experiencia en el desarrollo de proyectos académicos, freelance y personales que abarcan desde sistemas web hasta algoritmos de inteligencia artificial. Apasionado por construir soluciones de software eficientes, elegantes y creativas que combinan matemáticas, programación y resolución de problemas. Buscando activamente posiciones junior, prácticas profesionales, oportunidades freelance y proyectos relacionados con desarrollo backend, full stack e IA.
+
+% Educación
+\section*{Educación}
+\textbf{Licenciatura en Ciencias de la Computación} \hfill \textit{2026 (Esperado)}\\
+Universidad Autónoma Metropolitana (UAM), Ciudad de México\\
+\vspace{0.1cm}
+\textbf{Estudios en Matemáticas Aplicadas y Computación} \hfill \textit{2011–2016}\\
+Universidad Nacional Autónoma de México (UNAM), FES Acatlán
+
+% Habilidades Técnicas
+\section*{Habilidades Técnicas}
+\begin{multicols}{2}
+\textbf{Lenguajes de Programación:}
+\begin{itemize}
+    \item Java (Experimentado)
+    \item C (Intermedio)
+    \item C++ (Intermedio)
+    \item JavaScript (Intermedio)
+    \item Python (Principiante)
+    \item PHP (Principiante)
+\end{itemize}
+\textbf{Tecnologías Web:}
+\begin{itemize}
+    \item HTML (Intermedio)
+    \item CSS (Principiante)
+    \item React
+    \item Bootstrap
+\end{itemize}
+\textbf{Bases de Datos:}
+\begin{itemize}
+    \item SQL (Intermedio)
+    \item MySQL
+    \item MongoDB
+\end{itemize}
+\textbf{Herramientas y Entornos:}
+\begin{itemize}
+    \item Git \& GitHub
+    \item Jupyter Notebook
+    \item Linux / macOS
+\end{itemize}
+\textbf{IA y Algoritmos:}
+\begin{itemize}
+    \item BFS, DFS, A*
+    \item Minimax, Negamax
+    \item Poda Alfa-Beta
+    \item Teoría de grafos
+\end{itemize}
+\end{multicols}
+
+% Proyectos y Experiencia Académica
+\section*{Proyectos y Experiencia Académica}
+\textbf{Inteligencia Artificial y Algoritmos (Java)}\\
+\vspace{0.1cm}
+- Implementación de algoritmos clásicos de búsqueda y decisión: BFS, DFS, A*, Minimax, Negamax y poda Alfa-Beta.\\
+- Desarrollo de lógica de juego inteligente para Connect 4, Sopa de Letras, Puzzle Lineal, 4-Puzzle y 8-Puzzle usando Java Swing.\\[0.2cm]
+\textbf{Proyectos de Desarrollo de Software}\\
+\vspace{0.1cm}
+- Diseño y desarrollo de sistemas a pequeña escala incluyendo aplicaciones web, scripts y herramientas de automatización.\\
+- Colaboración en proyectos informales y freelance, entregando soluciones funcionales.\\[0.2cm]
+\textbf{Desarrollo Web}\\
+\vspace{0.1cm}
+- Desarrollo de sitios web responsivos usando HTML, CSS, JavaScript, React y Bootstrap.\\
+- Experimentación con backend en Node.js y lógica estilo REST.\\[0.2cm]
+\textbf{Análisis de Datos y Simulación (Python / MATLAB)}\\
+\vspace{0.1cm}
+- Análisis introductorio de datos usando Python y Jupyter Notebooks.\\
+- Simulación discreta y modelado probabilístico.
+
+% Cursos
+\section*{Cursos}
+\vspace{0.2cm}
+\noindent
+Álgebra Lineal | Cálculo | Matemáticas Discretas | Probabilidad y Estadística | Ingeniería de Software | Sistemas Operativos | Inteligencia Artificial | Machine Learning | Bases de Datos | Simulación Discreta | Redes de Telecomunicaciones
+
+% Habilidades Blandas e Idiomas
+\vspace{0.3cm}
+\begin{multicols}{2}
+\textbf{Habilidades Blandas:}
+\begin{itemize}
+    \item Responsabilidad
+    \item Adaptabilidad
+    \item Proactividad
+    \item Aprendizaje Autónomo
+\end{itemize}
+\columnbreak
+\textbf{Idiomas:}
+\begin{itemize}
+    \item Español: Nativo
+    \item Inglés: Intermedio / Técnico
+\end{itemize}
+\end{multicols}
+
+% Información Adicional
+\section*{Información Adicional}
+\vspace{0.2cm}
+Nacionalidad mexicana. Nacido el 12 de diciembre de 1991 en la Ciudad de México.\\
+Disponible para posiciones junior, prácticas profesionales, proyectos freelance e iniciativas colaborativas de desarrollo de software.
+
+\end{document}

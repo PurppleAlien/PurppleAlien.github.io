@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto — Antonio Soria</title>
+  <meta name="description" content="Contacta a Antonio Soria — Matemático y Programador. Disponible para colaboraciones, consultoría y proyectos.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Shared styles -->
+  <link rel="stylesheet" href="assets/css/shared.css">
+
+  <!-- Translations (load before page-init) -->
+  <script src="js/translations.js"></script>
+
+  <style>
+    /* ── Contact-specific extras ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .contact-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--neon));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .contact-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+    .contact-card:hover::before { transform: scaleX(1); }
+
+    .contact-icon {
+      font-size: 2.6rem;
+      color: var(--primary);
+      margin-bottom: 18px;
+      transition: var(--transition);
+    }
+
+    body.dark-mode .contact-icon { color: var(--neon); }
+    .contact-card:hover .contact-icon { transform: scale(1.15); }
+
+    .contact-card h3 {
+      color: var(--primary);
+      margin-bottom: 12px;
+      font-size: 1.3rem;
+    }
+
+    body.dark-mode .contact-card h3 { color: var(--neon); }
+
+    .contact-info { margin-bottom: 20px; color: var(--text-muted); font-size: 0.95rem; }
+    .contact-info strong { color: var(--text); font-family: var(--font-mono); font-size: 0.9rem; }
+
+    /* Video call section */
+    .video-section { text-align: center; padding: 60px 0; }
+
+    .video-img {
+      max-width: 100%;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      margin: 28px 0;
+      transition: var(--transition);
+    }
+
+    .video-img:hover { transform: scale(1.015); box-shadow: var(--shadow-hover); }
+
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-top: 36px;
+    }
+
+    .schedule-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      text-align: left;
+      transition: var(--transition);
+    }
+
+    .schedule-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+
+    .schedule-card h4 {
+      color: var(--primary);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.05rem;
+    }
+
+    body.dark-mode .schedule-card h4 { color: var(--neon); }
+
+    .schedule-card ul { list-style: none; margin-bottom: 20px; }
+    .schedule-card li {
+      padding: 7px 0 7px 20px;
+      position: relative;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .schedule-card li:last-child { border-bottom: none; }
+    .schedule-card li::before { content: '▸'; position: absolute; left: 0; color: var(--primary); }
+    body.dark-mode .schedule-card li::before { color: var(--neon); }
+
+    /* Process section */
+    .process-section {
+      padding: 60px 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(61,133,198,0.05) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 50%, rgba(97,218,251,0.04) 0%, transparent 60%);
+      border-radius: var(--radius-lg);
+      margin-bottom: 60px;
+    }
+
+    body.dark-mode .process-section {
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(97,218,251,0.04) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 50%, rgba(198,120,221,0.03) 0%, transparent 60%);
+    }
+
+    .process-content { max-width: 900px; margin: 0 auto; text-align: center; }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 36px;
+    }
+
+    .process-step {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .process-step:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 14px;
+    }
+
+    body.dark-mode .step-num {
+      background: linear-gradient(135deg, var(--neon), var(--accent));
+      color: #0d1117;
+    }
+
+    .process-step h4 { color: var(--primary); margin-bottom: 10px; font-size: 1rem; }
+    body.dark-mode .process-step h4 { color: var(--neon); }
+    .process-step p { font-size: 0.9rem; color: var(--text-muted); margin: 0; }
+
+    @media (max-width: 640px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .schedule-grid { grid-template-columns: 1fr; }
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 420px) {
+      .process-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Contact Form ── */
+    .cf-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    @media (max-width: 560px) { .cf-row { grid-template-columns: 1fr; } }
+
+    .cf-field { display: flex; flex-direction: column; gap: 6px; }
+
+    .cf-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cf-input {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 11px 14px;
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      color: var(--text);
+      transition: border-color .25s ease, box-shadow .25s ease;
+      outline: none;
+      width: 100%;
+    }
+    .cf-input:focus {
+      border-color: var(--neon);
+      box-shadow: 0 0 0 3px rgba(97,218,251,0.1);
+    }
+    .cf-input.invalid { border-color: #f87171; box-shadow: 0 0 0 3px rgba(248,113,113,0.1); }
+    .cf-select { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath fill='%238b949e' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; cursor: pointer; }
+    .cf-textarea { resize: vertical; min-height: 120px; }
+
+    .cf-error { font-size: 0.75rem; color: #f87171; min-height: 16px; }
+
+    .cf-submit {
+      background: linear-gradient(135deg, var(--neon), var(--primary));
+      color: #0d1117;
+      font-weight: 700;
+      padding: 13px 36px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all .3s ease;
+      box-shadow: 0 4px 20px rgba(97,218,251,0.25);
+    }
+    .cf-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(97,218,251,0.4); }
+    .cf-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .cf-status {
+      margin-top: 20px;
+      padding: 14px 18px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      text-align: center;
+      display: none;
+    }
+    .cf-status.success { display: block; background: rgba(0,212,170,0.1); border: 1px solid rgba(0,212,170,0.3); color: #00d4aa; }
+    .cf-status.error   { display: block; background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.3); color: #f87171; }
+
+    body.dark-mode .cf-input { background: #161b22; border-color: rgba(97,218,251,0.15); color: #e2e8f0; }
+    body.dark-mode .cf-input:focus { border-color: var(--neon); }
+    body.dark-mode .cf-input option { background: #161b22; }
+  </style>
+
+  <!-- Analytics sin cookies (configura tu dominio en plausible.io) -->
+  <script defer data-domain="antoniosoria.com" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+
+  <!-- Progress bar -->
+  <div class="progress-bar" id="progress-bar"></div>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-image">
+          <img src="images/mifoto.jpg" alt="Antonio Soria">
+        </div>
+        <span class="logo-text">Antonio <span>Soria</span></span>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="index.html"       data-i18n="nav.home">Inicio</a></li>
+        <li><a href="sobre-mi.html"    data-i18n="nav.about">Sobre Mí</a></li>
+        <li><a href="portafolio.html"  data-i18n="nav.portfolio">Portafolio</a></li>
+        <li><a href="divulgacion.html" data-i18n="nav.outreach">Divulgación</a></li>
+        <li><a href="contacto.html" class="active" data-i18n="nav.contact">Contacto</a></li>
+      </ul>
+
+      <div class="header-buttons">
+        <button class="theme-btn"    id="theme-toggle"    title="Modo oscuro / Dark mode"><i class="fas fa-moon"></i></button>
+        <button class="language-btn" id="language-toggle" title="Cambiar idioma">
+          <span class="language-flag">🇲🇽</span>
+        </button>
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Menú" aria-expanded="false">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile nav -->
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Navegación móvil">
+    <a href="index.html">       <i class="fas fa-home"></i>      <span data-i18n="nav.home">Inicio</span></a>
+    <a href="sobre-mi.html">    <i class="fas fa-user"></i>      <span data-i18n="nav.about">Sobre Mí</span></a>
+    <a href="portafolio.html">  <i class="fas fa-code"></i>      <span data-i18n="nav.portfolio">Portafolio</span></a>
+    <a href="divulgacion.html"> <i class="fas fa-flask"></i>     <span data-i18n="nav.outreach">Divulgación</span></a>
+    <a href="contacto.html" class="active"> <i class="fas fa-envelope"></i> <span data-i18n="nav.contact">Contacto</span></a>
+  </nav>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main-content">
+
+    <!-- Hero -->
+    <section class="page-hero container fade-in">
+      <div class="page-hero-decoration"></div>
+      <h1 data-i18n="contact.hero.title">Hablemos</h1>
+      <p data-i18n="contact.hero.text">Estoy disponible para colaboraciones, proyectos interesantes y conversaciones sobre matemáticas, programación e inteligencia artificial. No dudes en contactarme.</p>
+    </section>
+
+    <!-- Contact cards -->
+    <section class="container">
+      <div class="contact-grid">
+
+        <!-- WhatsApp -->
+        <div class="contact-card fade-in">
+          <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+          <h3 data-i18n="contact.wa.title">WhatsApp</h3>
+          <div class="contact-info">
+            <p><strong>+52 55 5464 6553</strong></p>
+            <p data-i18n="contact.wa.desc">Respuesta rápida, ideal para comunicación inmediata</p>
+          </div>
+          <a href="https://wa.me/525554646553?text=Hola%20Antonio,%20me%20interesa%20ponerme%20en%20contacto%20contigo"
+             class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp"></i>
+            <span data-i18n="contact.wa.btn">Enviar mensaje</span>
+          </a>
+        </div>
+
+        <!-- Email -->
+        <div class="contact-card fade-in delay-1">
+          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+          <h3 data-i18n="contact.email.title">Email</h3>
+          <div class="contact-info">
+            <p><strong>antonio.soria8r@gmail.com</strong></p>
+            <p>cbi2203041232@izt.uam.mx</p>
+            <p data-i18n="contact.email.desc">Para propuestas formales y documentación</p>
+          </div>
+          <a href="mailto:antonio.soria8r@gmail.com" class="btn btn-email">
+            <i class="fas fa-paper-plane"></i>
+            <span data-i18n="contact.email.btn">Enviar email</span>
+          </a>
+        </div>
+
+        <!-- CV -->
+        <div class="contact-card fade-in delay-2">
+          <div class="contact-icon"><i class="fas fa-file-alt"></i></div>
+          <h3 data-i18n="contact.cv.title">Currículum</h3>
+          <div class="contact-info">
+            <p data-i18n="contact.cv.desc1">Descarga mi CV actualizado</p>
+            <p data-i18n="contact.cv.desc2">Información profesional detallada</p>
+          </div>
+          <a href="documents/curriculum.pdf" class="btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-download"></i>
+            <span data-i18n="contact.cv.btn">Descargar CV</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Video call section -->
+    <section class="video-section container fade-in">
+      <h2 class="section-title" data-i18n="contact.video.title">Videollamada Profesional</h2>
+      <p data-i18n="contact.video.text">Agenda una sesión de videollamada para discutir proyectos, asesorías o colaboraciones</p>
+
+      <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
+           alt="Videollamada profesional" class="video-img" loading="lazy">
+
+      <div class="schedule-grid">
+        <!-- Consulting -->
+        <div class="schedule-card fade-in">
+          <h4><i class="fas fa-lightbulb"></i> <span data-i18n="contact.consult.title">Consultoría</span></h4>
+          <ul>
+            <li data-i18n="contact.consult.li1">Asesoría en algoritmos y matemáticas</li>
+            <li data-i18n="contact.consult.li2">Análisis de proyectos técnicos</li>
+            <li data-i18n="contact.consult.li3">Soluciones personalizadas</li>
+          </ul>
+          <a href="https://calendly.com/antonio-soria/consultoria" class="btn btn-calendar" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-calendar-check"></i>
+            <span data-i18n="contact.consult.btn">Agendar consultoría</span>
+          </a>
+        </div>
+
+        <!-- Development -->
+        <div class="schedule-card fade-in delay-1">
+          <h4><i class="fas fa-code"></i> <span data-i18n="contact.dev.title">Desarrollo</span></h4>
+          <ul>
+            <li data-i18n="contact.dev.li1">Discusión de proyectos de desarrollo</li>
+            <li data-i18n="contact.dev.li2">Análisis de requerimientos técnicos</li>
+            <li data-i18n="contact.dev.li3">Presupuestos y tiempos de entrega</li>
+          </ul>
+          <a href="https://calendly.com/antonio-soria/desarrollo" class="btn btn-calendar" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-calendar-check"></i>
+            <span data-i18n="contact.dev.btn">Agendar reunión</span>
+          </a>
+        </div>
+
+        <!-- Academic -->
+        <div class="schedule-card fade-in delay-2">
+          <h4><i class="fas fa-graduation-cap"></i> <span data-i18n="contact.academic.title">Asesoría Académica</span></h4>
+          <ul>
+            <li data-i18n="contact.academic.li1">Asesoría en matemáticas y programación</li>
+            <li data-i18n="contact.academic.li2">Revisión de proyectos académicos</li>
+            <li data-i18n="contact.academic.li3">Orientación profesional</li>
+          </ul>
+          <a href="https://calendly.com/antonio-soria/asesoria" class="btn btn-calendar" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-calendar-check"></i>
+            <span data-i18n="contact.academic.btn">Agendar asesoría</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="availability-badge">
+        <i class="fas fa-clock"></i>
+        <span data-i18n="contact.availability">Disponibilidad: Lunes a Viernes, 9:00 AM – 6:00 PM</span>
+      </div>
+    </section>
+
+    <!-- Process section -->
+    <section class="process-section container fade-in">
+      <div class="process-content">
+        <h2 class="section-title" data-i18n="contact.process.title">Proceso de Colaboración</h2>
+        <p data-i18n="contact.process.text">Mi enfoque para asegurar que nuestras colaboraciones sean productivas y exitosas:</p>
+
+        <div class="process-grid">
+          <div class="process-step fade-in">
+            <div class="step-num">1</div>
+            <h4 data-i18n="contact.step1.title">Consulta Inicial</h4>
+            <p data-i18n="contact.step1.text">Discutimos tus necesidades, objetivos y expectativas para el proyecto.</p>
+          </div>
+          <div class="process-step fade-in delay-1">
+            <div class="step-num">2</div>
+            <h4 data-i18n="contact.step2.title">Propuesta</h4>
+            <p data-i18n="contact.step2.text">Te presento un plan detallado con soluciones, timeline y presupuesto.</p>
+          </div>
+          <div class="process-step fade-in delay-2">
+            <div class="step-num">3</div>
+            <h4 data-i18n="contact.step3.title">Colaboración</h4>
+            <p data-i18n="contact.step3.text">Trabajamos juntos con comunicación constante y updates regulares.</p>
+          </div>
+          <div class="process-step fade-in delay-3">
+            <div class="step-num">4</div>
+            <h4 data-i18n="contact.step4.title">Entrega</h4>
+            <p data-i18n="contact.step4.text">Revisión final y entrega del proyecto completo con documentación.</p>
+          </div>
+        </div>
+
+        <a href="mailto:antonio.soria8r@gmail.com" class="btn btn-large" style="margin-top: 36px;">
+          <i class="fas fa-paper-plane"></i>
+          <span data-i18n="contact.start.btn">Iniciar conversación</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT FORM ===== -->
+    <section class="container" style="padding-bottom: 60px;">
+      <h2 class="section-title">Envíame un Mensaje</h2>
+      <p style="text-align:center; color:var(--text-muted); margin-top:-30px; margin-bottom:40px; font-size:0.95rem;">
+        Respondo en menos de 24 horas · todos los campos son obligatorios
+      </p>
+
+      <form id="contact-form" action="https://formspree.io/f/mpqoezvj" method="POST" novalidate
+            style="max-width:680px; margin:0 auto;">
+
+        <div class="cf-row">
+          <div class="cf-field">
+            <label class="cf-label" for="cf-name">Nombre</label>
+            <input class="cf-input" type="text" id="cf-name" name="name"
+                   placeholder="Tu nombre completo" required autocomplete="name">
+            <span class="cf-error" id="cf-name-err"></span>
+          </div>
+          <div class="cf-field">
+            <label class="cf-label" for="cf-email">Email</label>
+            <input class="cf-input" type="email" id="cf-email" name="email"
+                   placeholder="tu@email.com" required autocomplete="email">
+            <span class="cf-error" id="cf-email-err"></span>
+          </div>
+        </div>
+
+        <div class="cf-field" style="margin-bottom:18px">
+          <label class="cf-label" for="cf-subject">Asunto</label>
+          <select class="cf-input cf-select" id="cf-subject" name="subject" required>
+            <option value="">— Selecciona un asunto —</option>
+            <option value="Consultoría técnica">Consultoría técnica</option>
+            <option value="Proyecto de desarrollo">Proyecto de desarrollo</option>
+            <option value="Asesoría académica">Asesoría académica</option>
+            <option value="Colaboración">Colaboración</option>
+            <option value="Otro">Otro</option>
+          </select>
+          <span class="cf-error" id="cf-subject-err"></span>
+        </div>
+
+        <div class="cf-field" style="margin-bottom:24px">
+          <label class="cf-label" for="cf-msg">Mensaje</label>
+          <textarea class="cf-input cf-textarea" id="cf-msg" name="message"
+                    placeholder="Cuéntame sobre tu proyecto, idea o pregunta…" required rows="5"></textarea>
+          <span class="cf-error" id="cf-msg-err"></span>
+        </div>
+
+        <div style="text-align:center">
+          <button type="submit" class="cf-submit btn" id="cf-submit">
+            <i class="fas fa-paper-plane"></i>
+            <span id="cf-btn-text">Enviar mensaje</span>
+          </button>
+        </div>
+
+        <div class="cf-status" id="cf-status"></div>
+      </form>
+    </section>
+
+    <!-- Social links -->
+    <section class="container text-center" style="padding-bottom: 40px;">
+      <h2 class="section-title" data-i18n="contact.social.title">Conectemos</h2>
+      <div class="social-links" style="margin-top: 30px;">
+        <a href="https://www.linkedin.com/in/antonio-soria/" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/PurppleAlien"             class="social-link" title="GitHub"   target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+        <a href="https://www.instagram.com/antoniosould/"      class="social-link" title="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+        <a href="mailto:antonio.soria8r@gmail.com"             class="social-link" title="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">Antonio <span>Soria</span></div>
+      <div class="footer-links">
+        <a href="index.html"       data-i18n="nav.home">Inicio</a>
+        <a href="sobre-mi.html"    data-i18n="nav.about">Sobre Mí</a>
+        <a href="portafolio.html"  data-i18n="nav.portfolio">Portafolio</a>
+        <a href="divulgacion.html" data-i18n="nav.outreach">Divulgación</a>
+        <a href="contacto.html"    data-i18n="nav.contact">Contacto</a>
+      </div>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/antonio-soria/" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/PurppleAlien"             class="social-link" title="GitHub"   target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+        <a href="https://www.instagram.com/antoniosould/"      class="social-link" title="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+        <a href="mailto:antonio.soria8r@gmail.com"             class="social-link" title="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+      <p class="copyright" data-i18n="footer.rights">© 2024 Antonio Soria. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Scroll-to-top -->
+  <button class="scroll-top" id="scroll-top" title="Volver arriba"><i class="fas fa-arrow-up"></i></button>
+
+  <script src="js/page-init.js"></script>
+  <script>
+  /* Contact form — Formspree */
+  (function () {
+    const form   = document.getElementById('contact-form');
+    const status = document.getElementById('cf-status');
+    const btn    = document.getElementById('cf-submit');
+    const btnTxt = document.getElementById('cf-btn-text');
+    if (!form) return;
+
+    function validate() {
+      let ok = true;
+      const rules = [
+        { id:'cf-name',    err:'cf-name-err',    msg:'Por favor ingresa tu nombre.',       test: v => v.trim().length > 1 },
+        { id:'cf-email',   err:'cf-email-err',   msg:'Por favor ingresa un email válido.', test: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
+        { id:'cf-subject', err:'cf-subject-err', msg:'Selecciona un asunto.',              test: v => v !== '' },
+        { id:'cf-msg',     err:'cf-msg-err',     msg:'El mensaje debe tener al menos 10 caracteres.', test: v => v.trim().length >= 10 },
+      ];
+      rules.forEach(r => {
+        const el  = document.getElementById(r.id);
+        const err = document.getElementById(r.err);
+        if (!r.test(el.value)) {
+          el.classList.add('invalid');
+          if (err) err.textContent = r.msg;
+          ok = false;
+        } else {
+          el.classList.remove('invalid');
+          if (err) err.textContent = '';
+        }
+      });
+      return ok;
+    }
+
+    // Live validation
+    ['cf-name','cf-email','cf-subject','cf-msg'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener('input', () => { el.classList.remove('invalid'); });
+    });
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      if (!validate()) return;
+
+      btn.disabled = true;
+      btnTxt.textContent = 'Enviando…';
+
+      // Aviso si el endpoint no está configurado
+      const action = form.getAttribute('action');
+      if (action.includes('mpqoezvj')) {
+        setTimeout(() => {
+          status.className = 'cf-status error';
+          status.textContent = '⚠ Configura tu endpoint de Formspree en contacto.html (reemplaza mpqoezvj).';
+          btn.disabled = false;
+          btnTxt.textContent = 'Enviar mensaje';
+        }, 400);
+        return;
+      }
+
+      try {
+        const res = await fetch(action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' },
+        });
+        if (res.ok) {
+          status.className = 'cf-status success';
+          status.textContent = '✓ Mensaje enviado correctamente. Te responderé pronto.';
+          form.reset();
+        } else {
+          throw new Error('Error ' + res.status);
+        }
+      } catch (err) {
+        status.className = 'cf-status error';
+        status.textContent = '✕ Hubo un error al enviar. Intenta por WhatsApp o email directamente.';
+      } finally {
+        btn.disabled = false;
+        btnTxt.textContent = 'Enviar mensaje';
+      }
+    });
+  })();
+  </script>
+</body>
+</html>

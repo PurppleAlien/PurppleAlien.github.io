@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre Mí — Antonio Soria</title>
+  <meta name="description" content="Trayectoria de Antonio Soria: Matemático y Programador, UNAM, UAM, IA y algoritmos.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Shared styles -->
+  <link rel="stylesheet" href="assets/css/shared.css">
+
+  <!-- Translations -->
+  <script src="js/translations.js"></script>
+
+  <style>
+    /* ── About-specific extras ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 36px;
+    }
+
+    .skill-category {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .skill-category:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+
+    body.dark-mode .skill-category:hover {
+      border-color: rgba(97,218,251,0.2);
+      box-shadow: 0 8px 32px rgba(97,218,251,0.08);
+    }
+
+    .skill-category h3 {
+      color: var(--primary);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.1rem;
+    }
+
+    body.dark-mode .skill-category h3 { color: var(--neon); }
+
+    /* Stats row */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      margin: 50px 0;
+    }
+
+    /* Philosophy */
+    .philosophy-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .philosophy-wrap p { font-size: 1.05rem; color: var(--text-muted); }
+
+    /* Code snippet decoration */
+    .code-decoration {
+      margin: 40px 0;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+
+  <!-- Analytics sin cookies (configura tu dominio en plausible.io) -->
+  <script defer data-domain="antoniosoria.com" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+
+  <div class="progress-bar" id="progress-bar"></div>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-image">
+          <img src="images/mifoto.jpg" alt="Antonio Soria">
+        </div>
+        <span class="logo-text">Antonio <span>Soria</span></span>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="index.html"       data-i18n="nav.home">Inicio</a></li>
+        <li><a href="sobre-mi.html" class="active" data-i18n="nav.about">Sobre Mí</a></li>
+        <li><a href="portafolio.html"  data-i18n="nav.portfolio">Portafolio</a></li>
+        <li><a href="divulgacion.html" data-i18n="nav.outreach">Divulgación</a></li>
+        <li><a href="contacto.html"    data-i18n="nav.contact">Contacto</a></li>
+      </ul>
+
+      <div class="header-buttons">
+        <button class="theme-btn"    id="theme-toggle"    title="Modo oscuro"><i class="fas fa-moon"></i></button>
+        <button class="language-btn" id="language-toggle" title="Cambiar idioma">
+          <span class="language-flag">🇲🇽</span>
+        </button>
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Menú" aria-expanded="false">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile nav -->
+  <nav class="mobile-nav" id="mobile-nav">
+    <a href="index.html">       <i class="fas fa-home"></i>      <span data-i18n="nav.home">Inicio</span></a>
+    <a href="sobre-mi.html" class="active"><i class="fas fa-user"></i> <span data-i18n="nav.about">Sobre Mí</span></a>
+    <a href="portafolio.html">  <i class="fas fa-code"></i>      <span data-i18n="nav.portfolio">Portafolio</span></a>
+    <a href="divulgacion.html"> <i class="fas fa-flask"></i>     <span data-i18n="nav.outreach">Divulgación</span></a>
+    <a href="contacto.html">    <i class="fas fa-envelope"></i>  <span data-i18n="nav.contact">Contacto</span></a>
+  </nav>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main-content">
+
+    <!-- Hero -->
+    <section class="page-hero container fade-in">
+      <div class="page-hero-decoration"></div>
+      <h1 data-i18n="about.hero.title">Mi Trayectoria</h1>
+      <p data-i18n="about.hero.text">Conoce más sobre mi camino como matemático y desarrollador, mis pasiones y lo que me impulsa a crear soluciones innovadoras.</p>
+    </section>
+
+    <!-- Stats -->
+    <section class="container">
+      <div class="stats-row">
+        <div class="stat-card fade-in">
+          <span class="stat-number">13+</span>
+          <div class="stat-label">Años programando</div>
+        </div>
+        <div class="stat-card fade-in delay-1">
+          <span class="stat-number">2</span>
+          <div class="stat-label">Universidades</div>
+        </div>
+        <div class="stat-card fade-in delay-2">
+          <span class="stat-number">5+</span>
+          <div class="stat-label">Lenguajes dominados</div>
+        </div>
+        <div class="stat-card fade-in delay-3">
+          <span class="stat-number">∞</span>
+          <div class="stat-label">Problemas resueltos</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="container" style="padding: 40px 0 60px;">
+      <h2 class="section-title" data-i18n="about.timeline.title">Mi Journey</h2>
+      <div class="timeline">
+
+        <div class="timeline-item fade-in">
+          <div class="timeline-content">
+            <span class="timeline-date" data-i18n="about.t1.date">2011 – 2016</span>
+            <h3 data-i18n="about.t1.title">Inicios en la Programación</h3>
+            <p data-i18n="about.t1.text">Mis primeros acercamientos al desarrollo de software y aplicaciones empresariales, descubriendo mi pasión por resolver problemas mediante código.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item fade-in delay-1">
+          <div class="timeline-content">
+            <span class="timeline-date" data-i18n="about.t2.date">2016 – 2020</span>
+            <h3 data-i18n="about.t2.title">UNAM FES Acatlán</h3>
+            <p data-i18n="about.t2.text">Licenciatura en Matemáticas Aplicadas y Computación. Donde solidifiqué mis bases matemáticas y descubrí la belleza de los algoritmos.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item fade-in delay-2">
+          <div class="timeline-content">
+            <span class="timeline-date" data-i18n="about.t3.date">2020 – Presente</span>
+            <h3 data-i18n="about.t3.title">UAM Iztapalapa</h3>
+            <p data-i18n="about.t3.text">Licenciatura en Computación. Profundizando en inteligencia artificial, teoría de grafos y algoritmia avanzada.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item fade-in delay-3">
+          <div class="timeline-content">
+            <span class="timeline-date" data-i18n="about.t4.date">2022 – Presente</span>
+            <h3 data-i18n="about.t4.title">Desarrollo Profesional</h3>
+            <p data-i18n="about.t4.text">Trabajando en proyectos personales y profesionales que combinan mis conocimientos en matemáticas y programación para crear soluciones innovadoras.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Code decoration -->
+    <section class="container">
+      <div class="code-decoration fade-in">
+        <div class="terminal-block">
+          <div class="terminal-bar">
+            <span class="terminal-dot red"></span>
+            <span class="terminal-dot yellow"></span>
+            <span class="terminal-dot green"></span>
+            <span style="margin-left: 12px; font-family: var(--font-mono); font-size: 0.8rem; color: #8b949e;">antonio@dev: ~</span>
+          </div>
+          <div class="terminal-body">
+            <span class="cmt">// Mi stack de experiencia</span><br>
+            <span class="kw">const</span> <span class="fn">developer</span> = {<br>
+            &nbsp;&nbsp;<span class="str">languages</span>: [<span class="str">"Java"</span>, <span class="str">"C"</span>, <span class="str">"Python"</span>, <span class="str">"JS"</span>],<br>
+            &nbsp;&nbsp;<span class="str">domains</span>: [<span class="str">"AI"</span>, <span class="str">"Graph Theory"</span>, <span class="str">"Algorithms"</span>],<br>
+            &nbsp;&nbsp;<span class="str">education</span>: [<span class="str">"UNAM"</span>, <span class="str">"UAM"</span>],<br>
+            &nbsp;&nbsp;<span class="fn">passion</span>: () =&gt; <span class="str">"Solving hard problems elegantly"</span><br>
+            };<br>
+            <span class="cmd">console.log</span>(<span class="str">"Ready to build something great!"</span>);
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="container" style="padding: 40px 0 60px;">
+      <h2 class="section-title" data-i18n="about.gallery.title">Mi Mundo</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item fade-in">
+          <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+               alt="Algoritmos de IA" loading="lazy">
+          <div class="gallery-caption" data-i18n="about.gallery.cap1">Desarrollo de algoritmos de IA</div>
+        </div>
+        <div class="gallery-item fade-in delay-1">
+          <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+               alt="Matemáticas aplicadas" loading="lazy">
+          <div class="gallery-caption" data-i18n="about.gallery.cap2">Matemáticas aplicadas a problemas reales</div>
+        </div>
+        <div class="gallery-item fade-in delay-2">
+          <img src="https://images.unsplash.com/photo-1550439062-609e1531270e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+               alt="Desarrollo de software" loading="lazy">
+          <div class="gallery-caption" data-i18n="about.gallery.cap3">Desarrollo de software especializado</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Philosophy -->
+    <section class="container" style="padding: 60px 0; background: radial-gradient(ellipse at 50% 0%, rgba(61,133,198,0.07) 0%, transparent 70%); border-radius: var(--radius-lg); margin-bottom: 60px;">
+      <div class="philosophy-wrap fade-in">
+        <h2 class="section-title" data-i18n="about.philosophy.title">Mi Filosofía</h2>
+        <p data-i18n="about.philosophy.p1">Creo firmemente que las matemáticas y la programación son dos caras de la misma moneda: herramientas poderosas para entender y transformar el mundo que nos rodea.</p>
+        <p data-i18n="about.philosophy.p2">Mi enfoque se basa en la elegancia de las soluciones simples para problemas complejos, encontrando belleza en los algoritmos eficientes y en las estructuras matemáticas que describen nuestro universo.</p>
+        <blockquote class="quote">
+          <p data-i18n="about.philosophy.quote">"La información es la resolución de la incertidumbre, y las matemáticas son el lenguaje perfecto para cuantificarla."</p>
+          <footer><strong data-i18n="about.philosophy.attr">— Inspirado por Claude Shannon</strong></footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="container" style="padding-bottom: 60px;">
+      <h2 class="section-title" data-i18n="about.skills.title">Enfoques Principales</h2>
+      <div class="about-grid">
+
+        <div class="skill-category fade-in">
+          <h3><i class="fas fa-calculator"></i> <span data-i18n="about.skills.math">Matemáticas</span></h3>
+          <ul class="skill-list">
+            <li data-i18n="about.skills.math.li1">Análisis Numérico</li>
+            <li data-i18n="about.skills.math.li2">Teoría de Grafos</li>
+            <li data-i18n="about.skills.math.li3">Estadística Avanzada</li>
+            <li data-i18n="about.skills.math.li4">Optimización Matemática</li>
+          </ul>
+        </div>
+
+        <div class="skill-category fade-in delay-1">
+          <h3><i class="fas fa-code"></i> <span data-i18n="about.skills.prog">Programación</span></h3>
+          <ul class="skill-list">
+            <li data-i18n="about.skills.prog.li1">Java &amp; Algoritmos de IA</li>
+            <li data-i18n="about.skills.prog.li2">Lenguaje C &amp; Sistemas</li>
+            <li data-i18n="about.skills.prog.li3">Python para Análisis</li>
+            <li data-i18n="about.skills.prog.li4">Estructuras de Datos</li>
+          </ul>
+        </div>
+
+        <div class="skill-category fade-in delay-2">
+          <h3><i class="fas fa-brain"></i> <span data-i18n="about.skills.ai">Inteligencia Artificial</span></h3>
+          <ul class="skill-list">
+            <li data-i18n="about.skills.ai.li1">Algoritmos de Búsqueda</li>
+            <li data-i18n="about.skills.ai.li2">BFS, DFS y A*</li>
+            <li data-i18n="about.skills.ai.li3">Minimax y Poda Alfa-Beta</li>
+            <li data-i18n="about.skills.ai.li4">Resolución de Problemas</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">Antonio <span>Soria</span></div>
+      <div class="footer-links">
+        <a href="index.html"       data-i18n="nav.home">Inicio</a>
+        <a href="sobre-mi.html"    data-i18n="nav.about">Sobre Mí</a>
+        <a href="portafolio.html"  data-i18n="nav.portfolio">Portafolio</a>
+        <a href="divulgacion.html" data-i18n="nav.outreach">Divulgación</a>
+        <a href="contacto.html"    data-i18n="nav.contact">Contacto</a>
+      </div>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/antonio-soria/" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/PurppleAlien"             class="social-link" title="GitHub"   target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+        <a href="https://www.instagram.com/antoniosoria/"      class="social-link" title="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+        <a href="mailto:antonio.soria8r@gmail.com"             class="social-link" title="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+      <p class="copyright" data-i18n="footer.rights">© 2024 Antonio Soria. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scroll-top" title="Volver arriba"><i class="fas fa-arrow-up"></i></button>
+
+  <script src="js/page-init.js"></script>
+</body>
+</html>
