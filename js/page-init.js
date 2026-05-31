@@ -16,8 +16,7 @@
    1. THEME
 ============================================================ */
 function initTheme() {
-  const saved = localStorage.getItem('theme') ||
-                (localStorage.getItem('darkMode') === 'true' ? 'dark' : 'light');
+  const saved = localStorage.getItem('theme') || 'dark';
   applyTheme(saved);
 
   const btn = document.getElementById('theme-toggle');
@@ -173,23 +172,7 @@ function initScrollAnimations() {
 }
 
 /* ============================================================
-   5. SCROLL-TO-TOP BUTTON
-============================================================ */
-function initScrollTop() {
-  const btn = document.getElementById('scroll-top');
-  if (!btn) return;
-
-  window.addEventListener('scroll', () => {
-    btn.classList.toggle('visible', window.scrollY > 400);
-  }, { passive: true });
-
-  btn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-}
-
-/* ============================================================
-   6. READ PROGRESS BAR
+   5. READ PROGRESS BAR
 ============================================================ */
 function initProgressBar() {
   const bar = document.getElementById('progress-bar');
@@ -221,7 +204,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initLanguage();
   initMobileMenu();
   initScrollAnimations();
-  initScrollTop();
   initProgressBar();
   initActiveNav();
 });

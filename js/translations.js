@@ -136,30 +136,99 @@ window.pageTranslations = {
     'portfolio.hero.text':   'Una selección de proyectos que combinan rigor matemático con implementación elegante en código.',
 
     'portfolio.projects.title': 'Proyectos Destacados',
+    'portfolio.ia.section':     'Inteligencia Artificial',
 
     'portfolio.p1.title':  'Algoritmos de IA en Java',
-    'portfolio.p1.desc':   'Implementación de algoritmos de inteligencia artificial como BFS, DFS, A* y Minimax para resolver problemas complejos.',
+    'portfolio.p1.desc':   'Colección de 15 proyectos de inteligencia artificial con interfaz gráfica: BFS, DFS, A*, Minimax, Negamax, backtracking, algoritmo de Wang y más.',
     'portfolio.p1.btn':    'Ver Proyecto',
 
-    'portfolio.p2.title':  'Desarrollo de Sistemas en C',
-    'portfolio.p2.desc':   'Desarrollo de sistemas eficientes y de bajo nivel utilizando lenguaje C para aplicaciones de alto rendimiento.',
+    'portfolio.p2.title':  'Sistema de Gestión Dental',
+    'portfolio.p2.desc':   'Sistema web completo para consultorio dental con agenda interactiva, odontograma de 32 dientes, facturación con PDF y portal del paciente.',
     'portfolio.p2.btn':    'Ver Proyecto',
 
-    'portfolio.p3.title':  'Algoritmo de Wang',
-    'portfolio.p3.desc':   'Implementación del algoritmo de Wang para demostración automática de teoremas en lógica proposicional.',
+    'portfolio.p3.title':  'KirbyWorld — Low-Poly 3D',
+    'portfolio.p3.desc':   'Videojuego 3D estilo low-poly con terreno procedural, ciclo día/noche, cámara orbital, inventario y sistema de poderes.',
     'portfolio.p3.btn':    'Ver Proyecto',
 
-    'portfolio.p4.title':  'Algoritmos de Teoría de Grafos',
-    'portfolio.p4.desc':   'Implementación de algoritmos de grafos para resolver problemas de optimización y análisis de redes.',
+    'portfolio.p4.title':  'Conecta 4 con Negamax',
+    'portfolio.p4.desc':   'Juego de Conecta 4 con IA basada en el algoritmo Negamax con interfaz gráfica en Java Swing.',
     'portfolio.p4.btn':    'Ver Proyecto',
 
-    'portfolio.p5.title':  'Estructuras de Datos Avanzadas',
-    'portfolio.p5.desc':   'Implementación de estructuras de datos complejas y algoritmos de manipulación para optimizar el rendimiento.',
+    'portfolio.p5.title':  'Algoritmo de Wang',
+    'portfolio.p5.desc':   'Implementación del algoritmo de Wang para demostración automática de teoremas en lógica proposicional con interfaz gráfica.',
     'portfolio.p5.btn':    'Ver Proyecto',
 
-    'portfolio.p6.title':  'Sistema de Recomendación',
-    'portfolio.p6.desc':   'Desarrollo de un sistema de recomendación utilizando técnicas de machine learning y filtrado colaborativo.',
+    'portfolio.p6.title':  'Buscaminas con Backtracking',
+    'portfolio.p6.desc':   'Buscaminas con algoritmo de flood-fill iterativo, múltiples dificultades y detección automática de victoria/derrota.',
     'portfolio.p6.btn':    'Ver Proyecto',
+
+    'portfolio.p7.title':  'Gato (Tic-Tac-Toe) con Minimax',
+    'portfolio.p7.desc':   'Juego de Gato con IA basada en Minimax con poda alfa-beta. Interfaz Swing con tablero interactivo, indicador de turno y detección de victoria/empate.',
+    'portfolio.p7.btn':    'Ver Proyecto',
+
+    'portfolio.p8.title':  'Gato (Tic-Tac-Toe) con Negamax',
+    'portfolio.p8.desc':   'Variante del Gato usando Negamax, simplificación del Minimax que unifica la evaluación en una sola función. Interfaz Swing con puntuación dinámica.',
+    'portfolio.p8.btn':    'Ver Proyecto',
+
+    'portfolio.p9.title':  'Sopa de Letras',
+    'portfolio.p9.desc':   'Juego de Sopa de Letras con generación automática de cuadrículas, búsqueda de palabras en 8 direcciones, selección interactiva y verificación en tiempo real.',
+    'portfolio.p9.btn':    'Ver Proyecto',
+
+    'portfolio.p10.title': 'Misioneros y Caníbales — BFS, DFS, DFS Recursivo',
+    'portfolio.p10.desc':  'Solución al problema clásico de Misioneros y Caníbales implementada con tres algoritmos de búsqueda: BFS, DFS iterativo y DFS recursivo. Interfaz gráfica para visualizar cada paso.',
+    'portfolio.p10.btn':   'Ver Proyecto',
+
+    'portfolio.p11.title': '4-Puzzle con BFS y DFS',
+    'portfolio.p11.desc':  'Rompecabezas 2×2 resuelto con BFS y DFS. Interfaz Swing que anima cada movimiento desde el estado inicial hasta la meta.',
+    'portfolio.p11.btn':   'Ver Proyecto',
+
+    'portfolio.p12.title': '8-Puzzle con A*',
+    'portfolio.p12.desc':  'Rompecabezas 3×3 resuelto con A* usando heurística Manhattan. Visualización paso a paso con estadísticas de nodos expandidos y profundidad.',
+    'portfolio.p12.btn':   'Ver Proyecto',
+
+    'portfolio.p13.title': 'Puzzle con DFS',
+    'portfolio.p13.desc':  'Rompecabezas resuelto con DFS (Depth-First Search). Interfaz que muestra la exploración del árbol de estados y la solución encontrada.',
+    'portfolio.p13.btn':   'Ver Proyecto',
+
+    'portfolio.p14.title': 'N-Reinas Visualizer',
+    'portfolio.p14.desc':  'Visualizador del problema de las N-Reinas con backtracking. Coloca reinas en un tablero N×N sin amenazas, con control de velocidad de animación.',
+    'portfolio.p14.btn':   'Ver Proyecto',
+
+    'portfolio.p15.title': 'Problema de Rutas v1',
+    'portfolio.p15.desc':  'Primera versión del problema de búsqueda de rutas óptimas entre ciudades. Implementa BFS y DFS para encontrar caminos en un grafo ponderado.',
+    'portfolio.p15.btn':   'Ver Proyecto',
+
+    'portfolio.p16.title': 'Problema de Rutas v2 — A*',
+    'portfolio.p16.desc':  'Segunda versión con A* para rutas óptimas. Interfaz mejorada que muestra costo acumulado, heurística y camino en un mapa de ciudades.',
+    'portfolio.p16.btn':   'Ver Proyecto',
+
+    'portfolio.p17.title': 'Algoritmo de Wang v1',
+    'portfolio.p17.desc':  'Primera implementación del algoritmo de Wang para demostración automática de teoremas en lógica proposicional mediante cálculo de secuentes.',
+    'portfolio.p17.btn':   'Ver Proyecto',
+
+    'portfolio.p18.title': 'Programación Lineal',
+    'portfolio.p18.desc':  'Solucionador de problemas de programación lineal con interfaz gráfica. Permite ingresar restricciones y función objetivo, y encuentra la solución óptima.',
+    'portfolio.p18.btn':   'Ver Proyecto',
+
+    'portfolio.p19.title': 'Pseudocode Compiler (Flex & Bison)',
+    'portfolio.p19.desc':  'Compilador de pseudocódigo en español a C. Cubre análisis léxico (Flex), sintáctico (Bison LALR(1)), semántico y generación de código.',
+    'portfolio.p19.btn':   'Ver Proyecto',
+
+    'portfolio.p20.title': 'Programación Concurrente',
+    'portfolio.p20.desc':  'Proyectos de concurrencia en C: algoritmos genéticos, ordenamiento secuencial vs. paralelo con forks, árbol binario de procesos y más.',
+    'portfolio.p20.btn':   'Ver Proyecto',
+
+    'portfolio.p21.title': 'Sistemas Operativos',
+    'portfolio.p21.desc':  'Portafolio de prácticas de SO en C: análisis MBR/GPT/APFS/NTFS, multiprogramación con forks, hilos, memoria compartida POSIX y ncurses.',
+    'portfolio.p21.btn':   'Ver Proyecto',
+
+    'portfolio.p22.title': 'E-commerce Microservicios (UAMIShop)',
+    'portfolio.p22.desc':  'Sistema de e-commerce con microservicios Spring Boot, RabbitMQ, API Gateway, frontend vanilla y orquestación con Docker Compose.',
+    'portfolio.p22.btn':   'Ver Proyecto',
+
+    'portfolio.p23.title': 'JJRR Roofing — Sitio Profesional',
+    'portfolio.p23.desc':  'Landing page profesional para empresa de techados en Florida Central. Diseño responsivo, galería de trabajos, videos y tarjeta de contacto digital.',
+    'portfolio.p23.btn':   'Ver Proyecto',
 
     /* ================================================
        DIVULGACIÓN
@@ -357,30 +426,99 @@ window.pageTranslations = {
     'portfolio.hero.text':   'A selection of projects combining mathematical rigor with elegant code implementation.',
 
     'portfolio.projects.title': 'Featured Projects',
+    'portfolio.ia.section':     'Artificial Intelligence',
 
     'portfolio.p1.title':  'AI Algorithms in Java',
-    'portfolio.p1.desc':   'Implementation of artificial intelligence algorithms such as BFS, DFS, A* and Minimax to solve complex problems.',
+    'portfolio.p1.desc':   'Collection of 15 AI projects with GUI: BFS, DFS, A*, Minimax, Negamax, backtracking, Wang algorithm and more.',
     'portfolio.p1.btn':    'View Project',
 
-    'portfolio.p2.title':  'Systems Development in C',
-    'portfolio.p2.desc':   'Development of efficient low-level systems using C language for high-performance applications.',
+    'portfolio.p2.title':  'Dental Clinic Management',
+    'portfolio.p2.desc':   'Full web system for dental clinic with interactive calendar, 32-tooth odontogram, PDF invoicing and patient portal.',
     'portfolio.p2.btn':    'View Project',
 
-    'portfolio.p3.title':  'Wang Algorithm',
-    'portfolio.p3.desc':   'Implementation of the Wang algorithm for automated theorem proving in propositional logic.',
+    'portfolio.p3.title':  'KirbyWorld — Low-Poly 3D',
+    'portfolio.p3.desc':   'Low-poly 3D video game with procedural terrain, day/night cycle, orbital camera, inventory and power-up system.',
     'portfolio.p3.btn':    'View Project',
 
-    'portfolio.p4.title':  'Graph Theory Algorithms',
-    'portfolio.p4.desc':   'Implementation of graph algorithms to solve optimization problems and network analysis.',
+    'portfolio.p4.title':  'Connect 4 with Negamax',
+    'portfolio.p4.desc':   'Connect 4 game with Negamax AI algorithm, featuring a GUI built with Java Swing.',
     'portfolio.p4.btn':    'View Project',
 
-    'portfolio.p5.title':  'Advanced Data Structures',
-    'portfolio.p5.desc':   'Implementation of complex data structures and manipulation algorithms to optimize performance.',
+    'portfolio.p5.title':  'Wang Algorithm',
+    'portfolio.p5.desc':   'Implementation of Wang algorithm for automated theorem proving in propositional logic with a graphical interface.',
     'portfolio.p5.btn':    'View Project',
 
-    'portfolio.p6.title':  'Recommendation System',
-    'portfolio.p6.desc':   'Development of a recommendation system using machine learning techniques and collaborative filtering.',
+    'portfolio.p6.title':  'Minesweeper with Backtracking',
+    'portfolio.p6.desc':   'Minesweeper with iterative flood-fill algorithm, multiple difficulty levels and automatic win/loss detection.',
     'portfolio.p6.btn':    'View Project',
+
+    'portfolio.p7.title':  'Tic-Tac-Toe with Minimax',
+    'portfolio.p7.desc':   'Tic-Tac-Toe game with Minimax AI and alpha-beta pruning. Swing GUI with interactive board, turn indicator and win/draw detection.',
+    'portfolio.p7.btn':    'View Project',
+
+    'portfolio.p8.title':  'Tic-Tac-Toe with Negamax',
+    'portfolio.p8.desc':   'Tic-Tac-Toe variant using Negamax, a Minimax simplification that unifies evaluation into a single function. Swing GUI with dynamic scoring.',
+    'portfolio.p8.btn':    'View Project',
+
+    'portfolio.p9.title':  'Word Search Puzzle',
+    'portfolio.p9.desc':   'Word search puzzle game with automatic grid generation, 8-direction word search, interactive selection and real-time verification.',
+    'portfolio.p9.btn':    'View Project',
+
+    'portfolio.p10.title': 'Missionaries & Cannibals — BFS, DFS, Recursive DFS',
+    'portfolio.p10.desc':  'Solution to the classic Missionaries and Cannibals problem using three search algorithms: BFS, iterative DFS and recursive DFS. GUI for step-by-step visualization.',
+    'portfolio.p10.btn':   'View Project',
+
+    'portfolio.p11.title': '4-Puzzle with BFS and DFS',
+    'portfolio.p11.desc':  '2×2 sliding puzzle solved with BFS and DFS. Swing interface animating each move from initial to goal state.',
+    'portfolio.p11.btn':   'View Project',
+
+    'portfolio.p12.title': '8-Puzzle with A*',
+    'portfolio.p12.desc':  '3×3 sliding puzzle solved with A* using Manhattan heuristic. Step-by-step visualization with expanded nodes and depth statistics.',
+    'portfolio.p12.btn':   'View Project',
+
+    'portfolio.p13.title': 'Puzzle with DFS',
+    'portfolio.p13.desc':  'Sliding puzzle solved with Depth-First Search. Interface showing the state-space tree exploration and found solution.',
+    'portfolio.p13.btn':   'View Project',
+
+    'portfolio.p14.title': 'N-Queens Visualizer',
+    'portfolio.p14.desc':  'N-Queens problem visualizer with backtracking. Places queens on an N×N board without threats, with animation speed control.',
+    'portfolio.p14.btn':   'View Project',
+
+    'portfolio.p15.title': 'Route Problem v1',
+    'portfolio.p15.desc':  'First version of the optimal route search problem between cities. Implements BFS and DFS to find paths in a weighted graph.',
+    'portfolio.p15.btn':   'View Project',
+
+    'portfolio.p16.title': 'Route Problem v2 — A*',
+    'portfolio.p16.desc':  'Second version with A* for optimal routes. Enhanced interface showing accumulated cost, heuristic and path on a city map.',
+    'portfolio.p16.btn':   'View Project',
+
+    'portfolio.p17.title': 'Wang Algorithm v1',
+    'portfolio.p17.desc':  'First implementation of Wang algorithm for automated theorem proving in propositional logic using sequent calculus.',
+    'portfolio.p17.btn':   'View Project',
+
+    'portfolio.p18.title': 'Linear Programming',
+    'portfolio.p18.desc':  'Linear programming solver with GUI. Enter constraints and objective function, find the optimal solution graphically.',
+    'portfolio.p18.btn':   'View Project',
+
+    'portfolio.p19.title': 'Pseudocode Compiler (Flex & Bison)',
+    'portfolio.p19.desc':  'Spanish pseudocode to C compiler. Covers lexical (Flex), syntactic (Bison LALR(1)), semantic analysis and code generation.',
+    'portfolio.p19.btn':   'View Project',
+
+    'portfolio.p20.title': 'Concurrent Programming',
+    'portfolio.p20.desc':  'Concurrency projects in C: genetic algorithms, sequential vs. parallel sorting with forks, binary process tree and more.',
+    'portfolio.p20.btn':   'View Project',
+
+    'portfolio.p21.title': 'Operating Systems',
+    'portfolio.p21.desc':  'OS coursework portfolio in C: MBR/GPT/APFS/NTFS analysis, multiprogramming with forks, threads, POSIX shared memory and ncurses.',
+    'portfolio.p21.btn':   'View Project',
+
+    'portfolio.p22.title': 'E-commerce Microservices (UAMIShop)',
+    'portfolio.p22.desc':  'E-commerce system with Spring Boot microservices, RabbitMQ, API Gateway, vanilla frontend and Docker Compose orchestration.',
+    'portfolio.p22.btn':   'View Project',
+
+    'portfolio.p23.title': 'JJRR Roofing — Professional Site',
+    'portfolio.p23.desc':  'Professional landing page for a roofing company in Central Florida. Responsive design, work gallery, videos and digital contact card.',
+    'portfolio.p23.btn':   'View Project',
 
     /* ================================================
        SCIENCE OUTREACH
@@ -515,14 +653,23 @@ window.pageTranslations = {
 
     'idx.projects.title': 'Proyectos Destacados',
     'idx.p1.title':      'Algoritmos de IA en Java',
-    'idx.p1.desc':       'Implementación de BFS, DFS, A* y Minimax para resolver problemas complejos de inteligencia artificial.',
+    'idx.p1.desc':       'Colección de 15 proyectos de IA: BFS, DFS, A*, Minimax, Negamax, backtracking y lógica proposicional.',
     'idx.p1.btn':        'Ver Código',
-    'idx.p2.title':      'Desarrollo de Sistemas en C',
-    'idx.p2.desc':       'Sistemas eficientes de bajo nivel para aplicaciones de alto rendimiento.',
-    'idx.p2.btn':        'Solicitar Demo',
-    'idx.p3.title':      'Algoritmo de Wang',
-    'idx.p3.desc':       'Demostración automática de teoremas en lógica proposicional.',
-    'idx.p3.btn':        'Ver Implementación',
+    'idx.p2.title':      'Sistema de Gestión Dental',
+    'idx.p2.desc':       'Sistema web completo con agenda, odontograma interactivo, facturación y portal del paciente.',
+    'idx.p2.btn':        'Ver Código',
+    'idx.p3.title':      'Low-Poly 3D Survival Game',
+    'idx.p3.desc':       'Mundo abierto low-poly con terreno procedural, ciclo día/noche y sistema de poderes.',
+    'idx.p3.btn':        'Ver Juego',
+    'idx.p4.title':      'Conecta 4 con Negamax',
+    'idx.p4.desc':       'Juego de Conecta 4 con IA basada en Negamax, interfaz Swing y detección automática de victoria.',
+    'idx.p4.btn':        'Ver Código',
+    'idx.p5.title':      'Algoritmo de Wang',
+    'idx.p5.desc':       'Demostración automática de teoremas en lógica proposicional con interfaz gráfica mejorada.',
+    'idx.p5.btn':        'Ver Código',
+    'idx.p6.title':      'Buscaminas con Backtracking',
+    'idx.p6.desc':       'Buscaminas con flood-fill, múltiples dificultades y detección automática de victoria.',
+    'idx.p6.btn':        'Ver Código',
 
     'idx.studio.title':  'Studio de Desarrollo',
     'idx.studio.desc':   'Transformo ideas en soluciones digitales robustas y elegantes. ¿Tienes una idea? Juntos podemos hacerla realidad.',
@@ -620,14 +767,23 @@ window.pageTranslations = {
 
     'idx.projects.title': 'Featured Projects',
     'idx.p1.title':      'AI Algorithms in Java',
-    'idx.p1.desc':       'Implementation of BFS, DFS, A* and Minimax to solve complex artificial intelligence problems.',
+    'idx.p1.desc':       'Collection of 15 AI projects: BFS, DFS, A*, Minimax, Negamax, backtracking and propositional logic.',
     'idx.p1.btn':        'View Code',
-    'idx.p2.title':      'Systems Development in C',
-    'idx.p2.desc':       'Efficient low-level systems for high-performance applications.',
-    'idx.p2.btn':        'Request Demo',
-    'idx.p3.title':      'Wang Algorithm',
-    'idx.p3.desc':       'Automated theorem proving in propositional logic.',
-    'idx.p3.btn':        'View Implementation',
+    'idx.p2.title':      'Dental Clinic Management System',
+    'idx.p2.desc':       'Full web system with scheduling, interactive odontogram, invoicing and patient portal.',
+    'idx.p2.btn':        'View Code',
+    'idx.p3.title':      'Low-Poly 3D Survival Game',
+    'idx.p3.desc':       'Low-poly open world with procedural terrain, day/night cycle and power-up system.',
+    'idx.p3.btn':        'View Game',
+    'idx.p4.title':      'Connect 4 with Negamax',
+    'idx.p4.desc':       'Connect 4 game with Negamax AI, Swing GUI and automatic win detection.',
+    'idx.p4.btn':        'View Code',
+    'idx.p5.title':      'Wang Algorithm',
+    'idx.p5.desc':       'Automated theorem proving in propositional logic with enhanced graphical interface.',
+    'idx.p5.btn':        'View Code',
+    'idx.p6.title':      'Minesweeper with Backtracking',
+    'idx.p6.desc':       'Minesweeper with flood-fill, multiple difficulty levels and automatic win detection.',
+    'idx.p6.btn':        'View Code',
 
     'idx.studio.title':  'Development Studio',
     'idx.studio.desc':   'I transform ideas into robust and elegant digital solutions. Got an idea? Together we can make it a reality.',

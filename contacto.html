@@ -278,7 +278,7 @@
   <!-- Analytics sin cookies (configura tu dominio en plausible.io) -->
   <script defer data-domain="antoniosoria.com" src="https://plausible.io/js/script.js"></script>
 </head>
-<body>
+<body class="dark-mode">
 
   <!-- Progress bar -->
   <div class="progress-bar" id="progress-bar"></div>
@@ -539,7 +539,7 @@
     <section class="container text-center" style="padding-bottom: 40px;">
       <h2 class="section-title" data-i18n="contact.social.title">Conectemos</h2>
       <div class="social-links" style="margin-top: 30px;">
-        <a href="https://www.linkedin.com/in/antonio-soria/" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.linkedin.com/in/antonio-sould/" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
         <a href="https://github.com/PurppleAlien"             class="social-link" title="GitHub"   target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
         <a href="https://www.instagram.com/antoniosould/"      class="social-link" title="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
         <a href="mailto:antonio.soria8r@gmail.com"             class="social-link" title="Email"><i class="fas fa-envelope"></i></a>
@@ -560,7 +560,7 @@
         <a href="contacto.html"    data-i18n="nav.contact">Contacto</a>
       </div>
       <div class="social-links">
-        <a href="https://www.linkedin.com/in/antonio-soria/" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.linkedin.com/in/antonio-sould/" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
         <a href="https://github.com/PurppleAlien"             class="social-link" title="GitHub"   target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
         <a href="https://www.instagram.com/antoniosould/"      class="social-link" title="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
         <a href="mailto:antonio.soria8r@gmail.com"             class="social-link" title="Email"><i class="fas fa-envelope"></i></a>
@@ -569,89 +569,6 @@
     </div>
   </footer>
 
-  <!-- Scroll-to-top -->
-  <button class="scroll-top" id="scroll-top" title="Volver arriba"><i class="fas fa-arrow-up"></i></button>
-
   <script src="js/page-init.js"></script>
-  <script>
-  /* Contact form — Formspree */
-  (function () {
-    const form   = document.getElementById('contact-form');
-    const status = document.getElementById('cf-status');
-    const btn    = document.getElementById('cf-submit');
-    const btnTxt = document.getElementById('cf-btn-text');
-    if (!form) return;
-
-    function validate() {
-      let ok = true;
-      const rules = [
-        { id:'cf-name',    err:'cf-name-err',    msg:'Por favor ingresa tu nombre.',       test: v => v.trim().length > 1 },
-        { id:'cf-email',   err:'cf-email-err',   msg:'Por favor ingresa un email válido.', test: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
-        { id:'cf-subject', err:'cf-subject-err', msg:'Selecciona un asunto.',              test: v => v !== '' },
-        { id:'cf-msg',     err:'cf-msg-err',     msg:'El mensaje debe tener al menos 10 caracteres.', test: v => v.trim().length >= 10 },
-      ];
-      rules.forEach(r => {
-        const el  = document.getElementById(r.id);
-        const err = document.getElementById(r.err);
-        if (!r.test(el.value)) {
-          el.classList.add('invalid');
-          if (err) err.textContent = r.msg;
-          ok = false;
-        } else {
-          el.classList.remove('invalid');
-          if (err) err.textContent = '';
-        }
-      });
-      return ok;
-    }
-
-    // Live validation
-    ['cf-name','cf-email','cf-subject','cf-msg'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.addEventListener('input', () => { el.classList.remove('invalid'); });
-    });
-
-    form.addEventListener('submit', async e => {
-      e.preventDefault();
-      if (!validate()) return;
-
-      btn.disabled = true;
-      btnTxt.textContent = 'Enviando…';
-
-      // Aviso si el endpoint no está configurado
-      const action = form.getAttribute('action');
-      if (action.includes('mpqoezvj')) {
-        setTimeout(() => {
-          status.className = 'cf-status error';
-          status.textContent = '⚠ Configura tu endpoint de Formspree en contacto.html (reemplaza mpqoezvj).';
-          btn.disabled = false;
-          btnTxt.textContent = 'Enviar mensaje';
-        }, 400);
-        return;
-      }
-
-      try {
-        const res = await fetch(action, {
-          method: 'POST',
-          body: new FormData(form),
-          headers: { 'Accept': 'application/json' },
-        });
-        if (res.ok) {
-          status.className = 'cf-status success';
-          status.textContent = '✓ Mensaje enviado correctamente. Te responderé pronto.';
-          form.reset();
-        } else {
-          throw new Error('Error ' + res.status);
-        }
-      } catch (err) {
-        status.className = 'cf-status error';
-        status.textContent = '✕ Hubo un error al enviar. Intenta por WhatsApp o email directamente.';
-      } finally {
-        btn.disabled = false;
-        btnTxt.textContent = 'Enviar mensaje';
-      }
-    });
-  })();
-  </script>
 </body>
 </html>
