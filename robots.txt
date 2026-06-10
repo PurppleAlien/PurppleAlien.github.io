@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.antoniosoria.com/sitemap.xml
+Sitemap: https://purpplealien.github.io/sitemap.xml
