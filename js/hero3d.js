@@ -29,7 +29,6 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
    GUARDS
 ============================================================ */
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const tiny = window.matchMedia('(max-width: 480px)').matches;
 const mobile = window.matchMedia('(max-width: 900px)').matches;
 const mount = document.getElementById('hero-3d');
 
@@ -52,7 +51,7 @@ const FOG = 0x05080d;
 // Animación del título: independiente del 3D (es barata; solo evita reduced-motion).
 initTitle();
 
-if (reduced || tiny || !mount || !webglSupported()) {
+if (reduced || !mount || !webglSupported()) {
   // Fallback: dejamos las partículas 2D de main.js y las decoraciones CSS.
   window.__hero3dActive = false;
   if (mount) mount.classList.remove('loading');
