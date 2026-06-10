@@ -1675,6 +1675,20 @@
     .studio,
     .philosophy { background: rgba(22,27,34,0.4) !important; }
 
+    /* Tarjetas/contenedores translúcidos para ver la escena 3D a través */
+    .skill-cat, .interest-item, .project-card, .service-card,
+    .contact-card, .process-step, .stat-card, .page-card,
+    .cta-block, .quote-block {
+      background: rgba(18,23,32,0.5) !important;
+    }
+    .axioms li { background: rgba(18,23,32,0.42) !important; }
+    @media (min-width: 901px) {
+      .skill-cat, .interest-item, .project-card, .service-card,
+      .contact-card, .process-step, .stat-card, .page-card {
+        -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
+      }
+    }
+
     /* Sin escena (reduced-motion): devolvemos fondos opacos para legibilidad total */
     @media (prefers-reduced-motion: reduce) {
       body { background: #0d1117; }
@@ -1743,7 +1757,6 @@
       </ul>
 
       <div class="header-buttons">
-        <button class="theme-btn" id="theme-toggle" title="Modo oscuro"><i class="fas fa-moon"></i></button>
         <button class="language-btn" id="language-toggle" title="Cambiar idioma">
           <span class="language-flag">🇲🇽</span>
         </button>
@@ -2641,7 +2654,7 @@
           el.classList.add('done');
           cb && cb();
         }
-      }, 30);
+      }, 45);
     }
 
     let step = 0;
@@ -2650,17 +2663,17 @@
       const s = steps[step++];
       if (fill) { fill.style.width = s.pct + '%'; }
       if (pct)  { pct.textContent  = s.pct + '%'; }
-      typeText(s.el, s.text, () => setTimeout(runStep, 180));
+      typeText(s.el, s.text, () => setTimeout(runStep, 600));
     }
 
-    setTimeout(runStep, 300);
+    setTimeout(runStep, 500);
 
     function finish() {
       setTimeout(() => {
         screen.classList.add('ls-done');
         sessionStorage.setItem('as_loaded', '1');
         setTimeout(() => { screen.style.display = 'none'; }, 750);
-      }, 400);
+      }, 1100);
     }
   })();
 

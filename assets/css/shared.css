@@ -1096,15 +1096,25 @@ html.lenis, html.lenis body { height: auto; }
    El canvas es fijo y vive DETRÁS del contenido (z-index:-1). Como las
    secciones de las subpáginas son transparentes, la escena se ve a través de
    toda la página; las tarjetas (var(--card-bg)) siguen tapando para leer. */
-body.fx3d { background: #05080d; }
+body.fx3d { background: #05080d; --card-bg: rgba(20,26,36,0.5); --bg2: rgba(20,26,36,0.45); }
 body.fx3d #hero-3d {
   position: fixed; inset: 0; width: 100vw; height: 100vh;
   z-index: -1; pointer-events: none;
 }
 body.fx3d #hero-3d canvas { display: block; width: 100% !important; height: 100% !important; }
 @media (prefers-reduced-motion: reduce) {
-  body.fx3d { background: #0d1117; }
+  body.fx3d { background: #0d1117; --card-bg: #1e2433; --bg2: #161b22; }
   body.fx3d #hero-3d { display: none !important; }
+}
+
+/* Toque "glass" para que las tarjetas translúcidas de subpáginas se lean mejor
+   sobre la escena 3D (solo escritorio, por rendimiento) */
+@media (min-width: 901px) {
+  body.fx3d .card, body.fx3d .skill-category, body.fx3d .project-card,
+  body.fx3d .article-card, body.fx3d .contact-card, body.fx3d .algo-card,
+  body.fx3d .resource-card, body.fx3d .fact-card {
+    -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
+  }
 }
 
 /* ── Cortina de transición de página (js/page-transition.js) ── */

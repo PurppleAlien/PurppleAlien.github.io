@@ -187,7 +187,7 @@ function initScene(container) {
   const LAST_Z = FIRST_Z - (defs.length - 1) * SPACING; // z de la última figura
 
   /* ---------- Campo de partículas (estrellas del corredor) ---------- */
-  const COUNT = mobile ? 350 : 850;
+  const COUNT = mobile ? 800 : 1800;
   const positions = new Float32Array(COUNT * 3);
   for (let i = 0; i < COUNT; i++) {
     positions[i * 3]     = (Math.random() - 0.5) * 26;

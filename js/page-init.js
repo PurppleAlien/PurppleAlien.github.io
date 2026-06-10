@@ -16,15 +16,9 @@
    1. THEME
 ============================================================ */
 function initTheme() {
-  const saved = localStorage.getItem('theme') || 'dark';
-  applyTheme(saved);
-
-  const btn = document.getElementById('theme-toggle');
-  if (!btn) return;
-  btn.addEventListener('click', () => {
-    const next = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
-    applyTheme(next);
-  });
+  // Solo modo oscuro: se quitó el conmutador claro/oscuro.
+  document.body.classList.add('dark-mode');
+  try { localStorage.setItem('theme', 'dark'); } catch (e) {}
 }
 
 function applyTheme(theme) {
