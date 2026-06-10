@@ -1,0 +1,29 @@
+/* ============================================================
+   cursor.css — Cursor personalizado "cometa" (lógica en js/cursor.js)
+   La posición la fija el JS por transform; aquí van tamaños, colores,
+   transiciones y estados (.lock al pasar sobre interactivos, .fire al clic).
+   ============================================================ */
+
+/* Ocultar el cursor nativo solo cuando el cometa está activo */
+@media (hover: hover) and (pointer: fine) { html.cursor-on * { cursor: none !important; } }
+
+#cursor-layer { position: fixed; inset: 0; z-index: 99990; pointer-events: none; }
+/* Cada segmento es un .root fijo (lo posiciona el JS); el punto se centra dentro */
+#cursor-layer .root { position: fixed; top: 0; left: 0; pointer-events: none; will-change: transform; }
+#cursor-layer .root * { position: absolute; top: 0; left: 0; pointer-events: none; }
+
+.cc-seg { border-radius: 50%; background: #61dafb; transform: translate(-50%,-50%); }
+.cc-head {
+  box-shadow: 0 0 10px rgba(97,218,251,.9), 0 0 22px rgba(97,218,251,.45);
+  transition: width .18s ease, height .18s ease, background .18s ease, transform .12s ease;
+}
+#cursor-layer.lock .cc-head {
+  background: #c678dd;
+  box-shadow: 0 0 14px rgba(198,120,221,.95), 0 0 26px rgba(198,120,221,.5);
+}
+#cursor-layer.fire .cc-head { transform: translate(-50%,-50%) scale(1.5); }
+
+@media (prefers-reduced-motion: reduce) {
+  #cursor-layer { display: none !important; }
+  @media (hover: hover) and (pointer: fine) { html.cursor-on * { cursor: auto !important; } }
+}

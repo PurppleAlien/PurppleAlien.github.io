@@ -156,6 +156,9 @@ function closeMobileMenu(btn, nav) {
    4. SCROLL ANIMATIONS
 ============================================================ */
 function initScrollAnimations() {
+  // Si la capa FX (scroll-fx.js + GSAP) está activa, ella gestiona los
+  // reveals con ScrollTrigger; evitamos doble manejo.
+  if (window.__fxActive) return;
   const elements = document.querySelectorAll('.fade-in');
   if (!elements.length) return;
 

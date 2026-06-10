@@ -1049,3 +1049,105 @@ body.dark-mode .quote {
   .header-buttons { gap: 8px; }
   .theme-btn, .language-btn, .hamburger-btn { width: 38px; height: 38px; }
 }
+
+/* ============================================================
+   SCROLL FX  (scroll-fx.js + hero3d.js)
+   ============================================================ */
+
+/* Estado inicial oculto de los elementos animados mientras la capa FX está
+   activa (html.fx). Evita el "flash" antes de que GSAP los revele.
+   Si GSAP/Lenis no cargan o hay reduced-motion, scroll-fx.js quita la clase
+   .fx de <html> y todo vuelve a ser visible al instante. */
+html.fx [data-anim] { opacity: 0; }
+
+/* CSS recomendado de Lenis: cuando el smooth scroll está activo, anula el
+   scroll-behavior:smooth nativo (que entra en conflicto con Lenis). */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+/* Contenedor del canvas 3D del hero (Three.js). Se sitúa sobre el fondo pero
+   por debajo del contenido del hero (.hero-content tiene z-index: 2). */
+.hero-3d {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;   /* el ratón solo lo lee hero3d.js vía window */
+}
+.hero-3d canvas { display: block; width: 100%; height: 100%; }
+
+/* Loader sutil mientras monta la escena 3D */
+.hero-3d.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 26px; height: 26px;
+  margin: -13px 0 0 -13px;
+  border: 2px solid rgba(97,218,251,0.25);
+  border-top-color: #61dafb;
+  border-radius: 50%;
+  animation: hero3dSpin 0.8s linear infinite;
+}
+@keyframes hero3dSpin { to { transform: rotate(360deg); } }
+
+/* ── Fondo 3D a página completa (body.fx3d) — lo monta js/hero3d.js ──────
+   El canvas es fijo y vive DETRÁS del contenido (z-index:-1). Como las
+   secciones de las subpáginas son transparentes, la escena se ve a través de
+   toda la página; las tarjetas (var(--card-bg)) siguen tapando para leer. */
+body.fx3d { background: #05080d; }
+body.fx3d #hero-3d {
+  position: fixed; inset: 0; width: 100vw; height: 100vh;
+  z-index: -1; pointer-events: none;
+}
+body.fx3d #hero-3d canvas { display: block; width: 100% !important; height: 100% !important; }
+@media (prefers-reduced-motion: reduce) {
+  body.fx3d { background: #0d1117; }
+  body.fx3d #hero-3d { display: none !important; }
+}
+
+/* ── Cortina de transición de página (js/page-transition.js) ── */
+.pt-overlay {
+  position: fixed; inset: 0; z-index: 99800; pointer-events: none;
+  background: linear-gradient(135deg, #0d1117 0%, #05080d 60%);
+  transform: scaleY(0); transform-origin: bottom;
+}
+.pt-overlay::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 3px;
+  background: linear-gradient(90deg, transparent, #61dafb 40%, #c678dd 70%, transparent);
+}
+
+/* ── Índice de secciones lateral (solo index; js/main.js) ── */
+.sidenav {
+  position: fixed; right: 18px; top: 50%; transform: translateY(-50%);
+  z-index: 9000; display: flex; flex-direction: column; gap: 14px; align-items: flex-end;
+}
+.sidenav-dot { position: relative; width: 10px; height: 10px; display: flex; align-items: center; justify-content: center; }
+.sidenav-dot::before { content: ''; width: 8px; height: 8px; border-radius: 50%; border: 1px solid rgba(97,218,251,.4); transition: all .25s ease; }
+.sidenav-dot:hover::before, .sidenav-dot.active::before { background: #61dafb; border-color: #61dafb; box-shadow: 0 0 10px rgba(97,218,251,.6); transform: scale(1.3); }
+.sidenav-label {
+  position: absolute; right: 18px; top: 50%; transform: translateY(-50%) translateX(6px);
+  font-family: 'Source Code Pro', monospace; font-size: 10px; color: rgba(97,218,251,.6);
+  text-transform: uppercase; letter-spacing: .5px; white-space: nowrap;
+  opacity: 0; pointer-events: none; transition: all .25s ease;
+}
+.sidenav-dot:hover .sidenav-label { opacity: 1; transform: translateY(-50%) translateX(0); }
+@media (max-width: 900px) { .sidenav { display: none; } }
+
+/* ============================================================
+   ACCESIBILIDAD: prefers-reduced-motion
+   Desactiva animaciones/transiciones y fuerza scroll nativo.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  /* Nada de elementos ocultos a la espera de animación: todo visible. */
+  .fade-in, [data-anim] { opacity: 1 !important; transform: none !important; }
+  .hero-3d { display: none; }   /* sin escena 3D animada */
+}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="fx">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,10 +12,33 @@
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
 
   <!-- Icons -->
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="favicon.png">
+
+  <!-- Preconnect a los CDN -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 
   <!-- Shared styles -->
   <link rel="stylesheet" href="assets/css/shared.css">
+  <link rel="stylesheet" href="assets/css/cursor.css">
+
+  <!-- Precarga del módulo Three.js (acelera la carga de la escena 3D) -->
+  <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js">
+
+  <!-- Import map para Three.js (escena 3D de fondo, js/hero3d.js) -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
 
   <!-- Translations -->
   <script src="js/translations.js"></script>
@@ -85,7 +108,10 @@
   <!-- Analytics sin cookies (configura tu dominio en plausible.io) -->
   <script defer data-domain="antoniosoria.com" src="https://plausible.io/js/script.js"></script>
 </head>
-<body class="dark-mode">
+<body class="dark-mode fx3d">
+
+  <!-- Escena 3D de fondo (página completa, vuelo de cámara con scroll) -->
+  <div class="hero-3d loading" id="hero-3d" aria-hidden="true"></div>
 
   <div class="progress-bar" id="progress-bar"></div>
 
@@ -321,6 +347,14 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="js/scroll-fx.js"></script>
   <script src="js/page-init.js"></script>
+  <!-- Escena 3D de fondo + cursor cometa + transición de página -->
+  <script type="module" src="js/hero3d.js"></script>
+  <script src="js/cursor.js" defer></script>
+  <script src="js/page-transition.js"></script>
 </body>
 </html>

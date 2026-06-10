@@ -241,6 +241,7 @@ window.pageTranslations = {
     'div.a1.cat':    'Matemáticas',
     'div.a1.title':  'El Método Monte Carlo: Simulaciones para Estimación de π',
     'div.a1.text':   'Descubre cómo el azar puede ser usado para calcular π mediante simulaciones probabilísticas. Un viaje entre la estadística y la geometría.',
+    'div.soon':      'Próximamente',
     'div.a1.read':   'Leer Artículo',
     'div.a1.code':   'Descargar Código',
 
@@ -531,6 +532,7 @@ window.pageTranslations = {
     'div.a1.cat':    'Mathematics',
     'div.a1.title':  'The Monte Carlo Method: Simulations for Estimating π',
     'div.a1.text':   'Discover how randomness can be used to calculate π through probabilistic simulations. A journey between statistics and geometry.',
+    'div.soon':      'Coming soon',
     'div.a1.read':   'Read Article',
     'div.a1.code':   'Download Code',
 
@@ -618,6 +620,10 @@ window.pageTranslations = {
     'idx.pc4.desc':  '¿Tienes un proyecto? Hablemos sobre colaboraciones y consultoría.',
     'idx.pc5.title': 'Algoritmos',
     'idx.pc5.desc':  'Visualizador interactivo de BFS, DFS y A* — ve los algoritmos en acción.',
+
+    'idx.about.more':    'Conoce más sobre mí',
+    'idx.research.more': 'Ver divulgación científica',
+    'idx.contact.more':  'Más detalles de contacto',
 
     'idx.about.title':   'Sobre Mí',
     'idx.about.p1':      'Soy un matemático y desarrollador con una sólida formación en matemáticas aplicadas y computación. Mi trayectoria académica combina el rigor matemático con la aplicación práctica en el campo de la programación.',
@@ -732,6 +738,10 @@ window.pageTranslations = {
     'idx.pc4.desc':  'Got a project? Let\'s talk about collaborations and consulting.',
     'idx.pc5.title': 'Algorithms',
     'idx.pc5.desc':  'Interactive visualizer for BFS, DFS and A* — see the algorithms in action.',
+
+    'idx.about.more':    'Learn more about me',
+    'idx.research.more': 'See science outreach',
+    'idx.contact.more':  'More contact details',
 
     'idx.about.title':   'About Me',
     'idx.about.p1':      'I am a mathematician and developer with a solid background in applied mathematics and computing. My academic path combines mathematical rigor with practical application in programming.',

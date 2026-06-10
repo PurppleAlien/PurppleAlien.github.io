@@ -25,7 +25,12 @@ function initSmoothScroll() {
       e.preventDefault();
       const offset = parseInt(getComputedStyle(document.documentElement)
         .getPropertyValue('--header-h') || '72', 10);
-      window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+      // Con Lenis activo, delegamos en su scroll suave; si no, scroll nativo.
+      if (window.lenis) {
+        window.lenis.scrollTo(target, { offset: -offset });
+      } else {
+        window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+      }
 
       // Close mobile nav if open
       const mobileNav = document.getElementById('mobile-nav');
@@ -68,6 +73,9 @@ function initScrollSpy() {
    3. HERO PARTICLES
 ============================================================ */
 function initParticles() {
+  // Si la escena 3D del hero (hero3d.js) montó, ella sustituye a estas
+  // partículas 2D y no las generamos para no duplicar decoración.
+  if (window.__hero3dActive) return;
   const container = document.getElementById('hero-particles');
   if (!container) return;
 
@@ -178,6 +186,75 @@ function initTypingEffect() {
 }
 
 /* ============================================================
+   6. ÍNDICE DE SECCIONES (nav lateral derecha)
+============================================================ */
+function initSectionIndex() {
+  const ids = ['home', 'explore', 'about', 'skills', 'research', 'projects', 'studio', 'contact', 'philosophy'];
+  const nav = document.createElement('nav');
+  nav.className = 'sidenav';
+  nav.setAttribute('aria-label', 'Índice de secciones');
+  const links = [];
+  ids.forEach(id => {
+    const sec = document.getElementById(id);
+    if (!sec) return;
+    const a = document.createElement('a');
+    a.href = '#' + id; a.className = 'sidenav-dot'; a.dataset.id = id;
+    a.innerHTML = '<span class="sidenav-label">' + id + '</span>';
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const t = document.getElementById(id);
+      const off = 70;
+      if (window.lenis && window.lenis.scrollTo) window.lenis.scrollTo(t, { offset: -off });
+      else window.scrollTo({ top: t.offsetTop - off, behavior: 'smooth' });
+    });
+    nav.appendChild(a); links.push(a);
+  });
+  if (!links.length) return;
+  document.body.appendChild(nav);
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (en.isIntersecting) links.forEach(l => l.classList.toggle('active', l.dataset.id === en.target.id));
+      });
+    }, { threshold: 0.5 });
+    ids.forEach(id => { const s = document.getElementById(id); if (s) io.observe(s); });
+  }
+}
+
+/* ============================================================
+   7. ESCENA 3D REACTIVA: tiñe los acentos de la escena por sección
+============================================================ */
+function initSceneReactive() {
+  const gsap = window.gsap, ScrollTrigger = window.ScrollTrigger;
+  if (!gsap || !ScrollTrigger) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  gsap.registerPlugin(ScrollTrigger);
+  const palettes = {
+    home: [0x61dafb, 0xc678dd], explore: [0x61dafb, 0xc678dd],
+    about: [0x00d4aa, 0x61dafb], skills: [0x61dafb, 0x3d85c6],
+    research: [0xc678dd, 0x61dafb], projects: [0xfbbc05, 0xc678dd],
+    studio: [0x00d4aa, 0x61dafb], contact: [0xff7eb6, 0xc678dd],
+    philosophy: [0x61dafb, 0xc678dd],
+  };
+  let tries = 0;
+  (function whenReady() {
+    const api = window.__hero3dAPI;
+    if (!api) { if (tries++ < 40) setTimeout(whenReady, 150); return; }
+    Object.keys(palettes).forEach(id => {
+      const s = document.getElementById(id);
+      if (!s) return;
+      const pal = palettes[id];
+      ScrollTrigger.create({
+        trigger: s, start: 'top 60%', end: 'bottom 40%',
+        onEnter: () => api.setAccent(pal[0], pal[1]),
+        onEnterBack: () => api.setAccent(pal[0], pal[1]),
+      });
+    });
+    ScrollTrigger.refresh();
+  })();
+}
+
+/* ============================================================
    INIT
 ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
@@ -186,4 +263,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initParticles();
   initCounters();
   initTypingEffect();
+  initSectionIndex();
+  initSceneReactive();
 });

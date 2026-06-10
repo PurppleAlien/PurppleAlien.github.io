@@ -37,36 +37,7 @@
 .ls-fill { height: 100%; width: 0%; background: linear-gradient(90deg,#61dafb,#c678dd); border-radius: 2px; transition: width 0.4s ease; box-shadow: 0 0 8px rgba(97,218,251,0.5); }
 .ls-pct { font-family: 'Source Code Pro', monospace; font-size: 0.68rem; color: rgba(97,218,251,0.4); width: 36px; text-align: right; }
 
-/* ── Custom cursor ── */
-@media (hover: hover) and (pointer: fine) { * { cursor: none !important; } }
-
-.cur-dot {
-  position: fixed;
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: #61dafb;
-  box-shadow: 0 0 10px rgba(97,218,251,0.9), 0 0 22px rgba(97,218,251,0.4);
-  pointer-events: none;
-  z-index: 99998;
-  transform: translate(-50%,-50%);
-  will-change: left, top;
-  transition: width .12s ease, height .12s ease, background .15s ease, box-shadow .15s ease;
-}
-.cur-ring {
-  position: fixed;
-  width: 34px; height: 34px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(97,218,251,0.35);
-  pointer-events: none;
-  z-index: 99997;
-  transform: translate(-50%,-50%);
-  will-change: left, top;
-  transition: width .2s ease, height .2s ease, border-color .2s ease;
-}
-.cur-dot.hover  { width:12px; height:12px; background:#c678dd; box-shadow: 0 0 14px rgba(198,120,221,0.9); }
-.cur-ring.hover { width:50px; height:50px; border-color: rgba(198,120,221,0.4); }
-.cur-dot.click  { width:5px;  height:5px;  transition: width .05s, height .05s; }
-.cur-ring.click { width:60px; height:60px; border-color: rgba(97,218,251,0.7); transition: all .08s ease; }
+/* ── Custom cursor → movido a assets/css/cursor.css + js/cursor.js (varios estilos) ── */
 
 @media (max-width: 640px) {
   .ls-terminal { width: 90vw; }

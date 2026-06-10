@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Editores / temporales
+*~
+*.swp
+.vscode/
+.idea/
+
+# Archivos de prueba temporales
+__*_test.html
