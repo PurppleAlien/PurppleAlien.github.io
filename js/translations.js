@@ -17,7 +17,7 @@ window.pageTranslations = {
     'nav.contact':     'Contacto',
 
     /* --- Footer --- */
-    'footer.rights':   '© 2024 Antonio Soria. Todos los derechos reservados.',
+    'footer.rights':   '© 2026 Antonio Soria. Todos los derechos reservados.',
 
     /* ================================================
        CONTACTO
@@ -308,7 +308,7 @@ window.pageTranslations = {
     'nav.contact':     'Contact',
 
     /* --- Footer --- */
-    'footer.rights':   '© 2024 Antonio Soria. All rights reserved.',
+    'footer.rights':   '© 2026 Antonio Soria. All rights reserved.',
 
     /* ================================================
        CONTACT
@@ -710,7 +710,7 @@ window.pageTranslations = {
     'idx.quote.text':    'Visualizo un día en el que volaremos sobre un mundo en el que los seres humanos sean libres de la monotonía y vivan la vida como debería vivirse',
     'idx.quote.author':  '— Claude Shannon, padre de la teoría de la información',
 
-    'idx.footer.rights': '© 2024 Antonio Soria. Todos los derechos reservados.',
+    'idx.footer.rights': '© 2026 Antonio Soria. Todos los derechos reservados.',
   });
 
   /* --- English additions for index --- */
@@ -828,7 +828,7 @@ window.pageTranslations = {
     'idx.quote.text':    'I visualize a day when we will soar over a world where human beings are freed from monotony and live life as it should be lived',
     'idx.quote.author':  '— Claude Shannon, father of information theory',
 
-    'idx.footer.rights': '© 2024 Antonio Soria. All rights reserved.',
+    'idx.footer.rights': '© 2026 Antonio Soria. All rights reserved.',
   });
 })();
 
