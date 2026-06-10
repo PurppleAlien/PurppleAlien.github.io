@@ -502,61 +502,6 @@
       </div>
     </section>
 
-    <!-- ===== CONTACT FORM ===== -->
-    <section class="container" style="padding-bottom: 60px;">
-      <h2 class="section-title">Envíame un Mensaje</h2>
-      <p style="text-align:center; color:var(--text-muted); margin-top:-30px; margin-bottom:40px; font-size:0.95rem;">
-        Respondo en menos de 24 horas · todos los campos son obligatorios
-      </p>
-
-      <form id="contact-form" action="https://formspree.io/f/mpqoezvj" method="POST" novalidate
-            style="max-width:680px; margin:0 auto;">
-
-        <div class="cf-row">
-          <div class="cf-field">
-            <label class="cf-label" for="cf-name">Nombre</label>
-            <input class="cf-input" type="text" id="cf-name" name="name"
-                   placeholder="Tu nombre completo" required autocomplete="name">
-            <span class="cf-error" id="cf-name-err"></span>
-          </div>
-          <div class="cf-field">
-            <label class="cf-label" for="cf-email">Email</label>
-            <input class="cf-input" type="email" id="cf-email" name="email"
-                   placeholder="tu@email.com" required autocomplete="email">
-            <span class="cf-error" id="cf-email-err"></span>
-          </div>
-        </div>
-
-        <div class="cf-field" style="margin-bottom:18px">
-          <label class="cf-label" for="cf-subject">Asunto</label>
-          <select class="cf-input cf-select" id="cf-subject" name="subject" required>
-            <option value="">— Selecciona un asunto —</option>
-            <option value="Consultoría técnica">Consultoría técnica</option>
-            <option value="Proyecto de desarrollo">Proyecto de desarrollo</option>
-            <option value="Asesoría académica">Asesoría académica</option>
-            <option value="Colaboración">Colaboración</option>
-            <option value="Otro">Otro</option>
-          </select>
-          <span class="cf-error" id="cf-subject-err"></span>
-        </div>
-
-        <div class="cf-field" style="margin-bottom:24px">
-          <label class="cf-label" for="cf-msg">Mensaje</label>
-          <textarea class="cf-input cf-textarea" id="cf-msg" name="message"
-                    placeholder="Cuéntame sobre tu proyecto, idea o pregunta…" required rows="5"></textarea>
-          <span class="cf-error" id="cf-msg-err"></span>
-        </div>
-
-        <div style="text-align:center">
-          <button type="submit" class="cf-submit btn" id="cf-submit">
-            <i class="fas fa-paper-plane"></i>
-            <span id="cf-btn-text">Enviar mensaje</span>
-          </button>
-        </div>
-
-        <div class="cf-status" id="cf-status"></div>
-      </form>
-    </section>
 
     <!-- Social links -->
     <section class="container text-center" style="padding-bottom: 40px;">
