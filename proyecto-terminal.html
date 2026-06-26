@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="es" class="fx">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyecto Terminal — Antonio Soria</title>
+  <meta name="description" content="Detección Inteligente de Paráfrasis mediante LLMs — Proyecto Terminal de Investigación de Antonio Soria en la UAM Iztapalapa.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="favicon.png">
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <link rel="stylesheet" href="assets/css/shared.css">
+  <link rel="stylesheet" href="assets/css/cursor.css">
+
+  <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <script src="js/translations.js"></script>
+
+  <style>
+    /* ── Thesis page specific ── */
+
+    .thesis-hero {
+      min-height: 50vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 20px 60px;
+      position: relative;
+    }
+
+    .thesis-hero h1 {
+      font-size: 2.6rem;
+      font-family: var(--font-mono);
+      background: linear-gradient(135deg, #61dafb, #3d85c6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+
+    .thesis-hero .badge {
+      display: inline-block;
+      padding: 6px 18px;
+      background: rgba(97,218,251,0.1);
+      border: 1px solid rgba(97,218,251,0.25);
+      border-radius: 24px;
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      color: var(--neon);
+      margin-bottom: 20px;
+    }
+
+    .thesis-hero p {
+      color: var(--text-muted);
+      max-width: 640px;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .thesis-hero .hero-meta {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 24px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .thesis-hero .hero-meta span i {
+      color: var(--neon);
+      margin-right: 6px;
+    }
+
+    .section.thesis-section {
+      padding: 60px 0;
+    }
+
+    .thesis-section h2 {
+      font-size: 1.6rem;
+      font-family: var(--font-mono);
+      color: var(--neon);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .thesis-section h2 i {
+      font-size: 1.2rem;
+      opacity: 0.7;
+    }
+
+    .thesis-section h3 {
+      font-size: 1.15rem;
+      font-family: var(--font-mono);
+      color: var(--primary);
+      margin: 28px 0 12px;
+    }
+
+    body.dark-mode .thesis-section h3 { color: var(--neon); }
+
+    .thesis-section p {
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 16px;
+      max-width: 720px;
+    }
+
+    .thesis-section ul, .thesis-section ol {
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 16px;
+      padding-left: 20px;
+    }
+
+    .thesis-section li { margin-bottom: 6px; }
+
+    .architecture-diagram {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin: 28px 0;
+      text-align: center;
+    }
+
+    body.dark-mode .architecture-diagram { border-color: rgba(97,218,251,0.1); }
+
+    .arch-layers {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    .arch-layer {
+      padding: 16px 24px;
+      border-radius: var(--radius);
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .arch-layer .layer-icon {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.9rem;
+    }
+
+    .arch-layer .layer-label { font-weight: 600; }
+    .arch-layer .layer-desc { font-size: 0.8rem; opacity: 0.7; margin-top: 2px; }
+
+    .arch-layer.l1 { background: rgba(97,218,251,0.08); border: 1px solid rgba(97,218,251,0.2); }
+    .arch-layer.l1 .layer-icon { background: rgba(97,218,251,0.2); color: #61dafb; }
+    .arch-layer.l2 { background: rgba(61,133,198,0.08); border: 1px solid rgba(61,133,198,0.2); }
+    .arch-layer.l2 .layer-icon { background: rgba(61,133,198,0.2); color: #3d85c6; }
+    .arch-layer.l3 { background: rgba(97,218,251,0.06); border: 1px solid rgba(97,218,251,0.15); }
+    .arch-layer.l3 .layer-icon { background: rgba(97,218,251,0.15); color: #61dafb; }
+    .arch-layer.l4 { background: rgba(97,218,251,0.04); border: 1px solid rgba(97,218,251,0.1); }
+    .arch-layer.l4 .layer-icon { background: rgba(97,218,251,0.1); color: #61dafb; }
+
+    .arch-arrow { text-align: center; color: var(--neon); font-size: 1.2rem; opacity: 0.5; }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+      margin: 28px 0;
+    }
+
+    .metric-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: center;
+    }
+
+    body.dark-mode .metric-card { border-color: rgba(97,218,251,0.1); }
+
+    .metric-value {
+      font-size: 2rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      background: linear-gradient(135deg, #61dafb, #3d85c6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .metric-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .model-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0 32px;
+      font-size: 0.85rem;
+    }
+
+    .model-table th, .model-table td {
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+
+    body.dark-mode .model-table th, body.dark-mode .model-table td {
+      border-color: rgba(97,218,251,0.1);
+    }
+
+    .model-table th {
+      background: rgba(97,218,251,0.06);
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--neon);
+    }
+
+    .model-table td { color: var(--text-muted); }
+
+    .model-table .highlight-row td {
+      background: rgba(97,218,251,0.04);
+      font-weight: 600;
+    }
+
+    body.dark-mode .model-table .highlight-row td {
+      background: rgba(97,218,251,0.06);
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .tech-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    body.dark-mode .tech-item { border-color: rgba(97,218,251,0.08); }
+
+    .tech-item i {
+      font-size: 1.3rem;
+      color: var(--neon);
+      width: 24px;
+      text-align: center;
+    }
+
+    .tech-item .tech-name { font-weight: 500; }
+    .tech-item .tech-use { font-size: 0.8rem; color: var(--text-muted); }
+
+    .link-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin: 32px 0;
+    }
+
+    .link-buttons .btn { padding: 12px 28px; font-size: 0.95rem; }
+
+    .finding-box {
+      background: rgba(97,218,251,0.04);
+      border: 1px solid rgba(97,218,251,0.15);
+      border-left: 4px solid var(--neon);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+
+    .finding-box h4 {
+      color: var(--neon);
+      font-family: var(--font-mono);
+      margin-bottom: 8px;
+    }
+
+    .finding-box p, .finding-box ul {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 640px) {
+      .thesis-hero h1 { font-size: 1.8rem; }
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+      .tech-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+
+</head>
+<body class="dark-mode fx3d">
+
+  <!-- 3D background -->
+  <div class="hero-3d loading" id="hero-3d" aria-hidden="true"></div>
+
+  <div class="progress-bar" id="progress-bar"></div>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-image">
+          <img src="images/mifoto.jpg" alt="Antonio Soria">
+        </div>
+        <span class="logo-text">Antonio <span>Soria</span></span>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="index.html"       data-i18n="nav.home">Inicio</a></li>
+        <li><a href="sobre-mi.html"    data-i18n="nav.about">Sobre Mí</a></li>
+        <li><a href="portafolio.html"  data-i18n="nav.portfolio">Portafolio</a></li>
+        <li><a href="proyecto-terminal.html" class="active" data-i18n="nav.thesis">Proyecto Terminal</a></li>
+        <li><a href="divulgacion.html" data-i18n="nav.outreach">Divulgación</a></li>
+        <li><a href="contacto.html"    data-i18n="nav.contact">Contacto</a></li>
+      </ul>
+
+      <div class="header-buttons">
+        <button class="language-btn" id="language-toggle" title="Cambiar idioma">
+          <span class="language-flag">🇲🇽</span>
+        </button>
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Menú" aria-expanded="false">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile nav -->
+  <nav class="mobile-nav" id="mobile-nav">
+    <a href="index.html">              <i class="fas fa-home"></i>     <span data-i18n="nav.home">Inicio</span></a>
+    <a href="sobre-mi.html">           <i class="fas fa-user"></i>     <span data-i18n="nav.about">Sobre Mí</span></a>
+    <a href="portafolio.html">         <i class="fas fa-code"></i>     <span data-i18n="nav.portfolio">Portafolio</span></a>
+    <a href="proyecto-terminal.html" class="active"><i class="fas fa-graduation-cap"></i> <span data-i18n="nav.thesis">Proyecto Terminal</span></a>
+    <a href="divulgacion.html">        <i class="fas fa-flask"></i>    <span data-i18n="nav.outreach">Divulgación</span></a>
+    <a href="contacto.html">           <i class="fas fa-envelope"></i> <span data-i18n="nav.contact">Contacto</span></a>
+  </nav>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main-content">
+
+    <!-- Hero -->
+    <section class="thesis-hero fade-in">
+      <span class="badge"><i class="fas fa-graduation-cap"></i> Proyecto Terminal de Investigación I</span>
+      <h1>Detección Inteligente de Paráfrasis</h1>
+      <p>Detección de paráfrasis en el repositorio de tesis CBI de la UAM Iztapalapa, combinando modelos de lenguaje (BERT, XLM-R), búsqueda semántica (FAISS) y un pipeline de tres capas con árbitro LLM.</p>
+      <div class="hero-meta">
+        <span><i class="fas fa-university"></i> UAM Iztapalapa · División CBI</span>
+        <span><i class="fas fa-user-tie"></i> Asesor: Dr. Benjamin Moreno Montiel</span>
+        <span><i class="fas fa-calendar"></i> 2025 – 2026</span>
+      </div>
+      <div class="link-buttons" style="justify-content:center;">
+        <a href="https://github.com/PurppleAlien" class="btn" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-github"></i> GitHub Profile
+        </a>
+        <a href="doc/informe_semana7.pdf" class="btn btn-outline" target="_blank">
+          <i class="fas fa-file-pdf"></i> Descargar Reporte
+        </a>
+      </div>
+    </section>
+
+    <!-- Overview -->
+    <section class="section thesis-section" id="overview">
+      <div class="container">
+        <h2><i class="fas fa-crosshairs"></i> Resumen</h2>
+        <p>Este proyecto aborda el problema de detección de paráfrasis en el repositorio académico de tesis de la División CBI de la UAM Iztapalapa (<strong>~5,000 tesis, ~28 GB</strong> de texto). El objetivo es identificar similitudes semánticas entre fragmentos de diferentes tesis para detectar posibles casos de plagio parafraseado o reutilización de contenido.</p>
+        <p>Se desarrolló un <strong>sistema de doble modo</strong> (comparación directa de textos y búsqueda en el corpus completo) que integra recuperación BM25, indexación semántica FAISS con 2.3M vectores, y clasificadores fine-tuned (BETO, XLM-RoBERTa) con un ensamble que alcanza <strong>AUROC = 0.999</strong>.</p>
+
+        <div class="finding-box">
+          <h4><i class="fas fa-lightbulb"></i> Hallazgo Central</h4>
+          <p>La búsqueda exhaustiva sobre el corpus completo no encontró plagio parafraseado entre tesis. El corpus CBI es <strong>~97% original</strong>. Lo que existe son patrones de boilerplate institucional (~58%), citas bibliográficas compartidas (~21%) y reformulaciones de fuentes comunes (~3%). El aporte principal del proyecto es la <strong>eficiencia de datos</strong>: con solo ~60 pares humanos se iguala el rendimiento de sistemas supervisados con ~180k pares.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Architecture -->
+    <section class="section thesis-section section-dark" id="architecture">
+      <div class="container">
+        <h2><i class="fas fa-sitemap"></i> Arquitectura</h2>
+        <p>El sistema opera en tres capas secuenciales, donde cada una filta candidatos para la siguiente:</p>
+
+        <div class="architecture-diagram fade-in">
+          <div class="arch-layers">
+            <div class="arch-layer l1">
+              <div class="layer-icon"><i class="fas fa-search"></i></div>
+              <div>
+                <div class="layer-label">Fase 1 — BM25 + Jaccard Bigrama</div>
+                <div class="layer-desc">Recuperación inicial por similitud léxica. Cache de 70 MB. F1 = 0.989</div>
+              </div>
+            </div>
+            <div class="arch-arrow"><i class="fas fa-chevron-down"></i></div>
+            <div class="arch-layer l2">
+              <div class="layer-icon"><i class="fas fa-vector-square"></i></div>
+              <div>
+                <div class="layer-label">Fase 2 — FAISS (Índice Semántico)</div>
+                <div class="layer-desc">2,284,185 vectores · 4,954 tesis · 461 frag/tesis · MiniLM-L12-v2</div>
+              </div>
+            </div>
+            <div class="arch-arrow"><i class="fas fa-chevron-down"></i></div>
+            <div class="arch-layer l3">
+              <div class="layer-icon"><i class="fas fa-brain"></i></div>
+              <div>
+                <div class="layer-label">Fase 3 — Clasificador (Seleccionable)</div>
+                <div class="layer-desc">XLM-R v4 calibrado · BETO v3 · Ensamble Soft-Voting</div>
+              </div>
+            </div>
+            <div class="arch-arrow"><i class="fas fa-chevron-down"></i></div>
+            <div class="arch-layer l4">
+              <div class="layer-icon"><i class="fas fa-gavel"></i></div>
+              <div>
+                <div class="layer-label">Árbitro LLM (Opcional)</div>
+                <div class="layer-desc">Groq Llama 3.3 70B — solo en zona de duda [0.35, 0.65]</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3>Modos de Operación</h3>
+        <ul>
+          <li><strong>Modo 1:</strong> Comparación directa de dos fragmentos de texto. El clasificador seleccionado emite una probabilidad de parafrasis.</li>
+          <li><strong>Modo 2:</strong> Búsqueda en el corpus completo de ~5,000 tesis. Indexación FAISS + recuperación de top-K candidatos + clasificación.</li>
+        </ul>
+
+        <p>El sistema incluye detección de <strong>duplicados exactos</strong> (MiniLM ≥ 0.97 + BLEU-2 ≥ 0.90), un <strong>boilerplate detector</strong> con 10 patrones regex UAM, y un <strong>reporte estilo "similarity report"</strong> con % global, secciones, zonas de calor, paginación y gráficas SVG.</p>
+      </div>
+    </section>
+
+    <!-- Technologies -->
+    <section class="section thesis-section" id="technologies">
+      <div class="container">
+        <h2><i class="fas fa-cogs"></i> Tecnologías</h2>
+
+        <div class="tech-grid">
+          <div class="tech-item">
+            <i class="fas fa-language"></i>
+            <div><div class="tech-name">BETO (dccuchile)</div><div class="tech-use">Fine-tuning · F1 = 0.889</div></div>
+          </div>
+          <div class="tech-item">
+            <i class="fas fa-globe"></i>
+            <div><div class="tech-name">XLM-RoBERTa</div><div class="tech-use">Backbone v4 · F1 = 0.941</div></div>
+          </div>
+          <div class="tech-item">
+            <i class="fas fa-database"></i>
+            <div><div class="tech-name">FAISS (Meta)</div><div class="tech-use">Índice 100% · 2.3M vectores</div></div>
+          </div>
+          <div class="tech-item">
+            <i class="fas fa-search"></i>
+            <div><div class="tech-name">BM25 + RRF</div><div class="tech-use">Recuperación léxica</div></div>
+          </div>
+          <div class="tech-item">
+            <i class="fab fa-python"></i>
+            <div><div class="tech-name">Python · PyTorch</div><div class="tech-use">Entrenamiento e inferencia</div></div>
+          </div>
+          <div class="tech-item">
+            <i class="fas fa-rocket"></i>
+            <div><div class="tech-name">Docker + PWA</div><div class="tech-use">Despliegue unificado</div></div>
+          </div>
+          <div class="tech-item">
+            <i class="fas fa-tachometer-alt"></i>
+            <div><div class="tech-name">Groq Llama 3.3 70B</div><div class="tech-use">Árbitro en zona de duda</div></div>
+          </div>
+          <div class="tech-item">
+            <i class="fas fa-leaf"></i>
+            <div><div class="tech-name">MiniLM-L12-v2</div><div class="tech-use">Embeddings FAISS</div></div>
+          </div>
+          <div class="tech-item">
+            <i class="fas fa-file-pdf"></i>
+            <div><div class="tech-name">PyMuPDF</div><div class="tech-use">Extracción de PDFs</div></div>
+          </div>
+          <div class="tech-item">
+            <i class="fas fa-chart-line"></i>
+            <div><div class="tech-name">MongoDB + Colab</div><div class="tech-use">Almacenamiento · GPU</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section class="section thesis-section section-dark" id="results">
+      <div class="container">
+        <h2><i class="fas fa-chart-bar"></i> Resultados Clave</h2>
+
+        <div class="metrics-grid">
+          <div class="metric-card fade-in">
+            <div class="metric-value">0.889</div>
+            <div class="metric-label">BETO v8a — F1 (test humano)</div>
+          </div>
+          <div class="metric-card fade-in delay-1">
+            <div class="metric-value">0.941</div>
+            <div class="metric-label">XLM-R v4 — F1 (test interno)</div>
+          </div>
+          <div class="metric-card fade-in delay-2">
+            <div class="metric-value">0.999</div>
+            <div class="metric-label">Ensamble — AUROC</div>
+          </div>
+          <div class="metric-card fade-in delay-3">
+            <div class="metric-value">2.3M</div>
+            <div class="metric-label">Vectores FAISS</div>
+          </div>
+          <div class="metric-card fade-in">
+            <div class="metric-value">4,954</div>
+            <div class="metric-label">Tesis indexadas</div>
+          </div>
+          <div class="metric-card fade-in delay-1">
+            <div class="metric-value">~97%</div>
+            <div class="metric-label">Corpus CBI original</div>
+          </div>
+        </div>
+
+        <h3>Benchmarks — BETO v1 a v8 (test_v3_limpio, 38 pares)</h3>
+        <div style="overflow-x:auto;">
+          <table class="model-table">
+            <thead>
+              <tr>
+                <th>Modelo</th>
+                <th>Datos</th>
+                <th>F1</th>
+                <th>Precisión</th>
+                <th>Recall</th>
+                <th>FP</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>BETO v1</td><td>~20 pares gold</td><td>0.383</td><td>—</td><td>—</td><td>—</td></tr>
+              <tr><td>BETO v2</td><td>~40 pares gold</td><td>0.514</td><td>—</td><td>—</td><td>—</td></tr>
+              <tr><td>BETO v3</td><td>144 pares gold</td><td>0.842</td><td>0.800</td><td>0.889</td><td>2</td></tr>
+              <tr><td>BETO v4</td><td>5,000 frags. consecutivos</td><td>0.750</td><td>0.600</td><td>1.000</td><td>6</td></tr>
+              <tr><td>BETO v5</td><td>500 pares LLM</td><td>0.600</td><td>0.429</td><td>1.000</td><td>12</td></tr>
+              <tr><td>BETO v6</td><td>1,004 BT+LLM</td><td>0.783</td><td>0.643</td><td>1.000</td><td>5</td></tr>
+              <tr><td>BETO v7</td><td>2,000 BT puro</td><td>0.643</td><td>0.474</td><td>1.000</td><td>10</td></tr>
+              <tr class="highlight-row"><td>BETO v8a</td><td>155 gold+humano</td><td>0.889</td><td>0.889</td><td>0.889</td><td>1</td></tr>
+              <tr><td>BETO v8b</td><td>195 + neg. difíciles</td><td>0.818</td><td>0.692</td><td>1.000</td><td>4</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Conclusiones Experimentales</h3>
+        <ul>
+          <li><strong>Datos humanos reales &gt; datos sintéticos:</strong> Ninguna estrategia de aumento sintético (LLM ni back-translation) supera al gold estándar humano.</li>
+          <li><strong>XLM-R &gt; BETO:</strong> El backbone multilingüe XLM-RoBERTa supera a BETO en el test ampliado (109 pares).</li>
+          <li><strong>Ensamble robusto:</strong> Soft-voting entre XLM-R y BETO v3 alcanza AUROC 0.999, eliminando falsos positivos.</li>
+          <li><strong>Calibración crítica:</strong> Temperature scaling (T = 5.15) reduce ECE de 0.246 a 0.076.</li>
+          <li><strong>Eficiencia de datos:</strong> ~60 pares humanos bastan para igualar a Luna (TF-IDF con ~180k pares).</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section thesis-section" id="links">
+      <div class="container" style="text-align:center;">
+        <h2 style="justify-content:center;"><i class="fas fa-external-link-alt"></i> Enlaces</h2>
+        <p style="margin:0 auto 24px; max-width:500px;">Explora el código fuente, la documentación técnica o contacta para más información.</p>
+        <div class="link-buttons" style="justify-content:center;">
+          <a href="https://github.com/PurppleAlien" class="btn" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+          <a href="portafolio.html" class="btn btn-outline">
+            <i class="fas fa-arrow-left"></i> Volver al Portafolio
+          </a>
+          <a href="contacto.html" class="btn btn-outline">
+            <i class="fas fa-envelope"></i> Contacto
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">Antonio <span>Soria</span></div>
+      <div class="footer-links">
+        <a href="index.html"       data-i18n="nav.home">Inicio</a>
+        <a href="sobre-mi.html"    data-i18n="nav.about">Sobre Mí</a>
+        <a href="portafolio.html"  data-i18n="nav.portfolio">Portafolio</a>
+        <a href="proyecto-terminal.html" data-i18n="nav.thesis">Proyecto Terminal</a>
+        <a href="divulgacion.html" data-i18n="nav.outreach">Divulgación</a>
+        <a href="contacto.html"    data-i18n="nav.contact">Contacto</a>
+      </div>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/antonio-sould/" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/PurppleAlien"             class="social-link" title="GitHub"   target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+        <a href="https://www.instagram.com/antoniosould/"      class="social-link" title="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+        <a href="mailto:antonio.soria8r@gmail.com"             class="social-link" title="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+      <p class="copyright" data-i18n="footer.rights">© 2026 Antonio Soria. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="js/scroll-fx.js"></script>
+  <script src="js/page-init.js"></script>
+  <script type="module" src="js/hero3d.js"></script>
+  <script src="js/cursor.js" defer></script>
+  <script src="js/page-transition.js"></script>
+
+</body>
+</html>

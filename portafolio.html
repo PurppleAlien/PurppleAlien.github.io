@@ -344,6 +344,7 @@
         <li><a href="index.html"       data-i18n="nav.home">Inicio</a></li>
         <li><a href="sobre-mi.html"    data-i18n="nav.about">Sobre Mí</a></li>
         <li><a href="portafolio.html" class="active" data-i18n="nav.portfolio">Portafolio</a></li>
+        <li><a href="proyecto-terminal.html" data-i18n="nav.thesis">Proyecto Terminal</a></li>
         <li><a href="divulgacion.html" data-i18n="nav.outreach">Divulgación</a></li>
         <li><a href="contacto.html"    data-i18n="nav.contact">Contacto</a></li>
       </ul>
@@ -364,6 +365,7 @@
     <a href="index.html">       <i class="fas fa-home"></i>      <span data-i18n="nav.home">Inicio</span></a>
     <a href="sobre-mi.html">    <i class="fas fa-user"></i>      <span data-i18n="nav.about">Sobre Mí</span></a>
     <a href="portafolio.html" class="active"><i class="fas fa-code"></i> <span data-i18n="nav.portfolio">Portafolio</span></a>
+    <a href="proyecto-terminal.html"><i class="fas fa-graduation-cap"></i> <span data-i18n="nav.thesis">Proyecto Terminal</span></a>
     <a href="divulgacion.html"> <i class="fas fa-flask"></i>     <span data-i18n="nav.outreach">Divulgación</span></a>
     <a href="contacto.html">    <i class="fas fa-envelope"></i>  <span data-i18n="nav.contact">Contacto</span></a>
   </nav>
@@ -395,7 +397,153 @@
       <h2 class="section-title" data-i18n="portfolio.projects.title">Proyectos Destacados</h2>
       <div class="projects-grid" id="projects-grid">
 
-        <!-- Project 1 — Algoritmos de IA -->
+        <!-- Project 0 — Proyecto Terminal (Tesis) -->
+        <div class="project-card fade-in" data-category="ia">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop"
+                 alt="Proyecto Terminal" loading="lazy">
+          </div>
+          <div class="project-content">
+            <span class="project-category">Investigación · UAM Iztapalapa</span>
+            <h3>Proyecto Terminal — Detección de Paráfrasis</h3>
+            <p class="project-description">Sistema inteligente de detección de paráfrasis en el repositorio CBI (~5,000 tesis). Combina BM25, FAISS (2.3M vectores), fine-tuning de LLMs (BETO, XLM-R) y un ensamble con AUROC = 0.999. Proyecto Terminal de Investigación I.</p>
+            <div class="project-tags">
+              <span class="project-tag">BERT</span>
+              <span class="project-tag">FAISS</span>
+              <span class="project-tag">XLM-R</span>
+              <span class="project-tag">NLP</span>
+              <span class="project-tag">RAG</span>
+              <span class="project-tag">Python</span>
+            </div>
+            <div class="project-actions">
+              <a href="proyecto-terminal.html" class="btn"><i class="fas fa-external-link-alt"></i> <span>Ver Proyecto</span></a>
+              <a href="https://github.com/PurppleAlien" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 1 — Farmacia Online (Microservicios) -->
+        <div class="project-card fade-in" data-category="sistemas programacion">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop"
+                 alt="Farmacia Online" loading="lazy">
+          </div>
+          <div class="project-content">
+            <span class="project-category">Cloud · Microservicios</span>
+            <h3>Farmacia Online — 8 Microservicios</h3>
+            <p class="project-description">Plataforma de farmacia online con arquitectura de microservicios (Spring Boot): catálogo, usuarios, inventario, pedidos, notificaciones y pasarela API. Comunicación asíncrona con RabbitMQ, frontend en React + TypeScript, orquestación con Docker Compose. Cada servicio tiene su propio modelo de datos, pruebas y Dockerfile.</p>
+            <div class="project-tags">
+              <span class="project-tag">Spring Boot</span>
+              <span class="project-tag">RabbitMQ</span>
+              <span class="project-tag">React</span>
+              <span class="project-tag">TypeScript</span>
+              <span class="project-tag">Docker</span>
+              <span class="project-tag">MySQL</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn view-project" data-modal="modal-farmacia"><i class="fas fa-eye"></i> <span>Ver Proyecto</span></button>
+              <a href="https://github.com/PurppleAlien/farmacia_online" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 — Veterinary Clinic -->
+        <div class="project-card fade-in delay-1" data-category="sistemas programacion">
+          <div class="project-image">
+            <img src="https://raw.githubusercontent.com/PurppleAlien/veterinary-clinic-management-system/main/docs/images/04-clientes.png"
+                 alt="Veterinary Clinic" loading="lazy">
+          </div>
+          <div class="project-content">
+            <span class="project-category">Sistemas Web</span>
+            <h3>Veterinary Clinic Management</h3>
+            <p class="project-description">Sistema de gestión para clínicas veterinarias con Spring Boot + PostgreSQL. Incluye expedientes de mascotas, vacunación, hospitalización, planes de tratamiento, booking online y notificaciones por email. Portal con roles ADMIN/VETERINARIO/CLIENTE y autenticación JWT. Desplegable con Docker.</p>
+            <div class="project-tags">
+              <span class="project-tag">Spring Boot</span>
+              <span class="project-tag">PostgreSQL</span>
+              <span class="project-tag">JWT</span>
+              <span class="project-tag">Docker</span>
+              <span class="project-tag">Full-Stack</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn view-project" data-modal="modal-vet"><i class="fas fa-eye"></i> <span>Ver Proyecto</span></button>
+              <a href="https://github.com/PurppleAlien/veterinary-clinic-management-system" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 — Marianito 2D Platformer -->
+        <div class="project-card fade-in delay-2" data-category="programacion">
+          <div class="project-image">
+            <img src="https://raw.githubusercontent.com/PurppleAlien/marianito-2d-platformer/main/documentacion/screenshot-game-mundo2.png"
+                 alt="Marianito 2D" loading="lazy">
+          </div>
+          <div class="project-content">
+            <span class="project-category">Videojuegos · Java</span>
+            <h3>Marianito — 2D Platformer (Java Swing)</h3>
+            <p class="project-description">Juego de plataformas 2D estilo Super Mario Bros con 4 mundos, enemigos, power-ups, jefe final y build Gradle. Migrado de java.applet (obsoleto) a javax.sound.sampled. Incluye caché de imágenes para rendimiento, documentación LaTeX detallada y arquitectura MVC.</p>
+            <div class="project-tags">
+              <span class="project-tag">Java</span>
+              <span class="project-tag">Swing</span>
+              <span class="project-tag">Gradle</span>
+              <span class="project-tag">MVC</span>
+              <span class="project-tag">LaTeX</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn view-project" data-modal="modal-marianito2d"><i class="fas fa-eye"></i> <span>Ver Proyecto</span></button>
+              <a href="https://github.com/PurppleAlien/marianito-2d-platformer" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 — Satreria (PWA) -->
+        <div class="project-card fade-in" data-category="web programacion">
+          <div class="project-image">
+            <img src="https://raw.githubusercontent.com/PurppleAlien/satreria/main/HTML_Digital_System/public/icons/icon-512.png"
+                 alt="Satreria Digital" loading="lazy">
+          </div>
+          <div class="project-content">
+            <span class="project-category">Web · PWA</span>
+            <h3>Sastrería Digital — PWA con IndexedDB</h3>
+            <p class="project-description">Aplicación web progresiva (PWA) para gestión de sastrería: dashboard, pedidos, clientes, agenda, reportes con gráficas (Recharts) y escáner QR. Almacenamiento offline con Dexie/IndexedDB, exportación a PDF con jsPDF. Instalable como app nativa.</p>
+            <div class="project-tags">
+              <span class="project-tag">React</span>
+              <span class="project-tag">PWA</span>
+              <span class="project-tag">IndexedDB</span>
+              <span class="project-tag">Tailwind</span>
+              <span class="project-tag">QR</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn view-project" data-modal="modal-satreria"><i class="fas fa-eye"></i> <span>Ver Proyecto</span></button>
+              <a href="https://github.com/PurppleAlien" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5 — Task API (FastAPI) -->
+        <div class="project-card fade-in delay-1" data-category="programacion web">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&h=400&fit=crop"
+                 alt="Task API" loading="lazy">
+          </div>
+          <div class="project-content">
+            <span class="project-category">API · Python</span>
+            <h3>Task API — FastAPI + SQLAlchemy Async</h3>
+            <p class="project-description">API REST para gestión de tareas con FastAPI asíncrono, SQLAlchemy 2.0 async, Alembic migrations, autenticación JWT con RBAC (admin/user), filtros avanzados y 22 pruebas automatizadas con pytest. Documentación Swagger/ReDoc automática.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">FastAPI</span>
+              <span class="project-tag">SQLAlchemy</span>
+              <span class="project-tag">Docker</span>
+              <span class="project-tag">JWT</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn view-project" data-modal="modal-taskapi"><i class="fas fa-eye"></i> <span>Ver Proyecto</span></button>
+              <a href="https://github.com/PurppleAlien" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 6 — Algoritmos de IA -->
         <div class="project-card fade-in" data-category="ia programacion">
           <div class="project-image">
             <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Problema_de_Rutas_Algoritmos_BFS_UCS_A%2A_vercion_2/Assets/img/BFS_PozaRica_a_Huatulco.png"
@@ -871,6 +1019,142 @@
   </main>
 
   <!-- ===== MODALS ===== -->
+
+  <div id="modal-farmacia" class="modal" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <div class="modal-close" id="close-farmacia" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
+      <div class="modal-image"><img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=700&h=300&fit=crop" alt="Farmacia Online" loading="lazy"></div>
+      <div class="modal-body">
+        <span class="modal-category">Cloud · Microservicios</span>
+        <h2>Farmacia Online</h2>
+        <p class="modal-description">Plataforma completa de farmacia online con arquitectura de microservicios. Ocho servicios independientes (catálogo, usuarios, inventario, pedidos, notificaciones, clientes, API gateway, shared) comunicados vía RabbitMQ, cada uno con su propia base de datos MySQL y Dockerfile. Frontend en React con TypeScript y Tailwind CSS. Orquestación completa con Docker Compose para desarrollo y producción.</p>
+        <div class="modal-details">
+          <div class="detail-item"><h4>Backend</h4><p>Spring Boot 3 + 8 servicios</p></div>
+          <div class="detail-item"><h4>Frontend</h4><p>React 18 + TypeScript</p></div>
+          <div class="detail-item"><h4>Mensajería</h4><p>RabbitMQ (event-driven)</p></div>
+          <div class="detail-item"><h4>Estado</h4><p>Completado</p></div>
+        </div>
+        <div class="modal-tags">
+          <span class="modal-tag">Spring Boot</span><span class="modal-tag">React</span>
+          <span class="modal-tag">RabbitMQ</span><span class="modal-tag">Docker</span>
+          <span class="modal-tag">Microservicios</span><span class="modal-tag">MySQL</span>
+        </div>
+        <div class="modal-actions">
+          <a href="https://github.com/PurppleAlien/farmacia_online" class="btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Ver Código</a>
+          <a href="contacto.html" class="btn btn-outline"><i class="fas fa-envelope"></i> Contactar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-vet" class="modal" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <div class="modal-close" id="close-vet" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
+      <div class="modal-image"><img src="https://raw.githubusercontent.com/PurppleAlien/veterinary-clinic-management-system/main/docs/images/04-clientes.png" alt="Veterinary Clinic" loading="lazy"></div>
+      <div class="modal-body">
+        <span class="modal-category">Sistemas Web</span>
+        <h2>Veterinary Clinic Management</h2>
+        <p class="modal-description">Sistema completo de gestión para clínicas veterinarias. Administra pacientes (mascotas), propietarios, citas, vacunación, hospitalización, planes de tratamiento y facturación. Portal web con registro online, notificaciones por email y roles diferenciados (ADMIN, VETERINARIO, CLIENTE) con autenticación JWT. Diseñado para ser desplegado con Docker.</p>
+        <div class="modal-details">
+          <div class="detail-item"><h4>Backend</h4><p>Spring Boot 3 + JPA</p></div>
+          <div class="detail-item"><h4>Base de datos</h4><p>PostgreSQL</p></div>
+          <div class="detail-item"><h4>Frontend</h4><p>HTML + Alpine.js</p></div>
+          <div class="detail-item"><h4>Estado</h4><p>Completado</p></div>
+        </div>
+        <div class="modal-tags">
+          <span class="modal-tag">Java</span><span class="modal-tag">Spring Boot</span>
+          <span class="modal-tag">PostgreSQL</span><span class="modal-tag">JWT</span>
+          <span class="modal-tag">Docker</span>
+        </div>
+        <div class="modal-actions">
+          <a href="https://github.com/PurppleAlien/veterinary-clinic-management-system" class="btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Ver Código</a>
+          <a href="contacto.html" class="btn btn-outline"><i class="fas fa-envelope"></i> Contactar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-marianito2d" class="modal" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <div class="modal-close" id="close-marianito2d" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
+      <div class="modal-image"><img src="https://raw.githubusercontent.com/PurppleAlien/marianito-2d-platformer/main/documentacion/screenshot-game-mundo2.png" alt="Marianito 2D" loading="lazy"></div>
+      <div class="modal-body">
+        <span class="modal-category">Videojuegos · Java</span>
+        <h2>Marianito — 2D Platformer</h2>
+        <p class="modal-description">Juego de plataformas 2D estilo Super Mario Bros desarrollado en Java puro (Swing/AWT). Cuenta con 4 mundos completos (Bosque, Cueva, Desierto, Castillo), enemigos variados (Goombas, Koopas, Bowser), power-ups (hongos, flores), sistema de físicas y colisiones, y audio moderno con javax.sound.sampled. Incluye build Gradle y documentación técnica en LaTeX.</p>
+        <div class="modal-details">
+          <div class="detail-item"><h4>Stack</h4><p>Java 21 + Swing/AWT</p></div>
+          <div class="detail-item"><h4>Mundos</h4><p>4 niveles</p></div>
+          <div class="detail-item"><h4>Build</h4><p>Gradle + run.sh</p></div>
+          <div class="detail-item"><h4>Estado</h4><p>Completado</p></div>
+        </div>
+        <div class="modal-tags">
+          <span class="modal-tag">Java</span><span class="modal-tag">Swing</span>
+          <span class="modal-tag">MVC</span><span class="modal-tag">LaTeX</span>
+          <span class="modal-tag">Gradle</span>
+        </div>
+        <div class="modal-actions">
+          <a href="https://github.com/PurppleAlien/marianito-2d-platformer" class="btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Ver Código</a>
+          <a href="contacto.html" class="btn btn-outline"><i class="fas fa-envelope"></i> Contactar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-satreria" class="modal" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <div class="modal-close" id="close-satreria" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
+      <div class="modal-image"><img src="https://raw.githubusercontent.com/PurppleAlien/satreria/main/HTML_Digital_System/public/icons/icon-512.png" alt="Satreria" loading="lazy"></div>
+      <div class="modal-body">
+        <span class="modal-category">Web · PWA</span>
+        <h2>Sastrería Digital</h2>
+        <p class="modal-description">Aplicación web progresiva (PWA) para la gestión completa de una sastrería. Dashboard con métricas en tiempo real, gestión de pedidos y clientes, agenda interactiva, reportes con gráficas (Recharts), escáner QR para seguimiento rápido y exportación a PDF (jsPDF). Almacenamiento offline con Dexie.js (IndexedDB). Instalable como aplicación nativa en cualquier dispositivo.</p>
+        <div class="modal-details">
+          <div class="detail-item"><h4>Frontend</h4><p>React 18 + Vite</p></div>
+          <div class="detail-item"><h4>Estilos</h4><p>Tailwind CSS</p></div>
+          <div class="detail-item"><h4>Offline</h4><p>Dexie/IndexedDB</p></div>
+          <div class="detail-item"><h4>Estado</h4><p>Completado</p></div>
+        </div>
+        <div class="modal-tags">
+          <span class="modal-tag">React</span><span class="modal-tag">PWA</span>
+          <span class="modal-tag">Tailwind</span><span class="modal-tag">Dexie</span>
+          <span class="modal-tag">QR</span><span class="modal-tag">PDF</span>
+        </div>
+        <div class="modal-actions">
+          <a href="https://github.com/PurppleAlien" class="btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Ver Perfil</a>
+          <a href="contacto.html" class="btn btn-outline"><i class="fas fa-envelope"></i> Contactar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-taskapi" class="modal" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <div class="modal-close" id="close-taskapi" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
+      <div class="modal-image"><img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=700&h=300&fit=crop" alt="Task API" loading="lazy"></div>
+      <div class="modal-body">
+        <span class="modal-category">API · Python</span>
+        <h2>Task API — FastAPI</h2>
+        <p class="modal-description">API REST moderna para gestión de tareas con FastAPI asíncrono, SQLAlchemy 2.0 async (conexiones asíncronas a PostgreSQL), migraciones con Alembic y autenticación JWT con control de roles (admin/user). Incluye filtros avanzados por estado/prioridad/fecha, paginación, 22 pruebas automatizadas con pytest, Dockerfile multi-etapa y documentación interactiva generada automáticamente (Swagger UI + ReDoc).</p>
+        <div class="modal-details">
+          <div class="detail-item"><h4>Stack</h4><p>Python + FastAPI</p></div>
+          <div class="detail-item"><h4>DB</h4><p>PostgreSQL + Alembic</p></div>
+          <div class="detail-item"><h4>Tests</h4><p>22 pruebas (pytest)</p></div>
+          <div class="detail-item"><h4>Estado</h4><p>Completado</p></div>
+        </div>
+        <div class="modal-tags">
+          <span class="modal-tag">Python</span><span class="modal-tag">FastAPI</span>
+          <span class="modal-tag">SQLAlchemy</span><span class="modal-tag">pytest</span>
+          <span class="modal-tag">Docker</span>
+        </div>
+        <div class="modal-actions">
+          <a href="https://github.com/PurppleAlien" class="btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Ver Perfil</a>
+          <a href="contacto.html" class="btn btn-outline"><i class="fas fa-envelope"></i> Contactar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div id="modal-1" class="modal" role="dialog" aria-modal="true">
     <div class="modal-content">
       <div class="modal-close" id="close-1" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
