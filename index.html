@@ -43,9 +43,6 @@
   <!-- Shared CSS (covers base vars, nav, footer, cards, animations) -->
   <link rel="stylesheet" href="assets/css/shared.css">
 
-  <!-- Precarga del módulo Three.js (acelera la carga de la escena 3D) -->
-  <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js">
-
   <!-- Import map para Three.js (lo usa js/hero3d.js, módulo del hero 3D) -->
   <script type="importmap">
   {
@@ -55,6 +52,9 @@
     }
   }
   </script>
+
+  <!-- Precarga del módulo Three.js (acelera la carga de la escena 3D) -->
+  <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js">
 
   <!-- Translations (load first) -->
   <script src="js/translations.js"></script>
