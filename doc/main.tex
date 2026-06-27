@@ -6,308 +6,349 @@
 \usepackage{fontawesome5}
 \usepackage{titlesec}
 \usepackage{enumitem}
-\usepackage{multicol}
 \usepackage{xcolor}
+\usepackage{ragged2e}
 \usepackage{tikz}
-\usepackage{eso-pic}
-\usepackage{background}
+\usepackage{graphicx}
 
-% Configuración de geometría
-\geometry{left=1.2cm, right=1.2cm, top=2cm, bottom=2cm}
+% ── Geometría ──────────────────────────────────────────────────────────────────
+\geometry{left=1.8cm, right=1.8cm, top=1.5cm, bottom=1.5cm}
 
-% Colores corporativos
-\definecolor{primary}{RGB}{0, 51, 102}      % Azul profundo
-\definecolor{secondary}{RGB}{70, 70, 70}     % Gris oscuro
-\definecolor{accent}{RGB}{200, 170, 100}     % Dorado suave
-\definecolor{lightgray}{RGB}{245, 245, 245}  % Gris muy claro
+% ── Colores ──────────────────────────────────────────────────────────────────
+\definecolor{primary}{HTML}{0A192F}       % Azul profundo (tech)
+\definecolor{primarylight}{HTML}{172A45}  % Azul profundo claro
+\definecolor{accent}{HTML}{2B6CB0}        % Azul acento
+\definecolor{accentsoft}{HTML}{EBF4FF}    % Fondo acento suave
+\definecolor{textmain}{HTML}{1A202C}      % Casi negro
+\definecolor{textsec}{HTML}{4A5568}       % Gris
+\definecolor{tagbg}{HTML}{E2E8F0}         % Fondo tags skills
+\definecolor{ruledark}{HTML}{CBD5E0}      % Línea sutil
 
-% Configuración de títulos de sección
+% ── Hipervínculos ──────────────────────────────────────────────────────────────
+\hypersetup{colorlinks=true, linkcolor=accent, urlcolor=accent, citecolor=accent}
+
+% ── Secciones ──────────────────────────────────────────────────────────────────
 \titleformat{\section}
-  {\Large\scshape\bfseries\color{primary}}
+  {\normalfont\Large\bfseries\color{primary}}
   {}{0em}
-  {}[\color{primary!30}\titlerule[1pt]]
+  {}[\vspace{-0.1cm}{\color{accent}\titlerule[1.5pt]}]
 
-% Configuración de listas
-\setlist{nosep, left=0pt, labelwidth=0.5cm, leftmargin=0.5cm}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{textsec}}
+  {}{0em}
+  {}
 
-% Fondo decorativo para separación de secciones
-\backgroundsetup{
-  contents={},
-  opacity=1,
-  angle=0
+% ── Listas compactas ──────────────────────────────────────────────────────────
+\setlist{nosep, left=0pt, labelwidth=0.35cm, leftmargin=0.35cm, labelsep=0.15cm}
+
+% ── Comando de entrada de experiencia ─────────────────────────────────────────
+\newcommand{\entry}[4]{%
+  \noindent
+  \textbf{#1} \hfill {\small\color{textsec}#2}\\
+  {\small\color{accent}#3}
+  \vspace{0.1cm}
+  \par\noindent#4
+  \vspace{0.25cm}
 }
 
-% Comando para separador elegante entre currículums
-\newcommand{\cvseparator}{
-  \vspace{1.5cm}
-  \begin{center}
+% ── Comando de skill tag ──────────────────────────────────────────────────────
+\newcommand{\skill}[1]{{\footnotesize\bfseries\color{primary}\hspace{0.5mm}\hspace{1mm}#1\hspace{1mm}}}
+
+% ── Barra decorativa ──────────────────────────────────────────────────────────
+\newcommand{\decorule}{\vspace{0.1cm}{\color{accent}\rule{1.5cm}{2.5pt}}\vspace{0.2cm}}
+
+% ── Header con foto ───────────────────────────────────────────────────────────
+\newcommand{\cvheader}[2]{%
+  \vspace{0.2cm}
+  \begin{minipage}{0.62\textwidth}
+    {\Huge\bfseries\color{primary} Juan Antonio G.}\\[0.05cm]
+    {\huge\bfseries\color{primary} Soria Rodriguez}\\[0.18cm]
+    {\large\color{accent} #1}\\[0.12cm]
+    {\small\color{textsec}
+    \faMapMarker\ #2 \hspace{0.35cm}%
+    \faEnvelope\ \href{mailto:antonio.soria8r@gmail.com}{antonio.soria8r@gmail.com} \hspace{0.35cm}%
+    \faGithub\ \href{https://github.com/PurppleAlien}{PurppleAlien} \hspace{0.35cm}%
+    \faLinkedin\ \href{https://www.linkedin.com/in/antonio-sould/}{antonio-sould}
+    }
+  \end{minipage}%
+  \hfill
+  \begin{minipage}{0.32\textwidth}
+    \centering
+    \vspace{-0.3cm}
     \begin{tikzpicture}
-      \draw[color=primary!40, line width=0.5pt] (0,0) -- (5,0);
-      \node at (5.8,0) {\Large\color{primary}$\star$};
-      \node at (6.5,0) {\Large\color{primary}$\star$};
-      \node at (7.2,0) {\Large\color{primary}$\star$};
-      \draw[color=primary!40, line width=0.5pt] (8,0) -- (13,0);
+      \clip (0,0) circle (2.0cm);
+      \node at (0,0) {\includegraphics[height=4.5cm]{profile.png}};
+      \draw[color=accent, line width=2.5pt] (0,0) circle (2.0cm);
     \end{tikzpicture}
-  \end{center}
-  \vspace{1cm}
-}
-
-% Comando para el encabezado personalizado
-\newcommand{\cvheader}[3]{
-  \begin{center}
-    {\Huge\bfseries\color{primary} #1} \\[0.4cm]
-    {\large\color{secondary} #2} \\[0.5cm]
-    \begin{tabular}{c}
-      \faMapMarker\ \hspace{0.2cm} #3 \\
-    \end{tabular}
-    \hspace{0.5cm}
-    \begin{tabular}{c}
-      \faEnvelope\ \hspace{0.2cm} \href{mailto:antonio.soria8r@gmail.com}{antonio.soria8r@gmail.com}
-    \end{tabular}
-    \hspace{0.5cm}
-    \begin{tabular}{c}
-      \faGithub\ \hspace{0.2cm} \href{https://github.com/PurppleAlien}{github.com/PurppleAlien}
-    \end{tabular}
-  \end{center}
-  \vspace{0.5cm}
-}
-
-% Comando para caja de habilidades
-\newcommand{\skillbox}[2]{
-  \begin{center}
-    \begin{tikzpicture}
-      \fill[rounded corners=3pt, primary!10] (0,0) rectangle (\textwidth,0.8);
-      \node at (0.4,0.4) [anchor=west] {\textbf{\color{primary}#1}};
-      \node at (\textwidth-0.4,0.4) [anchor=east] {\color{secondary}#2};
-    \end{tikzpicture}
-  \end{center}
+  \end{minipage}
+  \vspace{0.3cm}
+  \par\noindent{\color{ruledark}\rule{\textwidth}{0.5pt}}
+  \vspace{0.3cm}
 }
 
 \begin{document}
 
-% ==================== ENGLISH VERSION ====================
-\selectlanguage{english}
+% ============================================================
+%  VERSIÓN EN ESPAÑOL
+% ============================================================
+\selectlanguage{spanish}
 
-\cvheader{Juan Antonio G. Soria Rodriguez}
-         {Computer Science Student | Software Developer}
-         {Álvaro Obregón, Ciudad de México, México}
+\cvheader{Licenciado en Computaci\'{o}n \;$\mid$\; Investigador en IA \& Desarrollador Aumentado por IA}
+         {Ciudad de M\'{e}xico, M\'{e}xico}
 
-% Professional Summary
-\section*{Professional Summary}
-\vspace{0.2cm}
-Computer Science student at Universidad Autónoma Metropolitana (UAM) with a strong background in applied mathematics and algorithmic thinking. Experienced in developing academic, freelance, and personal projects ranging from web systems to artificial intelligence algorithms. Passionate about building efficient, elegant, and creative software solutions that combine mathematics, programming, and problem-solving. Actively seeking junior roles, internships, freelance opportunities, and projects related to backend, full stack development, and AI.
+% ── RESUMEN ──────────────────────────────────────────────────────────────────
+\section*{Resumen Profesional}
+\justifying
+\small
+Profesional Licenciado en Computaci\'{o}n (UAM-Iztapalapa), especializado en Inteligencia Artificial, Procesamiento de Lenguaje Natural (PLN) y desarrollo de software aumentado por IA. Complet\'{e} un Proyecto Terminal de nivel investigaci\'{o}n construyendo un sistema de detecci\'{o}n de par\'{a}frasis y plagio de doble modo sobre un corpus institucional de $\sim$5{,}000 tesis — combinando aprendizaje profundo, recuperaci\'{o}n vectorial, fine-tuning de transformers y despliegue web containerizado.
 
-% Education
-\section*{Education}
-\textbf{Bachelor's Degree in Computer Science} \hfill \textit{Expected 2026}\\
-Universidad Autónoma Metropolitana (UAM), Mexico City\\
+Utilizo activamente metodolog\'{i}as aumentadas por IA: ingenier\'{i}a de contexto, flujos agentic, generaci\'{o}n de c\'{o}digo asistida y dise\~{n}o multi-agente. Concibo la IA como un multiplicador estrat\'{e}gico para analizar problemas complejos, validar soluciones y transformar ideas en productos funcionales.
+
+\decorule
+
+%% ── EDUCACIÓN ─────────────────────────────────────────────────────────────────
+\section*{Educaci\'{o}n}
+\entry{Licenciatura en Ciencias de la Computaci\'{o}n}
+       {2020 -- 2026}
+       {Universidad Aut\'{o}noma Metropolitana (UAM-I), Ciudad de M\'{e}xico}
+       {\textbf{Tesis:} Detecci\'{o}n Inteligente de Par\'{a}frasis mediante Modelos de Lenguaje de Gran Escala (LLMs) \\
+        \textbf{Asesor:} Dr. Benjamin Moreno Montiel}
+        
+        
+        
+\entry{Licenciatura en Matem\'{a}ticas Aplicadas y Computaci\'{o}n}
+       {2011--2016}
+       {Universidad Nacional Aut\'{o}noma de M\'{e}xico (UNAM), FES Acatl\'{a}n}
+       {}
+
+%% ── PROYECTO CLAVE ─────────────────────────────────────────────────────
+\section*{Proyecto Terminal 1: Sistema de Detecci\'{o}n de Par\'{a}frasis y Plagio}
+\justifying
+\small
+Sistema NLP de doble modo (clasificaci\'{o}n por pares + b\'{u}squeda en corpus) para detecci\'{o}n de plagio acad\'{e}mico en la UAM-I. Desplegado sobre $\sim$5{,}000 tesis con un \'{i}ndice sem\'{a}ntico FAISS de \textbf{2.28M vectores al 100\% de cobertura}.
+\vspace{0.12cm}
+\begin{itemize}
+    \item \textbf{Arquitectura:} Bi-encoder MiniLM + FAISS $\rightarrow$ cross-encoder XLM-RoBERTa/BETO $\rightarrow$ \'{a}rbitro LLM opcional (Llama 3.3 70B) en la zona de duda $[0.35, 0.65]$.
+    \item \textbf{Modelos:} XLM-RoBERTa fine-tuned y calibrado (T=5.15, ECE 0.076), BETO v8a (F1=0.889), ensamble soft-voting con \textbf{AUROC 0.999}. Evaluaci\'{o}n rigurosa con intervalos bootstrap y auditor\'{i}a de fuga de datos.
+    \item \textbf{Hallazgo:} El corpus CBI es $\sim$97\% original (solo $\sim$3\% par\'{a}frasis real). El aporte central es eficiencia de datos: \textbf{60 pares humanos igualan a 180K pares algor\'{i}tmicos}.
+    \item \textbf{Entrega:} App web unificada con Docker, PWA, reportes por secciones, mapas de calor y explicabilidad LLM.
+\end{itemize}
 \vspace{0.1cm}
-\textbf{Studies in Applied Mathematics and Computer Science} \hfill \textit{2011–2016}\\
-Universidad Nacional Autónoma de México (UNAM), FES Acatlán
-% Technical Skills
-\section*{Technical Skills}
-\begin{multicols}{2}
-\textbf{Programming Languages:}
-\begin{itemize}
-    \item Java (Experienced)
-    \item C (Intermediate)
-    \item C++ (Intermediate)
-    \item JavaScript (Intermediate)
-    \item Python (Beginner)
-    \item PHP (Beginner)
-\end{itemize}
-\textbf{Web Technologies:}
-\begin{itemize}
-    \item HTML (Intermediate)
-    \item CSS (Beginner)
-    \item React
-    \item Bootstrap
-\end{itemize}
-\textbf{Databases:}
-\begin{itemize}
-    \item SQL (Intermediate)
-    \item MySQL
-    \item MongoDB
-\end{itemize}
-\textbf{Tools \& Environments:}
-\begin{itemize}
-    \item Git \& GitHub
-    \item Jupyter Notebook
-    \item Linux / macOS
-\end{itemize}
-\textbf{AI \& Algorithms:}
-\begin{itemize}
-    \item BFS, DFS, A*
-    \item Minimax, Negamax
-    \item Alpha-Beta Pruning
-    \item Graph theory
-\end{itemize}
-\end{multicols}
-
-
-% Projects & Academic Experience
-\section*{Projects \& Academic Experience}
-\textbf{Artificial Intelligence \& Algorithms (Java)}\\
-\vspace{0.1cm}
-- Implementation of classic AI search and decision algorithms: BFS, DFS, A*, Minimax, Negamax, and Alpha-Beta pruning.\\
-- Development of intelligent game logic for Connect 4, Word Search, Linear Puzzle, 4-Puzzle and 8-Puzzle using Java Swing.\\[0.2cm]
-\textbf{Software Development Projects}\\
-\vspace{0.1cm}
-- Design and development of small-scale systems including web applications, scripts, and automation tools.\\
-- Collaboration on informal and freelance projects, delivering functional solutions.\\[0.2cm]
-\textbf{Web Development}\\
-\vspace{0.1cm}
-- Development of responsive websites using HTML, CSS, JavaScript, React, and Bootstrap.\\
-- Backend experimentation with Node.js and REST-style logic.\\[0.2cm]
-\textbf{Data Analysis \& Simulation (Python / MATLAB)}\\
-\vspace{0.1cm}
-- Introductory data analysis using Python and Jupyter Notebooks.\\
-- Discrete simulation and probabilistic modeling.
-
-% Courses
-\section*{Courses}
-\vspace{0.2cm}
-\noindent
-Linear Algebra | Calculus | Discrete Mathematics | Probability and Statistics | Software Engineering | Operating Systems | Artificial Intelligence | Machine Learning | Databases | Discrete Simulation | Telecommunications Networks
-
-% Soft Skills and Languages
-\vspace{0.3cm}
-\begin{multicols}{2}
-\textbf{Soft Skills:}
-\begin{itemize}
-    \item Responsibility
-    \item Adaptability
-    \item Proactivity
-    \item Self-learning
-\end{itemize}
-\columnbreak
-\textbf{Languages:}
-\begin{itemize}
-    \item Spanish: Native
-    \item English: Intermediate / Technical
-\end{itemize}
-\end{multicols}
-
-% Additional Information
-\section*{Additional Information}
-\vspace{0.2cm}
-Mexican nationality. Born on December 12, 1991, in Mexico City.\\
-Available for junior developer roles, internships, freelance projects, and collaborative initiatives.
-
-% ==================== ELEGANT SEPARATOR ====================
-\cvseparator
-
+{\small\itshape\color{textsec} Stack: Python, PyTorch, Hugging Face Transformers, sentence-transformers, FAISS, MongoDB, Docker.}
 
 
 
 \newpage
-% ==================== SPANISH VERSION ====================
-\selectlanguage{spanish}
-
-\cvheader{Juan Antonio G. Soria Rodriguez}
-         {Estudiante de Licenciatura en Computación | Desarrollador de Software}
-         {Álvaro Obregón, Ciudad de México, México}
-
-% Resumen Profesional
-\section*{Resumen Profesional}
-\vspace{0.2cm}
-Estudiante de Licenciatura en Computación en la Universidad Autónoma Metropolitana (UAM) con sólida formación en matemáticas aplicadas y pensamiento algorítmico. Experiencia en el desarrollo de proyectos académicos, freelance y personales que abarcan desde sistemas web hasta algoritmos de inteligencia artificial. Apasionado por construir soluciones de software eficientes, elegantes y creativas que combinan matemáticas, programación y resolución de problemas. Buscando activamente posiciones junior, prácticas profesionales, oportunidades freelance y proyectos relacionados con desarrollo backend, full stack e IA.
-
-% Educación
-\section*{Educación}
-\textbf{Licenciatura en Ciencias de la Computación} \hfill \textit{2026 (Esperado)}\\
-Universidad Autónoma Metropolitana (UAM), Ciudad de México\\
-\vspace{0.1cm}
-\textbf{Estudios en Matemáticas Aplicadas y Computación} \hfill \textit{2011–2016}\\
-Universidad Nacional Autónoma de México (UNAM), FES Acatlán
-
-% Habilidades Técnicas
-\section*{Habilidades Técnicas}
-\begin{multicols}{2}
-\textbf{Lenguajes de Programación:}
-\begin{itemize}
-    \item Java (Experimentado)
-    \item C (Intermedio)
-    \item C++ (Intermedio)
-    \item JavaScript (Intermedio)
-    \item Python (Principiante)
-    \item PHP (Principiante)
-\end{itemize}
-\textbf{Tecnologías Web:}
-\begin{itemize}
-    \item HTML (Intermedio)
-    \item CSS (Principiante)
-    \item React
-    \item Bootstrap
-\end{itemize}
-\textbf{Bases de Datos:}
-\begin{itemize}
-    \item SQL (Intermedio)
-    \item MySQL
-    \item MongoDB
-\end{itemize}
-\textbf{Herramientas y Entornos:}
-\begin{itemize}
-    \item Git \& GitHub
-    \item Jupyter Notebook
-    \item Linux / macOS
-\end{itemize}
-\textbf{IA y Algoritmos:}
-\begin{itemize}
-    \item BFS, DFS, A*
-    \item Minimax, Negamax
-    \item Poda Alfa-Beta
-    \item Teoría de grafos
-\end{itemize}
-\end{multicols}
-
-% Proyectos y Experiencia Académica
-\section*{Proyectos y Experiencia Académica}
-\textbf{Inteligencia Artificial y Algoritmos (Java)}\\
-\vspace{0.1cm}
-- Implementación de algoritmos clásicos de búsqueda y decisión: BFS, DFS, A*, Minimax, Negamax y poda Alfa-Beta.\\
-- Desarrollo de lógica de juego inteligente para Connect 4, Sopa de Letras, Puzzle Lineal, 4-Puzzle y 8-Puzzle usando Java Swing.\\[0.2cm]
-\textbf{Proyectos de Desarrollo de Software}\\
-\vspace{0.1cm}
-- Diseño y desarrollo de sistemas a pequeña escala incluyendo aplicaciones web, scripts y herramientas de automatización.\\
-- Colaboración en proyectos informales y freelance, entregando soluciones funcionales.\\[0.2cm]
-\textbf{Desarrollo Web}\\
-\vspace{0.1cm}
-- Desarrollo de sitios web responsivos usando HTML, CSS, JavaScript, React y Bootstrap.\\
-- Experimentación con backend en Node.js y lógica estilo REST.\\[0.2cm]
-\textbf{Análisis de Datos y Simulación (Python / MATLAB)}\\
-\vspace{0.1cm}
-- Análisis introductorio de datos usando Python y Jupyter Notebooks.\\
-- Simulación discreta y modelado probabilístico.
-
-% Cursos
-\section*{Cursos}
-\vspace{0.2cm}
+%% ── HABILIDADES TÉCNICAS ──────────────────────────────────────────────────
+\section*{Habilidades T\'{e}cnicas}
+\small
 \noindent
-Álgebra Lineal | Cálculo | Matemáticas Discretas | Probabilidad y Estadística | Ingeniería de Software | Sistemas Operativos | Inteligencia Artificial | Machine Learning | Bases de Datos | Simulación Discreta | Redes de Telecomunicaciones
+{\bfseries\color{primary} Lenguajes:} \hfill
+\skill{Python (Avanzado)} \skill{Java (Experimentado)} \skill{C / C++} \skill{JavaScript} \skill{PHP}
 
-% Habilidades Blandas e Idiomas
-\vspace{0.3cm}
-\begin{multicols}{2}
-\textbf{Habilidades Blandas:}
-\begin{itemize}
-    \item Responsabilidad
-    \item Adaptabilidad
-    \item Proactividad
-    \item Aprendizaje Autónomo
-\end{itemize}
-\columnbreak
-\textbf{Idiomas:}
-\begin{itemize}
-    \item Español: Nativo
-    \item Inglés: Intermedio / Técnico
-\end{itemize}
-\end{multicols}
+\vspace{0.08cm}
+\noindent
+{\bfseries\color{primary} ML / PLN:} \hfill
+\skill{PyTorch} \skill{Hugging Face} \skill{BETO / XLM-R} \skill{sentence-transformers} \skill{FAISS} \skill{LLMs / RAG} \skill{scikit-learn}
 
-% Información Adicional
-\section*{Información Adicional}
-\vspace{0.2cm}
-Nacionalidad mexicana. Nacido el 12 de diciembre de 1991 en la Ciudad de México.\\
-Disponible para posiciones junior, prácticas profesionales, proyectos freelance e iniciativas colaborativas de desarrollo de software.
+\vspace{0.08cm}
+\noindent
+{\bfseries\color{primary} IA Aumentada:} \hfill
+\skill{Prompt Engineering} \skill{Context Engineering} \skill{Agentic AI} \skill{C\'{o}digo Asistido} \skill{Multi-Agente}
+
+\vspace{0.08cm}
+\noindent
+{\bfseries\color{primary} Herramientas:} \hfill
+\skill{Git / GitHub} \skill{Docker} \skill{MongoDB} \skill{MySQL} \skill{Linux} \skill{Jupyter / Colab}
+
+\vspace{0.08cm}
+\noindent
+{\bfseries\color{primary} Web / Backend:} \hfill
+\skill{Spring Boot} \skill{Next.js / React} \skill{FastAPI} \skill{Node.js} \skill{PostgreSQL} \skill{REST / Microservicios}
+
+%% ── EXPERIENCIA ADICIONAL ──────────────────────────────────────────────────
+\section*{Proyectos y Experiencia Adicional}
+\entry{Sistemas de Gesti\'{o}n Full-Stack}
+       {}
+       {}
+       {Sistemas completos para cl\'{i}nicas veterinarias y dentales: \textbf{Spring Boot 3} + PostgreSQL + JWT + WebSockets (odontograma interactivo, facturaci\'{o}n PDF) y un monorepo \textbf{Next.js 15} + Turborepo + Drizzle ORM desplegado en Vercel.}
+
+\entry{Arquitectura de Microservicios}
+       {}
+       {}
+       {Plataformas de e-commerce y farmacia con hasta \textbf{8 microservicios} Spring Boot, RabbitMQ, API Gateway y orquestaci\'{o}n con Docker Compose.}
+
+\entry{Inteligencia Artificial y Algoritmos (Java)}
+       {}
+       {}
+       {Portafolio de 15+ proyectos: BFS, DFS, A*, Minimax, Negamax y poda Alfa-Beta. L\'{o}gica de juego para Connect 4, Gato, N-Reinas y rompecabezas con Java Swing.}
+
+\entry{Sistemas de Bajo Nivel y Compiladores (C)}
+       {}
+       {}
+       {Compilador de pseudoc\'{o}digo espa\~{n}ol$\rightarrow$C con \textbf{Flex \& Bison} (an\'{a}lisis l\'{e}xico, sint\'{a}ctico, sem\'{a}ntico y generaci\'{o}n de c\'{o}digo). Proyectos de Sistemas Operativos y Programaci\'{o}n Concurrente en C (procesos, hilos, memoria compartida).}
+
+\entry{Desarrollo de Videojuegos}
+       {}
+       {}
+       {Plataformero 2D estilo Mario Bros en Java (Swing, arquitectura MVC, Gradle) y mundo abierto low-poly 3D en \textbf{Unity / C\#}.}
+
+%% ── CURSOS ──────────────────────────────────────────────────────────────────
+\section*{Cursos Relevantes}
+\noindent
+{\small\color{textsec}
+\'{A}lgebra Lineal \;$\mid$\; C\'{a}lculo \;$\mid$\; Matem\'{a}ticas Discretas \;$\mid$\; Probabilidad y Estad\'{i}stica \;$\mid$\;
+Ingenier\'{i}a de Software \;$\mid$\; Sistemas Operativos \;$\mid$\; Inteligencia Artificial \;$\mid$\; Machine Learning \;$\mid$\;
+Bases de Datos \;$\mid$\; Simulaci\'{o}n Discreta \;$\mid$\; Redes \;$\mid$\; Dise\~{n}o y An\'{a}lisis de Algoritmos}
+
+%% ── IDIOMAS ──────────────────────────────────────────────────────────────────
+\vspace{0.15cm}
+\noindent
+{\small\bfseries\color{primary} Idiomas:}\hspace{0.3cm}
+{\small Espa\~{n}ol (Nativo) \;$\mid$\; Ingl\'{e}s (Intermedio / Lectura y escritura t\'{e}cnica)}
+
+\vspace{0.15cm}
+\noindent
+{\small\color{textsec} Nacionalidad mexicana. Nacido el 12 de diciembre de 1991. Disponible para roles junior, pr\'{a}cticas, freelance e iniciativas de investigaci\'{o}n en IA/PLN.}
+
+% ============================================================
+%  SEPARADOR
+% ============================================================
+\newpage
+\vspace*{\fill}
+\begin{center}
+  \begin{tikzpicture}
+    \draw[color=accent!40, line width=0.5pt] (0,0) -- (5,0);
+    \node at (6,0) {\Large\color{accent}$\star$};
+    \node at (6.7,0) {\Large\color{accent}$\star$};
+    \node at (7.4,0) {\Large\color{accent}$\star$};
+    \draw[color=accent!40, line width=0.5pt] (8.4,0) -- (13.4,0);
+  \end{tikzpicture}
+\end{center}
+\vspace*{\fill}
+
+\newpage
+
+% ============================================================
+%  ENGLISH VERSION
+% ============================================================
+\selectlanguage{english}
+
+\cvheader{Bachelor's in Computer Science \;$\mid$\; AI Researcher \& AI-Augmented Software Developer}
+         {Mexico City, Mexico}
+
+% ── SUMMARY ──────────────────────────────────────────────────────────────────
+\section*{Professional Summary}
+\justifying
+\small
+Bachelor's in Computer Science at Universidad Aut\'{o}noma Metropolitana (UAM-I), specialized in Artificial Intelligence, Natural Language Processing (NLP), and AI-augmented software development. Completed a research-grade Bachelor's thesis building a production-level, dual-mode paraphrase and plagiarism detection system over an institutional corpus of $\sim$5{,}000 theses — combining deep learning, vector retrieval, transformer fine-tuning, and containerized web deployment.
+
+Actively uses AI-augmented methodologies: context engineering, agentic workflows, AI-assisted code generation, and multi-agent system design. Views AI as a strategic multiplier for analyzing complex problems, validating solutions, and transforming ideas into functional products.
+
+\decorule
+
+%% ── EDUCATION ───────────────────────────────────────────────────────────────
+\section*{Education}
+\entry{Bachelor's Degree in Computer Science}
+       {2020 -- 2026}
+       {Universidad Aut\'{o}noma Metropolitana (UAM-I), Mexico City}
+       {\textbf{Thesis:} Intelligent Paraphrase Detection using Large Language Models (LLMs) \\
+        \textbf{Advisor:} Dr. Benjamin Moreno Montiel}
+        
+        
+\entry{Bachelor's in Applied Mathematics and Computer Science}
+       {2011--2016}
+       {Universidad Nacional Aut\'{o}noma de M\'{e}xico (UNAM), FES Acatl\'{a}n}
+       {}
+
+%% ── KEY PROJECT ─────────────────────────────────────────────────────────
+\section*{Capstone Project: Paraphrase \& Plagiarism Detection System}
+\justifying
+\small
+End-to-end, dual-mode NLP system (pairwise classification + corpus search) for academic plagiarism detection at UAM-I. Deployed over $\sim$5{,}000 theses with a FAISS semantic index of \textbf{2.28M vectors at 100\% corpus coverage}.
+\vspace{0.12cm}
+\begin{itemize}
+    \item \textbf{Architecture:} Bi-encoder MiniLM + FAISS $\rightarrow$ cross-encoder XLM-RoBERTa/BETO $\rightarrow$ optional LLM arbiter (Llama 3.3 70B) in the decision boundary $[0.35, 0.65]$.
+    \item \textbf{Models:} Fine-tuned XLM-RoBERTa (calibrated, T=5.15, ECE 0.076), BETO v8a (F1=0.889), soft-voting ensemble with \textbf{AUROC 0.999}. Rigorous evaluation with bootstrapped confidence intervals and data-leakage audit.
+    \item \textbf{Key finding:} The CBI corpus is $\sim$97\% original (only $\sim$3\% real paraphrase). Core contribution is data efficiency: \textbf{60 human pairs match 180K algorithmic pairs}.
+    \item \textbf{Delivery:} Unified web app with Docker, PWA, section-level similarity reports, heatmaps, and LLM-powered explainability.
+\end{itemize}
+\vspace{0.1cm}
+{\small\itshape\color{textsec} Stack: Python, PyTorch, Hugging Face Transformers, sentence-transformers, FAISS, MongoDB, Docker.}
+
+
+\newpage
+
+%% ── TECHNICAL SKILLS ──────────────────────────────────────────────────────
+\section*{Technical Skills}
+\small
+\noindent
+{\bfseries\color{primary} Languages:} \hfill
+\skill{Python (Advanced)} \skill{Java (Experienced)} \skill{C / C++} \skill{JavaScript} \skill{PHP}
+
+\vspace{0.08cm}
+\noindent
+{\bfseries\color{primary} ML / NLP:} \hfill
+\skill{PyTorch} \skill{Hugging Face} \skill{BETO / XLM-R} \skill{sentence-transformers} \skill{FAISS} \skill{LLMs / RAG} \skill{scikit-learn}
+
+\vspace{0.08cm}
+\noindent
+{\bfseries\color{primary} AI-Augmented:} \hfill
+\skill{Prompt Engineering} \skill{Context Engineering} \skill{Agentic AI} \skill{AI-Assisted Code} \skill{Multi-Agent}
+
+\vspace{0.08cm}
+\noindent
+{\bfseries\color{primary} Tools:} \hfill
+\skill{Git / GitHub} \skill{Docker} \skill{MongoDB} \skill{MySQL} \skill{Linux} \skill{Jupyter / Colab}
+
+\vspace{0.08cm}
+\noindent
+{\bfseries\color{primary} Web / Backend:} \hfill
+\skill{Spring Boot} \skill{Next.js / React} \skill{FastAPI} \skill{Node.js} \skill{PostgreSQL} \skill{REST / Microservices}
+
+%% ── ADDITIONAL EXPERIENCE ──────────────────────────────────────────────────
+\section*{Additional Projects \& Experience}
+\entry{Full-Stack Management Systems}
+       {}
+       {}
+       {End-to-end systems for veterinary and dental clinics: \textbf{Spring Boot 3} + PostgreSQL + JWT + WebSockets (interactive odontogram, PDF invoicing) and a \textbf{Next.js 15} + Turborepo + Drizzle ORM monorepo deployed on Vercel.}
+
+\entry{Microservices Architecture}
+       {}
+       {}
+       {E-commerce and pharmacy platforms with up to \textbf{8 Spring Boot microservices}, RabbitMQ, API Gateway, and Docker Compose orchestration.}
+
+\entry{Artificial Intelligence \& Algorithms (Java)}
+       {}
+       {}
+       {Portfolio of 15+ projects: BFS, DFS, A*, Minimax, Negamax, and Alpha-Beta pruning. Game logic for Connect 4, Tic-Tac-Toe, N-Queens, and sliding puzzles using Java Swing.}
+
+\entry{Low-Level Systems \& Compilers (C)}
+       {}
+       {}
+       {Spanish$\rightarrow$C pseudocode compiler with \textbf{Flex \& Bison} (lexical, syntactic, semantic analysis, and code generation). Operating Systems and Concurrent Programming projects in C (processes, threads, shared memory).}
+
+\entry{Game Development}
+       {}
+       {}
+       {2D Mario-style platformer in Java (Swing, MVC architecture, Gradle) and a low-poly 3D open world in \textbf{Unity / C\#}.}
+
+%% ── COURSES ──────────────────────────────────────────────────────────────────
+\section*{Relevant Coursework}
+\noindent
+{\small\color{textsec}
+Linear Algebra \;$\mid$\; Calculus \;$\mid$\; Discrete Mathematics \;$\mid$\; Probability \& Statistics \;$\mid$\;
+Software Engineering \;$\mid$\; Operating Systems \;$\mid$\; AI \;$\mid$\; Machine Learning \;$\mid$\;
+Databases \;$\mid$\; Discrete Simulation \;$\mid$\; Networks \;$\mid$\; Algorithm Design \& Analysis}
+
+%% ── LANGUAGES ────────────────────────────────────────────────────────────────
+\vspace{0.15cm}
+\noindent
+{\small\bfseries\color{primary} Languages:}\hspace{0.3cm}
+{\small Spanish (Native) \;$\mid$\; English (Intermediate / Technical reading \& writing)}
+
+\vspace{0.15cm}
+\noindent
+{\small\color{textsec} Mexican nationality. Born December 12, 1991. Available for junior roles, internships, freelance, and research initiatives in ML/AI engineering and NLP.}
 
 \end{document}

@@ -317,10 +317,127 @@
       line-height: 1.7;
     }
 
+    /* ── Reportes semanales ── */
+    .reports-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
+      margin: 28px 0 8px;
+    }
+
+    .report-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform var(--duration-normal, .3s) ease, border-color var(--duration-normal, .3s) ease, box-shadow var(--duration-normal, .3s) ease;
+      cursor: pointer;
+    }
+
+    body.dark-mode .report-card { border-color: rgba(97,218,251,0.1); }
+
+    .report-card:hover,
+    .report-card.active {
+      transform: translateY(-4px);
+      border-color: var(--neon);
+      box-shadow: 0 12px 30px rgba(97,218,251,0.12);
+    }
+
+    .report-card .report-week {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      align-self: flex-start;
+      padding: 4px 12px;
+      background: rgba(97,218,251,0.1);
+      border: 1px solid rgba(97,218,251,0.25);
+      border-radius: 20px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--neon);
+    }
+
+    .report-card h3 {
+      font-family: var(--font-mono);
+      font-size: 1.02rem;
+      color: var(--primary);
+      margin: 4px 0 0;
+    }
+
+    body.dark-mode .report-card h3 { color: #e6edf3; }
+
+    .report-card p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      margin: 0;
+      max-width: none;
+    }
+
+    .report-card .report-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 8px;
+    }
+
+    .report-card .report-link {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--neon);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .report-card .report-link:hover { text-decoration: underline; }
+
+    .pdf-viewer-wrap {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 14px;
+      margin-top: 24px;
+    }
+
+    body.dark-mode .pdf-viewer-wrap { border-color: rgba(97,218,251,0.12); }
+
+    .pdf-viewer-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+      padding: 0 4px;
+    }
+
+    .pdf-viewer-bar .pdf-title {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--neon);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pdf-viewer-frame {
+      width: 100%;
+      height: 75vh;
+      min-height: 480px;
+      border: 0;
+      border-radius: var(--radius);
+      background: #fff;
+    }
+
     @media (max-width: 640px) {
       .thesis-hero h1 { font-size: 1.8rem; }
       .metrics-grid { grid-template-columns: repeat(2, 1fr); }
       .tech-grid { grid-template-columns: 1fr; }
+      .pdf-viewer-frame { height: 60vh; }
     }
   </style>
 
@@ -389,8 +506,8 @@
         <a href="https://github.com/PurppleAlien" class="btn" target="_blank" rel="noopener noreferrer">
           <i class="fab fa-github"></i> GitHub Profile
         </a>
-        <a href="doc/informe_semana7.pdf" class="btn btn-outline" target="_blank">
-          <i class="fas fa-file-pdf"></i> Descargar Reporte
+        <a href="#reportes" class="btn btn-outline">
+          <i class="fas fa-file-pdf"></i> Reportes Semanales
         </a>
       </div>
     </section>
@@ -581,6 +698,86 @@
       </div>
     </section>
 
+    <!-- Reportes semanales -->
+    <section class="section thesis-section" id="reportes">
+      <div class="container">
+        <h2><i class="fas fa-file-pdf"></i> Reportes Semanales</h2>
+        <p>El proyecto se documentó semana a semana. Cada reporte recoge la metodología, los experimentos y los resultados de esa etapa. Haz clic en una tarjeta para abrir el documento en el visor inferior, o ábrelo en una pestaña nueva.</p>
+
+        <div class="reports-grid" id="reports-grid">
+
+          <article class="report-card active" data-pdf="doc/reportes/semana-1y2.pdf" data-title="Semana 1 y 2 — Construcción del corpus">
+            <span class="report-week"><i class="fas fa-calendar-week"></i> Semana 1 y 2</span>
+            <h3>Construcción del corpus TESIUAMI</h3>
+            <p>Scraping del catálogo TESIUAMI (CBI · CBS · CSH): <strong>21,286 registros</strong> y <strong>5,062 PDFs</strong> de CBI descargados. Análisis de la tesis base de David Luna (2022) y glosario de términos del proyecto.</p>
+            <div class="report-actions">
+              <a class="report-link" href="doc/reportes/semana-1y2.pdf" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()"><i class="fas fa-external-link-alt"></i> Abrir</a>
+              <a class="report-link" href="doc/reportes/semana-1y2.pdf" download onclick="event.stopPropagation()"><i class="fas fa-download"></i> Descargar</a>
+            </div>
+          </article>
+
+          <article class="report-card" data-pdf="doc/reportes/semana-3.pdf" data-title="Semana 3 — MongoDB, LLMs e In-Context Learning">
+            <span class="report-week"><i class="fas fa-calendar-week"></i> Semana 3</span>
+            <h3>MongoDB, LLMs e ICL</h3>
+            <p>Base no relacional (MongoDB) con PDFs + texto extraído (pipeline PDF→texto, <strong>97.9%</strong> de éxito). <strong>11 experimentos</strong> con LLMs e In-Context Learning. BETO fine-tuned en PAWS-X (<strong>F1 = 0.893</strong>). Reporte de 90 páginas.</p>
+            <div class="report-actions">
+              <a class="report-link" href="doc/reportes/semana-3.pdf" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()"><i class="fas fa-external-link-alt"></i> Abrir</a>
+              <a class="report-link" href="doc/reportes/semana-3.pdf" download onclick="event.stopPropagation()"><i class="fas fa-download"></i> Descargar</a>
+            </div>
+          </article>
+
+          <article class="report-card" data-pdf="doc/reportes/semana-4.pdf" data-title="Semana 4 — Evaluación controlada y ensamble">
+            <span class="report-week"><i class="fas fa-calendar-week"></i> Semana 4</span>
+            <h3>Evaluación controlada y ensamble</h3>
+            <p>Evaluación con <strong>10 réplicas</strong>, BETO fine-tuned sobre TESIUAMI y ensamble AND (<strong>F1 = 0.882</strong>). Cumplimiento de 8/8 requerimientos del asesor e inventario de 30 scripts. Reporte de 55 páginas.</p>
+            <div class="report-actions">
+              <a class="report-link" href="doc/reportes/semana-4.pdf" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()"><i class="fas fa-external-link-alt"></i> Abrir</a>
+              <a class="report-link" href="doc/reportes/semana-4.pdf" download onclick="event.stopPropagation()"><i class="fas fa-download"></i> Descargar</a>
+            </div>
+          </article>
+
+          <article class="report-card" data-pdf="doc/reportes/semana-5.pdf" data-title="Semana 5 — Estado del arte y sistema desplegable">
+            <span class="report-week"><i class="fas fa-calendar-week"></i> Semana 5</span>
+            <h3>Estado del arte y sistema desplegable</h3>
+            <p>Revisión de artículos científicos (datos sintéticos con LLMs, PAWS / PAWS-X, ParaFusion). Primer sistema desplegable (BETO v3, <strong>F1 = 0.842</strong> + RAG con MiniLM), equivalente moderno al sistema Django + Angular de la tesis base.</p>
+            <div class="report-actions">
+              <a class="report-link" href="doc/reportes/semana-5.pdf" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()"><i class="fas fa-external-link-alt"></i> Abrir</a>
+              <a class="report-link" href="doc/reportes/semana-5.pdf" download onclick="event.stopPropagation()"><i class="fas fa-download"></i> Descargar</a>
+            </div>
+          </article>
+
+          <article class="report-card" data-pdf="doc/reportes/semana-6.pdf" data-title="Semana 6 — Corpus humano y escalado">
+            <span class="report-week"><i class="fas fa-calendar-week"></i> Semana 6</span>
+            <h3>Corpus humano y escalado</h3>
+            <p>Corpus de paráfrasis humanas ratificadas, back-translation en cascada (MarianMT), clasificación de tipos de paráfrasis y fundamentos de BLEU / BERTScore / BETO. Escalado al corpus completo y sistemas desplegables v2 y v3.</p>
+            <div class="report-actions">
+              <a class="report-link" href="doc/reportes/semana-6.pdf" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()"><i class="fas fa-external-link-alt"></i> Abrir</a>
+              <a class="report-link" href="doc/reportes/semana-6.pdf" download onclick="event.stopPropagation()"><i class="fas fa-download"></i> Descargar</a>
+            </div>
+          </article>
+
+          <article class="report-card" data-pdf="doc/reportes/semana-7.pdf" data-title="Semana 7 — Sistema v4 (versión final)">
+            <span class="report-week"><i class="fas fa-calendar-week"></i> Semana 7</span>
+            <h3>Sistema v4 — versión final</h3>
+            <p>Sistema de <strong>doble modo</strong> con índice FAISS al 100% (<strong>2.3M vectores</strong>), ensambles, árbitro LLM y explicabilidad. Desplegable con <strong>Docker</strong> y base <strong>PWA</strong> instalable en Android.</p>
+            <div class="report-actions">
+              <a class="report-link" href="doc/reportes/semana-7.pdf" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()"><i class="fas fa-external-link-alt"></i> Abrir</a>
+              <a class="report-link" href="doc/reportes/semana-7.pdf" download onclick="event.stopPropagation()"><i class="fas fa-download"></i> Descargar</a>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="pdf-viewer-wrap">
+          <div class="pdf-viewer-bar">
+            <span class="pdf-title" id="pdf-title"><i class="fas fa-file-pdf"></i> Semana 1 y 2 — Construcción del corpus</span>
+            <a class="report-link" id="pdf-open" href="doc/reportes/semana-1y2.pdf" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Abrir en pestaña nueva</a>
+          </div>
+          <iframe class="pdf-viewer-frame" id="pdf-frame" src="doc/reportes/semana-1y2.pdf#view=FitH" title="Visor de reportes semanales" loading="lazy"></iframe>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA -->
     <section class="section thesis-section" id="links">
       <div class="container" style="text-align:center;">
@@ -632,6 +829,35 @@
   <script type="module" src="js/hero3d.js"></script>
   <script src="js/cursor.js" defer></script>
   <script src="js/page-transition.js"></script>
+
+  <!-- Visor de reportes semanales -->
+  <script>
+    (function () {
+      var grid  = document.getElementById('reports-grid');
+      var frame = document.getElementById('pdf-frame');
+      var title = document.getElementById('pdf-title');
+      var open  = document.getElementById('pdf-open');
+      if (!grid || !frame) return;
+
+      grid.addEventListener('click', function (e) {
+        var card = e.target.closest('.report-card');
+        if (!card) return;
+        var pdf = card.getAttribute('data-pdf');
+        var txt = card.getAttribute('data-title') || 'Reporte';
+        if (!pdf) return;
+
+        frame.setAttribute('src', pdf + '#view=FitH');
+        title.innerHTML = '<i class="fas fa-file-pdf"></i> ' + txt;
+        open.setAttribute('href', pdf);
+
+        grid.querySelectorAll('.report-card').forEach(function (c) { c.classList.remove('active'); });
+        card.classList.add('active');
+
+        document.querySelector('.pdf-viewer-wrap')
+          .scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    })();
+  </script>
 
 </body>
 </html>

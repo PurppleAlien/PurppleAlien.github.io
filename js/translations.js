@@ -14,6 +14,7 @@ window.pageTranslations = {
     'nav.about':       'Sobre Mí',
     'nav.portfolio':   'Portafolio',
     'nav.outreach':    'Divulgación',
+    'nav.thesis':     'Proyecto Terminal',
     'nav.contact':     'Contacto',
 
     /* --- Footer --- */
@@ -305,6 +306,7 @@ window.pageTranslations = {
     'nav.about':       'About Me',
     'nav.portfolio':   'Portfolio',
     'nav.outreach':    'Science Outreach',
+    'nav.thesis':     'Thesis Project',
     'nav.contact':     'Contact',
 
     /* --- Footer --- */

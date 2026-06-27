@@ -10,3 +10,9 @@
 
 # Archivos de prueba temporales
 __*_test.html
+
+# Artefactos de compilación LaTeX (CV)
+doc/*.aux
+doc/*.log
+doc/*.out
+doc/*.toc
