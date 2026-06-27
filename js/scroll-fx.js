@@ -149,34 +149,39 @@
   var DELAY_CLASS = { 'delay-1': 0.15, 'delay-2': 0.3, 'delay-3': 0.45, 'delay-4': 0.6 };
 
   function initFadeIns() {
+    var els = [];
     document.querySelectorAll('.fade-in').forEach(function (el) {
-      // Si ya lleva data-anim, lo gestiona initReveals(); evitamos doble animación.
+      // Si ya lleva data-anim, lo gestiona initReveals().
       if (el.hasAttribute('data-anim')) return;
-      // Si su contenedor directo tiene data-stagger, lo anima revealStagger() en grupo.
+      // Si su contenedor directo tiene data-stagger, lo anima revealStagger().
       if (el.parentElement && el.parentElement.hasAttribute('data-stagger')) return;
-
-      var delay = 0;
-      Object.keys(DELAY_CLASS).forEach(function (c) {
-        if (el.classList.contains(c)) delay = DELAY_CLASS[c];
-      });
-
-      gsap.fromTo(el,
-        { opacity: 0, y: 24 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          delay: delay,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 88%',
-            toggleActions: 'play none none none',
-          },
-          onComplete: function () { el.classList.add('visible'); },
-        }
-      );
+      els.push(el);
     });
+    if (!els.length) return;
+
+    // Revelado con IntersectionObserver en lugar de GSAP: añade la clase
+    // .visible UNA sola vez por elemento y deja de observarlo, así la animación
+    // CSS fadeUp (forwards) corre exactamente una vez. Antes lo hacía GSAP, pero
+    // con Lenis ScrollTrigger se re-evaluaba en cada scroll y reaplicaba el
+    // estado inicial (opacity:0), lo que producía el parpadeo al desplazarse.
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('visible'); });
+      return;
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        el.classList.add('visible');
+        io.unobserve(el); // una sola vez: nunca se vuelve a ocultar
+        el.addEventListener('animationend', function () {
+          el.style.willChange = 'auto';
+        }, { once: true });
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+
+    els.forEach(function (el) { io.observe(el); });
   }
 
   /* ============================================================

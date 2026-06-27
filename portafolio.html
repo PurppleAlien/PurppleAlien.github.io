@@ -49,6 +49,16 @@
     /* Filter buttons */
     .filters-section { margin-bottom: 36px; }
 
+    .section-title:has(+ .section-subtitle) { margin-bottom: 16px; }
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      max-width: 660px;
+      margin: 0 auto 40px;
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+
     .filter-buttons {
       display: flex;
       flex-wrap: wrap;
@@ -395,6 +405,7 @@
     <!-- Projects -->
     <section class="container" style="padding-bottom: 60px;">
       <h2 class="section-title" data-i18n="portfolio.projects.title">Proyectos Destacados</h2>
+      <p class="section-subtitle">Sistemas full-stack, microservicios, investigación en IA y videojuegos.</p>
       <div class="projects-grid" id="projects-grid">
 
         <!-- Project 0 — Proyecto Terminal (Tesis) -->
@@ -425,7 +436,7 @@
         <!-- Project 1 — Farmacia Online (Microservicios) -->
         <div class="project-card fade-in" data-category="sistemas programacion">
           <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop"
+            <img src="images/farmacia-sistema.png"
                  alt="Farmacia Online" loading="lazy">
           </div>
           <div class="project-content">
@@ -474,7 +485,7 @@
         <!-- Project 3 — Marianito 2D Platformer -->
         <div class="project-card fade-in delay-2" data-category="programacion">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/marianito-2d-platformer/main/documentacion/screenshot-game-mundo2.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/marianito-2d-platformer/main/documentacion/captura_mundo_castillo_browser.png"
                  alt="Marianito 2D" loading="lazy">
           </div>
           <div class="project-content">
@@ -498,7 +509,7 @@
         <!-- Project 4 — Satreria (PWA) -->
         <div class="project-card fade-in" data-category="web programacion">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/satreria/main/HTML_Digital_System/public/icons/icon-512.png"
+            <img src="images/sastreria-sistema.png"
                  alt="Satreria Digital" loading="lazy">
           </div>
           <div class="project-content">
@@ -514,7 +525,7 @@
             </div>
             <div class="project-actions">
               <button class="btn view-project" data-modal="modal-satreria"><i class="fas fa-eye"></i> <span>Ver Proyecto</span></button>
-              <a href="https://github.com/PurppleAlien" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
+              <a href="https://github.com/PurppleAlien/sastreria-digital" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
             </div>
           </div>
         </div>
@@ -538,7 +549,7 @@
             </div>
             <div class="project-actions">
               <button class="btn view-project" data-modal="modal-taskapi"><i class="fas fa-eye"></i> <span>Ver Proyecto</span></button>
-              <a href="https://github.com/PurppleAlien" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
+              <a href="https://github.com/PurppleAlien/task-api" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
             </div>
           </div>
         </div>
@@ -611,6 +622,152 @@
             </div>
           </div>
         </div>
+
+        <!-- Project 19 — Pseudocode Compiler -->
+        <div class="project-card fade-in" data-category="programacion">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop"
+                 alt="Pseudocode Compiler" loading="lazy">
+          </div>
+          <div class="project-content">
+            <span class="project-category">Compiladores</span>
+            <h3 data-i18n="portfolio.p19.title">Pseudocode Compiler (Flex &amp; Bison)</h3>
+            <p class="project-description" data-i18n="portfolio.p19.desc">Compilador de pseudocódigo en español a C. Cubre análisis léxico (Flex), sintáctico (Bison LALR(1)), semántico (tabla de símbolos) y generación de código.</p>
+            <div class="project-tags">
+              <span class="project-tag">Flex</span><span class="project-tag">Bison</span><span class="project-tag">C</span><span class="project-tag">Compiladores</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://github.com/PurppleAlien/pseudocode-compiler" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 20 — Programación Concurrente -->
+        <div class="project-card fade-in delay-1" data-category="programacion">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=600&h=400&fit=crop"
+                 alt="Programación Concurrente" loading="lazy">
+          </div>
+          <div class="project-content">
+            <span class="project-category">Sistemas</span>
+            <h3 data-i18n="portfolio.p20.title">Programación Concurrente</h3>
+            <p class="project-description" data-i18n="portfolio.p20.desc">Proyectos de concurrencia en C: algoritmos genéticos (armaduras planas, coloración de grafos), ordenamiento secuencial vs. paralelo con forks, árbol binario de procesos y más.</p>
+            <div class="project-tags">
+              <span class="project-tag">C</span><span class="project-tag">fork()</span><span class="project-tag">pthreads</span><span class="project-tag">MPI</span><span class="project-tag">Genéticos</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://github.com/PurppleAlien/Programacion-Concurrente" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 21 — Sistemas Operativos -->
+        <div class="project-card fade-in delay-2" data-category="programacion sistemas">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=600&h=400&fit=crop"
+                 alt="Sistemas Operativos" loading="lazy">
+          </div>
+          <div class="project-content">
+            <span class="project-category">Sistemas</span>
+            <h3 data-i18n="portfolio.p21.title">Sistemas Operativos</h3>
+            <p class="project-description" data-i18n="portfolio.p21.desc">Portafolio de prácticas de SO en C: análisis MBR/GPT/APFS/NTFS, multiprogramación con forks, hilos, memoria compartida POSIX, ncurses y servicios del sistema.</p>
+            <div class="project-tags">
+              <span class="project-tag">C</span><span class="project-tag">ncurses</span><span class="project-tag">pthreads</span><span class="project-tag">POSIX</span><span class="project-tag">Discos</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://github.com/PurppleAlien/Sistemas-Operativos" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Section: Desarrollo Web ── -->
+        <div class="grid-section-label">Desarrollo Web</div>
+
+        <!-- Project 22 — E-commerce Microservicios -->
+        <div class="project-card fade-in" data-category="programacion sistemas">
+          <div class="project-image">
+            <img src="https://raw.githubusercontent.com/PurppleAlien/ecommerce-microservicios-architecture/main/doc/pagina_carrito.png"
+                 alt="E-commerce Microservicios" loading="lazy">
+          </div>
+          <div class="project-content">
+            <span class="project-category">Arquitectura</span>
+            <h3 data-i18n="portfolio.p22.title">E-commerce Microservicios (UAMIShop)</h3>
+            <p class="project-description" data-i18n="portfolio.p22.desc">Sistema de e-commerce con microservicios Spring Boot, RabbitMQ, API Gateway, frontend vanilla y orquestación con Docker Compose.</p>
+            <div class="project-tags">
+              <span class="project-tag">Spring Boot</span><span class="project-tag">RabbitMQ</span><span class="project-tag">MySQL</span><span class="project-tag">Docker</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://github.com/PurppleAlien/ecommerce-microservicios-architecture" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 23 — JJRR Roofing -->
+        <div class="project-card fade-in delay-1" data-category="web">
+          <div class="project-image">
+            <img src="images/roofing-sistema.jpg"
+                 alt="JJRR Roofing" loading="lazy">
+          </div>
+          <div class="project-content">
+            <span class="project-category">Web</span>
+            <h3 data-i18n="portfolio.p23.title">JJRR Roofing — Sitio Profesional</h3>
+            <p class="project-description" data-i18n="portfolio.p23.desc">Landing page profesional para empresa de techados en Florida Central. Diseño responsivo, galería de trabajos, videos, tarjeta de contacto digital y QR.</p>
+            <div class="project-tags">
+              <span class="project-tag">HTML5</span><span class="project-tag">CSS3</span><span class="project-tag">JavaScript</span><span class="project-tag">JSON-LD</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://github.com/PurppleAlien/jjrr-roofing" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 24 — Vetrinaria (Next.js) -->
+        <div class="project-card fade-in delay-2" data-category="web sistemas programacion">
+          <div class="project-image">
+            <img src="https://raw.githubusercontent.com/PurppleAlien/vetrinaria/main/documentacion%20tecnica/img/vet-dashboard.png"
+                 alt="Vetrinaria — Next.js" loading="lazy">
+          </div>
+          <div class="project-content">
+            <span class="project-category">Full-Stack</span>
+            <h3>Vetrinaria — Gestión Veterinaria (Next.js 15)</h3>
+            <p class="project-description">Sistema integral para clínicas veterinarias: dashboard, pacientes, citas, odontograma y facturación. Monorepo con Next.js 15, Turborepo, PostgreSQL y Drizzle ORM, desplegado en Vercel.</p>
+            <div class="project-tags">
+              <span class="project-tag">Next.js 15</span><span class="project-tag">TypeScript</span><span class="project-tag">Turborepo</span><span class="project-tag">PostgreSQL</span><span class="project-tag">Drizzle</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://vetrinaria-web.vercel.app" class="btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Demo</a>
+              <a href="https://github.com/PurppleAlien/vetrinaria" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 25 — MCC Marketplace -->
+        <div class="project-card fade-in" data-category="programacion sistemas web">
+          <div class="project-image">
+            <img src="https://raw.githubusercontent.com/PurppleAlien/MCC/main/doc/pagina_carrito.png"
+                 alt="MCC Marketplace" loading="lazy">
+          </div>
+          <div class="project-content">
+            <span class="project-category">Ingeniería de Software</span>
+            <h3>MCC — Marketplace</h3>
+            <p class="project-description">Proyecto final de Temas Selectos de Ingeniería de Software: aplicación de tienda en línea con catálogo de productos, carrito de compras y gestión de órdenes.</p>
+            <div class="project-tags">
+              <span class="project-tag">Java</span><span class="project-tag">E-commerce</span><span class="project-tag">MVC</span><span class="project-tag">Web</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://github.com/PurppleAlien/MCC" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Academic / coursework projects -->
+    <section class="container" style="padding-bottom: 60px;">
+      <h2 class="section-title">Proyectos Académicos</h2>
+      <p class="section-subtitle">Ejercicios de algoritmia e inteligencia artificial (Java · Swing): búsqueda (BFS, DFS, A*), juegos adversariales (Minimax, Negamax) y optimización.</p>
+      <div class="projects-grid" id="academic-grid">
 
         <!-- Project 4 — Conecta 4 -->
         <div class="project-card fade-in" data-category="ia">
@@ -687,7 +844,7 @@
         <!-- Project 7 — Gato Minimax -->
         <div class="project-card fade-in" data-category="ia">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/juego_Gato_ALGORITHM_Minimax/Assets/img/inicio_gato_minimax.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/juego_Gato_ALGORITHM_Minimax/Assets/img/empate.png"
                  alt="Gato con Minimax" loading="lazy">
           </div>
           <div class="project-content">
@@ -706,7 +863,7 @@
         <!-- Project 8 — Gato Negamax -->
         <div class="project-card fade-in delay-1" data-category="ia">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/JUEGO_Gato_ALGORITHM_NegamaX/Assets/img/seleccion_dificultad.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/JUEGO_Gato_ALGORITHM_NegamaX/Assets/img/ejecucion_nivel_dificil.png"
                  alt="Gato con Negamax" loading="lazy">
           </div>
           <div class="project-content">
@@ -725,7 +882,7 @@
         <!-- Project 9 — Sopa de Letras -->
         <div class="project-card fade-in delay-2" data-category="ia programacion">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Juego_Game_Sopa%20de%20letras%20java/Assets/img/inicio_sopa.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Juego_Game_Sopa%20de%20letras%20java/Assets/img/sopa_completa.png"
                  alt="Sopa de Letras" loading="lazy">
           </div>
           <div class="project-content">
@@ -915,143 +1072,6 @@
         <!-- ── Section: Compiladores y Sistemas ── -->
         <div class="grid-section-label">Compiladores y Sistemas</div>
 
-        <!-- Project 19 — Pseudocode Compiler -->
-        <div class="project-card fade-in" data-category="programacion">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop"
-                 alt="Pseudocode Compiler" loading="lazy">
-          </div>
-          <div class="project-content">
-            <span class="project-category">Compiladores</span>
-            <h3 data-i18n="portfolio.p19.title">Pseudocode Compiler (Flex &amp; Bison)</h3>
-            <p class="project-description" data-i18n="portfolio.p19.desc">Compilador de pseudocódigo en español a C. Cubre análisis léxico (Flex), sintáctico (Bison LALR(1)), semántico (tabla de símbolos) y generación de código.</p>
-            <div class="project-tags">
-              <span class="project-tag">Flex</span><span class="project-tag">Bison</span><span class="project-tag">C</span><span class="project-tag">Compiladores</span>
-            </div>
-            <div class="project-actions">
-              <a href="https://github.com/PurppleAlien/pseudocode-compiler" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 20 — Programación Concurrente -->
-        <div class="project-card fade-in delay-1" data-category="programacion">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=600&h=400&fit=crop"
-                 alt="Programación Concurrente" loading="lazy">
-          </div>
-          <div class="project-content">
-            <span class="project-category">Sistemas</span>
-            <h3 data-i18n="portfolio.p20.title">Programación Concurrente</h3>
-            <p class="project-description" data-i18n="portfolio.p20.desc">Proyectos de concurrencia en C: algoritmos genéticos (armaduras planas, coloración de grafos), ordenamiento secuencial vs. paralelo con forks, árbol binario de procesos y más.</p>
-            <div class="project-tags">
-              <span class="project-tag">C</span><span class="project-tag">fork()</span><span class="project-tag">pthreads</span><span class="project-tag">MPI</span><span class="project-tag">Genéticos</span>
-            </div>
-            <div class="project-actions">
-              <a href="https://github.com/PurppleAlien/Programacion-Concurrente" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 21 — Sistemas Operativos -->
-        <div class="project-card fade-in delay-2" data-category="programacion sistemas">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=600&h=400&fit=crop"
-                 alt="Sistemas Operativos" loading="lazy">
-          </div>
-          <div class="project-content">
-            <span class="project-category">Sistemas</span>
-            <h3 data-i18n="portfolio.p21.title">Sistemas Operativos</h3>
-            <p class="project-description" data-i18n="portfolio.p21.desc">Portafolio de prácticas de SO en C: análisis MBR/GPT/APFS/NTFS, multiprogramación con forks, hilos, memoria compartida POSIX, ncurses y servicios del sistema.</p>
-            <div class="project-tags">
-              <span class="project-tag">C</span><span class="project-tag">ncurses</span><span class="project-tag">pthreads</span><span class="project-tag">POSIX</span><span class="project-tag">Discos</span>
-            </div>
-            <div class="project-actions">
-              <a href="https://github.com/PurppleAlien/Sistemas-Operativos" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── Section: Desarrollo Web ── -->
-        <div class="grid-section-label">Desarrollo Web</div>
-
-        <!-- Project 22 — E-commerce Microservicios -->
-        <div class="project-card fade-in" data-category="programacion sistemas">
-          <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/ecommerce-microservicios-architecture/main/doc/pagina_carrito.png"
-                 alt="E-commerce Microservicios" loading="lazy">
-          </div>
-          <div class="project-content">
-            <span class="project-category">Arquitectura</span>
-            <h3 data-i18n="portfolio.p22.title">E-commerce Microservicios (UAMIShop)</h3>
-            <p class="project-description" data-i18n="portfolio.p22.desc">Sistema de e-commerce con microservicios Spring Boot, RabbitMQ, API Gateway, frontend vanilla y orquestación con Docker Compose.</p>
-            <div class="project-tags">
-              <span class="project-tag">Spring Boot</span><span class="project-tag">RabbitMQ</span><span class="project-tag">MySQL</span><span class="project-tag">Docker</span>
-            </div>
-            <div class="project-actions">
-              <a href="https://github.com/PurppleAlien/ecommerce-microservicios-architecture" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 23 — JJRR Roofing -->
-        <div class="project-card fade-in delay-1" data-category="web">
-          <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/jjrr-roofing/main/assets/roofing-work-01.jpg"
-                 alt="JJRR Roofing" loading="lazy">
-          </div>
-          <div class="project-content">
-            <span class="project-category">Web</span>
-            <h3 data-i18n="portfolio.p23.title">JJRR Roofing — Sitio Profesional</h3>
-            <p class="project-description" data-i18n="portfolio.p23.desc">Landing page profesional para empresa de techados en Florida Central. Diseño responsivo, galería de trabajos, videos, tarjeta de contacto digital y QR.</p>
-            <div class="project-tags">
-              <span class="project-tag">HTML5</span><span class="project-tag">CSS3</span><span class="project-tag">JavaScript</span><span class="project-tag">JSON-LD</span>
-            </div>
-            <div class="project-actions">
-              <a href="https://github.com/PurppleAlien/jjrr-roofing" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 24 — Vetrinaria (Next.js) -->
-        <div class="project-card fade-in delay-2" data-category="web sistemas programacion">
-          <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/vetrinaria/main/documentacion%20tecnica/img/vet-dashboard.png"
-                 alt="Vetrinaria — Next.js" loading="lazy">
-          </div>
-          <div class="project-content">
-            <span class="project-category">Full-Stack</span>
-            <h3>Vetrinaria — Gestión Veterinaria (Next.js 15)</h3>
-            <p class="project-description">Sistema integral para clínicas veterinarias: dashboard, pacientes, citas, odontograma y facturación. Monorepo con Next.js 15, Turborepo, PostgreSQL y Drizzle ORM, desplegado en Vercel.</p>
-            <div class="project-tags">
-              <span class="project-tag">Next.js 15</span><span class="project-tag">TypeScript</span><span class="project-tag">Turborepo</span><span class="project-tag">PostgreSQL</span><span class="project-tag">Drizzle</span>
-            </div>
-            <div class="project-actions">
-              <a href="https://vetrinaria-web.vercel.app" class="btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Demo</a>
-              <a href="https://github.com/PurppleAlien/vetrinaria" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 25 — MCC Marketplace -->
-        <div class="project-card fade-in" data-category="programacion sistemas web">
-          <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/MCC/main/doc/pagina_carrito.png"
-                 alt="MCC Marketplace" loading="lazy">
-          </div>
-          <div class="project-content">
-            <span class="project-category">Ingeniería de Software</span>
-            <h3>MCC — Marketplace</h3>
-            <p class="project-description">Proyecto final de Temas Selectos de Ingeniería de Software: aplicación de tienda en línea con catálogo de productos, carrito de compras y gestión de órdenes.</p>
-            <div class="project-tags">
-              <span class="project-tag">Java</span><span class="project-tag">E-commerce</span><span class="project-tag">MVC</span><span class="project-tag">Web</span>
-            </div>
-            <div class="project-actions">
-              <a href="https://github.com/PurppleAlien/MCC" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
-            </div>
-          </div>
-        </div>
-
       </div>
     </section>
 
@@ -1062,7 +1082,7 @@
   <div id="modal-farmacia" class="modal" role="dialog" aria-modal="true">
     <div class="modal-content">
       <div class="modal-close" id="close-farmacia" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
-      <div class="modal-image"><img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=700&h=300&fit=crop" alt="Farmacia Online" loading="lazy"></div>
+      <div class="modal-image"><img src="images/farmacia-sistema.png" alt="Farmacia Online" loading="lazy"></div>
       <div class="modal-body">
         <span class="modal-category">Cloud · Microservicios</span>
         <h2>Farmacia Online</h2>
@@ -1116,7 +1136,7 @@
   <div id="modal-marianito2d" class="modal" role="dialog" aria-modal="true">
     <div class="modal-content">
       <div class="modal-close" id="close-marianito2d" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
-      <div class="modal-image"><img src="https://raw.githubusercontent.com/PurppleAlien/marianito-2d-platformer/main/documentacion/screenshot-game-mundo2.png" alt="Marianito 2D" loading="lazy"></div>
+      <div class="modal-image"><img src="https://raw.githubusercontent.com/PurppleAlien/marianito-2d-platformer/main/documentacion/captura_mundo_castillo_browser.png" alt="Marianito 2D" loading="lazy"></div>
       <div class="modal-body">
         <span class="modal-category">Videojuegos · Java</span>
         <h2>Marianito — 2D Platformer</h2>
@@ -1143,7 +1163,7 @@
   <div id="modal-satreria" class="modal" role="dialog" aria-modal="true">
     <div class="modal-content">
       <div class="modal-close" id="close-satreria" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
-      <div class="modal-image"><img src="https://raw.githubusercontent.com/PurppleAlien/satreria/main/HTML_Digital_System/public/icons/icon-512.png" alt="Satreria" loading="lazy"></div>
+      <div class="modal-image"><img src="images/sastreria-sistema.png" alt="Satreria" loading="lazy"></div>
       <div class="modal-body">
         <span class="modal-category">Web · PWA</span>
         <h2>Sastrería Digital</h2>
@@ -1160,7 +1180,7 @@
           <span class="modal-tag">QR</span><span class="modal-tag">PDF</span>
         </div>
         <div class="modal-actions">
-          <a href="https://github.com/PurppleAlien" class="btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Ver Perfil</a>
+          <a href="https://github.com/PurppleAlien/sastreria-digital" class="btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Ver Código</a>
           <a href="contacto.html" class="btn btn-outline"><i class="fas fa-envelope"></i> Contactar</a>
         </div>
       </div>
@@ -1187,7 +1207,7 @@
           <span class="modal-tag">Docker</span>
         </div>
         <div class="modal-actions">
-          <a href="https://github.com/PurppleAlien" class="btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Ver Perfil</a>
+          <a href="https://github.com/PurppleAlien/task-api" class="btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Ver Código</a>
           <a href="contacto.html" class="btn btn-outline"><i class="fas fa-envelope"></i> Contactar</a>
         </div>
       </div>
@@ -1390,6 +1410,15 @@
         cards.forEach(c => {
           const cats = c.getAttribute('data-category') || '';
           c.classList.toggle('hidden', f !== 'all' && !cats.split(' ').includes(f));
+        });
+        // Oculta una sección entera (título incluido) si ningún proyecto coincide.
+        ['projects-grid', 'academic-grid'].forEach(gid => {
+          const grid = document.getElementById(gid);
+          if (!grid) return;
+          const section = grid.closest('section');
+          const anyVisible = [...grid.querySelectorAll('.project-card')]
+            .some(c => !c.classList.contains('hidden'));
+          if (section) section.style.display = anyVisible ? '' : 'none';
         });
       });
     });

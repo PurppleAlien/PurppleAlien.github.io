@@ -941,6 +941,13 @@ td { padding: 12px 18px; font-size: 0.9rem; color: var(--text); }
 
 .fade-in {
   opacity: 0;
+}
+
+/* will-change solo mientras el elemento está por revelarse; al añadir
+   .visible la animación corre una vez (forwards) y el reveal se limpia en JS
+   (animationend -> will-change:auto) para no dejar capas de composición
+   permanentes que provoquen parpadeo al hacer scroll. */
+.fade-in:not(.visible) {
   will-change: opacity, transform;
 }
 

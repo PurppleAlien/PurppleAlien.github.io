@@ -578,6 +578,35 @@
       font-weight: 500;
     }
 
+    /* ─── FEATURED RESEARCH ──────────────────────── */
+    .featured-research { padding: 72px 0 8px; }
+    .fr-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: clamp(26px, 4vw, 48px);
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+    body.dark-mode .fr-card { border-color: rgba(97,218,251,0.15); }
+    .fr-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(620px 220px at 0% 0%, rgba(97,218,251,0.10), transparent 60%);
+      pointer-events: none;
+    }
+    .fr-eyebrow { font-family: var(--font-mono); color: var(--neon); font-size: .8rem; letter-spacing: .06em; }
+    .fr-title { font-size: clamp(1.5rem, 3.4vw, 2.3rem); margin: .5rem 0 .6rem; line-height: 1.2; }
+    .fr-desc { color: var(--text-muted); max-width: 760px; line-height: 1.75; margin-bottom: 6px; }
+    .fr-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 26px 0 4px; }
+    .fr-metric { text-align: center; padding: 16px 8px; background: rgba(97,218,251,0.05); border: 1px solid rgba(97,218,251,0.15); border-radius: var(--radius); }
+    .fr-metric .v { font-family: var(--font-mono); font-weight: 700; font-size: clamp(1.2rem, 2.4vw, 1.8rem); background: linear-gradient(135deg,#61dafb,#3d85c6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .fr-metric .l { font-size: .74rem; color: var(--text-muted); margin-top: 4px; }
+    .fr-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 22px; }
+    @media (max-width: 640px) { .fr-metrics { grid-template-columns: repeat(2, 1fr); } }
+
     /* ─── PROJECTS ──────────────────────────────── */
     .projects-grid {
       display: grid;
@@ -2110,6 +2139,34 @@
     </div>
   </section>
 
+  <!-- ===== FEATURED RESEARCH ===== -->
+  <section class="featured-research" id="featured-research">
+    <div class="container">
+      <div class="fr-card fade-in">
+        <span class="fr-eyebrow"><i class="fas fa-graduation-cap"></i> Proyecto Terminal de Investigación · UAM Iztapalapa</span>
+        <h2 class="fr-title">Detección Inteligente de Paráfrasis con LLMs</h2>
+        <p class="fr-desc">Sistema de doble modo para detectar paráfrasis y plagio sobre el repositorio de ~5,000 tesis de la División CBI. Combina recuperación BM25, índice semántico FAISS y clasificadores transformer (BETO, XLM-R) con árbitro LLM y explicabilidad. Evaluación rigurosa (intervalos bootstrap, calibración y auditoría de fuga de datos) y un hallazgo honesto: el corpus es <strong>~97% original</strong>.</p>
+        <div class="fr-metrics">
+          <div class="fr-metric"><div class="v">0.999</div><div class="l">AUROC (ensamble)</div></div>
+          <div class="fr-metric"><div class="v">2.3M</div><div class="l">Vectores FAISS</div></div>
+          <div class="fr-metric"><div class="v">~5,000</div><div class="l">Tesis indexadas</div></div>
+          <div class="fr-metric"><div class="v">~97%</div><div class="l">Corpus original</div></div>
+        </div>
+        <div class="project-tags fr-tags">
+          <span class="project-tag">Python</span><span class="project-tag">PyTorch</span><span class="project-tag">BETO / XLM-R</span><span class="project-tag">FAISS</span><span class="project-tag">RAG</span><span class="project-tag">Docker</span>
+        </div>
+        <div class="hero-cta">
+          <a href="proyecto-terminal.html" class="btn" style="background:linear-gradient(135deg,#61dafb,#3d85c6); color:#0d1117; font-weight:600;">
+            <i class="fas fa-flask"></i> <span>Ver el proyecto</span>
+          </a>
+          <a href="proyecto-terminal.html#reportes" class="btn btn-outline">
+            <i class="fas fa-file-pdf"></i> <span>Reportes semanales</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== RESEARCH INTERESTS ===== -->
   <section class="section research-interests" id="research">
     <div class="container">
@@ -2177,7 +2234,7 @@
 
         <div class="project-card fade-in delay-2">
           <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop"
+            <img src="images/farmacia-sistema.png"
                  alt="Farmacia Online" loading="lazy">
           </div>
           <div class="project-content">
@@ -2211,7 +2268,7 @@
 
         <div class="project-card fade-in">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/marianito-2d-platformer/main/documentacion/screenshot-game-mundo2.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/marianito-2d-platformer/main/documentacion/captura_mundo_castillo_browser.png"
                  alt="Marianito 2D" loading="lazy">
           </div>
           <div class="project-content">
