@@ -1,0 +1,86 @@
+/* ================================================================
+   hacker-fx.css — Capa de identidad "hacker/matrix reinventado"
+   ----------------------------------------------------------------
+   Se carga DESPUÉS de main.css y dark-mode.css a propósito: sus
+   overrides translúcidos necesitan ganar a los !important opacos
+   del modo oscuro para que el fondo de glifos (#glyph-flow) respire
+   a través de las secciones.
+   Piezas: fondo de glifos · scanlines CRT · títulos con prompt de
+   terminal · glitch cromático · scrollbar y selección neón.
+   ================================================================ */
+
+/* ---------- Fondo vivo de glifos (js/glyph-flow.js) ---------- */
+#glyph-flow {
+  position: fixed;
+  inset: 0;
+  z-index: -1;              /* sobre el fondo del body, bajo el contenido */
+  pointer-events: none;
+}
+
+/* Secciones translúcidas: dejan entrever el fondo de glifos.
+   Mismo peso (!important) que las reglas opacas de main.css. */
+body.dark-mode { background-color: #0a0e14 !important; }
+body.dark-mode .section-dark { background-color: rgba(20, 25, 34, 0.82) !important; }
+
+/* ---------- Scanlines CRT globales (mismo lenguaje que la intro) ---------- */
+body.dark-mode::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9990;            /* sobre todo, pero casi invisible y sin eventos */
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px, transparent 3px,
+    rgba(0, 0, 0, 0.055) 3px, rgba(0, 0, 0, 0.055) 4px
+  );
+}
+
+/* ---------- Títulos de sección con prompt de terminal ---------- */
+.section-title::before {
+  content: '> ';
+  font-family: 'Source Code Pro', monospace;
+  color: #61dafb;
+  opacity: 0.75;
+  font-weight: 600;
+}
+
+/* Glitch cromático al pasar el cursor (solo texto, no mueve layout) */
+@media (prefers-reduced-motion: no-preference) {
+  .section-title:hover {
+    animation: hfx-rgb-split 0.32s steps(2) infinite;
+  }
+  @keyframes hfx-rgb-split {
+    0%, 100% { text-shadow: 2px 0 rgba(97, 218, 251, 0.55), -2px 0 rgba(198, 120, 221, 0.55); }
+    50%      { text-shadow: -2px 0 rgba(97, 218, 251, 0.55), 2px 0 rgba(198, 120, 221, 0.55); }
+  }
+
+  /* Flicker RGB ocasional del apellido en el hero: vive solo, sin hover */
+  .hero h1 .name-accent {
+    animation: hfx-flicker 7s infinite;
+  }
+  @keyframes hfx-flicker {
+    0%, 90%, 100% { text-shadow: none; }
+    91% { text-shadow: 3px 0 rgba(97, 218, 251, 0.7), -3px 0 rgba(198, 120, 221, 0.7); }
+    93% { text-shadow: -2px 0 rgba(97, 218, 251, 0.7), 2px 0 rgba(198, 120, 221, 0.7); }
+    95% { text-shadow: 1px 0 rgba(97, 218, 251, 0.7), -1px 0 rgba(198, 120, 221, 0.7); }
+  }
+}
+
+/* ---------- Scrollbar y selección neón ---------- */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(97, 218, 251, 0.35) #0a0e14;
+}
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #0a0e14; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(97, 218, 251, 0.45), rgba(198, 120, 221, 0.45));
+  border-radius: 6px;
+  border: 2px solid #0a0e14;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(97, 218, 251, 0.7), rgba(198, 120, 221, 0.7));
+}
+
+::selection { background: rgba(97, 218, 251, 0.28); color: #eaf6ff; }

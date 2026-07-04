@@ -23,6 +23,14 @@
   background: repeating-linear-gradient(0deg, transparent 0px, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px);
   pointer-events: none;
 }
+/* Intro "AS" (canvas a pantalla completa) */
+#ls-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.ls-foot {
+  position: absolute; bottom: 7%; left: 0; right: 0; text-align: center; z-index: 2;
+  font-family: 'Source Code Pro', monospace; font-size: 0.72rem; letter-spacing: 2px;
+  text-transform: uppercase; color: rgba(97,218,251,0.4); pointer-events: none;
+}
+
 .ls-content { position: relative; z-index: 1; text-align: center; }
 .ls-logo { font-family: 'Oswald', sans-serif; font-size: clamp(2rem,6vw,3rem); font-weight: 700; color: #e6edf3; letter-spacing: 3px; margin-bottom: 8px; }
 .ls-logo span { color: #61dafb; }

@@ -1731,9 +1731,13 @@
   <link rel="stylesheet" href="assets/css/terminal.css">
   <link rel="stylesheet" href="assets/css/fab.css">
   <link rel="stylesheet" href="assets/css/cursor.css">
+  <link rel="stylesheet" href="assets/css/hacker-fx.css">
 
 </head>
 <body class="dark-mode">
+
+  <!-- Fondo vivo de glifos: fijo, detrás de todo (js/glyph-flow.js) -->
+  <canvas id="glyph-flow" aria-hidden="true"></canvas>
 
   <!-- ===== ESCENA 3D DE FONDO (página completa, vuelo de cámara con scroll) =====
        La monta js/hero3d.js (Three.js). Fijo detrás de todo el contenido.
@@ -1743,24 +1747,14 @@
   <!-- ===== LOADING SCREEN ===== -->
   <div id="loading-screen">
     <div class="ls-scanlines"></div>
-    <div class="ls-content">
-      <div class="ls-logo">Antonio <span>Soria</span></div>
-      <div class="ls-tagline">matemático &amp; desarrollador</div>
-      <div class="ls-terminal">
-        <div class="ls-line typing" id="ls-l1"></div>
-        <div class="ls-line" id="ls-l2"></div>
-        <div class="ls-line" id="ls-l3"></div>
-      </div>
-      <div class="ls-bar-wrap">
-        <div class="ls-bar"><div class="ls-fill" id="ls-fill"></div></div>
-        <span class="ls-pct" id="ls-pct">0%</span>
-      </div>
-    </div>
+    <canvas id="ls-canvas"></canvas>
+    <div class="ls-foot">matemático &amp; desarrollador</div>
   </div>
 
   <!-- ===== CUSTOM CURSOR ===== -->
   <!-- El cursor (varios estilos) lo monta js/cursor.js; ver assets/css/cursor.css -->
   <script src="js/cursor.js" defer></script>
+  <script src="js/glyph-flow.js" defer></script>
 
   <!-- Progress bar -->
   <div class="progress-bar" id="progress-bar"></div>
@@ -2737,54 +2731,72 @@
     const screen = document.getElementById('loading-screen');
     if (!screen) return;
 
-    // Solo mostrar una vez por sesión
-    if (sessionStorage.getItem('as_loaded')) {
-      screen.style.display = 'none';
-      return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function done() {
+      screen.classList.add('ls-done');
+      setTimeout(() => { screen.style.display = 'none'; }, 750);
     }
 
-    const steps = [
-      { el: 'ls-l1', text: 'Initializing portfolio...', pct: 30 },
-      { el: 'ls-l2', text: 'Loading algorithms & AI modules...', pct: 65 },
-      { el: 'ls-l3', text: 'System ready. Bienvenido.', pct: 100 },
-    ];
-    const fill = document.getElementById('ls-fill');
-    const pct  = document.getElementById('ls-pct');
+    const cv = document.getElementById('ls-canvas');
+    if (!cv || reduced || !cv.getContext) { setTimeout(done, reduced ? 300 : 600); return; }
+    const ctx = cv.getContext('2d');
+    let W, H;
+    const CHARS = 'λΣ∇πµ01{}<>=+*#%absdefgit'.split('');
+    const CYAN = '#61dafb', PURPLE = '#c678dd';
+    let targets = [], parts = [];
 
-    function typeText(elId, text, cb) {
-      const el = document.getElementById(elId);
-      if (!el) return cb && cb();
-      el.classList.add('typing');
-      let i = 0;
-      const t = setInterval(() => {
-        el.textContent = text.slice(0, ++i);
-        if (i >= text.length) {
-          clearInterval(t);
-          el.classList.remove('typing');
-          el.classList.add('done');
-          cb && cb();
-        }
-      }, 45);
+    function build() {
+      // muestrea los píxeles de "AS" para usarlos como objetivos
+      const o = document.createElement('canvas'); o.width = 600; o.height = 260;
+      const oc = o.getContext('2d');
+      oc.fillStyle = '#fff'; oc.font = 'bold 220px "Source Code Pro","Courier New",monospace';
+      oc.textAlign = 'center'; oc.textBaseline = 'middle'; oc.fillText('AS', 300, 135);
+      const d = oc.getImageData(0, 0, 600, 260).data; targets = [];
+      const scale = Math.min(1.4, W / 640), step = 6;
+      for (let py = 0; py < 260; py += step) for (let px = 0; px < 600; px += step) {
+        if (d[(py * 600 + px) * 4 + 3] > 128) targets.push({ x: W / 2 + (px - 300) * scale, y: H / 2 + (py - 130) * scale });
+      }
+      while (parts.length < targets.length) parts.push({
+        x: Math.random() * W, y: Math.random() * H,
+        ch: CHARS[(Math.random() * CHARS.length) | 0], col: Math.random() < 0.5 ? CYAN : PURPLE,
+      });
+      parts.length = targets.length;
+      for (let i = 0; i < parts.length; i++) { parts[i].tx = targets[i].x; parts[i].ty = targets[i].y; }
     }
+    function size() { W = cv.width = window.innerWidth; H = cv.height = window.innerHeight; build(); }
+    size(); window.addEventListener('resize', size);
 
-    let step = 0;
-    function runStep() {
-      if (step >= steps.length) return finish();
-      const s = steps[step++];
-      if (fill) { fill.style.width = s.pct + '%'; }
-      if (pct)  { pct.textContent  = s.pct + '%'; }
-      typeText(s.el, s.text, () => setTimeout(runStep, 600));
+    // Timing acumulado con delta acotado: en condiciones normales avanza en
+    // tiempo real; si el hilo se bloquea entre frames (carga de Three.js/GSAP,
+    // pestaña oculta, dispositivo lento) el hueco cuenta máximo 100ms, así la
+    // animación nunca se salta fases ni se queda atascada.
+    const FORM = 1.5, HOLD = 0.7, DISP = 0.85, MAX_DT = 0.1;
+    const easeOut = (k) => 1 - Math.pow(1 - k, 3);
+    let el = 0, prev = null;
+    function frame(now) {
+      if (prev === null) { prev = now; for (const p of parts) { p.sx = p.x; p.sy = p.y; } }
+      el += Math.min((now - prev) / 1000, MAX_DT);
+      prev = now;
+      ctx.fillStyle = 'rgba(6,10,15,0.32)'; ctx.fillRect(0, 0, W, H);
+      ctx.font = '16px "Source Code Pro",monospace'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      let alpha = 1;
+      if (el < FORM) {                                  // formar "AS"
+        const e = easeOut(el / FORM);
+        for (const p of parts) { p.x = p.sx + (p.tx - p.sx) * e; p.y = p.sy + (p.ty - p.sy) * e; }
+      } else if (el < FORM + HOLD) {                     // sostener
+        for (const p of parts) { p.x = p.tx; p.y = p.ty; }
+      } else if (el < FORM + HOLD + DISP) {              // dispersar (estallido radial)
+        const dp = (el - FORM - HOLD) / DISP; alpha = 1 - dp;
+        const push = dp * dp * 280;
+        for (const p of parts) { const dx = p.tx - W / 2, dy = p.ty - H / 2, d = Math.hypot(dx, dy) || 1;
+          p.x = p.tx + dx / d * push; p.y = p.ty + dy / d * push; }
+      } else { done(); return; }
+      for (const p of parts) { ctx.globalAlpha = alpha; ctx.fillStyle = p.col; ctx.shadowColor = p.col; ctx.shadowBlur = 8; ctx.fillText(p.ch, p.x, p.y); }
+      ctx.globalAlpha = 1; ctx.shadowBlur = 0;
+      requestAnimationFrame(frame);
     }
-
-    setTimeout(runStep, 500);
-
-    function finish() {
-      setTimeout(() => {
-        screen.classList.add('ls-done');
-        sessionStorage.setItem('as_loaded', '1');
-        setTimeout(() => { screen.style.display = 'none'; }, 750);
-      }, 1100);
-    }
+    requestAnimationFrame(frame);
   })();
 
   /* ═══════════════════════════════════════════════════════════

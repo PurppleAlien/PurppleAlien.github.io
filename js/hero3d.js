@@ -106,7 +106,7 @@ function initScene(container) {
   const renderer = new THREE.WebGLRenderer({ antialias: !mobile, alpha: true, powerPreference: 'high-performance' });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile ? 1.25 : 1.5));
   renderer.setSize(W0, H0);
-  renderer.setClearColor(0x000000, 0); // transparente: deja ver el fondo del body
+  renderer.setClearColor(0x000000, 0); // transparente: deja ver el fondo original del hero (gradiente + foto)
   container.appendChild(renderer.domElement);
   container.classList.remove('loading');
 
@@ -202,6 +202,41 @@ function initScene(container) {
   }));
   scene.add(particles);
 
+  /* ---------- Nube de glifos de código ("matrix" reinventado en 3D) ---------- */
+  const GTOKENS = ['def', 'λ', 'Σ', '=>', '{}', '0x1F', 'git', '∇', 'FAISS', 'async', 'π', '</>', '01', 'f(x)', '->', 'µ', '⊗', 'import'];
+  function glyphTexture(txt) {
+    const s = 128, cv = document.createElement('canvas'); cv.width = cv.height = s;
+    const cx = cv.getContext('2d');
+    // Ajusta la fuente al ancho del canvas: tokens largos ("import", "FAISS",
+    // "async") no caben a 52px y salían recortados ("mpor", "AISS").
+    let fs = 52;
+    cx.font = `bold ${fs}px "Source Code Pro", monospace`;
+    const w = cx.measureText(txt).width, max = s * 0.92;
+    if (w > max) { fs = Math.floor(fs * max / w); cx.font = `bold ${fs}px "Source Code Pro", monospace`; }
+    cx.fillStyle = '#ffffff'; cx.textAlign = 'center'; cx.textBaseline = 'middle';
+    // Glow horneado en la textura (3 pasadas con shadowBlur decreciente):
+    // sustituye al bloom de postprocesado, que exigía canvas opaco y tapaba
+    // el fondo original del hero. Con AdditiveBlending el halo brilla igual.
+    cx.shadowColor = '#ffffff';
+    for (const blur of [18, 9, 0]) { cx.shadowBlur = blur; cx.fillText(txt, s / 2, s / 2); }
+    const t = new THREE.CanvasTexture(cv); t.anisotropy = 2; return t;
+  }
+  const gTex = GTOKENS.map(glyphTexture);
+  const GCOUNT = mobile ? 90 : 240;
+  const gTints = [CYAN, PURPLE, 0xcfe8ff];
+  const glyphs = [];
+  for (let i = 0; i < GCOUNT; i++) {
+    const mat = new THREE.SpriteMaterial({
+      map: gTex[i % gTex.length], color: gTints[i % 3], transparent: true,
+      opacity: 0.85, depthWrite: false, blending: THREE.AdditiveBlending, fog: true,
+    });
+    const sp = new THREE.Sprite(mat);
+    sp.position.set((Math.random() - 0.5) * 18, (Math.random() - 0.5) * 11, 6 - Math.random() * (Math.abs(LAST_Z) + 16));
+    const k = 0.35 + Math.random() * 0.45; sp.scale.setScalar(k);
+    sp.userData = { ph: Math.random() * 6.28, by: (Math.random() - 0.5) * 0.0016 };
+    scene.add(sp); glyphs.push(sp);
+  }
+
   /* ---------- Interacción: ratón + scroll ---------- */
   const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
   window.addEventListener('pointermove', (e) => {
@@ -251,6 +286,13 @@ function initScene(container) {
       if (o.userData.shell) o.userData.shell.rotation.y = -t * 0.04;
     });
     particles.rotation.y = t * 0.01;
+
+    // Glifos: leve flotación vertical + parpadeo (glow horneado en la textura)
+    for (let i = 0; i < glyphs.length; i++) {
+      const g = glyphs[i];
+      g.position.y += g.userData.by;
+      g.material.opacity = 0.55 + 0.4 * Math.sin(t * 1.6 + g.userData.ph);
+    }
 
     // Parallax de ratón (lerp suave)
     mouse.x += (mouse.tx - mouse.x) * 0.04;
