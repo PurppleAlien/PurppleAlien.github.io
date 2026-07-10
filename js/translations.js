@@ -110,6 +110,46 @@ window.pageTranslations = {
     'about.philosophy.p1':  'Creo firmemente que las matemáticas y la programación son dos caras de la misma moneda: herramientas poderosas para entender y transformar el mundo que nos rodea.',
     'about.philosophy.p2':  'Mi enfoque se basa en la elegancia de las soluciones simples para problemas complejos, encontrando belleza en los algoritmos eficientes y en las estructuras matemáticas que describen nuestro universo.',
     'about.philosophy.quote': '"Las matemáticas son la reina de las ciencias — y un algoritmo hermoso es un teorema que además se ejecuta."',
+
+    /* ── Sobre Mí (rediseño narrativo) ── */
+    'about2.hero.l1': 'No empecé programando para escribir código.',
+    'about2.hero.l2': 'Empecé porque quería entender cómo funciona el mundo.',
+    'about2.hero.p1': 'Crecí en la zona poniente de la Ciudad de México, en Álvaro Obregón. Desde pequeño me fascinaban los videojuegos, las computadoras, las matemáticas y cualquier problema que pareciera imposible de resolver.',
+    'about2.hero.p2': 'Con el tiempo descubrí que la programación era el punto donde todas esas pasiones se encontraban.',
+    'about2.hero.p3': 'Hoy desarrollo software, investigo inteligencia artificial y sigo persiguiendo la misma curiosidad que tenía cuando escribí mi primera línea de código.',
+
+    'about2.c1.title': 'Inicios en la programación',
+    'about2.c1.p1': 'Mis primeros programas fueron en lenguaje C: ejercicios clásicos, ciclos, memoria. Aprendí que la máquina no perdona la ambigüedad — y que esa exigencia era exactamente lo que me gustaba.',
+    'about2.c1.p2': 'Poco después llegó Java y, con él, el paradigma orientado a objetos y las estructuras de datos: la idea de que el código no solo se escribe, también se diseña.',
+
+    'about2.c2.title': 'UNAM FES Acatlán',
+    'about2.c2.p1': 'Licenciatura en Matemáticas Aplicadas y Computación. Ahí solidifiqué mis bases matemáticas y descubrí la belleza de los números y de los algoritmos.',
+    'about2.c2.p2': 'Fueron años muy significativos en mi desarrollo profesional: entendí que un teorema y un programa se parecen más de lo que parece.',
+
+    'about2.band.quote': 'Sigo persiguiendo la misma curiosidad que tenía cuando escribí mi primera línea de código',
+
+    'about2.c3.title': 'UAM Iztapalapa',
+    'about2.c3.p1': 'Licenciatura en Computación: una especialización de todo lo anterior. Profundicé en inteligencia artificial, teoría de grafos y algoritmia avanzada, ingeniería de software y sistemas operativos.',
+    'about2.c3.p2': 'Aquí la curiosidad se volvió método: aprender a construir sistemas que no solo funcionan, sino que se pueden razonar.',
+
+    'about2.c4.date': '2022 – Presente',
+    'about2.c4.title': 'Desarrollo profesional',
+    'about2.c4.p1': 'Trabajo en proyectos personales y profesionales que combinan matemáticas y programación para crear soluciones innovadoras: sistemas de gestión, algoritmos de IA, visualizadores interactivos.',
+    'about2.c4.link': 'ver el portafolio →',
+
+    'about2.c5.date': '2026 – Presente',
+    'about2.c5.title': 'Proyecto Terminal de investigación',
+    'about2.c5.p1': 'Detección inteligente de paráfrasis mediante modelos de gran escala (LLMs).',
+    'about2.c5.p2': '¿Pueden dos textos decir lo mismo con palabras completamente distintas — y puede una máquina darse cuenta? Mi investigación explora cómo los modelos de lenguaje capturan el significado más allá de la forma: embeddings, similitud semántica y evaluación rigurosa.',
+    'about2.c5.link': 'conocer el proyecto →',
+
+    'about2.mosaic.title': 'Fuera del teclado',
+    'about2.mosaic.sub': 'Porque la curiosidad no se queda en la pantalla.',
+    'about2.mosaic.cap1': '// explorando nuevos lugares',
+    'about2.mosaic.cap2': '// cerca de la naturaleza',
+    'about2.mosaic.cap3': '// buscando perspectiva',
+    'about2.mosaic.cap4': '// entre viaje y viaje',
+    'about2.mosaic.cap5': '// siempre en movimiento',
     'about.philosophy.attr': '— Inspirado por Turing, Euler, Gauss y von Neumann',
 
     'about.skills.title':    'Enfoques Principales',
@@ -406,6 +446,46 @@ window.pageTranslations = {
     'about.philosophy.p1':  'I firmly believe that mathematics and programming are two sides of the same coin: powerful tools to understand and transform the world around us.',
     'about.philosophy.p2':  'My approach is based on the elegance of simple solutions to complex problems, finding beauty in efficient algorithms and in the mathematical structures that describe our universe.',
     'about.philosophy.quote': '"Mathematics is the queen of the sciences — and a beautiful algorithm is a theorem that also runs."',
+
+    /* ── About Me (narrative redesign) ── */
+    'about2.hero.l1': "I didn't start programming to write code.",
+    'about2.hero.l2': 'I started because I wanted to understand how the world works.',
+    'about2.hero.p1': 'I grew up on the west side of Mexico City, in Álvaro Obregón. Since I was a kid I was fascinated by video games, computers, mathematics and any problem that seemed impossible to solve.',
+    'about2.hero.p2': 'Over time I discovered that programming was the point where all those passions met.',
+    'about2.hero.p3': 'Today I build software, research artificial intelligence, and keep chasing the same curiosity I had when I wrote my first line of code.',
+
+    'about2.c1.title': 'First steps in programming',
+    'about2.c1.p1': "My first programs were written in C: classic exercises, loops, memory. I learned that the machine doesn't forgive ambiguity — and that this demand was exactly what I liked.",
+    'about2.c1.p2': 'Java came shortly after and, with it, object-oriented programming and data structures: the idea that code is not just written, it is designed.',
+
+    'about2.c2.title': 'UNAM FES Acatlán',
+    'about2.c2.p1': "Bachelor's degree in Applied Mathematics and Computing. There I solidified my mathematical foundations and discovered the beauty of numbers and algorithms.",
+    'about2.c2.p2': 'Those were deeply formative years: I understood that a theorem and a program are more alike than they seem.',
+
+    'about2.band.quote': 'Still chasing the same curiosity I had when I wrote my first line of code',
+
+    'about2.c3.title': 'UAM Iztapalapa',
+    'about2.c3.p1': "Bachelor's degree in Computer Science: a specialization of everything that came before. I went deep into artificial intelligence, graph theory and advanced algorithms, software engineering and operating systems.",
+    'about2.c3.p2': 'Here curiosity became method: learning to build systems that not only work, but can be reasoned about.',
+
+    'about2.c4.date': '2022 – Present',
+    'about2.c4.title': 'Professional development',
+    'about2.c4.p1': 'I work on personal and professional projects that combine mathematics and programming to build innovative solutions: management systems, AI algorithms, interactive visualizers.',
+    'about2.c4.link': 'see the portfolio →',
+
+    'about2.c5.date': '2026 – Present',
+    'about2.c5.title': 'Undergraduate research project',
+    'about2.c5.p1': 'Intelligent paraphrase detection using large language models (LLMs).',
+    'about2.c5.p2': 'Can two texts say the same thing with completely different words — and can a machine notice? My research explores how language models capture meaning beyond form: embeddings, semantic similarity and rigorous evaluation.',
+    'about2.c5.link': 'learn about the project →',
+
+    'about2.mosaic.title': 'Away from the keyboard',
+    'about2.mosaic.sub': "Because curiosity doesn't stay on the screen.",
+    'about2.mosaic.cap1': '// exploring new places',
+    'about2.mosaic.cap2': '// close to nature',
+    'about2.mosaic.cap3': '// looking for perspective',
+    'about2.mosaic.cap4': '// between trips',
+    'about2.mosaic.cap5': '// always moving',
     'about.philosophy.attr': '— Inspired by Turing, Euler, Gauss and von Neumann',
 
     'about.skills.title':    'Core Expertise',

@@ -22,5 +22,10 @@ doc/*.toc
 doc/*_anterior.*
 doc/*.heif
 
+# Fotos originales de cámara (se publican solo las versiones web optimizadas)
+images/sobre-mi/IMG_*.jpg
+images/sobre-mi/20*.jpg
+images/sobre-mi/fesacatlan.jpg
+
 # Prototipos de efectos (laboratorio local, no forman parte del sitio)
 fx-demos/
