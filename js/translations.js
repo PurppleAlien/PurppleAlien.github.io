@@ -15,6 +15,7 @@ window.pageTranslations = {
     'nav.portfolio':   'Portafolio',
     'nav.outreach':    'Divulgación',
     'nav.thesis':     'Proyecto Terminal',
+    'nav.algos':       'Algoritmos',
     'nav.contact':     'Contacto',
 
     /* --- Footer --- */
@@ -108,8 +109,8 @@ window.pageTranslations = {
     'about.philosophy.title': 'Mi Filosofía',
     'about.philosophy.p1':  'Creo firmemente que las matemáticas y la programación son dos caras de la misma moneda: herramientas poderosas para entender y transformar el mundo que nos rodea.',
     'about.philosophy.p2':  'Mi enfoque se basa en la elegancia de las soluciones simples para problemas complejos, encontrando belleza en los algoritmos eficientes y en las estructuras matemáticas que describen nuestro universo.',
-    'about.philosophy.quote': '"La información es la resolución de la incertidumbre, y las matemáticas son el lenguaje perfecto para cuantificarla."',
-    'about.philosophy.attr': '— Inspirado por Claude Shannon',
+    'about.philosophy.quote': '"Las matemáticas son la reina de las ciencias — y un algoritmo hermoso es un teorema que además se ejecuta."',
+    'about.philosophy.attr': '— Inspirado por Turing, Euler, Gauss y von Neumann',
 
     'about.skills.title':    'Enfoques Principales',
     'about.skills.math':     'Matemáticas',
@@ -276,6 +277,9 @@ window.pageTranslations = {
     'div.a6.read':   'Leer Artículo',
     'div.a6.extra':  'Más Curiosidades',
 
+    'div.blog.title': 'Blog Técnico',
+    'div.blog.sub':   'Notas técnicas escritas por mí, con el código al lado: cómo funcionan de verdad los algoritmos que uso en mis proyectos.',
+
     'div.resources.title':   'Recursos Recomendados',
     'div.res1.title':  'Revistas de Divulgación',
     'div.res2.title':  'Plataformas Educativas',
@@ -307,6 +311,7 @@ window.pageTranslations = {
     'nav.portfolio':   'Portfolio',
     'nav.outreach':    'Science Outreach',
     'nav.thesis':     'Thesis Project',
+    'nav.algos':       'Algorithms',
     'nav.contact':     'Contact',
 
     /* --- Footer --- */
@@ -400,8 +405,8 @@ window.pageTranslations = {
     'about.philosophy.title': 'My Philosophy',
     'about.philosophy.p1':  'I firmly believe that mathematics and programming are two sides of the same coin: powerful tools to understand and transform the world around us.',
     'about.philosophy.p2':  'My approach is based on the elegance of simple solutions to complex problems, finding beauty in efficient algorithms and in the mathematical structures that describe our universe.',
-    'about.philosophy.quote': '"Information is the resolution of uncertainty, and mathematics is the perfect language to quantify it."',
-    'about.philosophy.attr': '— Inspired by Claude Shannon',
+    'about.philosophy.quote': '"Mathematics is the queen of the sciences — and a beautiful algorithm is a theorem that also runs."',
+    'about.philosophy.attr': '— Inspired by Turing, Euler, Gauss and von Neumann',
 
     'about.skills.title':    'Core Expertise',
     'about.skills.math':     'Mathematics',
@@ -568,6 +573,9 @@ window.pageTranslations = {
     'div.a6.read':   'Read Article',
     'div.a6.extra':  'More Curiosities',
 
+    'div.blog.title': 'Tech Blog',
+    'div.blog.sub':   'Technical notes written by me, with the code alongside: how the algorithms I use in my projects really work.',
+
     'div.resources.title':   'Recommended Resources',
     'div.res1.title':  'Outreach Magazines',
     'div.res2.title':  'Learning Platforms',
@@ -703,15 +711,34 @@ window.pageTranslations = {
     'idx.ct4.title':     'Redes Sociales',
     'idx.ct4.desc':      'Conectemos en las redes profesionales',
 
-    'idx.philosophy.title': 'Mi Filosofía',
-    'idx.philosophy.sub':   'Me inspira el pensamiento de Claude Shannon:',
-    'idx.ax1': 'La información es la resolución de la incertidumbre, y las matemáticas son el lenguaje perfecto para cuantificarla.',
-    'idx.ax2': 'Los problemas complejos del mundo real a menudo tienen soluciones elegantes cuando se abordan desde múltiples perspectivas: matemáticas, código y teoría de la información.',
-    'idx.ax3': 'La belleza de un algoritmo no solo está en su eficiencia, sino en cómo modela y resuelve problemas del mundo físico.',
-    'idx.ax4': 'El universo mismo puede entenderse como un sistema de procesamiento de información, donde las matemáticas son tanto el lenguaje como el mecanismo.',
-    'idx.quote.text':    'Visualizo un día en el que volaremos sobre un mundo en el que los seres humanos sean libres de la monotonía y vivan la vida como debería vivirse',
-    'idx.quote.author':  '— Claude Shannon, padre de la teoría de la información',
+    'idx.editor.repo': 'ver repositorio completo →',
+    'idx.editor.demo': 'verlo en acción →',
 
+    'idx.art.title':  'Arte Generativo',
+    'idx.art.sub':    'Donde las matemáticas se vuelven arte: cada pieza es una fórmula dibujándose a sí misma, en vivo, con las mismas herramientas con las que programo.',
+    'idx.art.rose':   'Rosa polar',
+    'idx.art.phyllo': 'Filotaxis',
+    'idx.art.note':   'Rosa polar · curvas de Lissajous · filotaxis con el ángulo áureo (137.508°) — canvas 2D, sin librerías.',
+
+    'idx.philosophy.title': 'Mi Filosofía',
+    'idx.philosophy.sub':   'Me inspira el pensamiento de los grandes: Turing, Euler, Gauss y von Neumann.',
+    'idx.ax1': 'Toda computación, por compleja que parezca, se reduce a pasos simples y verificables — Turing nos enseñó que pensar también es computar.',
+    'idx.ax2': 'La elegancia importa: como e^iπ + 1 = 0, la mejor solución es la que une ideas lejanas en una sola línea.',
+    'idx.ax3': 'Las matemáticas son la reina de las ciencias — y un algoritmo hermoso es un teorema que además se ejecuta.',
+    'idx.ax4': 'Entre la arquitectura de un computador y la estructura de un problema hay un puente: quien lo cruza en ambos sentidos, como von Neumann, resuelve lo que otros solo describen.',
+
+    /* Citas rotatorias de la sección filosofía (initQuoteRotator, js/main.js) */
+    'idx.quote.q1.text':   'Solo podemos ver una corta distancia hacia adelante, pero podemos ver allí mucho por hacer.',
+    'idx.quote.q1.author': '— Alan Turing, padre de la computación',
+    'idx.quote.q2.text':   'Las matemáticas son la reina de las ciencias, y la aritmética la reina de las matemáticas.',
+    'idx.quote.q2.author': '— Carl Friedrich Gauss, príncipe de las matemáticas',
+    'idx.quote.q3.text':   'Nada sucede en el universo sin que aparezca alguna regla de máximo o mínimo.',
+    'idx.quote.q3.author': '— Leonhard Euler, el maestro de todos nosotros',
+    'idx.quote.q4.text':   'Si la gente no cree que las matemáticas son simples, es solo porque no se da cuenta de lo complicada que es la vida.',
+    'idx.quote.q4.author': '— John von Neumann, pionero de la computación moderna',
+
+    'idx.footer.handmade': 'hecho a mano — HTML · CSS · JS vanilla, sin frameworks',
+    'idx.footer.source':   'ver código fuente de este sitio',
     'idx.footer.rights': '© 2026 Antonio Soria. Todos los derechos reservados.',
   });
 
@@ -821,15 +848,34 @@ window.pageTranslations = {
     'idx.ct4.title':     'Social Networks',
     'idx.ct4.desc':      "Let's connect on professional networks",
 
-    'idx.philosophy.title': 'My Philosophy',
-    'idx.philosophy.sub':   'Inspired by the thinking of Claude Shannon:',
-    'idx.ax1': 'Information is the resolution of uncertainty, and mathematics is the perfect language to quantify it.',
-    'idx.ax2': 'Complex real-world problems often have elegant solutions when approached from multiple perspectives: mathematics, code and information theory.',
-    'idx.ax3': 'The beauty of an algorithm lies not only in its efficiency, but in how it models and solves problems from the physical world.',
-    'idx.ax4': 'The universe itself can be understood as an information processing system, where mathematics is both the language and the mechanism.',
-    'idx.quote.text':    'I visualize a day when we will soar over a world where human beings are freed from monotony and live life as it should be lived',
-    'idx.quote.author':  '— Claude Shannon, father of information theory',
+    'idx.editor.repo': 'view full repository →',
+    'idx.editor.demo': 'see it in action →',
 
+    'idx.art.title':  'Generative Art',
+    'idx.art.sub':    'Where mathematics becomes art: each piece is a formula drawing itself, live, with the same tools I program with.',
+    'idx.art.rose':   'Polar rose',
+    'idx.art.phyllo': 'Phyllotaxis',
+    'idx.art.note':   'Polar rose · Lissajous curves · phyllotaxis with the golden angle (137.508°) — 2D canvas, no libraries.',
+
+    'idx.philosophy.title': 'My Philosophy',
+    'idx.philosophy.sub':   'Inspired by the thinking of the greats: Turing, Euler, Gauss and von Neumann.',
+    'idx.ax1': 'Every computation, however complex it seems, reduces to simple, verifiable steps — Turing taught us that thinking is also computing.',
+    'idx.ax2': 'Elegance matters: like e^iπ + 1 = 0, the best solution is the one that joins distant ideas in a single line.',
+    'idx.ax3': 'Mathematics is the queen of the sciences — and a beautiful algorithm is a theorem that also runs.',
+    'idx.ax4': 'Between the architecture of a computer and the structure of a problem there is a bridge: whoever crosses it in both directions, like von Neumann, solves what others merely describe.',
+
+    /* Rotating quotes for the philosophy section (initQuoteRotator, js/main.js) */
+    'idx.quote.q1.text':   'We can only see a short distance ahead, but we can see plenty there that needs to be done.',
+    'idx.quote.q1.author': '— Alan Turing, father of computer science',
+    'idx.quote.q2.text':   'Mathematics is the queen of the sciences, and arithmetic the queen of mathematics.',
+    'idx.quote.q2.author': '— Carl Friedrich Gauss, prince of mathematics',
+    'idx.quote.q3.text':   'Nothing takes place in the universe in which some rule of maximum or minimum does not appear.',
+    'idx.quote.q3.author': '— Leonhard Euler, the master of us all',
+    'idx.quote.q4.text':   'If people do not believe that mathematics is simple, it is only because they do not realize how complicated life is.',
+    'idx.quote.q4.author': '— John von Neumann, pioneer of modern computing',
+
+    'idx.footer.handmade': 'handcrafted — vanilla HTML · CSS · JS, no frameworks',
+    'idx.footer.source':   'view this site\'s source code',
     'idx.footer.rights': '© 2026 Antonio Soria. All rights reserved.',
   });
 })();

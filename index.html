@@ -101,6 +101,13 @@
       position: relative;
     }
 
+    /* Agrupa hamburger + logo a la izquierda (el hamburger vive ahora ahí) */
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
     /* Tooltip "Páginas" sobre el hamburger */
     .hamburger-btn::after {
       content: 'Páginas';
@@ -1287,14 +1294,14 @@
 
     .mega-nav-panel {
       position: fixed;
-      top: 0; right: 0;
+      top: 0; left: 0;
       width: 390px;
       max-width: 93vw;
       height: 100vh;
       background: #080c11;
-      border-left: 1px solid rgba(97,218,251,0.18);
+      border-right: 1px solid rgba(97,218,251,0.18);
       z-index: 9001;
-      transform: translateX(100%);
+      transform: translateX(-100%);
       transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
       overflow-y: auto;
       overflow-x: hidden;
@@ -1309,7 +1316,7 @@
     .mega-nav-panel::before {
       content: '';
       position: fixed;
-      top: 0; right: 0;
+      top: 0; left: 0;
       width: 390px;
       max-width: 93vw;
       height: 100vh;
@@ -1324,11 +1331,11 @@
       z-index: 0;
     }
 
-    /* Left glow accent strip */
+    /* Glow accent strip (borde interior del panel) */
     .mega-nav-panel::after {
       content: '';
       position: fixed;
-      top: 0; right: calc(390px - 2px);
+      top: 0; left: calc(390px - 2px);
       width: 2px; height: 100vh;
       background: linear-gradient(180deg,
         transparent 0%,
@@ -1725,6 +1732,285 @@
       .section-dark, .studio, .philosophy { background: #0d1117 !important; }
     }
 
+    /* ─── BADGE "HECHO A MANO" (footer) ─────────── */
+    .made-by-hand {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.72rem;
+      color: rgba(139,148,158,0.75);
+      margin-bottom: 10px;
+    }
+    .made-by-hand i { color: rgba(97,218,251,0.6); margin-right: 4px; }
+    .made-by-hand a { color: rgba(97,218,251,0.75); transition: color 0.2s ease; }
+    .made-by-hand a:hover { color: #c678dd; }
+
+    /* ─── GITHUB EN VIVO ────────────────────────── */
+    .github-live {
+      max-width: 900px;
+      margin: 56px auto 0;
+      font-family: 'Source Code Pro', monospace;
+    }
+
+    .ghl-label {
+      font-size: 0.75rem;
+      color: rgba(97,218,251,0.55);
+      letter-spacing: 1.5px;
+      margin-bottom: 14px;
+    }
+
+    .ghl-pulse {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: #c9d1d9;
+      margin-bottom: 22px;
+    }
+    .ghl-dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: #00ff88;
+      box-shadow: 0 0 10px rgba(0,255,136,0.7);
+      animation: ghlPulse 2.2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes ghlPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.8); }
+    }
+    .ghl-pulse-repo { color: #61dafb; font-weight: 600; }
+    .ghl-pulse-repo:hover { color: #c678dd; }
+
+    .ghl-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .ghl-card {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 16px;
+      background: rgba(13,20,32,0.75);
+      border: 1px solid rgba(97,218,251,0.14);
+      border-radius: 8px;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .ghl-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(97,218,251,0.45);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+    }
+    .ghl-card-head { display: flex; align-items: baseline; gap: 10px; }
+    .ghl-name { color: #61dafb; font-weight: 600; font-size: 0.88rem; word-break: break-all; }
+    .ghl-stars { margin-left: auto; color: #fbbc05; font-size: 0.75rem; flex-shrink: 0; }
+    .ghl-desc {
+      color: #8b949e;
+      font-size: 0.76rem;
+      line-height: 1.55;
+      font-family: 'Roboto', sans-serif;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .ghl-card-foot {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: auto;
+      font-size: 0.7rem;
+      color: #8b949e;
+    }
+    .ghl-lang { display: inline-flex; align-items: center; gap: 6px; }
+    .ghl-lang-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+    .ghl-updated { margin-left: auto; }
+
+    .ghl-bar {
+      display: flex;
+      height: 9px;
+      border-radius: 5px;
+      overflow: hidden;
+      background: rgba(97,218,251,0.06);
+      margin-bottom: 10px;
+    }
+    .ghl-seg { height: 100%; }
+    .ghl-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      font-size: 0.72rem;
+      color: #8b949e;
+    }
+    .ghl-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+
+    .ghl-foot { margin-top: 16px; font-size: 0.68rem; color: rgba(139,148,158,0.6); }
+    .ghl-foot a { color: rgba(97,218,251,0.6); }
+    .ghl-foot a:hover { color: #61dafb; }
+
+    /* ─── VENTANA DE EDITOR (código A*) ─────────── */
+    .editor-window {
+      max-width: 860px;
+      margin: 56px auto 0;
+      border: 1px solid rgba(97,218,251,0.16);
+      border-radius: 10px;
+      background: #0a0e14;
+      overflow: hidden;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.45);
+      font-family: 'Source Code Pro', monospace;
+    }
+
+    .editor-titlebar {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 14px;
+      background: #0d1420;
+      border-bottom: 1px solid rgba(97,218,251,0.1);
+    }
+    .ed-dot { width: 11px; height: 11px; border-radius: 50%; }
+    .ed-red { background: #ff5f57; }
+    .ed-yellow { background: #febc2e; }
+    .ed-green { background: #28c840; }
+
+    .editor-tab {
+      margin-left: 12px;
+      font-size: 0.78rem;
+      color: #e6edf3;
+      background: rgba(97,218,251,0.08);
+      border: 1px solid rgba(97,218,251,0.18);
+      border-bottom-color: transparent;
+      border-radius: 6px 6px 0 0;
+      padding: 4px 12px;
+    }
+    .editor-tab i { color: #61dafb; margin-right: 5px; }
+
+    .editor-meta { margin-left: auto; font-size: 0.68rem; color: #8b949e; }
+
+    .editor-body { overflow-x: auto; }
+    .editor-body pre {
+      margin: 0;
+      padding: 16px 0;
+      font-size: 0.8rem;
+      line-height: 1.65;
+      counter-reset: line;
+    }
+    .editor-body .ln {
+      display: block;
+      counter-increment: line;
+      padding: 0 18px 0 4.2em;
+      position: relative;
+      white-space: pre;
+      color: #c9d1d9;
+    }
+    .editor-body .ln::before {
+      content: counter(line);
+      position: absolute;
+      left: 0;
+      width: 3em;
+      text-align: right;
+      color: rgba(139,148,158,0.4);
+      user-select: none;
+    }
+    .editor-body .ln:hover { background: rgba(97,218,251,0.04); }
+
+    /* Paleta de sintaxis (coherente con la marca) */
+    .editor-body .kw { color: #c678dd; }             /* keywords    */
+    .editor-body .ty { color: #61dafb; }             /* tipos       */
+    .editor-body .fn { color: #5fa8ff; }             /* métodos     */
+    .editor-body .nu { color: #fbbc05; }             /* números     */
+    .editor-body .cm { color: #7d8590; font-style: italic; } /* comentarios */
+
+    .editor-statusbar {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 8px 16px;
+      background: #0d1420;
+      border-top: 1px solid rgba(97,218,251,0.1);
+      font-size: 0.72rem;
+      color: #8b949e;
+    }
+    .editor-statusbar i { color: #61dafb; margin-right: 5px; }
+    .editor-statusbar a { color: #61dafb; margin-left: auto; transition: color 0.2s ease; }
+    .editor-statusbar a + a { margin-left: 0; }
+    .editor-statusbar a:hover { color: #c678dd; }
+
+    /* ─── ARTE GENERATIVO ───────────────────────── */
+    .genart-wrap { max-width: 860px; margin: 0 auto; }
+
+    .genart-controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .genart-btn {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.82rem;
+      padding: 8px 18px;
+      background: rgba(97,218,251,0.06);
+      border: 1px solid rgba(97,218,251,0.22);
+      border-radius: 6px;
+      color: #c9d1d9;
+      cursor: pointer;
+      transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.15s ease;
+    }
+    .genart-btn:hover { transform: translateY(-2px); border-color: #61dafb; color: #61dafb; }
+    .genart-btn.active {
+      background: linear-gradient(135deg, rgba(97,218,251,0.18), rgba(198,120,221,0.18));
+      border-color: #61dafb;
+      color: #61dafb;
+    }
+
+    .genart-frame {
+      position: relative;
+      border: 1px solid rgba(97,218,251,0.16);
+      border-radius: 10px;
+      background: radial-gradient(ellipse at 50% 50%, rgba(97,218,251,0.05) 0%, rgba(8,12,17,0.6) 75%);
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.35), inset 0 0 60px rgba(97,218,251,0.03);
+    }
+    .genart-frame canvas { display: block; width: 100%; }
+
+    /* Esquinas de visor tipo "plano técnico" */
+    .genart-frame::before, .genart-frame::after {
+      content: '';
+      position: absolute;
+      width: 22px; height: 22px;
+      border: 2px solid rgba(97,218,251,0.45);
+      pointer-events: none;
+    }
+    .genart-frame::before { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+    .genart-frame::after { bottom: 8px; right: 8px; border-left: none; border-top: none; }
+
+    .genart-formula {
+      text-align: center;
+      margin-top: 16px;
+    }
+    .genart-formula code {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.95rem;
+      color: #61dafb;
+      background: rgba(97,218,251,0.06);
+      border: 1px solid rgba(97,218,251,0.15);
+      border-radius: 6px;
+      padding: 8px 18px;
+      display: inline-block;
+      letter-spacing: 0.5px;
+      font-variant-numeric: tabular-nums; /* los parámetros cambian sin "bailar" */
+    }
+
+    .genart-note {
+      text-align: center;
+      margin-top: 14px;
+      font-size: 0.8rem;
+      color: #8b949e;
+      font-family: 'Source Code Pro', monospace;
+    }
+
   </style>
   <!-- Módulos CSS externos -->
   <link rel="stylesheet" href="assets/css/loading.css">
@@ -1762,29 +2048,31 @@
   <!-- ===== HEADER ===== -->
   <header class="site-header">
     <div class="nav-container">
-      <a href="#home" class="logo">
-        <div class="logo-image">
-          <img src="images/mifoto.jpg" alt="Antonio Soria" loading="lazy">
-        </div>
-        <span class="logo-text">Antonio <span>Soria</span></span>
-      </a>
+      <div class="nav-left">
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Menú" aria-expanded="false">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+        <a href="#home" class="logo">
+          <div class="logo-image">
+            <img src="images/mifoto.jpg" alt="Antonio Soria" loading="lazy">
+          </div>
+          <span class="logo-text">Antonio <span>Soria</span></span>
+        </a>
+      </div>
 
       <ul class="nav-menu" id="nav-menu">
-        <li><a href="#home"     data-i18n="idx.nav.home"     class="active">Inicio</a></li>
-        <li><a href="#about"    data-i18n="idx.nav.about">Sobre mí</a></li>
-        <li><a href="#skills"   data-i18n="idx.nav.skills">Habilidades</a></li>
-        <li><a href="#research" data-i18n="idx.nav.research">Intereses</a></li>
-        <li><a href="#projects" data-i18n="idx.nav.projects">Proyectos</a></li>
-        <li><a href="#studio"   data-i18n="idx.nav.studio">Studio</a></li>
-        <li><a href="#contact"  data-i18n="idx.nav.contact">Contacto</a></li>
+        <li><a href="index.html"             data-i18n="nav.home" class="active">Inicio</a></li>
+        <li><a href="sobre-mi.html"          data-i18n="nav.about">Sobre Mí</a></li>
+        <li><a href="proyecto-terminal.html" data-i18n="nav.thesis">Proyecto Terminal</a></li>
+        <li><a href="portafolio.html"        data-i18n="nav.portfolio">Portafolio</a></li>
+        <li><a href="divulgacion.html"       data-i18n="nav.outreach">Divulgación</a></li>
+        <li><a href="algoritmos.html"        data-i18n="nav.algos">Algoritmos</a></li>
+        <li><a href="contacto.html"          data-i18n="nav.contact">Contacto</a></li>
       </ul>
 
       <div class="header-buttons">
         <button class="language-btn" id="language-toggle" title="Cambiar idioma">
           <span class="language-flag">🇲🇽</span>
-        </button>
-        <button class="hamburger-btn" id="hamburger-btn" aria-label="Menú" aria-expanded="false">
-          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
         </button>
       </div>
     </div>
@@ -1792,13 +2080,13 @@
 
   <!-- Mobile nav -->
   <nav class="mobile-nav" id="mobile-nav">
-    <a href="#home">     <i class="fas fa-home"></i>         <span data-i18n="idx.nav.home">Inicio</span></a>
-    <a href="#about">    <i class="fas fa-user"></i>         <span data-i18n="idx.nav.about">Sobre mí</span></a>
-    <a href="#skills">   <i class="fas fa-code"></i>         <span data-i18n="idx.nav.skills">Habilidades</span></a>
-    <a href="#research"> <i class="fas fa-flask"></i>        <span data-i18n="idx.nav.research">Intereses</span></a>
-    <a href="#projects"> <i class="fas fa-project-diagram"></i><span data-i18n="idx.nav.projects">Proyectos</span></a>
-    <a href="#studio">   <i class="fas fa-laptop-code"></i>  <span data-i18n="idx.nav.studio">Studio</span></a>
-    <a href="#contact">  <i class="fas fa-envelope"></i>     <span data-i18n="idx.nav.contact">Contacto</span></a>
+    <a href="index.html" class="active"><i class="fas fa-home"></i>          <span data-i18n="nav.home">Inicio</span></a>
+    <a href="sobre-mi.html">          <i class="fas fa-user"></i>            <span data-i18n="nav.about">Sobre Mí</span></a>
+    <a href="proyecto-terminal.html"> <i class="fas fa-graduation-cap"></i>  <span data-i18n="nav.thesis">Proyecto Terminal</span></a>
+    <a href="portafolio.html">        <i class="fas fa-code"></i>            <span data-i18n="nav.portfolio">Portafolio</span></a>
+    <a href="divulgacion.html">       <i class="fas fa-flask"></i>           <span data-i18n="nav.outreach">Divulgación</span></a>
+    <a href="algoritmos.html">        <i class="fas fa-project-diagram"></i> <span data-i18n="nav.algos">Algoritmos</span></a>
+    <a href="contacto.html">          <i class="fas fa-envelope"></i>        <span data-i18n="nav.contact">Contacto</span></a>
   </nav>
 
   <!-- ===== MEGA NAV PANEL ===== -->
@@ -2086,11 +2374,6 @@
         </div>
       </div>
 
-      <div style="text-align:center; margin-top:44px;">
-        <a href="sobre-mi.html" class="btn" style="background:linear-gradient(135deg,#61dafb,#3d85c6); color:#0d1117; font-weight:600;">
-          <i class="fas fa-user-graduate"></i> <span data-i18n="idx.about.more">Conoce más sobre mí</span> <i class="fas fa-arrow-right" style="margin-left:4px;"></i>
-        </a>
-      </div>
     </div>
   </section>
 
@@ -2128,6 +2411,46 @@
             <li data-i18n="idx.sk.ai.li4">Resolución de Problemas</li>
             <li data-i18n="idx.sk.ai.li5">Lógica Computacional</li>
           </ul>
+        </div>
+      </div>
+
+      <!-- ===== VENTANA DE EDITOR: código A* real (show, don't tell) ===== -->
+      <div class="editor-window fade-in" aria-label="Fragmento de código: algoritmo A* en Java">
+        <div class="editor-titlebar">
+          <span class="ed-dot ed-red"></span><span class="ed-dot ed-yellow"></span><span class="ed-dot ed-green"></span>
+          <span class="editor-tab"><i class="fab fa-java"></i> AStar.java</span>
+          <span class="editor-meta">Java · UTF-8</span>
+        </div>
+        <div class="editor-body">
+          <pre><code><span class="ln"><span class="cm">/** A*: f(n) = g(n) + h(n) — con heurística admisible, el camino es óptimo. */</span></span>
+<span class="ln"><span class="kw">public</span> <span class="ty">List</span>&lt;<span class="ty">Node</span>&gt; <span class="fn">aStar</span>(<span class="ty">Node</span> start, <span class="ty">Node</span> goal) {</span>
+<span class="ln">    <span class="kw">var</span> open = <span class="kw">new</span> <span class="ty">PriorityQueue</span>&lt;<span class="ty">Node</span>&gt;(comparingDouble(n -&gt; n.f));</span>
+<span class="ln">    <span class="ty">Map</span>&lt;<span class="ty">Node</span>, <span class="ty">Double</span>&gt; g = <span class="kw">new</span> <span class="ty">HashMap</span>&lt;&gt;();</span>
+<span class="ln">    g.put(start, <span class="nu">0.0</span>);</span>
+<span class="ln">    start.f = <span class="fn">heuristic</span>(start, goal);</span>
+<span class="ln">    open.add(start);</span>
+<span class="ln"></span>
+<span class="ln">    <span class="kw">while</span> (!open.isEmpty()) {</span>
+<span class="ln">        <span class="ty">Node</span> current = open.poll();</span>
+<span class="ln">        <span class="kw">if</span> (current.equals(goal)) <span class="kw">return</span> <span class="fn">reconstructPath</span>(current);</span>
+<span class="ln"></span>
+<span class="ln">        <span class="kw">for</span> (<span class="ty">Edge</span> e : current.neighbors()) {</span>
+<span class="ln">            <span class="kw">double</span> tentative = g.get(current) + e.weight;</span>
+<span class="ln">            <span class="kw">if</span> (tentative &lt; g.getOrDefault(e.to, <span class="nu">INFINITY</span>)) {</span>
+<span class="ln">                e.to.parent = current;               <span class="cm">// de dónde venimos</span></span>
+<span class="ln">                g.put(e.to, tentative);              <span class="cm">// mejor costo conocido</span></span>
+<span class="ln">                e.to.f = tentative + <span class="fn">heuristic</span>(e.to, goal);</span>
+<span class="ln">                open.remove(e.to); open.add(e.to);   <span class="cm">// re-priorizar en la cola</span></span>
+<span class="ln">            }</span>
+<span class="ln">        }</span>
+<span class="ln">    }</span>
+<span class="ln">    <span class="kw">return</span> <span class="ty">List</span>.of();                        <span class="cm">// no existe camino</span></span>
+<span class="ln">}</span></code></pre>
+        </div>
+        <div class="editor-statusbar">
+          <span><i class="fas fa-code-branch"></i> main · Inteligencia-Artificial</span>
+          <a href="https://github.com/PurppleAlien/Inteligencia-Artificial" target="_blank" rel="noopener" data-i18n="idx.editor.repo">ver repositorio completo →</a>
+          <a href="algoritmos.html" data-i18n="idx.editor.demo">verlo en acción →</a>
         </div>
       </div>
     </div>
@@ -2176,11 +2499,6 @@
         <div class="interest-item fade-in delay-3"><i class="fas fa-cogs"></i><span>Optimización</span></div>
       </div>
 
-      <div style="text-align:center; margin-top:44px;">
-        <a href="divulgacion.html" class="btn" style="background:linear-gradient(135deg,#61dafb,#3d85c6); color:#0d1117; font-weight:600;">
-          <i class="fas fa-flask"></i> <span data-i18n="idx.research.more">Ver divulgación científica</span> <i class="fas fa-arrow-right" style="margin-left:4px;"></i>
-        </a>
-      </div>
     </div>
   </section>
 
@@ -2347,11 +2665,10 @@
 
       </div>
 
-      <div style="text-align:center; margin-top: 40px;">
-        <a href="portafolio.html" class="btn btn-outline" style="border-color:rgba(97,218,251,0.4); color:#61dafb;">
-          <i class="fas fa-arrow-right"></i> Ver portafolio completo
-        </a>
-      </div>
+      <!-- GitHub en vivo: lo rellena js/github-live.js (API pública + caché 1h).
+           Si no hay red o se agota el rate limit, permanece oculto. -->
+      <div id="github-live" class="github-live" hidden></div>
+
     </div>
   </section>
   <!-- ===== STUDIO ===== -->
@@ -2424,6 +2741,29 @@
     </div>
   </section>
 
+  <!-- ===== ARTE GENERATIVO (matemáticas ∩ código ∩ arte) ===== -->
+  <section class="section section-dark" id="arte">
+    <div class="container">
+      <h2 class="section-title fade-in" data-i18n="idx.art.title">Arte Generativo</h2>
+      <p class="section-subtitle fade-in" data-i18n="idx.art.sub">Donde las matemáticas se vuelven arte: cada pieza es una fórmula dibujándose a sí misma, en vivo, con las mismas herramientas con las que programo.</p>
+
+      <div class="genart-wrap fade-in">
+        <div class="genart-controls" role="tablist" aria-label="Piezas de arte generativo">
+          <button class="genart-btn active" data-piece="rose" data-i18n="idx.art.rose">Rosa polar</button>
+          <button class="genart-btn" data-piece="lissajous">Lissajous</button>
+          <button class="genart-btn" data-piece="phyllotaxis" data-i18n="idx.art.phyllo">Filotaxis</button>
+        </div>
+        <div class="genart-frame">
+          <canvas id="genart-canvas" aria-label="Lienzo de arte generativo matemático"></canvas>
+        </div>
+        <div class="genart-formula">
+          <code id="genart-formula">r(θ) = cos(kθ)</code>
+        </div>
+        <p class="genart-note" data-i18n="idx.art.note">Rosa polar · curvas de Lissajous · filotaxis con el ángulo áureo (137.508°) — canvas 2D, sin librerías.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== CONTACT ===== -->
   <section class="section contact-section" id="contact">
     <div class="container">
@@ -2477,11 +2817,6 @@
 
       </div>
 
-      <div style="text-align:center; margin-top:44px;">
-        <a href="contacto.html" class="btn" style="background:linear-gradient(135deg,#61dafb,#3d85c6); color:#0d1117; font-weight:600;">
-          <i class="fas fa-paper-plane"></i> <span data-i18n="idx.contact.more">Más detalles de contacto</span> <i class="fas fa-arrow-right" style="margin-left:4px;"></i>
-        </a>
-      </div>
     </div>
   </section>
 
@@ -2489,18 +2824,20 @@
   <section class="philosophy" id="philosophy">
     <div class="container">
       <h2 class="section-title" data-i18n="idx.philosophy.title">Mi Filosofía</h2>
-      <p class="philosophy-sub" data-i18n="idx.philosophy.sub">Me inspira el pensamiento de Claude Shannon:</p>
+      <p class="philosophy-sub" data-i18n="idx.philosophy.sub">Me inspira el pensamiento de los grandes: Turing, Euler, Gauss y von Neumann.</p>
 
       <ul class="axioms">
-        <li data-i18n="idx.ax1">La información es la resolución de la incertidumbre, y las matemáticas son el lenguaje perfecto para cuantificarla.</li>
-        <li data-i18n="idx.ax2">Los problemas complejos del mundo real a menudo tienen soluciones elegantes cuando se abordan desde múltiples perspectivas: matemáticas, código y teoría de la información.</li>
-        <li data-i18n="idx.ax3">La belleza de un algoritmo no solo está en su eficiencia, sino en cómo modela y resuelve problemas del mundo físico.</li>
-        <li data-i18n="idx.ax4">El universo mismo puede entenderse como un sistema de procesamiento de información, donde las matemáticas son tanto el lenguaje como el mecanismo.</li>
+        <li data-i18n="idx.ax1">Toda computación, por compleja que parezca, se reduce a pasos simples y verificables — Turing nos enseñó que pensar también es computar.</li>
+        <li data-i18n="idx.ax2">La elegancia importa: como e^iπ + 1 = 0, la mejor solución es la que une ideas lejanas en una sola línea.</li>
+        <li data-i18n="idx.ax3">Las matemáticas son la reina de las ciencias — y un algoritmo hermoso es un teorema que además se ejecuta.</li>
+        <li data-i18n="idx.ax4">Entre la arquitectura de un computador y la estructura de un problema hay un puente: quien lo cruza en ambos sentidos, como von Neumann, resuelve lo que otros solo describen.</li>
       </ul>
 
-      <div class="quote-block fade-in">
-        <p class="quote-text" data-i18n="idx.quote.text">Visualizo un día en el que volaremos sobre un mundo en el que los seres humanos sean libres de la monotonía y vivan la vida como debería vivirse</p>
-        <span class="quote-author" data-i18n="idx.quote.author">— Claude Shannon, padre de la teoría de la información</span>
+      <!-- Cita rotatoria: js/main.js (initQuoteRotator) cicla Turing → Gauss →
+           Euler → von Neumann, bilingüe vía pageTranslations (idx.quote.qN.*) -->
+      <div class="quote-block fade-in" id="quote-rotator">
+        <p class="quote-text" id="quote-text">Solo podemos ver una corta distancia hacia adelante, pero podemos ver allí mucho por hacer.</p>
+        <span class="quote-author" id="quote-author">— Alan Turing, padre de la computación</span>
       </div>
     </div>
   </section>
@@ -2524,6 +2861,10 @@
         <a href="mailto:antonio.soria8r@gmail.com"             class="social-link" title="Email"><i class="fas fa-envelope"></i></a>
         <a href="https://wa.me/525554646553"                   class="social-link" title="WhatsApp" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
       </div>
+      <p class="made-by-hand">
+        <i class="fas fa-code"></i> <span data-i18n="idx.footer.handmade">hecho a mano — HTML · CSS · JS vanilla, sin frameworks</span> ·
+        <a href="https://github.com/PurppleAlien/PurppleAlien.github.io" target="_blank" rel="noopener" data-i18n="idx.footer.source">ver código fuente de este sitio</a>
+      </p>
       <p class="copyright" data-i18n="idx.footer.rights">© 2026 Antonio Soria. Todos los derechos reservados.</p>
     </div>
   </footer>
@@ -2579,9 +2920,10 @@
   <script src="js/page-init.js"></script>
   <script src="js/main.js"></script>
   <!-- Transición de página (cortina entre páginas) -->
-  <script src="js/page-transition.js"></script>
   <!-- Escena 3D del hero (módulo ES, usa el import map de Three.js de arriba) -->
   <script type="module" src="js/hero3d.js"></script>
+  <script src="js/generative-art.js" defer></script>
+  <script src="js/github-live.js" defer></script>
 
   <script>
   /* ═══════════════════════════════════════════════════════════
@@ -2619,7 +2961,7 @@
       const items = panel.querySelectorAll('.mnp-item');
       items.forEach((item, i) => {
         item.style.opacity    = '0';
-        item.style.transform  = 'translateX(24px)';
+        item.style.transform  = 'translateX(-24px)';
         item.style.transition = 'none';
         requestAnimationFrame(() => {
           setTimeout(() => {
@@ -2712,13 +3054,21 @@
       if (fabOpen && !group.contains(e.target)) closeFab();
     });
 
-    // Mostrar al mover mouse o scroll hacia arriba
+    // Mostrar al mover mouse o scroll hacia arriba.
+    // El mousemove va limitado a 1 vez cada 200ms: sin throttle, cada pixel de
+    // movimiento reprograma timers y ensucia el presupuesto del frame.
     let lastScrollY = window.scrollY;
     window.addEventListener('scroll', () => {
       if (window.scrollY < lastScrollY) showGroup(); // scroll hacia arriba
       lastScrollY = window.scrollY;
     }, { passive: true });
-    document.addEventListener('mousemove', showGroup, { passive: true });
+    let lastMove = 0;
+    document.addEventListener('mousemove', () => {
+      const now = performance.now();
+      if (now - lastMove < 200) return;
+      lastMove = now;
+      showGroup();
+    }, { passive: true });
 
     // Mostrar al cargar
     setTimeout(showGroup, 800);
@@ -2746,6 +3096,22 @@
     const CYAN = '#61dafb', PURPLE = '#c678dd';
     let targets = [], parts = [];
 
+    // Sprites pre-horneados (carácter + color + glow): dibujar con shadowBlur
+    // cientos de glifos por frame es lo que hacía tartamudear la animación.
+    // Con el glow horneado una sola vez, el loop solo hace drawImage (barato).
+    const SPRITE = 32, HALF = SPRITE / 2, spriteCache = {};
+    function glyphSprite(ch, col) {
+      const k = ch + col;
+      if (spriteCache[k]) return spriteCache[k];
+      const s = document.createElement('canvas'); s.width = s.height = SPRITE;
+      const sc = s.getContext('2d');
+      sc.font = '16px "Source Code Pro","Courier New",monospace';
+      sc.textAlign = 'center'; sc.textBaseline = 'middle';
+      sc.fillStyle = col; sc.shadowColor = col; sc.shadowBlur = 8;
+      sc.fillText(ch, HALF, HALF);
+      spriteCache[k] = s; return s;
+    }
+
     function build() {
       // muestrea los píxeles de "AS" para usarlos como objetivos
       const o = document.createElement('canvas'); o.width = 600; o.height = 260;
@@ -2757,10 +3123,11 @@
       for (let py = 0; py < 260; py += step) for (let px = 0; px < 600; px += step) {
         if (d[(py * 600 + px) * 4 + 3] > 128) targets.push({ x: W / 2 + (px - 300) * scale, y: H / 2 + (py - 130) * scale });
       }
-      while (parts.length < targets.length) parts.push({
-        x: Math.random() * W, y: Math.random() * H,
-        ch: CHARS[(Math.random() * CHARS.length) | 0], col: Math.random() < 0.5 ? CYAN : PURPLE,
-      });
+      while (parts.length < targets.length) {
+        const ch = CHARS[(Math.random() * CHARS.length) | 0];
+        const col = Math.random() < 0.5 ? CYAN : PURPLE;
+        parts.push({ x: Math.random() * W, y: Math.random() * H, ch, col, spr: glyphSprite(ch, col) });
+      }
       parts.length = targets.length;
       for (let i = 0; i < parts.length; i++) { parts[i].tx = targets[i].x; parts[i].ty = targets[i].y; }
     }
@@ -2771,7 +3138,7 @@
     // tiempo real; si el hilo se bloquea entre frames (carga de Three.js/GSAP,
     // pestaña oculta, dispositivo lento) el hueco cuenta máximo 100ms, así la
     // animación nunca se salta fases ni se queda atascada.
-    const FORM = 1.5, HOLD = 0.7, DISP = 0.85, MAX_DT = 0.1;
+    const FORM = 1.75, HOLD = 0.8, DISP = 0.95, MAX_DT = 0.1; // total 3.5s
     const easeOut = (k) => 1 - Math.pow(1 - k, 3);
     let el = 0, prev = null;
     function frame(now) {
@@ -2779,7 +3146,6 @@
       el += Math.min((now - prev) / 1000, MAX_DT);
       prev = now;
       ctx.fillStyle = 'rgba(6,10,15,0.32)'; ctx.fillRect(0, 0, W, H);
-      ctx.font = '16px "Source Code Pro",monospace'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
       let alpha = 1;
       if (el < FORM) {                                  // formar "AS"
         const e = easeOut(el / FORM);
@@ -2792,8 +3158,9 @@
         for (const p of parts) { const dx = p.tx - W / 2, dy = p.ty - H / 2, d = Math.hypot(dx, dy) || 1;
           p.x = p.tx + dx / d * push; p.y = p.ty + dy / d * push; }
       } else { done(); return; }
-      for (const p of parts) { ctx.globalAlpha = alpha; ctx.fillStyle = p.col; ctx.shadowColor = p.col; ctx.shadowBlur = 8; ctx.fillText(p.ch, p.x, p.y); }
-      ctx.globalAlpha = 1; ctx.shadowBlur = 0;
+      ctx.globalAlpha = alpha;
+      for (const p of parts) ctx.drawImage(p.spr, p.x - HALF, p.y - HALF);
+      ctx.globalAlpha = 1;
       requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
@@ -3082,6 +3449,9 @@
     const container = document.getElementById('hero-particles');
     if (!container) return;
 
+    // Móvil: la mitad de partículas — cada una es una capa compuesta animada.
+    const lite = window.matchMedia('(max-width: 768px)').matches;
+
     const katakana   = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン'.split('');
     const mathExtra  = ['∑','∫','∂','∇','∈','∉','⊂','⊃','≡','≠','∀','∃','∅','ℝ','ℤ','ℕ','π','φ','λ','θ','α','β','γ','δ','ε','∞','∏'];
     const gameSyms   = ['▲','●','■','♦','◈','▸','♟','⌨','⚡','✦','★','◆','⊞','⎔'];
@@ -3106,15 +3476,18 @@
       }
     }
 
-    addParticles(katakana,  18, () => `rgba(198,120,221,${0.04 + Math.random() * 0.09})`);
-    addParticles(mathExtra, 14, () => `rgba(97,218,251,${0.05 + Math.random() * 0.1})`);
-    addParticles(gameSyms,  10, () => `rgba(0,212,170,${0.04 + Math.random() * 0.08})`);
+    addParticles(katakana,  lite ? 9 : 18, () => `rgba(198,120,221,${0.04 + Math.random() * 0.09})`);
+    addParticles(mathExtra, lite ? 7 : 14, () => `rgba(97,218,251,${0.05 + Math.random() * 0.1})`);
+    addParticles(gameSyms,  lite ? 5 : 10, () => `rgba(0,212,170,${0.04 + Math.random() * 0.08})`);
   })();
 
   /* ═══════════════════════════════════════════════════════════
      FLOATING MATH FORMULAS across all sections
   ═══════════════════════════════════════════════════════════ */
   (function () {
+    // Móvil: sin fórmulas flotantes — capas animadas extra que a ese tamaño
+    // apenas se ven y compiten con el scroll.
+    if (window.matchMedia('(max-width: 768px)').matches) return;
     const formulas = [
       'P(A|B) = P(B|A)·P(A) / P(B)',
       'E = mc²',
@@ -3153,6 +3526,8 @@
      CODE RAIN COLUMNS — subtle side decoration in dark sections
   ═══════════════════════════════════════════════════════════ */
   (function () {
+    // Móvil: sin columnas de lluvia de código (2 columnas × 50 spans × sección).
+    if (window.matchMedia('(max-width: 768px)').matches) return;
     const kata   = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ'.split('');
     const code   = ['0','1','{}','[]','()','if','fn','->','&&','||','<>','::','=>'];
     const pool   = [...kata, ...code];
@@ -3178,6 +3553,8 @@
      MANGA PANEL DECORATIONS — Japanese-style panel borders
   ═══════════════════════════════════════════════════════════ */
   (function () {
+    // Móvil: sin paneles decorativos (animación infinita fuera de foco).
+    if (window.matchMedia('(max-width: 768px)').matches) return;
     const defs = [
       { parent: '#about',    top: '8%',  left: '2%',  w: 90,  h: 120, delay: 0 },
       { parent: '#skills',   top: '5%',  right: '1%', w: 70,  h: 90,  delay: 2 },
@@ -3380,5 +3757,7 @@
     }
   })();
   </script>
+  <script src="js/command-palette.js" defer></script>
+  <script src="js/status-bar.js" defer></script>
 </body>
 </html>

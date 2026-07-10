@@ -6,6 +6,13 @@
   <title>Visualizador de Algoritmos — Antonio Soria</title>
   <meta name="description" content="Visualizador interactivo de BFS, DFS y A* sobre grafos en tiempo real. Portfolio de Antonio Soria — Matemático y Desarrollador.">
 
+  <link rel="canonical" href="https://purpplealien.github.io/algoritmos.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url"  content="https://purpplealien.github.io/algoritmos.html">
+  <meta property="og:title" content="Visualizador de Algoritmos — Antonio Soria">
+  <meta property="og:description" content="Visualizador interactivo de BFS, DFS y A* sobre grafos, en tiempo real.">
+  <meta property="og:locale" content="es_MX">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Roboto:wght@300;400;500&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -181,12 +188,13 @@
         <span class="logo-text">Antonio <span>Soria</span></span>
       </a>
       <ul class="nav-menu" id="nav-menu">
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="sobre-mi.html">Sobre Mí</a></li>
-        <li><a href="portafolio.html">Portafolio</a></li>
-        <li><a href="algoritmos.html" class="active">Algoritmos</a></li>
-        <li><a href="divulgacion.html">Divulgación</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="index.html"             data-i18n="nav.home">Inicio</a></li>
+        <li><a href="sobre-mi.html"          data-i18n="nav.about">Sobre Mí</a></li>
+        <li><a href="proyecto-terminal.html" data-i18n="nav.thesis">Proyecto Terminal</a></li>
+        <li><a href="portafolio.html"        data-i18n="nav.portfolio">Portafolio</a></li>
+        <li><a href="divulgacion.html"       data-i18n="nav.outreach">Divulgación</a></li>
+        <li><a href="algoritmos.html" class="active" data-i18n="nav.algos">Algoritmos</a></li>
+        <li><a href="contacto.html"          data-i18n="nav.contact">Contacto</a></li>
       </ul>
       <div class="header-buttons">
         <button class="language-btn" id="language-toggle" title="Cambiar idioma"><span class="language-flag">🇲🇽</span></button>
@@ -198,11 +206,13 @@
   </header>
 
   <nav class="mobile-nav" id="mobile-nav">
-    <a href="index.html"><i class="fas fa-home"></i><span>Inicio</span></a>
-    <a href="sobre-mi.html"><i class="fas fa-user"></i><span>Sobre Mí</span></a>
-    <a href="portafolio.html"><i class="fas fa-code-branch"></i><span>Portafolio</span></a>
-    <a href="algoritmos.html" class="active"><i class="fas fa-project-diagram"></i><span>Algoritmos</span></a>
-    <a href="contacto.html"><i class="fas fa-envelope"></i><span>Contacto</span></a>
+    <a href="index.html">             <i class="fas fa-home"></i>            <span data-i18n="nav.home">Inicio</span></a>
+    <a href="sobre-mi.html">          <i class="fas fa-user"></i>            <span data-i18n="nav.about">Sobre Mí</span></a>
+    <a href="proyecto-terminal.html"> <i class="fas fa-graduation-cap"></i>  <span data-i18n="nav.thesis">Proyecto Terminal</span></a>
+    <a href="portafolio.html">        <i class="fas fa-code"></i>            <span data-i18n="nav.portfolio">Portafolio</span></a>
+    <a href="divulgacion.html">       <i class="fas fa-flask"></i>           <span data-i18n="nav.outreach">Divulgación</span></a>
+    <a href="algoritmos.html" class="active"><i class="fas fa-project-diagram"></i> <span data-i18n="nav.algos">Algoritmos</span></a>
+    <a href="contacto.html">          <i class="fas fa-envelope"></i>        <span data-i18n="nav.contact">Contacto</span></a>
   </nav>
 
   <main>
@@ -349,6 +359,7 @@
   <!-- Escena 3D de fondo + cursor cometa + transición de página -->
   <script type="module" src="js/hero3d.js"></script>
   <script src="js/cursor.js" defer></script>
-  <script src="js/page-transition.js"></script>
+  <script src="js/command-palette.js" defer></script>
+  <script src="js/status-bar.js" defer></script>
 </body>
 </html>

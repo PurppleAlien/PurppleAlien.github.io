@@ -6,6 +6,13 @@
   <title>Sobre Mí — Antonio Soria</title>
   <meta name="description" content="Trayectoria de Antonio Soria: Matemático y Programador, UNAM, UAM, IA y algoritmos.">
 
+  <link rel="canonical" href="https://purpplealien.github.io/sobre-mi.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url"  content="https://purpplealien.github.io/sobre-mi.html">
+  <meta property="og:title" content="Sobre Mí — Antonio Soria">
+  <meta property="og:description" content="Trayectoria de Antonio Soria: Matemático y Programador (UNAM · UAM Iztapalapa).">
+  <meta property="og:locale" content="es_MX">
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -124,11 +131,13 @@
       </a>
 
       <ul class="nav-menu">
-        <li><a href="index.html"       data-i18n="nav.home">Inicio</a></li>
+        <li><a href="index.html"             data-i18n="nav.home">Inicio</a></li>
         <li><a href="sobre-mi.html" class="active" data-i18n="nav.about">Sobre Mí</a></li>
-        <li><a href="portafolio.html"  data-i18n="nav.portfolio">Portafolio</a></li>
-        <li><a href="divulgacion.html" data-i18n="nav.outreach">Divulgación</a></li>
-        <li><a href="contacto.html"    data-i18n="nav.contact">Contacto</a></li>
+        <li><a href="proyecto-terminal.html" data-i18n="nav.thesis">Proyecto Terminal</a></li>
+        <li><a href="portafolio.html"        data-i18n="nav.portfolio">Portafolio</a></li>
+        <li><a href="divulgacion.html"       data-i18n="nav.outreach">Divulgación</a></li>
+        <li><a href="algoritmos.html"        data-i18n="nav.algos">Algoritmos</a></li>
+        <li><a href="contacto.html"          data-i18n="nav.contact">Contacto</a></li>
       </ul>
 
       <div class="header-buttons">
@@ -144,11 +153,13 @@
 
   <!-- Mobile nav -->
   <nav class="mobile-nav" id="mobile-nav">
-    <a href="index.html">       <i class="fas fa-home"></i>      <span data-i18n="nav.home">Inicio</span></a>
-    <a href="sobre-mi.html" class="active"><i class="fas fa-user"></i> <span data-i18n="nav.about">Sobre Mí</span></a>
-    <a href="portafolio.html">  <i class="fas fa-code"></i>      <span data-i18n="nav.portfolio">Portafolio</span></a>
-    <a href="divulgacion.html"> <i class="fas fa-flask"></i>     <span data-i18n="nav.outreach">Divulgación</span></a>
-    <a href="contacto.html">    <i class="fas fa-envelope"></i>  <span data-i18n="nav.contact">Contacto</span></a>
+    <a href="index.html">             <i class="fas fa-home"></i>            <span data-i18n="nav.home">Inicio</span></a>
+    <a href="sobre-mi.html" class="active"><i class="fas fa-user"></i>       <span data-i18n="nav.about">Sobre Mí</span></a>
+    <a href="proyecto-terminal.html"> <i class="fas fa-graduation-cap"></i>  <span data-i18n="nav.thesis">Proyecto Terminal</span></a>
+    <a href="portafolio.html">        <i class="fas fa-code"></i>            <span data-i18n="nav.portfolio">Portafolio</span></a>
+    <a href="divulgacion.html">       <i class="fas fa-flask"></i>           <span data-i18n="nav.outreach">Divulgación</span></a>
+    <a href="algoritmos.html">        <i class="fas fa-project-diagram"></i> <span data-i18n="nav.algos">Algoritmos</span></a>
+    <a href="contacto.html">          <i class="fas fa-envelope"></i>        <span data-i18n="nav.contact">Contacto</span></a>
   </nav>
 
   <!-- ===== MAIN ===== -->
@@ -276,8 +287,8 @@
         <p data-i18n="about.philosophy.p1">Creo firmemente que las matemáticas y la programación son dos caras de la misma moneda: herramientas poderosas para entender y transformar el mundo que nos rodea.</p>
         <p data-i18n="about.philosophy.p2">Mi enfoque se basa en la elegancia de las soluciones simples para problemas complejos, encontrando belleza en los algoritmos eficientes y en las estructuras matemáticas que describen nuestro universo.</p>
         <blockquote class="quote">
-          <p data-i18n="about.philosophy.quote">"La información es la resolución de la incertidumbre, y las matemáticas son el lenguaje perfecto para cuantificarla."</p>
-          <footer><strong data-i18n="about.philosophy.attr">— Inspirado por Claude Shannon</strong></footer>
+          <p data-i18n="about.philosophy.quote">"Las matemáticas son la reina de las ciencias — y un algoritmo hermoso es un teorema que además se ejecuta."</p>
+          <footer><strong data-i18n="about.philosophy.attr">— Inspirado por Turing, Euler, Gauss y von Neumann</strong></footer>
         </blockquote>
       </div>
     </section>
@@ -352,6 +363,7 @@
   <!-- Escena 3D de fondo + cursor cometa + transición de página -->
   <script type="module" src="js/hero3d.js"></script>
   <script src="js/cursor.js" defer></script>
-  <script src="js/page-transition.js"></script>
+  <script src="js/command-palette.js" defer></script>
+  <script src="js/status-bar.js" defer></script>
 </body>
 </html>

@@ -103,8 +103,10 @@ function initScene(container) {
   const W0 = window.innerWidth, H0 = window.innerHeight;
 
   // antialias solo en escritorio; pixelRatio acotado (clave para fluidez en pantallas HiDPI)
+  // Móvil renderiza a DPR 1: es fondo decorativo y el ahorro de fill-rate se
+  // traduce directamente en scroll fluido (el canvas ocupa toda la pantalla).
   const renderer = new THREE.WebGLRenderer({ antialias: !mobile, alpha: true, powerPreference: 'high-performance' });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile ? 1.25 : 1.5));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile ? 1.0 : 1.5));
   renderer.setSize(W0, H0);
   renderer.setClearColor(0x000000, 0); // transparente: deja ver el fondo original del hero (gradiente + foto)
   container.appendChild(renderer.domElement);
@@ -144,15 +146,19 @@ function initScene(container) {
   const SPACING = 9;          // profundidad entre figuras
   const FIRST_Z = -4;         // z de la primera figura
   // Geometrías aligeradas (menos segmentos = menos vértices = más FPS, mismo aspecto)
+  // En móvil se reducen aún más los segmentos: a tamaño de pantalla pequeña la
+  // diferencia visual es imperceptible y el ahorro de vértices es ~55%.
+  const TK1 = mobile ? 72 : 128, TK2 = mobile ? 64 : 110, TKR = mobile ? 10 : 16;
+  const TO1 = mobile ? [12, 44] : [18, 64], TO2 = mobile ? [10, 52] : [16, 80];
   const defs = [
-    { geo: new THREE.TorusKnotGeometry(0.95, 0.3, 128, 16),       color: DARK,   metalness: 1.0, roughness: 0.16, scale: 1.35 },
-    { geo: new THREE.IcosahedronGeometry(0.95, 0),                color: CYAN,   metalness: 0.85, roughness: 0.25 },
-    { geo: new THREE.TorusGeometry(0.72, 0.22, 18, 64),           color: PURPLE, metalness: 0.95, roughness: 0.22 },
-    { geo: new THREE.OctahedronGeometry(1.0, 0),                  color: DARK,   metalness: 1.0, roughness: 0.2 },
-    { geo: new THREE.DodecahedronGeometry(0.9, 0),                color: CYAN,   metalness: 0.9, roughness: 0.26 },
-    { geo: new THREE.TorusKnotGeometry(0.8, 0.27, 110, 16, 2, 3), color: PURPLE, metalness: 1.0, roughness: 0.2 },
-    { geo: new THREE.IcosahedronGeometry(1.05, 1),                color: DARK,   metalness: 1.0, roughness: 0.18, scale: 1.1 },
-    { geo: new THREE.TorusGeometry(0.85, 0.16, 16, 80),           color: CYAN,   metalness: 0.92, roughness: 0.22 },
+    { geo: new THREE.TorusKnotGeometry(0.95, 0.3, TK1, TKR),       color: DARK,   metalness: 1.0, roughness: 0.16, scale: 1.35 },
+    { geo: new THREE.IcosahedronGeometry(0.95, 0),                 color: CYAN,   metalness: 0.85, roughness: 0.25 },
+    { geo: new THREE.TorusGeometry(0.72, 0.22, TO1[0], TO1[1]),    color: PURPLE, metalness: 0.95, roughness: 0.22 },
+    { geo: new THREE.OctahedronGeometry(1.0, 0),                   color: DARK,   metalness: 1.0, roughness: 0.2 },
+    { geo: new THREE.DodecahedronGeometry(0.9, 0),                 color: CYAN,   metalness: 0.9, roughness: 0.26 },
+    { geo: new THREE.TorusKnotGeometry(0.8, 0.27, TK2, TKR, 2, 3), color: PURPLE, metalness: 1.0, roughness: 0.2 },
+    { geo: new THREE.IcosahedronGeometry(1.05, 1),                 color: DARK,   metalness: 1.0, roughness: 0.18, scale: 1.1 },
+    { geo: new THREE.TorusGeometry(0.85, 0.16, TO2[0], TO2[1]),    color: CYAN,   metalness: 0.92, roughness: 0.22 },
   ];
 
   const objs = [];
@@ -172,8 +178,9 @@ function initScene(container) {
     scene.add(m);
     objs.push(m);
 
-    // Cáscara wireframe envolviendo algunas figuras (toque "matemático")
-    if (i % 2 === 0) {
+    // Cáscara wireframe envolviendo algunas figuras (toque "matemático").
+    // En móvil se omite: cada cáscara duplica draw calls con aporte visual mínimo.
+    if (!mobile && i % 2 === 0) {
       const shell = new THREE.Mesh(
         new THREE.IcosahedronGeometry(1.9, 1),
         new THREE.MeshBasicMaterial({ color: CYAN, wireframe: true, transparent: true, opacity: 0.05 })
@@ -245,12 +252,18 @@ function initScene(container) {
   }, { passive: true });
 
   // Progreso de scroll de TODA la página (0 arriba → 1 abajo), suavizado.
-  let pTarget = 0, p = 0;
-  function onScroll() {
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    pTarget = max > 0 ? Math.min(Math.max(window.scrollY / max, 0), 1) : 0;
+  // La altura del documento se cachea (leerla en cada evento de scroll fuerza
+  // layout y compite con la fluidez); se re-mide en resize y al terminar la carga.
+  let pTarget = 0, p = 0, maxScroll = 1;
+  function measureScroll() {
+    maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
   }
+  function onScroll() {
+    pTarget = Math.min(Math.max(window.scrollY / maxScroll, 0), 1);
+  }
+  measureScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('load', () => { measureScroll(); onScroll(); });
   onScroll();
 
   /* ---------- Recorrido de la cámara ---------- */
@@ -267,16 +280,38 @@ function initScene(container) {
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
     renderer.setSize(w, h);
+    measureScroll();
   }
   window.addEventListener('resize', onResize, { passive: true });
 
   /* ---------- Loop ---------- */
+  // Calidad adaptativa: si el frame medio se sostiene por encima de ~22ms
+  // (≈45fps), degrada en dos pasos — primero baja la resolución de render un
+  // 20% (hasta mín. 0.75), después oculta la mitad de los glifos. Así los
+  // dispositivos lentos mantienen el scroll fluido sin castigar a los rápidos.
   const clock = new THREE.Clock();
+  let emaDt = 1 / 60, lastQualityCheck = 0, degradeLevel = 0;
+  function maybeDegrade(t) {
+    if (t - lastQualityCheck < 2 || degradeLevel >= 2) return;
+    lastQualityCheck = t;
+    if (emaDt <= 0.022) return;
+    degradeLevel++;
+    if (degradeLevel === 1) {
+      renderer.setPixelRatio(Math.max(0.75, renderer.getPixelRatio() * 0.8));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    } else {
+      for (let i = 0; i < glyphs.length; i++) if (i % 2) glyphs[i].visible = false;
+    }
+  }
+
   function tick() {
     requestAnimationFrame(tick);
     if (document.hidden) return;
 
-    const t = clock.getElapsedTime();
+    const dt = clock.getDelta();
+    const t = clock.elapsedTime;
+    emaDt += (dt - emaDt) * 0.05;
+    maybeDegrade(t);
 
     // Giro propio (vida idle) de cada figura
     objs.forEach((o) => {
@@ -290,6 +325,7 @@ function initScene(container) {
     // Glifos: leve flotación vertical + parpadeo (glow horneado en la textura)
     for (let i = 0; i < glyphs.length; i++) {
       const g = glyphs[i];
+      if (!g.visible) continue;
       g.position.y += g.userData.by;
       g.material.opacity = 0.55 + 0.4 * Math.sin(t * 1.6 + g.userData.ph);
     }

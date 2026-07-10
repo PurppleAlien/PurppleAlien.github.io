@@ -6,6 +6,13 @@
   <title>Portafolio — Antonio Soria</title>
   <meta name="description" content="Proyectos de Antonio Soria: algoritmos de IA, teoría de grafos, matemáticas aplicadas y sistemas en Java, C y Python.">
 
+  <link rel="canonical" href="https://purpplealien.github.io/portafolio.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url"  content="https://purpplealien.github.io/portafolio.html">
+  <meta property="og:title" content="Portafolio — Antonio Soria">
+  <meta property="og:description" content="Proyectos de Antonio Soria: algoritmos de IA, sistemas de gestión, juegos y más.">
+  <meta property="og:locale" content="es_MX">
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -351,12 +358,13 @@
       </a>
 
       <ul class="nav-menu">
-        <li><a href="index.html"       data-i18n="nav.home">Inicio</a></li>
-        <li><a href="sobre-mi.html"    data-i18n="nav.about">Sobre Mí</a></li>
-        <li><a href="portafolio.html" class="active" data-i18n="nav.portfolio">Portafolio</a></li>
+        <li><a href="index.html"             data-i18n="nav.home">Inicio</a></li>
+        <li><a href="sobre-mi.html"          data-i18n="nav.about">Sobre Mí</a></li>
         <li><a href="proyecto-terminal.html" data-i18n="nav.thesis">Proyecto Terminal</a></li>
-        <li><a href="divulgacion.html" data-i18n="nav.outreach">Divulgación</a></li>
-        <li><a href="contacto.html"    data-i18n="nav.contact">Contacto</a></li>
+        <li><a href="portafolio.html" class="active" data-i18n="nav.portfolio">Portafolio</a></li>
+        <li><a href="divulgacion.html"       data-i18n="nav.outreach">Divulgación</a></li>
+        <li><a href="algoritmos.html"        data-i18n="nav.algos">Algoritmos</a></li>
+        <li><a href="contacto.html"          data-i18n="nav.contact">Contacto</a></li>
       </ul>
 
       <div class="header-buttons">
@@ -372,12 +380,13 @@
 
   <!-- Mobile nav -->
   <nav class="mobile-nav" id="mobile-nav">
-    <a href="index.html">       <i class="fas fa-home"></i>      <span data-i18n="nav.home">Inicio</span></a>
-    <a href="sobre-mi.html">    <i class="fas fa-user"></i>      <span data-i18n="nav.about">Sobre Mí</span></a>
-    <a href="portafolio.html" class="active"><i class="fas fa-code"></i> <span data-i18n="nav.portfolio">Portafolio</span></a>
-    <a href="proyecto-terminal.html"><i class="fas fa-graduation-cap"></i> <span data-i18n="nav.thesis">Proyecto Terminal</span></a>
-    <a href="divulgacion.html"> <i class="fas fa-flask"></i>     <span data-i18n="nav.outreach">Divulgación</span></a>
-    <a href="contacto.html">    <i class="fas fa-envelope"></i>  <span data-i18n="nav.contact">Contacto</span></a>
+    <a href="index.html">             <i class="fas fa-home"></i>            <span data-i18n="nav.home">Inicio</span></a>
+    <a href="sobre-mi.html">          <i class="fas fa-user"></i>            <span data-i18n="nav.about">Sobre Mí</span></a>
+    <a href="proyecto-terminal.html"> <i class="fas fa-graduation-cap"></i>  <span data-i18n="nav.thesis">Proyecto Terminal</span></a>
+    <a href="portafolio.html" class="active"><i class="fas fa-code"></i>     <span data-i18n="nav.portfolio">Portafolio</span></a>
+    <a href="divulgacion.html">       <i class="fas fa-flask"></i>           <span data-i18n="nav.outreach">Divulgación</span></a>
+    <a href="algoritmos.html">        <i class="fas fa-project-diagram"></i> <span data-i18n="nav.algos">Algoritmos</span></a>
+    <a href="contacto.html">          <i class="fas fa-envelope"></i>        <span data-i18n="nav.contact">Contacto</span></a>
   </nav>
 
   <!-- ===== MAIN ===== -->
@@ -1394,7 +1403,6 @@
   <!-- Escena 3D de fondo + cursor cometa + transición de página -->
   <script type="module" src="js/hero3d.js"></script>
   <script src="js/cursor.js" defer></script>
-  <script src="js/page-transition.js"></script>
 
   <script>
   (function () {
@@ -1458,5 +1466,7 @@
     });
   })();
   </script>
+  <script src="js/command-palette.js" defer></script>
+  <script src="js/status-bar.js" defer></script>
 </body>
 </html>

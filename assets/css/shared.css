@@ -1003,10 +1003,14 @@ body.dark-mode .availability-badge {
   position: fixed;
   top: 0; left: 0;
   height: 3px;
-  width: 0%;
+  width: 100%;
   background: linear-gradient(90deg, var(--primary), var(--neon));
   z-index: 2000;
-  transition: width 0.15s ease;
+  /* Se anima con transform (compositor) en vez de width (layout) — page-init.js */
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.15s ease;
+  will-change: transform;
 }
 
 /* ===== QUOTE STYLE ===== */
@@ -1026,6 +1030,24 @@ body.dark-mode .quote {
 }
 
 /* ===== RESPONSIVE ===== */
+/* Con 7 elementos el menú necesita más sitio: en anchos intermedios se
+   compacta (menos padding/gap y tipografía algo menor) para no desbordar. */
+@media (max-width: 1280px) {
+  .nav-menu { gap: 2px; }
+  .nav-menu a { padding: 8px 9px; font-size: 0.88rem; }
+}
+
+/* Móvil: el blur del header fijo se recalcula en cada frame de scroll y es
+   uno de los mayores costes de fluidez; se sustituye por fondo casi opaco. */
+@media (max-width: 768px) {
+  .site-header {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(248, 250, 252, 0.97);
+  }
+  body.dark-mode .site-header { background: rgba(13, 17, 23, 0.97); }
+}
+
 @media (max-width: 992px) {
   .nav-menu { display: none; }
   .hamburger-btn { display: flex; }
@@ -1124,16 +1146,6 @@ body.fx3d #hero-3d canvas { display: block; width: 100% !important; height: 100%
   }
 }
 
-/* ── Cortina de transición de página (js/page-transition.js) ── */
-.pt-overlay {
-  position: fixed; inset: 0; z-index: 99800; pointer-events: none;
-  background: linear-gradient(135deg, #0d1117 0%, #05080d 60%);
-  transform: scaleY(0); transform-origin: bottom;
-}
-.pt-overlay::after {
-  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 3px;
-  background: linear-gradient(90deg, transparent, #61dafb 40%, #c678dd 70%, transparent);
-}
 
 /* ── Índice de secciones lateral (solo index; js/main.js) ── */
 .sidenav {

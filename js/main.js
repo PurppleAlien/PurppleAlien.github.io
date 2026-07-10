@@ -189,7 +189,7 @@ function initTypingEffect() {
    6. ÍNDICE DE SECCIONES (nav lateral derecha)
 ============================================================ */
 function initSectionIndex() {
-  const ids = ['home', 'explore', 'about', 'skills', 'research', 'projects', 'studio', 'contact', 'philosophy'];
+  const ids = ['home', 'explore', 'about', 'skills', 'research', 'projects', 'studio', 'arte', 'contact', 'philosophy'];
   const nav = document.createElement('nav');
   nav.className = 'sidenav';
   nav.setAttribute('aria-label', 'Índice de secciones');
@@ -233,7 +233,8 @@ function initSceneReactive() {
     home: [0x61dafb, 0xc678dd], explore: [0x61dafb, 0xc678dd],
     about: [0x00d4aa, 0x61dafb], skills: [0x61dafb, 0x3d85c6],
     research: [0xc678dd, 0x61dafb], projects: [0xfbbc05, 0xc678dd],
-    studio: [0x00d4aa, 0x61dafb], contact: [0xff7eb6, 0xc678dd],
+    studio: [0x00d4aa, 0x61dafb], arte: [0xc678dd, 0x00d4aa],
+    contact: [0xff7eb6, 0xc678dd],
     philosophy: [0x61dafb, 0xc678dd],
   };
   let tries = 0;
@@ -255,6 +256,53 @@ function initSceneReactive() {
 }
 
 /* ============================================================
+   8. ROTADOR DE CITAS (sección filosofía)
+      Cicla Turing → Gauss → Euler → von Neumann. Bilingüe: lee las
+      claves idx.quote.qN.* de pageTranslations según el idioma actual,
+      así el conmutador ES/EN también cambia la cita visible.
+============================================================ */
+function initQuoteRotator() {
+  const textEl   = document.getElementById('quote-text');
+  const authorEl = document.getElementById('quote-author');
+  const block    = document.getElementById('quote-rotator');
+  if (!textEl || !authorEl || !block) return;
+
+  const TOTAL = 4;
+  const HOLD_MS = 8000;
+  const FADE_MS = 450;
+  let idx = 0;
+
+  function currentLang() {
+    return document.documentElement.lang || localStorage.getItem('language') || 'es';
+  }
+
+  function render() {
+    const t = (window.pageTranslations || {})[currentLang()];
+    if (!t) return;
+    const n = idx + 1;
+    if (t[`idx.quote.q${n}.text`])   textEl.textContent   = t[`idx.quote.q${n}.text`];
+    if (t[`idx.quote.q${n}.author`]) authorEl.textContent = t[`idx.quote.q${n}.author`];
+  }
+
+  function next() {
+    block.style.transition = `opacity ${FADE_MS}ms ease`;
+    block.style.opacity = '0';
+    setTimeout(() => {
+      idx = (idx + 1) % TOTAL;
+      render();
+      block.style.opacity = '1';
+    }, FADE_MS);
+  }
+
+  render();
+  setInterval(next, HOLD_MS);
+
+  // Al cambiar de idioma, re-render inmediato de la cita visible.
+  const langBtn = document.getElementById('language-toggle');
+  if (langBtn) langBtn.addEventListener('click', () => setTimeout(render, 50));
+}
+
+/* ============================================================
    INIT
 ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
@@ -265,4 +313,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initTypingEffect();
   initSectionIndex();
   initSceneReactive();
+  initQuoteRotator();
 });

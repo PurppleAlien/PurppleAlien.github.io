@@ -6,6 +6,13 @@
   <title>Divulgación Científica — Antonio Soria</title>
   <meta name="description" content="Artículos de divulgación en matemáticas, IA y programación por Antonio Soria.">
 
+  <link rel="canonical" href="https://purpplealien.github.io/divulgacion.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url"  content="https://purpplealien.github.io/divulgacion.html">
+  <meta property="og:title" content="Divulgación Científica — Antonio Soria">
+  <meta property="og:description" content="Artículos y blog técnico de matemáticas, IA y programación por Antonio Soria.">
+  <meta property="og:locale" content="es_MX">
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -312,6 +319,84 @@
     @media (max-width: 420px) {
       .resources-grid { grid-template-columns: 1fr; }
     }
+
+    /* ── Blog técnico (posts desplegables con código) ── */
+    .blog-post {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--card-bg);
+      margin-bottom: 18px;
+      overflow: hidden;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .blog-post[open] { border-color: rgba(97,218,251,0.35); box-shadow: var(--shadow); }
+
+    .blog-post summary {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      padding: 20px 24px;
+      cursor: pointer;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+    .blog-post summary::-webkit-details-marker { display: none; }
+    .blog-post summary::before {
+      content: '▸';
+      color: var(--neon);
+      font-family: var(--font-mono);
+      transition: transform 0.2s ease;
+    }
+    .blog-post[open] summary::before { transform: rotate(90deg); }
+
+    .blog-post-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      color: var(--text);
+      font-weight: 600;
+    }
+    .blog-post summary:hover .blog-post-title { color: var(--neon); }
+
+    .blog-post-meta {
+      margin-left: auto;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .blog-post-body {
+      padding: 0 24px 26px;
+      max-width: 820px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+    .blog-post-body p { margin-bottom: 14px; }
+    .blog-post-body strong { color: var(--text); }
+    .blog-post-body a { color: var(--neon); }
+    .blog-post-body a:hover { color: var(--accent2); }
+
+    .blog-code {
+      background: #0a0e14;
+      border: 1px solid rgba(97,218,251,0.14);
+      border-radius: 8px;
+      margin: 16px 0;
+      overflow-x: auto;
+    }
+    .blog-code pre {
+      margin: 0;
+      padding: 16px 18px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      line-height: 1.65;
+      color: #c9d1d9;
+      white-space: pre;
+    }
+    .blog-code .kw { color: #c678dd; }
+    .blog-code .ty { color: #61dafb; }
+    .blog-code .fn { color: #5fa8ff; }
+    .blog-code .nu { color: #fbbc05; }
+    .blog-code .cm { color: #7d8590; font-style: italic; }
   </style>
 
 </head>
@@ -333,11 +418,13 @@
       </a>
 
       <ul class="nav-menu">
-        <li><a href="index.html"       data-i18n="nav.home">Inicio</a></li>
-        <li><a href="sobre-mi.html"    data-i18n="nav.about">Sobre Mí</a></li>
-        <li><a href="portafolio.html"  data-i18n="nav.portfolio">Portafolio</a></li>
+        <li><a href="index.html"             data-i18n="nav.home">Inicio</a></li>
+        <li><a href="sobre-mi.html"          data-i18n="nav.about">Sobre Mí</a></li>
+        <li><a href="proyecto-terminal.html" data-i18n="nav.thesis">Proyecto Terminal</a></li>
+        <li><a href="portafolio.html"        data-i18n="nav.portfolio">Portafolio</a></li>
         <li><a href="divulgacion.html" class="active" data-i18n="nav.outreach">Divulgación</a></li>
-        <li><a href="contacto.html"    data-i18n="nav.contact">Contacto</a></li>
+        <li><a href="algoritmos.html"        data-i18n="nav.algos">Algoritmos</a></li>
+        <li><a href="contacto.html"          data-i18n="nav.contact">Contacto</a></li>
       </ul>
 
       <div class="header-buttons">
@@ -353,11 +440,13 @@
 
   <!-- Mobile nav -->
   <nav class="mobile-nav" id="mobile-nav">
-    <a href="index.html">       <i class="fas fa-home"></i>      <span data-i18n="nav.home">Inicio</span></a>
-    <a href="sobre-mi.html">    <i class="fas fa-user"></i>      <span data-i18n="nav.about">Sobre Mí</span></a>
-    <a href="portafolio.html">  <i class="fas fa-code"></i>      <span data-i18n="nav.portfolio">Portafolio</span></a>
-    <a href="divulgacion.html" class="active"><i class="fas fa-flask"></i> <span data-i18n="nav.outreach">Divulgación</span></a>
-    <a href="contacto.html">    <i class="fas fa-envelope"></i>  <span data-i18n="nav.contact">Contacto</span></a>
+    <a href="index.html">             <i class="fas fa-home"></i>            <span data-i18n="nav.home">Inicio</span></a>
+    <a href="sobre-mi.html">          <i class="fas fa-user"></i>            <span data-i18n="nav.about">Sobre Mí</span></a>
+    <a href="proyecto-terminal.html"> <i class="fas fa-graduation-cap"></i>  <span data-i18n="nav.thesis">Proyecto Terminal</span></a>
+    <a href="portafolio.html">        <i class="fas fa-code"></i>            <span data-i18n="nav.portfolio">Portafolio</span></a>
+    <a href="divulgacion.html" class="active"><i class="fas fa-flask"></i>   <span data-i18n="nav.outreach">Divulgación</span></a>
+    <a href="algoritmos.html">        <i class="fas fa-project-diagram"></i> <span data-i18n="nav.algos">Algoritmos</span></a>
+    <a href="contacto.html">          <i class="fas fa-envelope"></i>        <span data-i18n="nav.contact">Contacto</span></a>
   </nav>
 
   <!-- ===== MAIN ===== -->
@@ -529,6 +618,58 @@
     </section>
 
     <!-- Resources -->
+    <!-- ===== BLOG TÉCNICO ===== -->
+    <section class="container" style="padding-bottom: 60px;" id="blog">
+      <h2 class="section-title" data-i18n="div.blog.title">Blog Técnico</h2>
+      <p style="text-align:center; color:var(--text-muted); max-width:640px; margin:0 auto 36px;" data-i18n="div.blog.sub">Notas técnicas escritas por mí, con el código al lado: cómo funcionan de verdad los algoritmos que uso en mis proyectos.</p>
+
+      <!-- Post 1: poda alfa-beta -->
+      <details class="blog-post fade-in">
+        <summary>
+          <span class="blog-post-title">Poda alfa-beta: cómo mirar el doble de lejos sin computar más</span>
+          <span class="blog-post-meta">IA · minimax · 6 min</span>
+        </summary>
+        <div class="blog-post-body">
+          <p>Minimax explora el árbol de juego completo: con factor de ramificación <strong>b</strong> y profundidad <strong>d</strong>, cuesta <strong>O(b^d)</strong>. En Conecta 4 (b ≈ 7) mirar 10 jugadas son ~282 millones de nodos. La poda alfa-beta no cambia el resultado — devuelve exactamente la misma jugada — pero deja de evaluar ramas que ya no pueden influir en la decisión.</p>
+          <p>La idea cabe en dos variables: <strong>α</strong> es lo mejor que MAX ya tiene garantizado, <strong>β</strong> lo mejor que MIN ya tiene garantizado. Si en algún punto <strong>α ≥ β</strong>, el jugador anterior nunca permitirá llegar a esta rama: se poda.</p>
+          <div class="blog-code"><pre><span class="kw">int</span> <span class="fn">alphaBeta</span>(<span class="ty">Node</span> n, <span class="kw">int</span> depth, <span class="kw">int</span> alpha, <span class="kw">int</span> beta, <span class="kw">boolean</span> max) {
+    <span class="kw">if</span> (depth == <span class="nu">0</span> || n.isTerminal()) <span class="kw">return</span> n.evaluate();
+
+    <span class="kw">for</span> (<span class="ty">Node</span> child : n.children()) {
+        <span class="kw">int</span> val = <span class="fn">alphaBeta</span>(child, depth - <span class="nu">1</span>, alpha, beta, !max);
+        <span class="kw">if</span> (max) alpha = <span class="ty">Math</span>.max(alpha, val);
+        <span class="kw">else</span>     beta  = <span class="ty">Math</span>.min(beta, val);
+        <span class="kw">if</span> (alpha &gt;= beta) <span class="kw">break</span>;   <span class="cm">// ✂ poda: esta rama ya no importa</span>
+    }
+    <span class="kw">return</span> max ? alpha : beta;
+}</pre></div>
+          <p>El resultado teórico es precioso: con ordenación perfecta de movimientos, el coste baja a <strong>O(b^(d/2))</strong> — el mismo presupuesto de cómputo alcanza para mirar <strong>el doble de profundo</strong>. Por eso importa tanto probar primero las jugadas prometedoras (capturas, centro del tablero): cuanto mejor ordenas, más podas.</p>
+          <p>Uso esta técnica (en su variante negamax) en mi <a href="https://github.com/PurppleAlien/Inteligencia-Artificial" target="_blank" rel="noopener">Conecta 4 con IA adversarial</a>: tres niveles de dificultad que son, literalmente, tres profundidades de búsqueda.</p>
+        </div>
+      </details>
+
+      <!-- Post 2: BFS / DFS / A* -->
+      <details class="blog-post fade-in">
+        <summary>
+          <span class="blog-post-title">BFS, DFS y A*: la misma búsqueda con tres personalidades</span>
+          <span class="blog-post-meta">grafos · búsqueda · 5 min</span>
+        </summary>
+        <div class="blog-post-body">
+          <p>Los tres algoritmos de búsqueda más famosos parecen distintos, pero son <strong>el mismo bucle</strong>. Lo único que cambia es la estructura de datos que guarda la frontera — y esa elección lo decide todo:</p>
+          <div class="blog-code"><pre>frontera ← {inicio}
+<span class="kw">mientras</span> frontera no esté vacía:
+    n ← frontera.<span class="fn">sacar</span>()          <span class="cm">// ← aquí vive toda la diferencia</span>
+    <span class="kw">si</span> n es la meta: <span class="kw">devolver</span> camino(n)
+    <span class="kw">para cada</span> vecino v <span class="kw">de</span> n:
+        <span class="kw">si</span> v no visitado: frontera.<span class="fn">meter</span>(v)</pre></div>
+          <p><strong>Cola FIFO → BFS.</strong> Explora por capas, como ondas en un estanque. Garantiza el camino más corto en número de aristas. Coste O(V+E), pero la frontera puede crecer mucho.</p>
+          <p><strong>Pila LIFO → DFS.</strong> Se lanza al fondo por una rama antes de retroceder. Memoria mínima (solo la rama actual) y es la base del backtracking — así funciona mi buscaminas con flood-fill — pero no garantiza el camino más corto.</p>
+          <p><strong>Cola de prioridad por f(n) = g(n) + h(n) → A*.</strong> Combina el costo real acumulado g(n) con una estimación h(n) de lo que falta. Si la heurística es <strong>admisible</strong> (nunca sobreestima), A* es óptimo — y expande menos nodos que cualquier otro algoritmo óptimo con la misma información.</p>
+          <p>La mejor forma de sentir la diferencia es <strong>verla</strong>: en mi <a href="algoritmos.html">visualizador interactivo</a> puedes ejecutar los tres sobre el mismo grafo, paso a paso, y observar cómo BFS inunda, DFS bucea y A* apunta.</p>
+        </div>
+      </details>
+    </section>
+
     <section class="container" style="padding-bottom: 60px;">
       <h2 class="section-title" data-i18n="div.resources.title">Recursos Recomendados</h2>
       <div class="resources-grid">
@@ -639,6 +780,7 @@
   <!-- Escena 3D de fondo + cursor cometa + transición de página -->
   <script type="module" src="js/hero3d.js"></script>
   <script src="js/cursor.js" defer></script>
-  <script src="js/page-transition.js"></script>
+  <script src="js/command-palette.js" defer></script>
+  <script src="js/status-bar.js" defer></script>
 </body>
 </html>

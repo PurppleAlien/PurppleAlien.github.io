@@ -175,10 +175,27 @@ function initProgressBar() {
   const bar = document.getElementById('progress-bar');
   if (!bar) return;
 
+  // scaleX en lugar de width: la barra se anima solo en el compositor, sin
+  // relayout. La altura del documento se cachea (leer scrollHeight en cada
+  // evento de scroll fuerza layout) y se re-mide en resize/load. El pintado
+  // va coalescido con requestAnimationFrame: máx. una escritura por frame.
+  let docH = 1;
+  let ticking = false;
+
+  function measure() {
+    docH = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+  }
+
+  function paint() {
+    ticking = false;
+    bar.style.transform = 'scaleX(' + Math.min(window.scrollY / docH, 1) + ')';
+  }
+
+  measure();
+  window.addEventListener('resize', measure, { passive: true });
+  window.addEventListener('load', () => { measure(); paint(); });
   window.addEventListener('scroll', () => {
-    const docH = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = docH > 0 ? (window.scrollY / docH) * 100 : 0;
-    bar.style.width = pct + '%';
+    if (!ticking) { ticking = true; requestAnimationFrame(paint); }
   }, { passive: true });
 }
 
