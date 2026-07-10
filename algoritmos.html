@@ -222,6 +222,49 @@
       <p>BFS · DFS · A* sobre grafos en tiempo real — selecciona nodos de inicio/fin y observa cómo exploran el grafo</p>
     </section>
 
+    <!-- ===== ARTE GENERATIVO (mismo motor que index#arte: js/generative-art.js) ===== -->
+    <section class="container" id="arte" style="padding: 70px 20px 80px; max-width: 960px; margin: 0 auto;">
+      <h2 class="section-title" style="text-align:center;" data-i18n="idx.art.title">Arte Generativo</h2>
+      <p style="text-align:center; color:#8b949e; max-width:620px; margin:0 auto 30px; font-size:0.95rem;" data-i18n="idx.art.sub2">Los mismos algoritmos, del otro lado: cuando las funciones matemáticas no buscan un camino, sino la belleza. Juega con los parámetros.</p>
+
+      <div class="genart-wrap fade-in">
+        <div class="genart-controls" role="tablist" aria-label="Piezas de arte generativo">
+          <button class="genart-btn active" data-piece="rose" data-i18n="idx.art.rose">Rosa polar</button>
+          <button class="genart-btn" data-piece="maurer" data-i18n="idx.art.maurer">Rosa de Maurer</button>
+          <button class="genart-btn" data-piece="lissajous">Lissajous</button>
+          <button class="genart-btn" data-piece="spiro" data-i18n="idx.art.spiro">Espirógrafo</button>
+          <button class="genart-btn" data-piece="butterfly" data-i18n="idx.art.butterfly">Mariposa</button>
+          <button class="genart-btn" data-piece="lorenz">Lorenz</button>
+          <button class="genart-btn" data-piece="dejong">De Jong</button>
+          <button class="genart-btn" data-piece="phyllo" data-i18n="idx.art.phyllo">Filotaxis</button>
+        </div>
+        <div class="genart-frame">
+          <canvas id="genart-canvas" aria-label="Lienzo de arte generativo matemático"></canvas>
+        </div>
+        <div class="genart-bar">
+          <button class="ga-btn" id="ga-play" aria-label="Pausar"><i class="fas fa-pause"></i></button>
+          <label><span data-i18n="idx.art.speed">velocidad</span> <input type="range" id="ga-speed" min="0.2" max="3" step="0.1" value="1"></label>
+          <label><span data-i18n="idx.art.param">parámetro</span> <input type="range" id="ga-param" min="0" max="100" value="50"></label>
+          <label><input type="checkbox" id="ga-auto" checked> auto</label>
+          <label><span data-i18n="idx.art.color">color</span>
+            <select id="ga-palette">
+              <option value="neon">neón</option>
+              <option value="plasma">plasma</option>
+              <option value="matrix">matrix</option>
+              <option value="hielo">hielo</option>
+              <option value="arcoiris">arcoíris</option>
+            </select>
+          </label>
+          <button class="ga-btn" id="ga-random" aria-label="Pieza aleatoria" title="Aleatorio"><i class="fas fa-dice"></i></button>
+        </div>
+        <div class="genart-formula">
+          <code id="genart-formula">r(θ) = cos(kθ)</code>
+        </div>
+        <p class="genart-info" id="genart-info"></p>
+        <p class="genart-note" data-i18n="idx.art.note">Rosas polares · Lissajous · espirógrafo · curva mariposa · atractores de Lorenz y De Jong · filotaxis — canvas 2D, sin librerías.</p>
+      </div>
+    </section>
+
     <div class="viz-wrap">
 
       <!-- Algo selector -->
@@ -333,6 +376,81 @@
         </div>
       </div>
     </div>
+
+
+
+    <!-- ===== SALA DE JUEGOS — IA adversarial (js/games.js) =====
+         Ports web de mis juegos en Java (repositorio Inteligencia-Artificial):
+         gato (minimax+αβ), conecta 4 (negamax+αβ+iterative deepening) y
+         misioneros y caníbales (puzzle + solución BFS). -->
+    <section class="container" id="juegos" style="max-width:960px; margin:0 auto; padding:70px 20px 90px;">
+      <h2 class="section-title" style="text-align:center;">Sala de Juegos — IA Adversarial</h2>
+      <p class="games-sub">Los mismos juegos de mi <a href="https://github.com/PurppleAlien/Inteligencia-Artificial" target="_blank" rel="noopener">repositorio en Java</a> (minimax · negamax · poda alfa-beta), portados y mejorados para jugar aquí mismo. En <strong>infierno</strong> la IA juega perfecto: el empate es tu mejor final posible.</p>
+
+      <div class="game-tabs" role="tablist" aria-label="Juegos">
+        <button class="game-tab active" data-game="gato"><i class="fas fa-hashtag"></i> Gato</button>
+        <button class="game-tab" data-game="c4"><i class="fas fa-circle-dot"></i> Conecta 4</button>
+        <button class="game-tab" data-game="mc"><i class="fas fa-water"></i> Misioneros y Caníbales</button>
+      </div>
+
+      <!-- ── GATO ── -->
+      <div class="game-panel active" id="game-gato">
+        <div class="game-toolbar">
+          <div class="diff-group">
+            <button class="diff-btn d-novato" data-diff="novato">novato</button>
+            <button class="diff-btn d-pesadilla active" data-diff="pesadilla">pesadilla</button>
+            <button class="diff-btn d-infierno" data-diff="infierno">infierno</button>
+          </div>
+          <button class="game-action" id="gato-reset"><i class="fas fa-rotate-right"></i> reiniciar</button>
+          <button class="game-action" id="gato-ai-first"><i class="fas fa-robot"></i> que empiece la IA</button>
+        </div>
+        <div class="gato-board" id="gato-board" aria-label="Tablero de gato"></div>
+        <div class="game-status" id="gato-status"></div>
+        <div class="game-score" id="gato-score"></div>
+        <p class="game-tech">minimax + poda alfa-beta · utilidad 10−d (prefiere ganar pronto)</p>
+      </div>
+
+      <!-- ── CONECTA 4 ── -->
+      <div class="game-panel" id="game-c4">
+        <div class="game-toolbar">
+          <div class="diff-group">
+            <button class="diff-btn d-novato" data-diff="novato">novato</button>
+            <button class="diff-btn d-pesadilla active" data-diff="pesadilla">pesadilla</button>
+            <button class="diff-btn d-infierno" data-diff="infierno">infierno</button>
+          </div>
+          <button class="game-action" id="c4-reset"><i class="fas fa-rotate-right"></i> reiniciar</button>
+          <button class="game-action" id="c4-ai-first"><i class="fas fa-robot"></i> que empiece la IA</button>
+        </div>
+        <div class="c4-board" id="c4-board" aria-label="Tablero de conecta 4"></div>
+        <div class="game-status" id="c4-status"></div>
+        <div class="game-score" id="c4-score"></div>
+        <p class="game-tech">negamax + poda alfa-beta · profundidad 2 / 6 / hasta 12 con iterative deepening y ordenación centro-primero</p>
+      </div>
+
+      <!-- ── MISIONEROS Y CANÍBALES ── -->
+      <div class="game-panel" id="game-mc">
+        <div class="game-toolbar">
+          <button class="game-action" id="mc-reset"><i class="fas fa-rotate-right"></i> reiniciar</button>
+          <button class="game-action" id="mc-solve"><i class="fas fa-wand-magic-sparkles"></i> resolver con BFS</button>
+          <span class="game-score" id="mc-moves"></span>
+        </div>
+        <div class="mc-river">
+          <div class="mc-bank" id="mc-left" aria-label="Orilla izquierda"></div>
+          <div class="mc-water">
+            <div class="mc-boat-wrap">
+              <div class="mc-boat" id="mc-boat"></div>
+              <div class="mc-hull">⛵</div>
+            </div>
+          </div>
+          <div class="mc-bank" id="mc-right" aria-label="Orilla derecha"></div>
+        </div>
+        <div class="game-toolbar" style="margin-top:14px;">
+          <button class="game-action primary" id="mc-cross"><i class="fas fa-right-left"></i> cruzar el río</button>
+        </div>
+        <div class="game-status" id="mc-status"></div>
+        <p class="game-tech">búsqueda BFS en el espacio de estados (m, c, bote) · solución óptima: 11 cruces</p>
+      </div>
+    </section>
   </main>
 
   <footer>
@@ -356,6 +474,8 @@
   <script src="js/page-init.js"></script>
   <!-- Lógica del visualizador (BFS · DFS · A*) -->
   <script src="js/algos.js"></script>
+  <script src="js/generative-art.js" defer></script>
+  <script src="js/games.js" defer></script>
   <!-- Escena 3D de fondo + cursor cometa + transición de página -->
   <script type="module" src="js/hero3d.js"></script>
   <script src="js/cursor.js" defer></script>

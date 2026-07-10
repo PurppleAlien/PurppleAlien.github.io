@@ -1936,80 +1936,8 @@
     .editor-statusbar a + a { margin-left: 0; }
     .editor-statusbar a:hover { color: #c678dd; }
 
-    /* ─── ARTE GENERATIVO ───────────────────────── */
-    .genart-wrap { max-width: 860px; margin: 0 auto; }
-
-    .genart-controls {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 18px;
-      flex-wrap: wrap;
-    }
-
-    .genart-btn {
-      font-family: 'Source Code Pro', monospace;
-      font-size: 0.82rem;
-      padding: 8px 18px;
-      background: rgba(97,218,251,0.06);
-      border: 1px solid rgba(97,218,251,0.22);
-      border-radius: 6px;
-      color: #c9d1d9;
-      cursor: pointer;
-      transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.15s ease;
-    }
-    .genart-btn:hover { transform: translateY(-2px); border-color: #61dafb; color: #61dafb; }
-    .genart-btn.active {
-      background: linear-gradient(135deg, rgba(97,218,251,0.18), rgba(198,120,221,0.18));
-      border-color: #61dafb;
-      color: #61dafb;
-    }
-
-    .genart-frame {
-      position: relative;
-      border: 1px solid rgba(97,218,251,0.16);
-      border-radius: 10px;
-      background: radial-gradient(ellipse at 50% 50%, rgba(97,218,251,0.05) 0%, rgba(8,12,17,0.6) 75%);
-      overflow: hidden;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.35), inset 0 0 60px rgba(97,218,251,0.03);
-    }
-    .genart-frame canvas { display: block; width: 100%; }
-
-    /* Esquinas de visor tipo "plano técnico" */
-    .genart-frame::before, .genart-frame::after {
-      content: '';
-      position: absolute;
-      width: 22px; height: 22px;
-      border: 2px solid rgba(97,218,251,0.45);
-      pointer-events: none;
-    }
-    .genart-frame::before { top: 8px; left: 8px; border-right: none; border-bottom: none; }
-    .genart-frame::after { bottom: 8px; right: 8px; border-left: none; border-top: none; }
-
-    .genart-formula {
-      text-align: center;
-      margin-top: 16px;
-    }
-    .genart-formula code {
-      font-family: 'Source Code Pro', monospace;
-      font-size: 0.95rem;
-      color: #61dafb;
-      background: rgba(97,218,251,0.06);
-      border: 1px solid rgba(97,218,251,0.15);
-      border-radius: 6px;
-      padding: 8px 18px;
-      display: inline-block;
-      letter-spacing: 0.5px;
-      font-variant-numeric: tabular-nums; /* los parámetros cambian sin "bailar" */
-    }
-
-    .genart-note {
-      text-align: center;
-      margin-top: 14px;
-      font-size: 0.8rem;
-      color: #8b949e;
-      font-family: 'Source Code Pro', monospace;
-    }
+    /* Los estilos del arte generativo (.genart-*) viven en shared.css:
+       la sección se usa también en algoritmos.html. */
 
   </style>
   <!-- Módulos CSS externos -->
@@ -2473,7 +2401,10 @@
           <span class="project-tag">Python</span><span class="project-tag">PyTorch</span><span class="project-tag">BETO / XLM-R</span><span class="project-tag">FAISS</span><span class="project-tag">RAG</span><span class="project-tag">Docker</span>
         </div>
         <div class="hero-cta">
-          <a href="proyecto-terminal.html" class="btn" style="background:linear-gradient(135deg,#61dafb,#3d85c6); color:#0d1117; font-weight:600;">
+          <a href="https://purpplealien-deteccion-parafrasis.hf.space/" class="btn" target="_blank" rel="noopener noreferrer" style="background:linear-gradient(135deg,#61dafb,#c678dd); color:#0d1117; font-weight:600;">
+            <i class="fas fa-rocket"></i> <span>Probar el detector en vivo</span>
+          </a>
+          <a href="proyecto-terminal.html" class="btn btn-outline">
             <i class="fas fa-flask"></i> <span>Ver el proyecto</span>
           </a>
           <a href="proyecto-terminal.html#reportes" class="btn btn-outline">
@@ -2750,16 +2681,38 @@
       <div class="genart-wrap fade-in">
         <div class="genart-controls" role="tablist" aria-label="Piezas de arte generativo">
           <button class="genart-btn active" data-piece="rose" data-i18n="idx.art.rose">Rosa polar</button>
+          <button class="genart-btn" data-piece="maurer" data-i18n="idx.art.maurer">Rosa de Maurer</button>
           <button class="genart-btn" data-piece="lissajous">Lissajous</button>
-          <button class="genart-btn" data-piece="phyllotaxis" data-i18n="idx.art.phyllo">Filotaxis</button>
+          <button class="genart-btn" data-piece="spiro" data-i18n="idx.art.spiro">Espirógrafo</button>
+          <button class="genart-btn" data-piece="butterfly" data-i18n="idx.art.butterfly">Mariposa</button>
+          <button class="genart-btn" data-piece="lorenz">Lorenz</button>
+          <button class="genart-btn" data-piece="dejong">De Jong</button>
+          <button class="genart-btn" data-piece="phyllo" data-i18n="idx.art.phyllo">Filotaxis</button>
         </div>
         <div class="genart-frame">
           <canvas id="genart-canvas" aria-label="Lienzo de arte generativo matemático"></canvas>
         </div>
+        <div class="genart-bar">
+          <button class="ga-btn" id="ga-play" aria-label="Pausar"><i class="fas fa-pause"></i></button>
+          <label><span data-i18n="idx.art.speed">velocidad</span> <input type="range" id="ga-speed" min="0.2" max="3" step="0.1" value="1"></label>
+          <label><span data-i18n="idx.art.param">parámetro</span> <input type="range" id="ga-param" min="0" max="100" value="50"></label>
+          <label><input type="checkbox" id="ga-auto" checked> auto</label>
+          <label><span data-i18n="idx.art.color">color</span>
+            <select id="ga-palette">
+              <option value="neon">neón</option>
+              <option value="plasma">plasma</option>
+              <option value="matrix">matrix</option>
+              <option value="hielo">hielo</option>
+              <option value="arcoiris">arcoíris</option>
+            </select>
+          </label>
+          <button class="ga-btn" id="ga-random" aria-label="Pieza aleatoria" title="Aleatorio"><i class="fas fa-dice"></i></button>
+        </div>
         <div class="genart-formula">
           <code id="genart-formula">r(θ) = cos(kθ)</code>
         </div>
-        <p class="genart-note" data-i18n="idx.art.note">Rosa polar · curvas de Lissajous · filotaxis con el ángulo áureo (137.508°) — canvas 2D, sin librerías.</p>
+        <p class="genart-info" id="genart-info"></p>
+        <p class="genart-note" data-i18n="idx.art.note">Rosas polares · Lissajous · espirógrafo · curva mariposa · atractores de Lorenz y De Jong · filotaxis — canvas 2D, sin librerías.</p>
       </div>
     </div>
   </section>
