@@ -17,3 +17,10 @@ doc/*.log
 doc/*.out
 doc/*.toc
 .gstack/
+
+# Archivos personales / versiones anteriores (archivados en local, no se publican)
+doc/*_anterior.*
+doc/*.heif
+
+# Prototipos de efectos (laboratorio local, no forman parte del sitio)
+fx-demos/
