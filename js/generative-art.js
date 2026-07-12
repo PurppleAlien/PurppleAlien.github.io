@@ -66,7 +66,7 @@
 
   /* ---------- estado ---------- */
   const state = {
-    piece: 'rose',
+    piece: 'maurer',
     speed: 1,
     paramN: 0.5,      // parámetro normalizado 0..1 (cada pieza lo mapea)
     auto: true,       // el parámetro oscila solo
