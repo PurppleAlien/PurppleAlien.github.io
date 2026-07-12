@@ -29,3 +29,6 @@ images/sobre-mi/fesacatlan.jpg
 
 # Prototipos de efectos (laboratorio local, no forman parte del sitio)
 fx-demos/
+
+# Configuración local de Claude Code (personal, no se publica)
+.claude/settings.local.json*

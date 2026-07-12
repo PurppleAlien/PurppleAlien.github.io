@@ -1,0 +1,154 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[spanish]{babel}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=black]{hyperref}
+
+\title{\textbf{Análisis de sentimientos sobre el Codex Gigas:\\propuesta de investigación}}
+\author{Antonio Soria\\ \small{Divulgación Científica — purpplealien.github.io}}
+\date{Julio 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+El Codex Gigas --- la ``Biblia del Diablo'' --- es el manuscrito medieval más grande que se
+conserva: 75 kilogramos de vitela escritos, según el análisis paleográfico, por una sola mano
+a lo largo de décadas. Este artículo presenta mi próxima línea de investigación: aplicar
+procesamiento de lenguaje natural y modelos de lenguaje contextuales para latín al contenido
+del códice, con el objetivo de construir un \emph{mapa emocional} computacional de sus textos,
+de los evangelios a las fórmulas de exorcismo. Se describen el corpus, la metodología
+propuesta, los retos técnicos y los resultados esperados.
+\end{abstract}
+
+\section{El objeto: un libro imposible}
+
+El Codex Gigas fue creado a inicios del siglo XIII (se estima entre 1204 y 1230) en el
+monasterio benedictino de Podlažice, en Bohemia --- la actual República Checa. Sus números
+intimidan: 92~cm de alto, 50 de ancho, 22 de grosor, 74.8~kg de peso y 310 hojas de vitela
+que habrían requerido las pieles de más de 150 animales. El análisis de la caligrafía indica
+un solo escriba --- la tradición lo llama Herman el Recluso --- trabajando quizá veinte o
+treinta años.
+
+La leyenda que le da su apodo cuenta que un monje condenado a ser emparedado vivo prometió
+escribir en una sola noche un libro con todo el conocimiento humano, y al verse perdido cerca
+de la medianoche vendió su alma al diablo para terminarlo. Como firma del pacto, el folio 290
+recto exhibe un retrato del demonio a página completa --- exactamente frente a una
+representación de la Ciudad Celestial. Desde 1648, cuando las tropas suecas lo tomaron como
+botín de guerra en Praga, se conserva en la Biblioteca Nacional de Suecia en Estocolmo, que
+mantiene una digitalización completa de acceso público.
+
+\subsection{El contenido: una biblioteca en un solo lomo}
+
+Para un proyecto de NLP, lo valioso del códice es su heterogeneidad textual. Contiene, en
+latín: la Biblia completa (Antiguo y Nuevo Testamento en versión Vulgata), las
+\emph{Antigüedades} y \emph{La guerra de los judíos} de Flavio Josefo, las \emph{Etimologías}
+de Isidoro de Sevilla (la enciclopedia estándar medieval), el \emph{Ars medicinae} y textos
+médicos de la escuela salernitana, la \emph{Chronica Boemorum} de Cosmas de Praga, un
+calendario con necrologio, listas de nombres, y --- lo más jugoso para un análisis emocional
+--- conjuros mágicos y fórmulas de exorcismo. Géneros radicalmente distintos: narrativa
+sagrada, historia, enciclopedia, medicina, crónica local y magia ritual, todos copiados por
+la misma mano.
+
+\section{La pregunta de investigación}
+
+El análisis de sentimientos (\emph{sentiment analysis}) detecta computacionalmente la
+polaridad (positivo/negativo) y las emociones (miedo, alegría, ira\ldots) expresadas en un
+texto. Aplicado al Codex Gigas, propongo responder tres preguntas:
+
+\begin{enumerate}
+  \item ¿Cómo se distribuye el contenido emocional a lo largo del códice? ¿Existe un
+        \emph{perfil afectivo} distinguible por género textual --- evangelios frente a
+        crónicas frente a exorcismos?
+  \item ¿Las fórmulas de exorcismo y los conjuros exhiben marcadores emocionales
+        (miedo, amenaza, imperativo) cuantitativamente distintos del resto del corpus?
+  \item ¿Puede el análisis computacional aportar evidencia sobre la organización interna
+        del códice --- por ejemplo, si la colocación del retrato del diablo junto a la
+        Ciudad Celestial responde a un contraste deliberado que se refleja también en la
+        selección textual circundante?
+\end{enumerate}
+
+\section{Metodología propuesta}
+
+\subsection{Corpus y digitalización}
+
+No parto de las imágenes del manuscrito: la transcripción directa (HTR, \emph{Handwritten
+Text Recognition} sobre minúscula carolina tardía) es un proyecto en sí mismo. La estrategia
+práctica es ensamblar el corpus desde ediciones digitales existentes de los textos que el
+códice contiene --- la Vulgata, Josefo, Isidoro y Cosmas están disponibles en repositorios
+como Perseus y la Latin Library --- y usar la digitalización de la Biblioteca Nacional de
+Suecia para verificar la composición y las secciones exclusivas (conjuros, calendario).
+
+\subsection{Modelos: NLP para una lengua sin hablantes}
+
+El reto central es que el corpus está en latín medieval, una lengua de ``bajos recursos''
+para el NLP moderno: no hay léxicos de sentimiento nativos ni corpus anotados de emociones.
+El plan combina tres niveles:
+
+\begin{enumerate}
+  \item \textbf{Base contextual}: Latin BERT (Bamman y Burns, 2020), el primer modelo de
+        lenguaje contextual para latín, entrenado con 642.7 millones de tokens que abarcan
+        22 siglos de producción escrita. Provee representaciones vectoriales sensibles al
+        contexto para cada palabra del corpus.
+  \item \textbf{Proyección de léxicos}: transferir léxicos de emociones modernos (como el
+        NRC Emotion Lexicon) al latín vía los espacios de embeddings, con validación manual
+        de las entradas más frecuentes --- la traducción automática de léxicos es ruidosa y
+        el vocabulario religioso medieval tiene cargas semánticas propias
+        (\emph{timor Domini}, el temor de Dios, no es simplemente ``miedo'').
+  \item \textbf{Clasificación supervisada ligera}: anotar manualmente una muestra
+        estratificada de pasajes (con criterios explícitos y verificación de acuerdo entre
+        anotadores) para afinar un clasificador sobre las representaciones de Latin BERT,
+        siguiendo la estrategia que ha funcionado en otras lenguas históricas como el chino
+        clásico.
+\end{enumerate}
+
+\subsection{Análisis}
+
+Con el corpus etiquetado, el análisis es estadístico: distribución de polaridad y emociones
+por obra y por género, series ``narrativas'' de emoción a lo largo de cada libro (el arco
+emocional de los evangelios frente al del Apocalipsis, por ejemplo), y contraste de
+hipótesis sobre los exorcismos frente a secciones de control. La visualización final ---
+un mapa emocional navegable del códice --- se publicará como demo interactiva en mi sitio,
+como hice con mi anterior proyecto de detección de paráfrasis.
+
+\section{Retos y honestidad metodológica}
+
+Este proyecto exige cautelas que conviene declarar desde el diseño. Primera: los conceptos
+emocionales son culturales; proyectar categorías del siglo XXI sobre textos del XIII es un
+acto interpretativo que debe hacerse explícito, no esconderse tras la aparente neutralidad
+del número. Segunda: el latín de la Vulgata es traducción de originales hebreos y griegos
+--- el sentimiento medido es el del texto latino que el escriba copió, no ``el de la
+Biblia''. Tercera: la validación con especialistas en filología medieval no es opcional;
+un clasificador puede ser estadísticamente sólido y filológicamente absurdo. El valor del
+proyecto está precisamente en el diálogo entre la escala computacional (imposible para la
+lectura humana) y el juicio experto (imposible para la máquina).
+
+\section{Resultados esperados}
+
+Espero producir: (1) un corpus latino estructurado y alineado con la composición del códice,
+reutilizable por otros investigadores; (2) un léxico de sentimientos para latín medieval
+validado parcialmente a mano; (3) el análisis emocional comparativo entre géneros del códice;
+y (4) la visualización interactiva pública. Más allá de los resultados concretos, la apuesta
+de fondo es metodológica: demostrar que las humanidades digitales pueden tratar objetos
+patrimoniales complejos con el mismo rigor técnico que cualquier corpus moderno --- y que un
+manuscrito del siglo XIII envuelto en leyendas diabólicas es, también, un dataset.
+
+\section*{Referencias principales}
+
+\begin{itemize}
+  \item Bamman, D. y Burns, P.~J., \emph{Latin BERT: A Contextual Language Model for Classical
+        Philology} (2020). \url{https://arxiv.org/abs/2009.10053}
+  \item Mohammad, S., \emph{Sentiment Analysis: Automatically Detecting Valence, Emotions, and
+        Other Affectual States from Text} (2020). \url{https://arxiv.org/abs/2005.11882}
+  \item Biblioteca Nacional de Suecia, \emph{The Codex Gigas}.
+        \url{https://www.kb.se/eng/the-codex-gigas/}
+  \item Riemenschneider, F. y Frank, A., \emph{Exploring Large Language Models for Classical
+        Philology} (2023). \url{https://arxiv.org/abs/2305.13698}
+\end{itemize}
+
+\end{document}

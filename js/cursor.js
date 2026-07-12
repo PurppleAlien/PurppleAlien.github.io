@@ -1,9 +1,15 @@
 /**
  * cursor.js — Cursor personalizado "cometa" (solo index, escritorio).
  *
- * Un punto luminoso con estela: la cabeza sigue al ratón y los segmentos
- * la persiguen con inercia decreciente. Al pasar sobre elementos interactivos
- * la cabeza crece y vira a púrpura; al hacer clic, un pulso breve.
+ * Un punto luminoso con estela: la cabeza va clavada al puntero (precisión
+ * exacta, sin lag) y los segmentos la persiguen con suavizado exponencial
+ * independiente del framerate (mismo comportamiento a 60 Hz o 144 Hz).
+ * Al pasar sobre elementos interactivos la cabeza crece y vira a púrpura
+ * (via clase .lock, animada por transform:scale); al hacer clic, un pulso.
+ *
+ * Rendimiento: el bucle rAF se duerme cuando la estela converge y despierta
+ * con el siguiente pointermove; solo se escribe el style de un segmento si
+ * su posición cambió.
  *
  * Guards: solo puntero fino (hover + fine) y sin prefers-reduced-motion.
  * Estilos en assets/css/cursor.css.
@@ -17,11 +23,13 @@
             '.interest-item,.skill-cat,.service-card,.contact-card,.social-link,' +
             '.hero-badge,.theme-btn,.language-btn,.hamburger-btn,input,textarea,select';
 
-  var N = 9;            // nº de segmentos de la estela
-  var mx = -100, my = -100, hovered = null, layer = null;
-  var segs = [];
+  var N = 9;             // nº de segmentos de la estela
+  var FOLLOW = 30;       // rigidez de la estela (s⁻¹): mayor = más pegada
+  var SETTLE = 0.04;     // px por frame: umbral para dormir el bucle
+  var MAX_DT = 0.05;     // s: tope de dt tras pestañas en segundo plano
 
-  function lerp(a, b, t) { return a + (b - a) * t; }
+  var mx = -100, my = -100, hovered = null, layer = null;
+  var segs = [], running = false, lastT = 0;
 
   function init() {
     layer = document.createElement('div');
@@ -39,18 +47,19 @@
       dot.style.opacity = (1 - i / N).toFixed(2);
       root.appendChild(dot);
       layer.appendChild(root);
-      segs.push({ root: root, head: dot, x: mx, y: my });
+      segs.push({ root: root, x: mx, y: my, px: null, py: null });
     }
 
-    document.addEventListener('mousemove', function (e) { mx = e.clientX; my = e.clientY; }, { passive: true });
+    document.addEventListener('pointermove', function (e) {
+      mx = e.clientX; my = e.clientY;
+      wake();
+    }, { passive: true });
 
     document.addEventListener('mouseover', function (e) {
       var el = e.target.closest(SEL);
       if (!el || el === hovered) return;
       hovered = el;
       layer.classList.add('lock');
-      segs[0].head.style.width = '13px';
-      segs[0].head.style.height = '13px';
     });
 
     document.addEventListener('mouseout', function (e) {
@@ -60,25 +69,58 @@
       if (to === el) return; // seguimos dentro del mismo elemento
       hovered = null;
       layer.classList.remove('lock');
-      segs[0].head.style.width = '9px';
-      segs[0].head.style.height = '9px';
     });
 
     document.addEventListener('mousedown', function () { layer.classList.add('fire'); });
     document.addEventListener('mouseup', function () { layer.classList.remove('fire'); });
 
-    (function loop() {
-      segs[0].x = lerp(segs[0].x, mx, 0.35);
-      segs[0].y = lerp(segs[0].y, my, 0.35);
-      for (var i = 1; i < segs.length; i++) {
-        segs[i].x = lerp(segs[i].x, segs[i - 1].x, 0.4);
-        segs[i].y = lerp(segs[i].y, segs[i - 1].y, 0.4);
+    // Ocultar el cometa cuando el puntero sale de la ventana
+    document.addEventListener('mouseleave', function () { layer.classList.add('off'); });
+    document.addEventListener('mouseenter', function () { layer.classList.remove('off'); });
+
+    wake();
+  }
+
+  function wake() {
+    if (running) return;
+    running = true;
+    lastT = performance.now();
+    requestAnimationFrame(loop);
+  }
+
+  function loop(now) {
+    var dt = Math.min((now - lastT) / 1000, MAX_DT) || 0;
+    lastT = now;
+
+    // Cabeza exacta sobre el puntero: cero lag.
+    segs[0].x = mx;
+    segs[0].y = my;
+
+    // Estela: suavizado exponencial corregido por dt (frame-rate independent).
+    var t = 1 - Math.exp(-FOLLOW * dt);
+    var moving = false;
+    for (var i = 1; i < segs.length; i++) {
+      var dx = (segs[i - 1].x - segs[i].x) * t;
+      var dy = (segs[i - 1].y - segs[i].y) * t;
+      segs[i].x += dx;
+      segs[i].y += dy;
+      if (dx > SETTLE || dx < -SETTLE || dy > SETTLE || dy < -SETTLE) moving = true;
+    }
+
+    // Escribir el DOM solo cuando la posición realmente cambió.
+    for (var j = 0; j < segs.length; j++) {
+      var s = segs[j];
+      if (s.x !== s.px || s.y !== s.py) {
+        s.root.style.transform = 'translate3d(' + s.x + 'px,' + s.y + 'px,0)';
+        s.px = s.x; s.py = s.y;
       }
-      for (var j = 0; j < segs.length; j++) {
-        segs[j].root.style.transform = 'translate3d(' + segs[j].x + 'px,' + segs[j].y + 'px,0)';
-      }
+    }
+
+    if (moving) {
       requestAnimationFrame(loop);
-    })();
+    } else {
+      running = false; // dormir hasta el próximo pointermove
+    }
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

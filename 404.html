@@ -178,6 +178,27 @@
     }
     .btn-outline:hover { background: rgba(97,218,251,0.08); border-color: #61dafb; transform: translateY(-3px); }
 
+    /* Redes sociales (mismo bloque que el footer de index.html) */
+    .social-links { display: flex; justify-content: center; gap: 10px; margin-top: 26px; }
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(97,218,251,0.25);
+      color: #61dafb;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .social-link:hover {
+      background: rgba(97,218,251,0.1);
+      border-color: #61dafb;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(97,218,251,0.25);
+    }
+
     /* Floating particles */
     .particle {
       position: fixed;
@@ -240,6 +261,14 @@
         <i class="fas fa-envelope"></i> Contactar
       </a>
     </div>
+
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/antonio-sould/" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://github.com/PurppleAlien"             class="social-link" title="GitHub"   target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+      <a href="https://www.instagram.com/antoniosould/"      class="social-link" title="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+      <a href="mailto:antonio.soria8r@gmail.com"             class="social-link" title="Email"><i class="fas fa-envelope"></i></a>
+      <a href="https://wa.me/525554646553"                   class="social-link" title="WhatsApp" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
+    </div>
   </div>
 
   <div class="neon-line"></div>
@@ -264,6 +293,7 @@
   <script src="js/scroll-fx.js"></script>
   <!-- Escena 3D de fondo + cursor cometa + transición de página -->
   <script type="module" src="js/hero3d.js"></script>
+  <script src="js/mega-nav.js" defer></script>
   <script src="js/cursor.js" defer></script>
   <script src="js/command-palette.js" defer></script>
   <script src="js/status-bar.js" defer></script>

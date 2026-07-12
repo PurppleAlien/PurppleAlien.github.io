@@ -89,11 +89,11 @@ window.pageTranslations = {
     'about.t1.title':  'Inicios en la Programación',
     'about.t1.text':   'Mis primeros acercamientos al desarrollo de software y aplicaciones empresariales, descubriendo mi pasión por resolver problemas mediante código.',
 
-    'about.t2.date':   '2016 – 2020',
+    'about.t2.date':   '2011 – 2016',
     'about.t2.title':  'UNAM FES Acatlán',
     'about.t2.text':   'Licenciatura en Matemáticas Aplicadas y Computación. Donde solidifiqué mis bases matemáticas y descubrí la belleza de los algoritmos.',
 
-    'about.t3.date':   '2020 – Presente',
+    'about.t3.date':   '2021 – 2026',
     'about.t3.title':  'UAM Iztapalapa',
     'about.t3.text':   'Licenciatura en Computación. Profundizando en inteligencia artificial, teoría de grafos y algoritmia avanzada.',
 
@@ -112,8 +112,6 @@ window.pageTranslations = {
     'about.philosophy.quote': '"Las matemáticas son la reina de las ciencias — y un algoritmo hermoso es un teorema que además se ejecuta."',
 
     /* ── Sobre Mí (rediseño narrativo) ── */
-    'about2.hero.l1': 'No empecé programando para escribir código.',
-    'about2.hero.l2': 'Empecé porque quería entender cómo funciona el mundo.',
     'about2.hero.p1': 'Crecí en la zona poniente de la Ciudad de México, en Álvaro Obregón. Desde pequeño me fascinaban los videojuegos, las computadoras, las matemáticas y cualquier problema que pareciera imposible de resolver.',
     'about2.hero.p2': 'Con el tiempo descubrí que la programación era el punto donde todas esas pasiones se encontraban.',
     'about2.hero.p3': 'Hoy desarrollo software, investigo inteligencia artificial y sigo persiguiendo la misma curiosidad que tenía cuando escribí mi primera línea de código.',
@@ -285,24 +283,39 @@ window.pageTranslations = {
     'div.a1.title':  'El Método Monte Carlo: Simulaciones para Estimación de π',
     'div.a1.text':   'Descubre cómo el azar puede ser usado para calcular π mediante simulaciones probabilísticas. Un viaje entre la estadística y la geometría.',
     'div.soon':      'Próximamente',
+    'div.read':      'Leer Artículo (PDF)',
+    'div.paper':     'Leer Paper (PDF)',
+
+    'div.a10.cat':   'Paper · Frontiers 2011',
+    'div.a10.title': 'Perceptual and Physiological Responses to Jackson Pollock\'s Fractals',
+    'div.a10.text':  'Las pinturas de goteo de Pollock tienen dimensión fractal medible — y el ojo humano prefiere, y se relaja con, fractales de dimensión 1.3–1.5: los mismos de nubes, costas y árboles. Ciencia dura sobre por qué el arte gusta.',
+    'div.a11.cat':   'Paper · arXiv 2020',
+    'div.a11.title': 'Latin BERT: A Contextual Language Model for Classical Philology',
+    'div.a11.text':  'El primer modelo de lenguaje contextual para latín, entrenado con 642 millones de tokens que abarcan 22 siglos de textos. La base técnica de mi próxima investigación sobre el Codex Gigas.',
+    'div.a12.cat':   'Paper · arXiv 2020',
+    'div.a12.title': 'Sentiment Analysis: Detecting Valence, Emotions, and Other Affectual States from Text',
+    'div.a12.text':  'El survey de referencia sobre detección computacional de emociones en texto: métodos, léxicos, aplicaciones y trampas éticas. El mapa completo del campo donde vivirá mi análisis del Codex Gigas.',
+    'div.a13.cat':   'Paper · arXiv 2018',
+    'div.a13.title': 'Tattoo Image Search at Scale: Joint Detection and Compact Representation Learning',
+    'div.a13.text':  'Un solo modelo multi-tarea que detecta tatuajes y aprende representaciones compactas para buscarlos entre millones de imágenes. El tatuaje tratado como dato biométrico a escala.',
     'div.a1.read':   'Leer Artículo',
     'div.a1.code':   'Descargar Código',
 
-    'div.a2.cat':    'IA & NLP',
-    'div.a2.title':  'Modelos de Lenguaje de Gran Tamaño (LLMs)',
-    'div.a2.text':   'Una exploración accesible de cómo funcionan los LLMs, desde transformers hasta embeddings y atención multi-cabeza.',
+    'div.a2.cat':    'Paper · NeurIPS 2017',
+    'div.a2.title':  'Attention Is All You Need',
+    'div.a2.text':   'El artículo que introdujo el transformer, la arquitectura detrás de todos los LLMs modernos. El equipo de Google propuso sustituir la recurrencia por pura atención — y cambió la historia de la IA.',
     'div.a2.read':   'Leer Artículo',
     'div.a2.extra':  'Ver Video',
 
-    'div.a3.cat':    'Lenguajes',
-    'div.a3.title':  'Similitudes y Congruencias de Lenguajes de Programación',
-    'div.a3.text':   'Análisis comparativo de los paradigmas y estructuras en Java, C, Python y otros lenguajes populares.',
+    'div.a3.cat':    'Paper · SLE 2017',
+    'div.a3.title':  'Energy Efficiency across Programming Languages',
+    'div.a3.text':   'Midieron energía, tiempo y memoria de 27 lenguajes ejecutando los mismos programas: C, Rust y C++ dominan; Python paga cara su comodidad. El benchmark empírico más citado sobre el costo real de cada lenguaje.',
     'div.a3.read':   'Leer Artículo',
     'div.a3.extra':  'Comparativa',
 
-    'div.a4.cat':    'Cotidiano',
-    'div.a4.title':  'Aplicaciones Cotidianas de las Matemáticas',
-    'div.a4.text':   'Las matemáticas están en todas partes: en la música, las redes sociales, la criptografía y el clima. Descúbrelas.',
+    'div.a4.cat':    'Paper · Clásico de 1960',
+    'div.a4.title':  'The Unreasonable Effectiveness of Mathematics in the Natural Sciences',
+    'div.a4.text':   'El ensayo clásico del Nobel de Física sobre un "milagro" sin explicación: que las matemáticas, creadas por la mente humana, describan el universo con precisión irrazonable.',
     'div.a4.read':   'Leer Artículo',
     'div.a4.extra':  'Material Educativo',
 
@@ -312,11 +325,24 @@ window.pageTranslations = {
     'div.a5.read':   'Leer Artículo',
     'div.a5.extra':  'Galería Histórica',
 
-    'div.a6.cat':    'Curiosidades',
-    'div.a6.title':  'El Teorema del Mono Infinito y Otras Curiosidades',
-    'div.a6.text':   'Probabilidad, infinito y paradojas que desafían la intuición. Una mirada divertida a los límites de las matemáticas.',
+    'div.a6.cat':    'Paper · SIAM Review 2007',
+    'div.a6.title':  'Dynamical Bias in the Coin Toss',
+    'div.a6.text':   'Con mecánica clásica, fotografía de alta velocidad y una máquina lanzamonedas demostraron que el volado no es justo: la moneda cae del lado que empezó ~51% de las veces. El azar cotidiano bajo el microscopio.',
     'div.a6.read':   'Leer Artículo',
     'div.a6.extra':  'Más Curiosidades',
+
+    'div.a7.cat':    'Arte & Matemáticas',
+    'div.a7.title':  'El Arte de las Matemáticas: de la Proporción Áurea al Arte Generativo',
+    'div.a7.text':   'De la proporción áurea y los fractales al arte con código: cómo las matemáticas han modelado la estética durante siglos — y cómo hoy un algoritmo puede pintar. La imagen de esta tarjeta es una filotaxis generada con el ángulo áureo (137.5°).',
+    'div.a7.demo':   'Ver arte generativo en vivo',
+
+    'div.a8.cat':    'IA & NLP',
+    'div.a8.title':  'Análisis de Sentimientos sobre el Codex Gigas',
+    'div.a8.text':   'Mi próxima investigación: aplicar NLP y modelos de lenguaje al manuscrito medieval más grande del mundo — la "Biblia del Diablo" — para mapear las emociones de sus textos en latín, de los evangelios a las fórmulas de exorcismo.',
+
+    'div.a9.cat':    'Paper · CVPR-W 2016',
+    'div.a9.title':  'Deep Tattoo Recognition',
+    'div.a9.text':   'Redes convolucionales profundas aplicadas al reconocimiento de tatuajes sobre el reto Tatt-C del NIST, superando ampliamente a los métodos clásicos. Visión por computadora sobre piel.',
 
     'div.blog.title': 'Blog Técnico',
     'div.blog.sub':   'Notas técnicas escritas por mí, con el código al lado: cómo funcionan de verdad los algoritmos que uso en mis proyectos.',
@@ -426,11 +452,11 @@ window.pageTranslations = {
     'about.t1.title':  'Programming Beginnings',
     'about.t1.text':   'My first steps into software development and business applications, discovering my passion for solving problems through code.',
 
-    'about.t2.date':   '2016 – 2020',
+    'about.t2.date':   '2011 – 2016',
     'about.t2.title':  'UNAM FES Acatlán',
     'about.t2.text':   'Bachelor\'s in Applied Mathematics and Computing. Where I solidified my mathematical foundations and discovered the beauty of algorithms.',
 
-    'about.t3.date':   '2020 – Present',
+    'about.t3.date':   '2021 – 2026',
     'about.t3.title':  'UAM Iztapalapa',
     'about.t3.text':   'Bachelor\'s in Computing. Deepening in artificial intelligence, graph theory and advanced algorithms.',
 
@@ -449,8 +475,6 @@ window.pageTranslations = {
     'about.philosophy.quote': '"Mathematics is the queen of the sciences — and a beautiful algorithm is a theorem that also runs."',
 
     /* ── About Me (narrative redesign) ── */
-    'about2.hero.l1': "I didn't start programming to write code.",
-    'about2.hero.l2': 'I started because I wanted to understand how the world works.',
     'about2.hero.p1': 'I grew up on the west side of Mexico City, in Álvaro Obregón. Since I was a kid I was fascinated by video games, computers, mathematics and any problem that seemed impossible to solve.',
     'about2.hero.p2': 'Over time I discovered that programming was the point where all those passions met.',
     'about2.hero.p3': 'Today I build software, research artificial intelligence, and keep chasing the same curiosity I had when I wrote my first line of code.',
@@ -622,24 +646,39 @@ window.pageTranslations = {
     'div.a1.title':  'The Monte Carlo Method: Simulations for Estimating π',
     'div.a1.text':   'Discover how randomness can be used to calculate π through probabilistic simulations. A journey between statistics and geometry.',
     'div.soon':      'Coming soon',
+    'div.read':      'Read Article (PDF)',
+    'div.paper':     'Read Paper (PDF)',
+
+    'div.a10.cat':   'Paper · Frontiers 2011',
+    'div.a10.title': 'Perceptual and Physiological Responses to Jackson Pollock\'s Fractals',
+    'div.a10.text':  'Pollock\'s drip paintings have a measurable fractal dimension — and the human eye prefers, and relaxes with, fractals of dimension 1.3–1.5: the same as clouds, coastlines and trees. Hard science on why art pleases.',
+    'div.a11.cat':   'Paper · arXiv 2020',
+    'div.a11.title': 'Latin BERT: A Contextual Language Model for Classical Philology',
+    'div.a11.text':  'The first contextual language model for Latin, trained on 642 million tokens spanning 22 centuries of text. The technical foundation of my upcoming research on the Codex Gigas.',
+    'div.a12.cat':   'Paper · arXiv 2020',
+    'div.a12.title': 'Sentiment Analysis: Detecting Valence, Emotions, and Other Affectual States from Text',
+    'div.a12.text':  'The reference survey on computational emotion detection in text: methods, lexicons, applications and ethical pitfalls. The complete map of the field where my Codex Gigas analysis will live.',
+    'div.a13.cat':   'Paper · arXiv 2018',
+    'div.a13.title': 'Tattoo Image Search at Scale: Joint Detection and Compact Representation Learning',
+    'div.a13.text':  'A single multi-task model that detects tattoos and learns compact representations to search them among millions of images. The tattoo treated as biometric data at scale.',
     'div.a1.read':   'Read Article',
     'div.a1.code':   'Download Code',
 
-    'div.a2.cat':    'AI & NLP',
-    'div.a2.title':  'Large Language Models (LLMs)',
-    'div.a2.text':   'An accessible exploration of how LLMs work, from transformers to embeddings and multi-head attention.',
+    'div.a2.cat':    'Paper · NeurIPS 2017',
+    'div.a2.title':  'Attention Is All You Need',
+    'div.a2.text':   'The paper that introduced the transformer, the architecture behind every modern LLM. The Google team proposed replacing recurrence with pure attention — and changed the history of AI.',
     'div.a2.read':   'Read Article',
     'div.a2.extra':  'Watch Video',
 
-    'div.a3.cat':    'Languages',
-    'div.a3.title':  'Similarities and Congruences of Programming Languages',
-    'div.a3.text':   'Comparative analysis of paradigms and structures in Java, C, Python and other popular languages.',
+    'div.a3.cat':    'Paper · SLE 2017',
+    'div.a3.title':  'Energy Efficiency across Programming Languages',
+    'div.a3.text':   'They measured energy, time and memory across 27 languages running the same programs: C, Rust and C++ dominate; Python pays dearly for its convenience. The most cited empirical benchmark on the real cost of each language.',
     'div.a3.read':   'Read Article',
     'div.a3.extra':  'Comparison',
 
-    'div.a4.cat':    'Everyday',
-    'div.a4.title':  'Everyday Applications of Mathematics',
-    'div.a4.text':   'Mathematics is everywhere: in music, social networks, cryptography and weather. Discover them.',
+    'div.a4.cat':    'Paper · 1960 Classic',
+    'div.a4.title':  'The Unreasonable Effectiveness of Mathematics in the Natural Sciences',
+    'div.a4.text':   'The Physics Nobel laureate\'s classic essay on an unexplained "miracle": that mathematics, created by the human mind, describes the universe with unreasonable precision.',
     'div.a4.read':   'Read Article',
     'div.a4.extra':  'Educational Material',
 
@@ -649,11 +688,24 @@ window.pageTranslations = {
     'div.a5.read':   'Read Article',
     'div.a5.extra':  'Historical Gallery',
 
-    'div.a6.cat':    'Curiosities',
-    'div.a6.title':  'The Infinite Monkey Theorem and Other Curiosities',
-    'div.a6.text':   'Probability, infinity and paradoxes that challenge intuition. A fun look at the limits of mathematics.',
+    'div.a6.cat':    'Paper · SIAM Review 2007',
+    'div.a6.title':  'Dynamical Bias in the Coin Toss',
+    'div.a6.text':   'Using classical mechanics, high-speed photography and a coin-tossing machine they showed the toss is not fair: the coin lands on the side it started on ~51% of the time. Everyday randomness under the microscope.',
     'div.a6.read':   'Read Article',
     'div.a6.extra':  'More Curiosities',
+
+    'div.a7.cat':    'Art & Mathematics',
+    'div.a7.title':  'The Art of Mathematics: from the Golden Ratio to Generative Art',
+    'div.a7.text':   'From the golden ratio and fractals to art made with code: how mathematics has shaped aesthetics for centuries — and how an algorithm can paint today. This card\'s image is a phyllotaxis generated with the golden angle (137.5°).',
+    'div.a7.demo':   'See live generative art',
+
+    'div.a8.cat':    'AI & NLP',
+    'div.a8.title':  'Sentiment Analysis on the Codex Gigas',
+    'div.a8.text':   'My next research project: applying NLP and language models to the largest medieval manuscript in the world — the "Devil\'s Bible" — to map the emotions of its Latin texts, from the gospels to exorcism formulas.',
+
+    'div.a9.cat':    'Paper · CVPR-W 2016',
+    'div.a9.title':  'Deep Tattoo Recognition',
+    'div.a9.text':   'Deep convolutional networks applied to tattoo recognition on NIST\'s Tatt-C challenge, far outperforming classical methods. Computer vision on skin.',
 
     'div.blog.title': 'Tech Blog',
     'div.blog.sub':   'Technical notes written by me, with the code alongside: how the algorithms I use in my projects really work.',
@@ -720,8 +772,6 @@ window.pageTranslations = {
     'idx.about.title':   'Sobre Mí',
     'idx.about.p1':      'Soy un matemático y desarrollador con una sólida formación en matemáticas aplicadas y computación. Mi trayectoria académica combina el rigor matemático con la aplicación práctica en el campo de la programación.',
     'idx.about.p2':      'Mi enfoque profesional integra los principios matemáticos con el desarrollo de software, buscando siempre soluciones eficientes y elegantes para problemas complejos.',
-    'idx.tl1.title':     'Programador Profesional',
-    'idx.tl1.text':      'Desarrollo de software y aplicaciones empresariales',
     'idx.tl2.title':     'UNAM FES Acatlán',
     'idx.tl2.text':      'Licenciatura en Matemáticas Aplicadas y Computación',
     'idx.tl3.title':     'UAM Iztapalapa',
@@ -809,6 +859,15 @@ window.pageTranslations = {
     'idx.art.color':  'color',
     'idx.art.note':   'Rosas polares · Lissajous · espirógrafo · curva mariposa · atractores de Lorenz y De Jong · filotaxis — canvas 2D, sin librerías.',
 
+    /* ── Fractales (algoritmos.html) ── */
+    'fract.title': 'Fractales',
+    'fract.sub':   'Geometría de detalle infinito: seis fractales clásicos calculados en vivo. En Mandelbrot y Julia haz clic para acercarte (shift+clic para alejarte) — la frontera nunca se acaba.',
+    'fract.koch':  'Copo de Koch',
+    'fract.fern':  'Helecho de Barnsley',
+    'fract.tree':  'Árbol recursivo',
+    'fract.param': 'detalle',
+    'fract.note':  'Mandelbrot · Julia · Koch · Sierpiński · helecho de Barnsley · árbol recursivo — escape-time, recursión e IFS en canvas 2D, sin librerías.',
+
     /* Contexto de cada pieza: historia, matemáticas y aplicaciones */
     'idx.art.i.rose': 'Estudiada por Guido Grandi en 1723, la rosa polar esconde un teorema en su silueta: si k es entero, la curva tiene k pétalos cuando k es impar y 2k cuando es par — la paridad cambia la geometría. Aparece en diagramas de radiación de antenas, patrones de vibración y en la propia simetría floral.',
     'idx.art.i.maurer': 'Peter Maurer la describió en 1987: se recorren 360 puntos de una rosa a saltos de d grados y se unen con cuerdas rectas. Cambiar d una décima reorganiza todo el tejido. En el fondo es una señal submuestreada: el mismo fenómeno de aliasing que produce los patrones moiré en fotografía y video.',
@@ -874,8 +933,6 @@ window.pageTranslations = {
     'idx.about.title':   'About Me',
     'idx.about.p1':      'I am a mathematician and developer with a solid background in applied mathematics and computing. My academic path combines mathematical rigor with practical application in programming.',
     'idx.about.p2':      'My professional approach integrates mathematical principles with software development, always seeking efficient and elegant solutions to complex problems.',
-    'idx.tl1.title':     'Professional Programmer',
-    'idx.tl1.text':      'Software development and business applications',
     'idx.tl2.title':     'UNAM FES Acatlán',
     'idx.tl2.text':      'Bachelor\'s in Applied Mathematics and Computing',
     'idx.tl3.title':     'UAM Iztapalapa',
@@ -962,6 +1019,15 @@ window.pageTranslations = {
     'idx.art.param':  'parameter',
     'idx.art.color':  'color',
     'idx.art.note':   'Polar roses · Lissajous · spirograph · butterfly curve · Lorenz and De Jong attractors · phyllotaxis — 2D canvas, no libraries.',
+
+    /* ── Fractals (algoritmos.html) ── */
+    'fract.title': 'Fractals',
+    'fract.sub':   'Geometry of infinite detail: six classic fractals computed live. On Mandelbrot and Julia, click to zoom in (shift+click to zoom out) — the boundary never ends.',
+    'fract.koch':  'Koch snowflake',
+    'fract.fern':  'Barnsley fern',
+    'fract.tree':  'Recursive tree',
+    'fract.param': 'detail',
+    'fract.note':  'Mandelbrot · Julia · Koch · Sierpiński · Barnsley fern · recursive tree — escape-time, recursion and IFS on 2D canvas, no libraries.',
 
     /* Context for each piece: history, mathematics, applications */
     'idx.art.i.rose': 'Studied by Guido Grandi in 1723, the polar rose hides a theorem in its silhouette: for integer k, the curve has k petals when k is odd and 2k when it is even — parity changes the geometry. It shows up in antenna radiation diagrams, vibration patterns and floral symmetry itself.',

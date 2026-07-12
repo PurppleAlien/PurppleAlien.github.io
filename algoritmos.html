@@ -265,6 +265,36 @@
       </div>
     </section>
 
+    <!-- ===== FRACTALES (js/fractals.js) ===== -->
+    <section class="container" id="fractales" style="padding: 0 20px 80px; max-width: 960px; margin: 0 auto;">
+      <h2 class="section-title" style="text-align:center;" data-i18n="fract.title">Fractales</h2>
+      <p style="text-align:center; color:#8b949e; max-width:620px; margin:0 auto 30px; font-size:0.95rem;" data-i18n="fract.sub">Geometría de detalle infinito: seis fractales clásicos calculados en vivo. En Mandelbrot y Julia haz clic para acercarte (shift+clic para alejarte) — la frontera nunca se acaba.</p>
+
+      <div class="genart-wrap fade-in">
+        <div class="genart-controls" role="tablist" aria-label="Fractales">
+          <button class="genart-btn active" data-fractal="mandelbrot">Mandelbrot</button>
+          <button class="genart-btn" data-fractal="julia">Julia</button>
+          <button class="genart-btn" data-fractal="koch" data-i18n="fract.koch">Copo de Koch</button>
+          <button class="genart-btn" data-fractal="sierpinski">Sierpiński</button>
+          <button class="genart-btn" data-fractal="fern" data-i18n="fract.fern">Helecho de Barnsley</button>
+          <button class="genart-btn" data-fractal="tree" data-i18n="fract.tree">Árbol recursivo</button>
+        </div>
+        <div class="genart-frame">
+          <canvas id="fractal-canvas" aria-label="Lienzo de fractales interactivos"></canvas>
+        </div>
+        <div class="genart-bar">
+          <label><span data-i18n="fract.param">detalle</span> <input type="range" id="fr-param" min="0" max="100" value="50"></label>
+          <button class="ga-btn" id="fr-reset" aria-label="Restablecer vista" title="Restablecer vista"><i class="fas fa-rotate-right"></i></button>
+          <span id="fr-stat" style="font-family:var(--font-mono); font-size:0.72rem; color:#8b949e;"></span>
+        </div>
+        <div class="genart-formula">
+          <code id="fractal-formula">z ← z² + c</code>
+        </div>
+        <p class="genart-info" id="fractal-info"></p>
+        <p class="genart-note" data-i18n="fract.note">Mandelbrot · Julia · Koch · Sierpiński · helecho de Barnsley · árbol recursivo — escape-time, recursión e IFS en canvas 2D, sin librerías.</p>
+      </div>
+    </section>
+
     <div class="viz-wrap">
 
       <!-- Algo selector -->
@@ -388,13 +418,13 @@
       <p class="games-sub">Los mismos juegos de mi <a href="https://github.com/PurppleAlien/Inteligencia-Artificial" target="_blank" rel="noopener">repositorio en Java</a> (minimax · negamax · poda alfa-beta), portados y mejorados para jugar aquí mismo. En <strong>infierno</strong> la IA juega perfecto: el empate es tu mejor final posible.</p>
 
       <div class="game-tabs" role="tablist" aria-label="Juegos">
-        <button class="game-tab active" data-game="gato"><i class="fas fa-hashtag"></i> Gato</button>
+        <button class="game-tab" data-game="gato"><i class="fas fa-hashtag"></i> Gato</button>
         <button class="game-tab" data-game="c4"><i class="fas fa-circle-dot"></i> Conecta 4</button>
-        <button class="game-tab" data-game="mc"><i class="fas fa-water"></i> Misioneros y Caníbales</button>
+        <button class="game-tab active" data-game="mc"><i class="fas fa-water"></i> Misioneros y Caníbales</button>
       </div>
 
       <!-- ── GATO ── -->
-      <div class="game-panel active" id="game-gato">
+      <div class="game-panel" id="game-gato">
         <div class="game-toolbar">
           <div class="diff-group">
             <button class="diff-btn d-novato" data-diff="novato">novato</button>
@@ -428,7 +458,7 @@
       </div>
 
       <!-- ── MISIONEROS Y CANÍBALES ── -->
-      <div class="game-panel" id="game-mc">
+      <div class="game-panel active" id="game-mc">
         <div class="game-toolbar">
           <button class="game-action" id="mc-reset"><i class="fas fa-rotate-right"></i> reiniciar</button>
           <button class="game-action" id="mc-solve"><i class="fas fa-wand-magic-sparkles"></i> resolver con BFS</button>
@@ -462,6 +492,13 @@
         <a href="algoritmos.html">Algoritmos</a>
         <a href="contacto.html">Contacto</a>
       </div>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/antonio-sould/" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/PurppleAlien"             class="social-link" title="GitHub"   target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+        <a href="https://www.instagram.com/antoniosould/"      class="social-link" title="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+        <a href="mailto:antonio.soria8r@gmail.com"             class="social-link" title="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://wa.me/525554646553"                   class="social-link" title="WhatsApp" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
+      </div>
       <p class="copyright">© 2026 Antonio Soria. Todos los derechos reservados.</p>
     </div>
   </footer>
@@ -475,9 +512,11 @@
   <!-- Lógica del visualizador (BFS · DFS · A*) -->
   <script src="js/algos.js"></script>
   <script src="js/generative-art.js" defer></script>
+  <script src="js/fractals.js" defer></script>
   <script src="js/games.js" defer></script>
   <!-- Escena 3D de fondo + cursor cometa + transición de página -->
   <script type="module" src="js/hero3d.js"></script>
+  <script src="js/mega-nav.js" defer></script>
   <script src="js/cursor.js" defer></script>
   <script src="js/command-palette.js" defer></script>
   <script src="js/status-bar.js" defer></script>
