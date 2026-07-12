@@ -353,6 +353,82 @@
     }
 
     /* ── Responsive ── */
+    /* ── Interludios de idea: capítulos sin foto, texto centrado.
+       Marcan las ideas que atraviesan la biografía (curiosidad,
+       teoría+código, aprendizaje continuo). ── */
+    .idea {
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 60px 0 26px;
+      text-align: center;
+    }
+    .idea-label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      letter-spacing: 3px;
+      color: rgba(97,218,251,0.55);
+      margin-bottom: 14px;
+    }
+    .idea h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 2.6vw, 2rem);
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+    .idea p {
+      color: var(--text-muted);
+      font-size: 1.04rem;
+      line-height: 1.9;
+      margin-bottom: 14px;
+    }
+    .idea p strong { color: var(--text); }
+
+    /* ── Próximo capítulo: terminal en espera ── */
+    .chapter-future {
+      max-width: 680px;
+      margin: 34px auto 20px;
+      padding: 44px 36px;
+      text-align: center;
+      border: 1px dashed rgba(97,218,251,0.35);
+      border-radius: var(--radius-lg);
+      background: rgba(97,218,251,0.03);
+    }
+    .chapter-future .ch-date { margin-bottom: 16px; }
+    .chapter-future p {
+      color: var(--text-muted);
+      line-height: 1.9;
+      max-width: 54ch;
+      margin: 0 auto;
+    }
+
+    /* ── Filosofía propia + intro del mosaico ── */
+    .filo-mine, .mosaic-intro {
+      max-width: 640px;
+      margin: 0 auto 36px;
+      text-align: center;
+      color: var(--text-muted);
+      line-height: 1.9;
+    }
+    .filo-mine p { margin-bottom: 14px; }
+
+    /* ── Manifiesto de cierre ── */
+    .manifesto { text-align: center; padding: 70px 0 40px; }
+    .manifesto p {
+      font-family: var(--font-display);
+      font-size: clamp(1.15rem, 2.4vw, 1.7rem);
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+    .manifesto p.accent {
+      background: linear-gradient(90deg, #61dafb, #c678dd);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 600;
+    }
+
     @media (max-width: 900px) {
       .story-hero {
         grid-template-columns: 1fr;
@@ -379,6 +455,8 @@
       .ch-num { font-size: 4.6rem; top: 12px; }
       .story-band { height: 32vh; min-height: 210px; }
       .mosaic { gap: 10px; }
+      .idea { padding: 44px 0 18px; }
+      .chapter-future { padding: 32px 20px; }
     }
   </style>
 
@@ -451,11 +529,19 @@
       </div>
     </section>
 
+    <!-- ═══ INTERLUDIO · La pregunta (el origen de todo) ═══ -->
+    <section class="container idea" data-anim="fade">
+      <span class="idea-label">// el origen</span>
+      <h2 data-i18n="about2.q.title">La pregunta</h2>
+      <p data-i18n="about2.q.p1">No me conformaba con usar la tecnología: quería entender qué ocurría detrás de la pantalla. Cómo un videojuego respondía a cada movimiento, por qué una página web aparecía al instante, cómo una computadora podía resolver problemas complejos siguiendo únicamente instrucciones.</p>
+      <p data-i18n="about2.q.p2"><strong>Quería saber cómo estaban hechas las cosas.</strong> Todo lo que vino después — las matemáticas, el código, la investigación — ha sido mi manera de intentar responder esa pregunta.</p>
+    </section>
+
     <!-- ═══ CAPÍTULO 01 · Inicios en la programación ═══ -->
     <section class="container chapter">
       <span class="ch-num" aria-hidden="true">01</span>
       <div class="ch-text" data-anim="left">
-        <span class="ch-date">2011 – 2016</span>
+        <span class="ch-date">2011</span>
         <h2 class="ch-title" data-i18n="about2.c1.title">Inicios en la programación</h2>
         <p data-i18n="about2.c1.p1">Mis primeros programas fueron en lenguaje C: ejercicios clásicos, ciclos, memoria. Aprendí que la máquina no perdona la ambigüedad — y que esa exigencia era exactamente lo que me gustaba.</p>
         <p data-i18n="about2.c1.p2">Poco después llegó Java y, con él, el paradigma orientado a objetos y las estructuras de datos: la idea de que el código no solo se escribe, también se diseña.</p>
@@ -469,7 +555,7 @@
     <section class="container chapter reverse">
       <span class="ch-num" aria-hidden="true">02</span>
       <div class="ch-text" data-anim="right">
-        <span class="ch-date">2016 – 2020</span>
+        <span class="ch-date">2011 – 2016</span>
         <h2 class="ch-title" data-i18n="about2.c2.title">UNAM FES Acatlán</h2>
         <p data-i18n="about2.c2.p1">Licenciatura en Matemáticas Aplicadas y Computación. Ahí solidifiqué mis bases matemáticas y descubrí la belleza de los números y de los algoritmos.</p>
         <p data-i18n="about2.c2.p2">Fueron años muy significativos en mi desarrollo profesional: entendí que un teorema y un programa se parecen más de lo que parece.</p>
@@ -477,6 +563,14 @@
       <div class="ch-photo photo-frame landscape" data-anim="left">
         <img src="images/sobre-mi/unam.jpg" alt="Banderas de México, la UNAM y FES Acatlán ondeando en el campus" width="720" height="540" loading="lazy" data-parallax="0.07">
       </div>
+    </section>
+
+    <!-- ═══ INTERLUDIO · Entre la teoría y el código ═══ -->
+    <section class="container idea" data-anim="fade">
+      <span class="idea-label">// dos lenguajes</span>
+      <h2 data-i18n="about2.teoria.title">Entre la teoría y el código</h2>
+      <p data-i18n="about2.teoria.p1">Siempre me llamó la atención que las matemáticas pudieran explicar el comportamiento del mundo, y que la programación permitiera convertir esas ideas en herramientas reales.</p>
+      <p data-i18n="about2.teoria.p2">Hoy disfruto tanto demostrando la complejidad de un algoritmo como diseñando una interfaz o entrenando un modelo de lenguaje. No las vivo como disciplinas separadas: son la misma curiosidad hablada en distintos lenguajes.</p>
     </section>
 
     <!-- ═══ BANDA CINEMATOGRÁFICA ═══ -->
@@ -510,6 +604,7 @@
         <span class="ch-date" data-i18n="about2.c4.date">2022 – Presente</span>
         <h2 class="ch-title" data-i18n="about2.c4.title">Desarrollo profesional</h2>
         <p data-i18n="about2.c4.p1">Trabajo en proyectos personales y profesionales que combinan matemáticas y programación para crear soluciones innovadoras: sistemas de gestión, algoritmos de IA, visualizadores interactivos.</p>
+        <p data-i18n="about2.c4.p2">Más que escribir código, disfruto construir productos: tomar una idea, diseñarla desde cero y convertirla en una herramienta útil para otras personas.</p>
         <a href="portafolio.html" class="ch-link" data-i18n="about2.c4.link">ver el portafolio →</a>
       </div>
       <div class="ch-photo photo-frame landscape" data-anim="left">
@@ -525,6 +620,7 @@
         <h2 class="ch-title" data-i18n="about2.c5.title">Proyecto Terminal de investigación</h2>
         <p data-i18n="about2.c5.p1">Detección inteligente de paráfrasis mediante modelos de gran escala (LLMs).</p>
         <p data-i18n="about2.c5.p2">¿Pueden dos textos decir lo mismo con palabras completamente distintas — y puede una máquina darse cuenta? Mi investigación explora cómo los modelos de lenguaje capturan el significado más allá de la forma: embeddings, similitud semántica y evaluación rigurosa.</p>
+        <p data-i18n="about2.c5.p3">En los últimos años mi interés se ha concentrado en el procesamiento del lenguaje natural: entender cómo las máquinas representan el significado y cómo esas representaciones sirven para resolver problemas reales.</p>
         <a href="proyecto-terminal.html" class="ch-link" data-i18n="about2.c5.link">conocer el proyecto →</a><br>
         <a href="https://purpplealien-deteccion-parafrasis.hf.space/" class="ch-link" target="_blank" rel="noopener noreferrer" data-i18n="about2.c5.demo">probar el detector en vivo →</a>
       </div>
@@ -533,10 +629,27 @@
       </div>
     </section>
 
+    <!-- ═══ INTERLUDIO · Siempre aprendiendo ═══ -->
+    <section class="container idea" data-anim="fade">
+      <span class="idea-label">// fuera del aula</span>
+      <h2 data-i18n="about2.aprender.title">Siempre aprendiendo</h2>
+      <p data-i18n="about2.aprender.p1">La tecnología cambia demasiado rápido como para dejar de aprender. Gran parte de mi formación ocurre fuera del salón de clases: leyendo documentación y artículos, desarrollando proyectos personales y experimentando con nuevas herramientas — de Linux y Docker a los modelos de lenguaje.</p>
+    </section>
+
+    <!-- ═══ PRÓXIMO CAPÍTULO · el futuro ═══ -->
+    <section class="container">
+      <div class="chapter-future" data-anim="fade">
+        <span class="ch-date">2026 → ∞</span>
+        <h2 class="ch-title" data-i18n="about2.futuro.title">Próximo capítulo…</h2>
+        <p data-i18n="about2.futuro.p1">Mi siguiente objetivo es especializarme en inteligencia artificial aplicada, ingeniería de software y sistemas inteligentes: proyectos donde converjan investigación, matemáticas y desarrollo. Esta historia apenas comienza.</p>
+      </div>
+    </section>
+
     <!-- ═══ FUERA DEL TECLADO ═══ -->
     <section class="container" style="padding: 50px 0 70px;">
       <h2 class="section-title" data-i18n="about2.mosaic.title">Fuera del teclado</h2>
       <p class="philosophy-sub" data-i18n="about2.mosaic.sub">Porque la curiosidad no se queda en la pantalla.</p>
+      <p class="mosaic-intro" data-anim="fade" data-i18n="about2.mosaic.intro">Viajar me recuerda que siempre existe otra forma de ver el mundo. La fotografía me obliga a detenerme unos segundos y observar detalles que normalmente pasarían desapercibidos. Y el cine — Kubrick, Bergman, Aronofsky — me inspira por la manera en que combina arte, técnica y narrativa.</p>
       <div class="mosaic" data-stagger>
         <div class="photo-frame">
           <img src="images/sobre-mi/m-universal.jpg" alt="Antonio de viaje en Universal Studios" width="1400" height="1050" loading="lazy">
@@ -564,6 +677,12 @@
     <!-- ═══ FILOSOFÍA (alineada con el index) ═══ -->
     <section class="container" style="padding: 60px 0 80px; background: radial-gradient(ellipse at 50% 0%, rgba(97,218,251,0.05) 0%, transparent 70%); border-radius: var(--radius-lg); margin-bottom: 40px;">
       <h2 class="section-title" data-i18n="about.philosophy.title">Mi Filosofía</h2>
+
+      <div class="filo-mine" data-anim="fade">
+        <p data-i18n="about2.filo.p1">Disfruto enfrentar problemas difíciles. Ya sea optimizando un algoritmo, diseñando una arquitectura de software o buscando la mejor forma de representar información, siempre intento encontrar soluciones elegantes y bien fundamentadas.</p>
+        <p data-i18n="about2.filo.p2">Creo que un buen software debe ser comprensible antes que complejo: prefiero las soluciones elegantes a las rebuscadas, y considero que el mejor código es aquel que otra persona puede entender años después.</p>
+      </div>
+
       <p class="philosophy-sub" data-i18n="idx.philosophy.sub">Me inspira el pensamiento de los grandes: Turing, Euler, Gauss y von Neumann.</p>
 
       <ul class="axioms" data-stagger>
@@ -580,6 +699,14 @@
         <p class="quote-text" id="quote-text">Solo podemos ver una corta distancia hacia adelante, pero podemos ver allí mucho por hacer.</p>
         <span class="quote-author" id="quote-author">— Alan Turing, padre de la computación</span>
       </div>
+    </section>
+
+    <!-- ═══ MANIFIESTO DE CIERRE ═══ -->
+    <section class="container manifesto" data-anim="fade">
+      <p data-i18n="about2.man.l1">Cuando era niño me preguntaba cómo funcionaban las computadoras.</p>
+      <p data-i18n="about2.man.l2">Hoy sigo haciéndome exactamente la misma pregunta.</p>
+      <p data-i18n="about2.man.l3">La diferencia es que ahora tengo las herramientas para intentar responderla.</p>
+      <p class="accent"><span data-i18n="about2.man.l4">Y cada proyecto nuevo es una oportunidad para descubrir algo que todavía no sé.</span><span class="band-cursor">_</span></p>
     </section>
 
   </main>
