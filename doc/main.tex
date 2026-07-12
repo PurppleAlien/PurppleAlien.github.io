@@ -8,6 +8,7 @@
 \usepackage{enumitem}
 \usepackage{xcolor}
 \usepackage{ragged2e}
+\usepackage{array}
 \usepackage{tikz}
 \usepackage{graphicx}
 
@@ -32,6 +33,7 @@
   {\normalfont\Large\bfseries\color{primary}}
   {}{0em}
   {}[\vspace{-0.1cm}{\color{accent}\titlerule[1.5pt]}]
+\titlespacing*{\section}{0pt}{0.35cm}{0.25cm}
 
 \titleformat{\subsection}
   {\normalfont\large\bfseries\color{textsec}}
@@ -46,13 +48,21 @@
   \noindent
   \textbf{#1} \hfill {\small\color{textsec}#2}\\
   {\small\color{accent}#3}
-  \vspace{0.1cm}
+  \vspace{0.08cm}
   \par\noindent#4
-  \vspace{0.25cm}
+  \par\vspace{0.16cm}
 }
 
 % ── Comando de skill tag ──────────────────────────────────────────────────────
 \newcommand{\skill}[1]{{\footnotesize\bfseries\color{primary}\hspace{0.5mm}\hspace{1mm}#1\hspace{1mm}}}
+
+% ── Entrada simple: solo título y cuerpo, sin líneas fantasma ─────────────────
+\newcommand{\entrysimple}[2]{%
+  \noindent\textbf{#1}\par
+  \vspace{0.04cm}
+  \noindent#2
+  \vspace{0.14cm}\par
+}
 
 % ── Barra decorativa ──────────────────────────────────────────────────────────
 \newcommand{\decorule}{\vspace{0.1cm}{\color{accent}\rule{1.5cm}{2.5pt}}\vspace{0.2cm}}
@@ -62,13 +72,13 @@
   \vspace{0.2cm}
   \begin{minipage}{0.62\textwidth}
     {\Huge\bfseries\color{primary} Juan Antonio G.}\\[0.05cm]
-    {\huge\bfseries\color{primary} Soria Rodriguez}\\[0.18cm]
-    {\large\color{accent} #1}\\[0.12cm]
+    {\huge\bfseries\color{primary} Soria Rodr\'{i}guez}\\[0.18cm]
+    {\RaggedRight\large\color{accent} #1\par}\vspace{0.12cm}
     {\small\color{textsec}
-    \faMapMarker\ #2 \hspace{0.35cm}%
-    \faEnvelope\ \href{mailto:antonio.soria8r@gmail.com}{antonio.soria8r@gmail.com} \hspace{0.35cm}%
-    \faGithub\ \href{https://github.com/PurppleAlien}{PurppleAlien} \hspace{0.35cm}%
-    \faLinkedin\ \href{https://www.linkedin.com/in/antonio-sould/}{antonio-sould}
+    \mbox{\faMapMarker\ #2}\hspace{0.35cm}%
+    \mbox{\faEnvelope\ \href{mailto:antonio.soria8r@gmail.com}{antonio.soria8r@gmail.com}}\\[0.06cm]
+    \mbox{\faGithub\ \href{https://github.com/PurppleAlien}{PurppleAlien}}\hspace{0.35cm}%
+    \mbox{\faLinkedin\ \href{https://www.linkedin.com/in/antonio-sould/}{antonio-sould}}
     }
   \end{minipage}%
   \hfill
@@ -87,20 +97,21 @@
 }
 
 \begin{document}
+\pagestyle{empty}
 
 % ============================================================
 %  VERSIÓN EN ESPAÑOL
 % ============================================================
 \selectlanguage{spanish}
 
-\cvheader{Licenciado en Computaci\'{o}n \;$\mid$\; Investigador en IA \& Desarrollador Aumentado por IA}
+\cvheader{Desarrollador de Software \& Investigador en IA \;$\mid$\; PLN y LLMs}
          {Ciudad de M\'{e}xico, M\'{e}xico}
 
 % ── RESUMEN ──────────────────────────────────────────────────────────────────
 \section*{Resumen Profesional}
 \justifying
 \small
-Profesional Licenciado en Computaci\'{o}n (UAM-Iztapalapa), especializado en Inteligencia Artificial, Procesamiento de Lenguaje Natural (PLN) y desarrollo de software aumentado por IA. Complet\'{e} un Proyecto Terminal de nivel investigaci\'{o}n construyendo un sistema de detecci\'{o}n de par\'{a}frasis y plagio de doble modo sobre un corpus institucional de $\sim$5{,}000 tesis — combinando aprendizaje profundo, recuperaci\'{o}n vectorial, fine-tuning de transformers y despliegue web containerizado.
+Estudiante de \'{u}ltimo a\~{n}o de la Licenciatura en Computaci\'{o}n (UAM-Iztapalapa, titulaci\'{o}n prevista: diciembre de 2026), especializado en Inteligencia Artificial, Procesamiento de Lenguaje Natural (PLN) y desarrollo de software aumentado por IA. Complet\'{e} un Proyecto Terminal de nivel investigaci\'{o}n construyendo un sistema de detecci\'{o}n de par\'{a}frasis y plagio de doble modo sobre un corpus institucional de $\sim$5{,}000 tesis — combinando aprendizaje profundo, recuperaci\'{o}n vectorial, fine-tuning de transformers y despliegue web containerizado.
 
 Utilizo activamente metodolog\'{i}as aumentadas por IA: ingenier\'{i}a de contexto, flujos agentic, generaci\'{o}n de c\'{o}digo asistida y dise\~{n}o multi-agente. Concibo la IA como un multiplicador estrat\'{e}gico para analizar problemas complejos, validar soluciones y transformar ideas en productos funcionales.
 
@@ -108,21 +119,19 @@ Utilizo activamente metodolog\'{i}as aumentadas por IA: ingenier\'{i}a de contex
 
 %% ── EDUCACIÓN ─────────────────────────────────────────────────────────────────
 \section*{Educaci\'{o}n}
-\entry{Licenciatura en Ciencias de la Computaci\'{o}n}
+\entry{Licenciatura en Computaci\'{o}n (en curso)}
        {2021 -- 2026}
        {Universidad Aut\'{o}noma Metropolitana (UAM-I), Ciudad de M\'{e}xico}
-       {\textbf{Tesis:} Detecci\'{o}n Inteligente de Par\'{a}frasis mediante Modelos de Lenguaje de Gran Escala (LLMs) \\
-        \textbf{Asesor:} Dr. Benjamin Moreno Montiel}
-        
-        
-        
-\entry{Licenciatura en Matem\'{a}ticas Aplicadas y Computaci\'{o}n}
-       {2011--2016}
+       {\textbf{Tesis} (Proyectos Terminales I y II — titulaci\'{o}n prevista: nov--dic 2026): Detecci\'{o}n Inteligente de Par\'{a}frasis mediante Modelos de Lenguaje de Gran Escala (LLMs) \\
+        \textbf{Asesor:} Dr. Benjam\'{i}n Moreno Montiel \\
+        \textbf{PT II (en curso):} an\'{a}lisis de sentimientos sobre el Codex Gigas — PLN para lat\'{i}n con modelos contextuales}
+\entry{Matem\'{a}ticas Aplicadas y Computaci\'{o}n (estudios sin concluir)}
+       {2011 -- 2016}
        {Universidad Nacional Aut\'{o}noma de M\'{e}xico (UNAM), FES Acatl\'{a}n}
        {}
 
 %% ── PROYECTO CLAVE ─────────────────────────────────────────────────────
-\section*{Proyecto Terminal 1: Sistema de Detecci\'{o}n de Par\'{a}frasis y Plagio}
+\section*{Proyecto Terminal I: Sistema de Detecci\'{o}n de Par\'{a}frasis y Plagio}
 \justifying
 \small
 Sistema NLP de doble modo (clasificaci\'{o}n por pares + b\'{u}squeda en corpus) para detecci\'{o}n de plagio acad\'{e}mico en la UAM-I. Desplegado sobre $\sim$5{,}000 tesis con un \'{i}ndice sem\'{a}ntico FAISS de \textbf{2.28M vectores al 100\% de cobertura}.
@@ -143,54 +152,51 @@ Sistema NLP de doble modo (clasificaci\'{o}n por pares + b\'{u}squeda en corpus)
 \section*{Habilidades T\'{e}cnicas}
 \small
 \noindent
-{\bfseries\color{primary} Lenguajes:} \hfill
-\skill{Python (Avanzado)} \skill{Java (Experimentado)} \skill{C / C++} \skill{JavaScript} \skill{PHP}
+\begin{tabular}{@{}p{2.9cm}@{}>{\RaggedLeft\arraybackslash}p{\dimexpr\textwidth-2.9cm\relax}@{}}
+{\bfseries\color{primary} Lenguajes:} & \skill{Python (Avanzado)} \skill{Java (Experimentado)} \skill{C / C++} \skill{JavaScript} \skill{PHP} \\[0.1cm]
+{\bfseries\color{primary} ML / PLN:} & \skill{PyTorch} \skill{Hugging Face} \skill{BETO / XLM-R} \skill{sentence-transformers} \skill{FAISS} \skill{LLMs / RAG} \skill{scikit-learn} \\[0.1cm]
+{\bfseries\color{primary} IA Aumentada:} & \skill{Prompt Engineering} \skill{Context Engineering} \skill{Agentic AI} \skill{C\'{o}digo Asistido} \skill{Multi-Agente} \\[0.1cm]
+{\bfseries\color{primary} Herramientas:} & \skill{Git / GitHub} \skill{Docker} \skill{MongoDB} \skill{MySQL} \skill{Linux} \skill{Jupyter / Colab} \\[0.1cm]
+{\bfseries\color{primary} Web / Backend:} & \skill{Spring Boot} \skill{Next.js / React} \skill{FastAPI} \skill{Node.js} \skill{PostgreSQL} \skill{REST / Microservicios}
+\end{tabular}
 
-\vspace{0.08cm}
-\noindent
-{\bfseries\color{primary} ML / PLN:} \hfill
-\skill{PyTorch} \skill{Hugging Face} \skill{BETO / XLM-R} \skill{sentence-transformers} \skill{FAISS} \skill{LLMs / RAG} \skill{scikit-learn}
+%% ── EXPERIENCIA PROFESIONAL ────────────────────────────────────────────────
+\section*{Experiencia Profesional}
+\entry{Desarrollador de Software Freelance}
+       {2022 -- Presente}
+       {Independiente}
+       {Sistemas web a la medida para cl\'{i}nicas y comercios — gesti\'{o}n, citas y facturaci\'{o}n — con Spring Boot, Next.js y PostgreSQL, desplegados en producci\'{o}n.}
 
-\vspace{0.08cm}
-\noindent
-{\bfseries\color{primary} IA Aumentada:} \hfill
-\skill{Prompt Engineering} \skill{Context Engineering} \skill{Agentic AI} \skill{C\'{o}digo Asistido} \skill{Multi-Agente}
+\entry{Profesor de Asignatura (freelance)}
+       {Feb 2020 -- Dic 2021}
+       {Cursos de ingreso y regularizaci\'{o}n}
+       {Cursos de ingreso a bachillerato y licenciatura, y asignaturas de \'{A}lgebra, Geometr\'{i}a, C\'{a}lculo y F\'{i}sica; dise\~{n}o de contenidos y adaptaci\'{o}n a cada grupo.}
 
-\vspace{0.08cm}
-\noindent
-{\bfseries\color{primary} Herramientas:} \hfill
-\skill{Git / GitHub} \skill{Docker} \skill{MongoDB} \skill{MySQL} \skill{Linux} \skill{Jupyter / Colab}
+\entry{Soporte T\'{e}cnico}
+       {Abr 2017 -- Abr 2021}
+       {Compa\~{n}\'{i}a BTL}
+       {Mantenimiento de equipos de c\'{o}mputo, instalaci\'{o}n de software y sistemas operativos, y soporte a la operaci\'{o}n diaria.}
 
-\vspace{0.08cm}
-\noindent
-{\bfseries\color{primary} Web / Backend:} \hfill
-\skill{Spring Boot} \skill{Next.js / React} \skill{FastAPI} \skill{Node.js} \skill{PostgreSQL} \skill{REST / Microservicios}
+\entry{Instalador de Sistemas de Seguridad}
+       {Jul 2016 -- Ago 2019}
+       {SYSARK}
+       {Instalaci\'{o}n y configuraci\'{o}n de CCTV y control de acceso; coordinaci\'{o}n de proyectos y entregas en sitio.}
 
-%% ── EXPERIENCIA ADICIONAL ──────────────────────────────────────────────────
-\section*{Proyectos y Experiencia Adicional}
-\entry{Sistemas de Gesti\'{o}n Full-Stack}
-       {}
-       {}
+%% ── PROYECTOS PERSONALES ───────────────────────────────────────────────────
+\section*{Proyectos Personales Destacados}
+\entrysimple{Sistemas de Gesti\'{o}n Full-Stack}
        {Sistemas completos para cl\'{i}nicas veterinarias y dentales: \textbf{Spring Boot 3} + PostgreSQL + JWT + WebSockets (odontograma interactivo, facturaci\'{o}n PDF) y un monorepo \textbf{Next.js 15} + Turborepo + Drizzle ORM desplegado en Vercel.}
 
-\entry{Arquitectura de Microservicios}
-       {}
-       {}
+\entrysimple{Arquitectura de Microservicios}
        {Plataformas de e-commerce y farmacia con hasta \textbf{8 microservicios} Spring Boot, RabbitMQ, API Gateway y orquestaci\'{o}n con Docker Compose.}
 
-\entry{Inteligencia Artificial y Algoritmos (Java)}
-       {}
-       {}
+\entrysimple{Inteligencia Artificial y Algoritmos (Java)}
        {Portafolio de 15+ proyectos: BFS, DFS, A*, Minimax, Negamax y poda Alfa-Beta. L\'{o}gica de juego para Connect 4, Gato, N-Reinas y rompecabezas con Java Swing.}
 
-\entry{Sistemas de Bajo Nivel y Compiladores (C)}
-       {}
-       {}
+\entrysimple{Sistemas de Bajo Nivel y Compiladores (C)}
        {Compilador de pseudoc\'{o}digo espa\~{n}ol$\rightarrow$C con \textbf{Flex \& Bison} (an\'{a}lisis l\'{e}xico, sint\'{a}ctico, sem\'{a}ntico y generaci\'{o}n de c\'{o}digo). Proyectos de Sistemas Operativos y Programaci\'{o}n Concurrente en C (procesos, hilos, memoria compartida).}
 
-\entry{Desarrollo de Videojuegos}
-       {}
-       {}
+\entrysimple{Desarrollo de Videojuegos}
        {Plataformero 2D estilo Mario Bros en Java (Swing, arquitectura MVC, Gradle) y mundo abierto low-poly 3D en \textbf{Unity / C\#}.}
 
 %% ── CURSOS ──────────────────────────────────────────────────────────────────
@@ -205,7 +211,7 @@ Bases de Datos \;$\mid$\; Simulaci\'{o}n Discreta \;$\mid$\; Redes \;$\mid$\; Di
 \vspace{0.15cm}
 \noindent
 {\small\bfseries\color{primary} Idiomas:}\hspace{0.3cm}
-{\small Espa\~{n}ol (Nativo) \;$\mid$\; Ingl\'{e}s (Intermedio / Lectura y escritura t\'{e}cnica)}
+{\small Espa\~{n}ol (Nativo) \;$\mid$\; Ingl\'{e}s (Intermedio / Lectura y escritura t\'{e}cnica) \;$\mid$\; Portugu\'{e}s (B\'{a}sico)}
 
 \vspace{0.15cm}
 \noindent
@@ -234,14 +240,14 @@ Bases de Datos \;$\mid$\; Simulaci\'{o}n Discreta \;$\mid$\; Redes \;$\mid$\; Di
 % ============================================================
 \selectlanguage{english}
 
-\cvheader{Bachelor's in Computer Science \;$\mid$\; AI Researcher \& AI-Augmented Software Developer}
+\cvheader{Software Developer \& AI Researcher \;$\mid$\; NLP and LLMs}
          {Mexico City, Mexico}
 
 % ── SUMMARY ──────────────────────────────────────────────────────────────────
 \section*{Professional Summary}
 \justifying
 \small
-Bachelor's in Computer Science at Universidad Aut\'{o}noma Metropolitana (UAM-I), specialized in Artificial Intelligence, Natural Language Processing (NLP), and AI-augmented software development. Completed a research-grade Bachelor's thesis building a production-level, dual-mode paraphrase and plagiarism detection system over an institutional corpus of $\sim$5{,}000 theses — combining deep learning, vector retrieval, transformer fine-tuning, and containerized web deployment.
+Final-year Computer Science student at Universidad Aut\'{o}noma Metropolitana (UAM-I, degree expected December 2026), specialized in Artificial Intelligence, Natural Language Processing (NLP), and AI-augmented software development. Completed a research-grade Bachelor's thesis building a production-level, dual-mode paraphrase and plagiarism detection system over an institutional corpus of $\sim$5{,}000 theses — combining deep learning, vector retrieval, transformer fine-tuning, and containerized web deployment.
 
 Actively uses AI-augmented methodologies: context engineering, agentic workflows, AI-assisted code generation, and multi-agent system design. Views AI as a strategic multiplier for analyzing complex problems, validating solutions, and transforming ideas into functional products.
 
@@ -249,20 +255,19 @@ Actively uses AI-augmented methodologies: context engineering, agentic workflows
 
 %% ── EDUCATION ───────────────────────────────────────────────────────────────
 \section*{Education}
-\entry{Bachelor's Degree in Computer Science}
+\entry{B.Sc. in Computer Science (in progress)}
        {2021 -- 2026}
        {Universidad Aut\'{o}noma Metropolitana (UAM-I), Mexico City}
-       {\textbf{Thesis:} Intelligent Paraphrase Detection using Large Language Models (LLMs) \\
-        \textbf{Advisor:} Dr. Benjamin Moreno Montiel}
-        
-        
-\entry{Bachelor's in Applied Mathematics and Computer Science}
-       {2011--2016}
+       {\textbf{Thesis} (Capstone Projects I \& II — degree expected Nov--Dec 2026): Intelligent Paraphrase Detection using Large Language Models (LLMs) \\
+        \textbf{Advisor:} Dr. Benjam\'{i}n Moreno Montiel \\
+        \textbf{Capstone II (in progress):} sentiment analysis of the Codex Gigas — NLP for Latin with contextual language models}
+\entry{Applied Mathematics and Computing (coursework, not completed)}
+       {2011 -- 2016}
        {Universidad Nacional Aut\'{o}noma de M\'{e}xico (UNAM), FES Acatl\'{a}n}
        {}
 
 %% ── KEY PROJECT ─────────────────────────────────────────────────────────
-\section*{Capstone Project: Paraphrase \& Plagiarism Detection System}
+\section*{Capstone Project I: Paraphrase \& Plagiarism Detection System}
 \justifying
 \small
 End-to-end, dual-mode NLP system (pairwise classification + corpus search) for academic plagiarism detection at UAM-I. Deployed over $\sim$5{,}000 theses with a FAISS semantic index of \textbf{2.28M vectors at 100\% corpus coverage}.
@@ -283,54 +288,51 @@ End-to-end, dual-mode NLP system (pairwise classification + corpus search) for a
 \section*{Technical Skills}
 \small
 \noindent
-{\bfseries\color{primary} Languages:} \hfill
-\skill{Python (Advanced)} \skill{Java (Experienced)} \skill{C / C++} \skill{JavaScript} \skill{PHP}
+\begin{tabular}{@{}p{2.9cm}@{}>{\RaggedLeft\arraybackslash}p{\dimexpr\textwidth-2.9cm\relax}@{}}
+{\bfseries\color{primary} Languages:} & \skill{Python (Advanced)} \skill{Java (Experienced)} \skill{C / C++} \skill{JavaScript} \skill{PHP} \\[0.1cm]
+{\bfseries\color{primary} ML / NLP:} & \skill{PyTorch} \skill{Hugging Face} \skill{BETO / XLM-R} \skill{sentence-transformers} \skill{FAISS} \skill{LLMs / RAG} \skill{scikit-learn} \\[0.1cm]
+{\bfseries\color{primary} AI-Augmented:} & \skill{Prompt Engineering} \skill{Context Engineering} \skill{Agentic AI} \skill{AI-Assisted Code} \skill{Multi-Agent} \\[0.1cm]
+{\bfseries\color{primary} Tools:} & \skill{Git / GitHub} \skill{Docker} \skill{MongoDB} \skill{MySQL} \skill{Linux} \skill{Jupyter / Colab} \\[0.1cm]
+{\bfseries\color{primary} Web / Backend:} & \skill{Spring Boot} \skill{Next.js / React} \skill{FastAPI} \skill{Node.js} \skill{PostgreSQL} \skill{REST / Microservices}
+\end{tabular}
 
-\vspace{0.08cm}
-\noindent
-{\bfseries\color{primary} ML / NLP:} \hfill
-\skill{PyTorch} \skill{Hugging Face} \skill{BETO / XLM-R} \skill{sentence-transformers} \skill{FAISS} \skill{LLMs / RAG} \skill{scikit-learn}
+%% ── PROFESSIONAL EXPERIENCE ─────────────────────────────────────────────────
+\section*{Professional Experience}
+\entry{Freelance Software Developer}
+       {2022 -- Present}
+       {Independent}
+       {Custom web systems for clinics and small businesses — management, scheduling and invoicing — built with Spring Boot, Next.js and PostgreSQL, deployed to production.}
 
-\vspace{0.08cm}
-\noindent
-{\bfseries\color{primary} AI-Augmented:} \hfill
-\skill{Prompt Engineering} \skill{Context Engineering} \skill{Agentic AI} \skill{AI-Assisted Code} \skill{Multi-Agent}
+\entry{Adjunct Instructor (freelance)}
+       {Feb 2020 -- Dec 2021}
+       {Admission and remedial courses}
+       {High-school and university admission courses plus Algebra, Geometry, Calculus and Physics; designed course content and adapted it to each group.}
 
-\vspace{0.08cm}
-\noindent
-{\bfseries\color{primary} Tools:} \hfill
-\skill{Git / GitHub} \skill{Docker} \skill{MongoDB} \skill{MySQL} \skill{Linux} \skill{Jupyter / Colab}
+\entry{IT Support Technician}
+       {Apr 2017 -- Apr 2021}
+       {BTL Company}
+       {Computer maintenance, software and OS installation, and day-to-day user support.}
 
-\vspace{0.08cm}
-\noindent
-{\bfseries\color{primary} Web / Backend:} \hfill
-\skill{Spring Boot} \skill{Next.js / React} \skill{FastAPI} \skill{Node.js} \skill{PostgreSQL} \skill{REST / Microservices}
+\entry{Security Systems Installer}
+       {Jul 2016 -- Aug 2019}
+       {SYSARK}
+       {Installation and configuration of CCTV and access-control systems; on-site project coordination and delivery.}
 
-%% ── ADDITIONAL EXPERIENCE ──────────────────────────────────────────────────
-\section*{Additional Projects \& Experience}
-\entry{Full-Stack Management Systems}
-       {}
-       {}
+%% ── PERSONAL PROJECTS ───────────────────────────────────────────────────────
+\section*{Highlighted Personal Projects}
+\entrysimple{Full-Stack Management Systems}
        {End-to-end systems for veterinary and dental clinics: \textbf{Spring Boot 3} + PostgreSQL + JWT + WebSockets (interactive odontogram, PDF invoicing) and a \textbf{Next.js 15} + Turborepo + Drizzle ORM monorepo deployed on Vercel.}
 
-\entry{Microservices Architecture}
-       {}
-       {}
+\entrysimple{Microservices Architecture}
        {E-commerce and pharmacy platforms with up to \textbf{8 Spring Boot microservices}, RabbitMQ, API Gateway, and Docker Compose orchestration.}
 
-\entry{Artificial Intelligence \& Algorithms (Java)}
-       {}
-       {}
+\entrysimple{Artificial Intelligence \& Algorithms (Java)}
        {Portfolio of 15+ projects: BFS, DFS, A*, Minimax, Negamax, and Alpha-Beta pruning. Game logic for Connect 4, Tic-Tac-Toe, N-Queens, and sliding puzzles using Java Swing.}
 
-\entry{Low-Level Systems \& Compilers (C)}
-       {}
-       {}
+\entrysimple{Low-Level Systems \& Compilers (C)}
        {Spanish$\rightarrow$C pseudocode compiler with \textbf{Flex \& Bison} (lexical, syntactic, semantic analysis, and code generation). Operating Systems and Concurrent Programming projects in C (processes, threads, shared memory).}
 
-\entry{Game Development}
-       {}
-       {}
+\entrysimple{Game Development}
        {2D Mario-style platformer in Java (Swing, MVC architecture, Gradle) and a low-poly 3D open world in \textbf{Unity / C\#}.}
 
 %% ── COURSES ──────────────────────────────────────────────────────────────────
@@ -345,10 +347,10 @@ Databases \;$\mid$\; Discrete Simulation \;$\mid$\; Networks \;$\mid$\; Algorith
 \vspace{0.15cm}
 \noindent
 {\small\bfseries\color{primary} Languages:}\hspace{0.3cm}
-{\small Spanish (Native) \;$\mid$\; English (Intermediate / Technical reading \& writing)}
+{\small Spanish (Native) \;$\mid$\; English (Intermediate / Technical reading \& writing) \;$\mid$\; Portuguese (Basic)}
 
 \vspace{0.15cm}
 \noindent
-{\small\color{textsec} Mexican nationality. Born December 12, 1991. Available for junior roles, internships, freelance, and research initiatives in ML/AI engineering and NLP.}
+{\small\color{textsec} Mexican nationality. Available for junior roles, internships, freelance, and research initiatives in ML/AI engineering and NLP.}
 
 \end{document}
