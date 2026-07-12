@@ -2,7 +2,7 @@
 <html lang="es" class="fx">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=1024">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sobre Mí — Antonio Soria</title>
   <meta name="description" content="Trayectoria de Antonio Soria: Matemático y Programador, UNAM, UAM, IA y algoritmos.">
 
@@ -367,6 +367,18 @@
       .chapter .ch-num, .chapter.reverse .ch-num { left: -4px; right: auto; top: 6px; }
       .story-band { height: 40vh; min-height: 260px; }
       .mosaic { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ── Rediseño móvil: capítulos más compactos y legibles ── */
+    @media (max-width: 640px) {
+      .story-hero { padding: 36px 0 22px; gap: 26px; }
+      .story-intro p { font-size: 0.98rem; line-height: 1.8; }
+      .chapter { padding: 44px 0; gap: 24px; }
+      .ch-title { font-size: 1.32rem; }
+      .ch-text p { font-size: 0.95rem; }
+      .ch-num { font-size: 4.6rem; top: 12px; }
+      .story-band { height: 32vh; min-height: 210px; }
+      .mosaic { gap: 10px; }
     }
   </style>
 

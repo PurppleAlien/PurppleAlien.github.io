@@ -2,7 +2,7 @@
 <html lang="es" class="fx" itemscope itemtype="http://schema.org/WebPage">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=1024">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
@@ -973,14 +973,28 @@
         min-height: 100vh;
         min-height: 100svh;
         align-items: flex-start;
-        padding-top: 86px;
-        padding-bottom: 50px;
+        padding-top: 92px;
+        padding-bottom: 56px;
       }
     }
 
+    /* ── Rediseño móvil del hero: menos ornamento, más jerarquía ── */
     @media (max-width: 640px) {
-      .hero { padding: 86px 16px 50px; }
-      .profile-ring img { width: 110px; height: 110px; }
+      .hero { padding: 92px 20px 56px; }
+
+      .profile-ring { margin-bottom: 24px; }
+      .profile-ring img { width: 104px; height: 104px; }
+      .profile-ring::after { inset: -12px; }
+
+      .hero h1 { font-size: clamp(2.6rem, 12vw, 3.4rem); letter-spacing: 0; }
+      .hero-subtitle { font-size: 0.95rem; margin-bottom: 26px; }
+
+      .hero-badges { gap: 8px; margin-bottom: 30px; }
+      .hero-badge { padding: 6px 12px; font-size: 0.78rem; }
+
+      .hero-corner { width: 44px; height: 44px; }
+      .scroll-hint { display: none; }
+
       .services-grid, .skills-grid, .projects-grid, .contact-grid { grid-template-columns: 1fr; }
       .process-steps { grid-template-columns: repeat(2, 1fr); }
       .interests-grid { grid-template-columns: repeat(2, 1fr); }

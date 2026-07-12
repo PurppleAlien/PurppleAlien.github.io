@@ -1590,3 +1590,77 @@ body.fx3d #hero-3d canvas { display: block; width: 100% !important; height: 100%
   .fade-in, [data-anim] { opacity: 1 !important; transform: none !important; }
   .hero-3d { display: none; }   /* sin escena 3D animada */
 }
+
+/* ════════════════════════════════════════════════════════════
+   REDISEÑO MÓVIL (≤768px)
+   Capa final de diseño para teléfonos: tipografía más legible,
+   ritmo de secciones consistente, targets táctiles ≥44px,
+   lienzos a sangre completa y controles con scroll horizontal.
+   El menú de navegación móvil es el panel mega-nav (hamburguesa).
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Tipografía base ~6% mayor: todo lo definido en rem respira */
+  html { font-size: 106.25%; -webkit-text-size-adjust: 100%; }
+
+  .container { padding: 0 20px; }
+
+  /* El menú móvil legado queda fuera: mega-nav lo sustituye */
+  .mobile-nav { display: none !important; }
+
+  /* Ritmo de secciones */
+  .section { padding: 60px 0; }
+  .section-title { font-size: 1.75rem; margin-bottom: 28px; }
+  .page-hero { padding: 44px 0 34px; }
+
+  /* Targets táctiles */
+  .btn { min-height: 48px; }
+  .social-links { gap: 12px; }
+  .social-link { width: 44px; height: 44px; font-size: 1rem; }
+  .theme-btn, .language-btn, .hamburger-btn { width: 42px; height: 42px; }
+
+  /* CTAs apilados a lo ancho */
+  .hero-cta, .cta-btns { flex-direction: column; align-items: stretch; width: 100%; max-width: 340px; margin-left: auto; margin-right: auto; }
+  .hero-cta .btn, .cta-btns .btn, .article-actions .btn { width: 100%; justify-content: center; }
+
+  /* Footer centrado y aireado */
+  footer { margin-top: 44px; padding: 40px 0 28px; }
+  .footer-links { gap: 6px 16px; justify-content: center; }
+  .copyright { font-size: 0.8rem; }
+
+  /* Tablas anchas: scroll horizontal en vez de desbordar la página */
+  .comparison-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  /* Lienzos (arte generativo, fractales, visualizador) a sangre completa */
+  .genart-frame, .canvas-wrap {
+    margin-left: -20px;
+    margin-right: -20px;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  /* Selectores de pieza / juego: carrusel horizontal con snap */
+  .genart-controls, .game-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 6px;
+  }
+  .genart-controls::-webkit-scrollbar, .game-tabs::-webkit-scrollbar { display: none; }
+  .genart-btn, .game-tab { flex: 0 0 auto; scroll-snap-align: start; }
+
+  .genart-bar { gap: 10px 14px; }
+  .genart-bar input[type="range"] { width: 120px; }
+
+  /* Tarjetas de artículos: imagen algo más baja para más texto visible */
+  .article-image { height: 170px; }
+}
+
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+  .genart-frame, .canvas-wrap { margin-left: -16px; margin-right: -16px; }
+  .section-title { font-size: 1.55rem; }
+}
