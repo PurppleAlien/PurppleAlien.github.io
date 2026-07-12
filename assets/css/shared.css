@@ -271,9 +271,9 @@ body.dark-mode .language-btn:hover {
 
 .language-flag { font-size: 1.2rem; line-height: 1; }
 
-/* Hamburger button */
+/* Hamburger button (siempre visible: abre el menú de páginas mega-nav) */
 .hamburger-btn {
-  display: none;
+  display: flex;
   width: 42px; height: 42px;
   border-radius: 10px;
   align-items: center;
