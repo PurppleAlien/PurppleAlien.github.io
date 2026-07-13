@@ -41,7 +41,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 
   <!-- Shared CSS (covers base vars, nav, footer, cards, animations) -->
-  <link rel="stylesheet" href="assets/css/shared.css?v=2">
+  <link rel="stylesheet" href="assets/css/shared.css?v=3">
 
   <!-- Import map para Three.js (lo usa js/hero3d.js, módulo del hero 3D) -->
   <script type="importmap">
@@ -973,14 +973,14 @@
         min-height: 100vh;
         min-height: 100svh;
         align-items: flex-start;
-        padding-top: 92px;
+        padding-top: calc(var(--header-h) + 26px);
         padding-bottom: 56px;
       }
     }
 
     /* ── Rediseño móvil del hero: menos ornamento, más jerarquía ── */
     @media (max-width: 640px) {
-      .hero { padding: 92px 20px 56px; }
+      .hero { padding: calc(var(--header-h) + 26px) 20px 56px; }
 
       .profile-ring { margin-bottom: 24px; }
       .profile-ring img { width: 104px; height: 104px; }
