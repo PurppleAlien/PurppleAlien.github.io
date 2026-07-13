@@ -804,6 +804,8 @@ window.pageTranslations = {
     'idx.pc3.desc':  'Artículos sobre matemáticas, IA, LLMs y curiosidades científicas.',
     'idx.pc4.title': 'Contacto',
     'idx.pc4.desc':  '¿Tienes un proyecto? Hablemos sobre colaboraciones y consultoría.',
+    'idx.pc6.title': 'Proyecto Terminal',
+    'idx.pc6.desc':  'Detección de paráfrasis con LLMs — investigación con demo en vivo.',
     'idx.pc5.title': 'Algoritmos',
     'idx.pc5.desc':  'Visualizador interactivo de BFS, DFS y A* — ve los algoritmos en acción.',
 
@@ -965,6 +967,8 @@ window.pageTranslations = {
     'idx.pc3.desc':  'Articles on mathematics, AI, LLMs and scientific curiosities.',
     'idx.pc4.title': 'Contact',
     'idx.pc4.desc':  'Got a project? Let\'s talk about collaborations and consulting.',
+    'idx.pc6.title': 'Thesis Project',
+    'idx.pc6.desc':  'Paraphrase detection with LLMs — research with a live demo.',
     'idx.pc5.title': 'Algorithms',
     'idx.pc5.desc':  'Interactive visualizer for BFS, DFS and A* — see the algorithms in action.',
 
