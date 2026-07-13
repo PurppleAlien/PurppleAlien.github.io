@@ -1048,9 +1048,17 @@ body.dark-mode .quote {
   body.dark-mode .site-header { background: rgba(13, 17, 23, 0.97); }
 }
 
-/* 940px: el modo "sitio para computadora" de los móviles usa ~980px,
-   con este umbral la barra de navegación completa sí se muestra ahí */
-@media (max-width: 940px) {
+/* Compactar la barra para que los 7 enlaces quepan en anchos medios
+   (incluye el modo "sitio para computadora" de los móviles, ~980px) */
+@media (max-width: 1024px) {
+  .nav-menu { gap: 0; }
+  .nav-menu a { padding: 7px 6px; font-size: 0.8rem; }
+  .logo-text { font-size: 0.95rem; }
+}
+
+/* 860px: umbral de colapso a hamburguesa, con margen bajo los ~980px
+   del modo escritorio móvil para que ahí siempre se vea la barra */
+@media (max-width: 860px) {
   .nav-menu { display: none; }
   .hamburger-btn { display: flex; }
   .mobile-nav { display: flex; }
