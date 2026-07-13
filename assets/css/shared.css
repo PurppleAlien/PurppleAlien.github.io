@@ -1048,7 +1048,9 @@ body.dark-mode .quote {
   body.dark-mode .site-header { background: rgba(13, 17, 23, 0.97); }
 }
 
-@media (max-width: 992px) {
+/* 940px: el modo "sitio para computadora" de los móviles usa ~980px,
+   con este umbral la barra de navegación completa sí se muestra ahí */
+@media (max-width: 940px) {
   .nav-menu { display: none; }
   .hamburger-btn { display: flex; }
   .mobile-nav { display: flex; }
