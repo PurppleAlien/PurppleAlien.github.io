@@ -22,7 +22,7 @@
     { icon: 'fa-envelope',        label: 'Ir a Contacto',              hint: 'contacto.html',          run: () => go('contacto.html') },
     { icon: 'fa-file-pdf',        label: 'Descargar CV',               hint: 'curriculum.pdf',         run: () => { window.open('doc/curriculum.pdf', '_blank'); } },
     { icon: 'fa-terminal',        label: 'Abrir terminal interactiva', hint: 'Ctrl+`',                 run: openTerminal, when: () => !!document.getElementById('term-trigger') },
-    { icon: 'fa-palette',         label: 'Ver arte generativo',        hint: '#arte',                  run: () => go('index.html#arte') },
+    { icon: 'fa-palette',         label: 'Ver arte generativo',        hint: '#arte',                  run: () => go('algoritmos.html#arte') },
     { icon: 'fa-rocket',          label: 'Probar detector de paráfrasis (demo en vivo)', hint: 'hf.space', run: () => window.open('https://purpplealien-deteccion-parafrasis.hf.space/', '_blank') },
     { icon: 'fa-brands fa-github',   label: 'Abrir GitHub',            hint: 'github.com/PurppleAlien', run: () => window.open('https://github.com/PurppleAlien', '_blank') },
     { icon: 'fa-brands fa-linkedin', label: 'Abrir LinkedIn',          hint: 'antonio-sould',          run: () => window.open('https://www.linkedin.com/in/antonio-sould/', '_blank') },

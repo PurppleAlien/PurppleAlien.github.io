@@ -189,7 +189,7 @@ function initTypingEffect() {
    6. ÍNDICE DE SECCIONES (nav lateral derecha)
 ============================================================ */
 function initSectionIndex() {
-  const ids = ['home', 'explore', 'about', 'skills', 'research', 'projects', 'studio', 'arte', 'contact', 'philosophy'];
+  const ids = ['home', 'explore', 'about', 'skills', 'research', 'projects', 'studio', 'contact', 'philosophy'];
   const nav = document.createElement('nav');
   nav.className = 'sidenav';
   nav.setAttribute('aria-label', 'Índice de secciones');
@@ -233,7 +233,7 @@ function initSceneReactive() {
     home: [0x61dafb, 0xc678dd], explore: [0x61dafb, 0xc678dd],
     about: [0x00d4aa, 0x61dafb], skills: [0x61dafb, 0x3d85c6],
     research: [0xc678dd, 0x61dafb], projects: [0xfbbc05, 0xc678dd],
-    studio: [0x00d4aa, 0x61dafb], arte: [0xc678dd, 0x00d4aa],
+    studio: [0x00d4aa, 0x61dafb],
     contact: [0xff7eb6, 0xc678dd],
     philosophy: [0x61dafb, 0xc678dd],
   };
