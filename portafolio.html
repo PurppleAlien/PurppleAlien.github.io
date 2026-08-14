@@ -150,6 +150,24 @@
       background: linear-gradient(transparent 50%, rgba(0,0,0,0.4));
     }
 
+    /* Mock de terminal para proyectos CLI (cybersuite) */
+    .term-mock {
+      width: 100%; height: 100%;
+      background: #0b0f14;
+      font-family: var(--font-mono);
+      font-size: 0.62rem; line-height: 1.5;
+      color: #c9d1d9; padding: 10px 12px;
+      overflow: hidden; white-space: nowrap;
+    }
+    .term-mock .tm-bar { display: flex; gap: 6px; margin-bottom: 8px; }
+    .term-mock .tm-bar span { width: 10px; height: 10px; border-radius: 50%; }
+    .term-mock .tm-red { background: #ff5f56; }
+    .term-mock .tm-yel { background: #ffbd2e; }
+    .term-mock .tm-grn { background: #27c93f; }
+    .term-mock .tm-prompt { color: #61dafb; }
+    .term-mock .tm-accent { color: #c678dd; }
+    .term-mock .tm-dim { color: #6e7681; }
+
     .project-content { padding: 22px; flex: 1; display: flex; flex-direction: column; }
 
     .project-category {
@@ -420,24 +438,82 @@
         <!-- Project 0 — Proyecto Terminal (Tesis) -->
         <div class="project-card fade-in" data-category="ia">
           <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop"
-                 alt="Proyecto Terminal" loading="lazy">
+            <img src="images/proyecto-terminal/cap_sistema_escritorio.png"
+                 alt="Detector de paráfrasis desplegado" loading="lazy">
           </div>
           <div class="project-content">
             <span class="project-category">Investigación · UAM Iztapalapa</span>
             <h3>Proyecto Terminal — Detección de Paráfrasis</h3>
-            <p class="project-description">Sistema inteligente de detección de paráfrasis en el repositorio CBI (~5,000 tesis). Combina BM25, FAISS (2.3M vectores), fine-tuning de LLMs (BETO, XLM-R) y un ensamble con AUROC = 0.999. Proyecto Terminal de Investigación I.</p>
+            <p class="project-description">Detector de paráfrasis y copia sobre el corpus TESIUAMI (21,128 tesis · CBI, CBS y CSH) más un corpus externo de ~250M obras. Recuperación híbrida HNSW + BM25 + RRF y cross-encoders int8 (BETO, XLM-R). Evaluación honesta con intervalos de confianza (F1 = 0.842) y sistema desplegado en producción.</p>
             <div class="project-tags">
-              <span class="project-tag">BERT</span>
-              <span class="project-tag">FAISS</span>
+              <span class="project-tag">BETO</span>
               <span class="project-tag">XLM-R</span>
+              <span class="project-tag">HNSW</span>
+              <span class="project-tag">RRF</span>
               <span class="project-tag">NLP</span>
-              <span class="project-tag">RAG</span>
               <span class="project-tag">Python</span>
             </div>
             <div class="project-actions">
               <a href="proyecto-terminal.html" class="btn"><i class="fas fa-external-link-alt"></i> <span>Ver Proyecto</span></a>
-              <a href="https://github.com/PurppleAlien" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
+              <a href="https://purpplealien-deteccion-parafrasis.hf.space/" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fas fa-rocket"></i> Demo</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project — NefroCare (IA + Full-Stack) -->
+        <div class="project-card fade-in" data-category="ia sistemas web">
+          <div class="project-image">
+            <img src="images/nefrocare/pwa_plan.png"
+                 alt="NefroCare — plan nutricional" loading="lazy">
+          </div>
+          <div class="project-content">
+            <span class="project-category">Salud · IA &amp; Full-Stack</span>
+            <h3>NefroCare — Nutrición Nefrológica</h3>
+            <p class="project-description">Plataforma de nutrición para pacientes con enfermedad renal crónica, fundamentada en las guías clínicas KDOQI 2020. La lógica clínica reside en un motor de reglas determinista y un optimizador genético; la IA (LLM + RAG) solo explica. Backend FastAPI (139 pruebas), PWA instalable, panel del profesional y tamizaje de PEW. Desplegada en producción.</p>
+            <div class="project-tags">
+              <span class="project-tag">FastAPI</span>
+              <span class="project-tag">Alg. Genético</span>
+              <span class="project-tag">PWA</span>
+              <span class="project-tag">LLM · RAG</span>
+              <span class="project-tag">JWT</span>
+              <span class="project-tag">Docker</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn view-project" data-modal="modal-nefrocare"><i class="fas fa-eye"></i> <span>Ver Proyecto</span></button>
+              <a href="https://nefrocare-j4kbtqwgra-uc.a.run.app/index.html" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fas fa-rocket"></i> App</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project — CyberSuite (CLI/API de ciberseguridad) -->
+        <div class="project-card fade-in" data-category="programacion sistemas">
+          <div class="project-image">
+            <div class="term-mock" aria-hidden="true">
+              <div class="tm-bar"><span class="tm-red"></span><span class="tm-yel"></span><span class="tm-grn"></span></div>
+              <div><span class="tm-prompt">$</span> cybersuite <span class="tm-accent">list</span></div>
+              <div class="tm-dim">Módulos disponibles</div>
+              <div>forensics/hash&nbsp;&nbsp;&nbsp;&nbsp;MD5/SHA256 · custodia</div>
+              <div>network/port-scan&nbsp;connect scan (asyncio)</div>
+              <div>wifi/scan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cifrados débiles (pasivo)</div>
+              <div>forensics/carver&nbsp;&nbsp;file carving por firmas</div>
+              <div class="tm-dim">$ cybersuite <span class="tm-accent">run</span> network/port-scan target=127.0.0.1</div>
+            </div>
+          </div>
+          <div class="project-content">
+            <span class="project-category">Ciberseguridad · CLI &amp; API</span>
+            <h3>CyberSuite — Red + Blue Team educativa</h3>
+            <p class="project-description">Suite de ciberseguridad full-spectrum con enfoque educativo: cada herramienta funciona y además explica qué hace, por qué y cómo. Núcleo único en Python (DRY) con 11 módulos (red, forense, WiFi) expuestos por CLI (Typer + Rich) y API REST (FastAPI). Un guard de scope bloquea por defecto objetivos no autorizados. Solo para auditoría autorizada, CTF y homelab.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">Typer</span>
+              <span class="project-tag">FastAPI</span>
+              <span class="project-tag">Forense</span>
+              <span class="project-tag">Pentesting</span>
+              <span class="project-tag">pytest</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn view-project" data-modal="modal-cybersuite"><i class="fas fa-eye"></i> <span>Ver Proyecto</span></button>
+              <a href="https://github.com/PurppleAlien/cybersuite" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Código</a>
             </div>
           </div>
         </div>
@@ -1368,6 +1444,80 @@
         </div>
         <div class="modal-actions">
           <a href="https://github.com/PurppleAlien/Inteligencia-Artificial" class="btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Ver Código</a>
+          <a href="contacto.html" class="btn btn-outline"><i class="fas fa-envelope"></i> Contactar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-nefrocare" class="modal" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <div class="modal-close" id="close-nefrocare" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
+      <div class="modal-image"><img src="images/nefrocare/pwa_plan.png" alt="NefroCare — plan nutricional" loading="lazy"></div>
+      <div class="modal-body">
+        <span class="modal-category">Salud · IA &amp; Full-Stack</span>
+        <h2>NefroCare — Plataforma de Nutrición Nefrológica</h2>
+        <p class="modal-description">Aplicación de nutrición y dieta para pacientes con enfermedad renal crónica (ERC), fundamentada en las guías clínicas <strong>KDOQI 2020</strong> y asistida por IA. La lógica clínica es <strong>determinista</strong>: un motor de reglas calcula las metas por perfil y un optimizador genético arma el plan bajo restricciones duras; un validador revalida todo plan antes de persistirlo. La IA (LLM + RAG + NER, vía Hugging Face/Ollama) solo formatea y explica — ninguna restricción clínica depende de un modelo. Incluye tamizaje de PEW, panel del profesional, gráficas de evolución bioquímica, recetario mexicano validado, asistente por voz (TTS/STT) y PWA instalable.</p>
+        <div class="modal-details">
+          <div class="detail-item"><h4>Backend</h4><p>FastAPI · 139 pruebas</p></div>
+          <div class="detail-item"><h4>Frontend</h4><p>PWA (HTML/CSS/JS + SW)</p></div>
+          <div class="detail-item"><h4>IA</h4><p>LLM + RAG + NER</p></div>
+          <div class="detail-item"><h4>Estado</h4><p>Desplegada en producción</p></div>
+        </div>
+        <div style="display:flex; gap:8px; overflow-x:auto; padding:4px 0 10px; margin-bottom:8px;">
+          <img src="images/nefrocare/pwa_metas.png" alt="Metas nutricionales" loading="lazy" style="height:150px; border-radius:10px; border:1px solid rgba(97,218,251,0.2);">
+          <img src="images/nefrocare/pwa_platillo.png" alt="Detalle de platillo" loading="lazy" style="height:150px; border-radius:10px; border:1px solid rgba(97,218,251,0.2);">
+          <img src="images/nefrocare/pwa_evolucion.png" alt="Evolución bioquímica" loading="lazy" style="height:150px; border-radius:10px; border:1px solid rgba(97,218,251,0.2);">
+          <img src="images/nefrocare/pwa_chat.png" alt="Asistente" loading="lazy" style="height:150px; border-radius:10px; border:1px solid rgba(97,218,251,0.2);">
+          <img src="images/nefrocare/pwa_prof_lista.png" alt="Panel del profesional" loading="lazy" style="height:150px; border-radius:10px; border:1px solid rgba(97,218,251,0.2);">
+        </div>
+        <div class="modal-tags">
+          <span class="modal-tag">FastAPI</span><span class="modal-tag">Algoritmo Genético</span>
+          <span class="modal-tag">PWA</span><span class="modal-tag">LLM · RAG</span>
+          <span class="modal-tag">KDOQI 2020</span><span class="modal-tag">Docker</span>
+        </div>
+        <div class="modal-actions">
+          <a href="https://nefrocare-j4kbtqwgra-uc.a.run.app/index.html" class="btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-rocket"></i> App en vivo</a>
+          <a href="https://github.com/PurppleAlien/nefrocare" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Ver Código</a>
+          <a href="contacto.html" class="btn btn-outline"><i class="fas fa-envelope"></i> Contactar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-cybersuite" class="modal" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <div class="modal-close" id="close-cybersuite" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
+      <div class="modal-image" style="background:#0b0f14; display:flex; align-items:center; justify-content:center;">
+        <pre style="margin:0; padding:18px; font-family:var(--font-mono); font-size:0.72rem; line-height:1.5; color:#c9d1d9; background:transparent; overflow-x:auto; width:100%;"><span style="color:#61dafb;">$</span> cybersuite <span style="color:#c678dd;">list</span>
+<span style="color:#6e7681;">          Módulos disponibles</span>
+ forensics/hash        MD5/SHA256 · cadena de custodia
+ forensics/carver      recupera archivos por firmas (magic bytes)
+ forensics/entropy     entropía de Shannon (cifrado/empaquetado)
+ forensics/pcap        resume una captura pcap (parser propio)
+ network/port-scan     connect scan TCP en paralelo (asyncio)
+ wifi/scan             redes cercanas · cifrados débiles (pasivo)
+ wifi/handshake-audit  auditoría offline de handshake WPA
+
+<span style="color:#61dafb;">$</span> cybersuite <span style="color:#c678dd;">run</span> network/port-scan target=127.0.0.1 ports=1-1000</pre>
+      </div>
+      <div class="modal-body">
+        <span class="modal-category">Ciberseguridad · CLI &amp; API</span>
+        <h2>CyberSuite — Suite Educativa Red + Blue Team</h2>
+        <p class="modal-description">Suite de ciberseguridad <strong>full-spectrum</strong> (red team + blue team) con enfoque educativo: cada herramienta no solo funciona, sino que explica <em>qué</em> hace, <em>por qué</em> y <em>cómo</em> por dentro (<code>cybersuite info &lt;módulo&gt;</code>). Un único núcleo en Python concentra la lógica (principio DRY) y se expone por tres capas: <strong>CLI</strong> (Typer + Rich), <strong>API REST</strong> (FastAPI) y un dashboard web (fase posterior). Añadir una herramienta = crear una clase <code>Module</code>; el registro la descubre sola. Incluye módulos de red, forensia (hash, carving, entropía, pcap, metadatos, strings, auth-log) y WiFi. Un <strong>guard de scope</strong> bloquea por defecto objetivos que no controlas.</p>
+        <div class="modal-details">
+          <div class="detail-item"><h4>Núcleo</h4><p>Python · registro de plugins</p></div>
+          <div class="detail-item"><h4>Capas</h4><p>CLI (Typer/Rich) + API (FastAPI)</p></div>
+          <div class="detail-item"><h4>Módulos</h4><p>11 (red · forense · WiFi)</p></div>
+          <div class="detail-item"><h4>Ética</h4><p>Guard de scope · uso autorizado</p></div>
+        </div>
+        <div class="modal-tags">
+          <span class="modal-tag">Python</span><span class="modal-tag">Typer + Rich</span>
+          <span class="modal-tag">FastAPI</span><span class="modal-tag">Forense</span>
+          <span class="modal-tag">Pentesting</span><span class="modal-tag">pytest</span>
+        </div>
+        <div class="modal-actions">
+          <a href="https://github.com/PurppleAlien/cybersuite" class="btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Ver Código</a>
           <a href="contacto.html" class="btn btn-outline"><i class="fas fa-envelope"></i> Contactar</a>
         </div>
       </div>

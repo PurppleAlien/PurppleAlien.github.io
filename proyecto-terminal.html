@@ -324,83 +324,59 @@
       line-height: 1.7;
     }
 
-    /* ── Reportes semanales ── */
-    .reports-grid {
+    /* ── Galerías de capturas y figuras ── */
+    .shots-grid, .fig-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 18px;
       margin: 28px 0 8px;
     }
 
-    .report-card {
+    .shot-card, .fig-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 22px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+      overflow: hidden;
+      margin: 0;
       transition: transform var(--duration-normal, .3s) ease, border-color var(--duration-normal, .3s) ease, box-shadow var(--duration-normal, .3s) ease;
-      cursor: pointer;
     }
 
-    body.dark-mode .report-card { border-color: rgba(97,218,251,0.1); }
+    body.dark-mode .shot-card,
+    body.dark-mode .fig-card { border-color: rgba(97,218,251,0.1); }
 
-    .report-card:hover,
-    .report-card.active {
+    .shot-card:hover, .fig-card:hover {
       transform: translateY(-4px);
       border-color: var(--neon);
       box-shadow: 0 12px 30px rgba(97,218,251,0.12);
     }
 
-    .report-card .report-week {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      align-self: flex-start;
-      padding: 4px 12px;
-      background: rgba(97,218,251,0.1);
-      border: 1px solid rgba(97,218,251,0.25);
-      border-radius: 20px;
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--neon);
+    .shot-card img, .fig-card img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
-    .report-card h3 {
+    .fig-card img { background: #fff; padding: 8px; }
+
+    .shot-card figcaption, .fig-card figcaption {
+      padding: 12px 16px;
       font-family: var(--font-mono);
-      font-size: 1.02rem;
-      color: var(--primary);
-      margin: 4px 0 0;
-    }
-
-    body.dark-mode .report-card h3 { color: #e6edf3; }
-
-    .report-card p {
+      font-size: 0.8rem;
       color: var(--text-muted);
-      font-size: 0.85rem;
-      line-height: 1.6;
-      margin: 0;
-      max-width: none;
+      line-height: 1.5;
     }
 
-    .report-card .report-actions {
-      display: flex;
-      gap: 10px;
-      margin-top: auto;
-      padding-top: 8px;
-    }
-
-    .report-card .report-link {
+    /* Enlace tipo monospace (usado en la barra del visor PDF) */
+    .report-link {
       font-family: var(--font-mono);
-      font-size: 0.78rem;
+      font-size: 0.82rem;
       color: var(--neon);
       display: inline-flex;
       align-items: center;
       gap: 6px;
     }
 
-    .report-card .report-link:hover { text-decoration: underline; }
+    .report-link:hover { text-decoration: underline; }
 
     .pdf-viewer-wrap {
       background: var(--card-bg);
@@ -505,21 +481,21 @@
     <section class="thesis-hero fade-in">
       <span class="badge"><i class="fas fa-graduation-cap"></i> Proyecto Terminal de Investigación I</span>
       <h1>Detección Inteligente de Paráfrasis</h1>
-      <p>Detección de paráfrasis en el repositorio de tesis CBI de la UAM Iztapalapa, combinando modelos de lenguaje (BERT, XLM-R), búsqueda semántica (FAISS) y un pipeline de tres capas con árbitro LLM.</p>
+      <p>Detector de paráfrasis y copia sobre el corpus de tesis <strong>TESIUAMI</strong> de la UAM Iztapalapa (las tres divisiones: CBI, CBS y CSH), con modelos de lenguaje afinados (BETO, XLM-RoBERTa), recuperación híbrida (HNSW + BM25 + RRF) y cross-encoders int8. Evaluado con un <strong>protocolo estadísticamente honesto</strong> y desplegado en producción.</p>
       <div class="hero-meta">
-        <span><i class="fas fa-university"></i> UAM Iztapalapa · División CBI</span>
+        <span><i class="fas fa-university"></i> UAM Iztapalapa · Lic. en Computación</span>
         <span><i class="fas fa-user-tie"></i> Asesor: Dr. Benjamin Moreno Montiel</span>
-        <span><i class="fas fa-calendar"></i> 2025 – 2026</span>
+        <span><i class="fas fa-calendar"></i> Reporte Final · Agosto 2026</span>
       </div>
       <div class="link-buttons" style="justify-content:center;">
         <a href="https://purpplealien-deteccion-parafrasis.hf.space/" class="btn" target="_blank" rel="noopener noreferrer" style="background:linear-gradient(135deg,#61dafb,#c678dd); color:#0d1117; font-weight:600;">
-          <i class="fas fa-rocket"></i> Probar el detector en vivo
+          <i class="fas fa-rocket"></i> Probar el demo en vivo
         </a>
-        <a href="https://github.com/PurppleAlien" class="btn btn-outline" target="_blank" rel="noopener noreferrer">
-          <i class="fab fa-github"></i> GitHub Profile
+        <a href="https://parafrasis-uami.duckdns.org/" class="btn btn-outline" target="_blank" rel="noopener noreferrer">
+          <i class="fas fa-server"></i> Proyecto completo
         </a>
-        <a href="#reportes" class="btn btn-outline">
-          <i class="fas fa-file-pdf"></i> Reportes Semanales
+        <a href="#documento" class="btn btn-outline">
+          <i class="fas fa-file-pdf"></i> Documento final
         </a>
       </div>
     </section>
@@ -528,12 +504,12 @@
     <section class="section thesis-section" id="overview">
       <div class="container">
         <h2><i class="fas fa-crosshairs"></i> Resumen</h2>
-        <p>Este proyecto aborda el problema de detección de paráfrasis en el repositorio académico de tesis de la División CBI de la UAM Iztapalapa (<strong>~5,000 tesis, ~28 GB</strong> de texto). El objetivo es identificar similitudes semánticas entre fragmentos de diferentes tesis para detectar posibles casos de plagio parafraseado o reutilización de contenido.</p>
-        <p>Se desarrolló un <strong>sistema de doble modo</strong> (comparación directa de textos y búsqueda en el corpus completo) que integra recuperación BM25, indexación semántica FAISS con 2.3M vectores, y clasificadores fine-tuned (BETO, XLM-RoBERTa) con un ensamble que alcanza <strong>AUROC = 0.999</strong>.</p>
+        <p>Este proyecto aborda la detección automática de paráfrasis y copia sobre el corpus de tesis <strong>TESIUAMI</strong> de la UAM Iztapalapa, empleando modelos de lenguaje de gran escala y modelos tipo Transformer afinados (BETO, XLM-RoBERTa), en contraste con el enfoque previo basado en redes convolucionales y <em>embeddings</em> estáticos de la tesis base de David Luna.</p>
+        <p>Se construyó un <strong>sistema de doble modo</strong> que (a) clasifica pares de textos como paráfrasis o no, y (b) analiza documentos completos contra un corpus interno de <strong>21,128 tesis</strong> de las tres divisiones (CBI, CBS y CSH) y contra un corpus científico externo de <strong>~250 millones</strong> de obras (OpenAlex, Semantic Scholar y Crossref). El sistema combina recuperación híbrida (semántica con HNSW, léxica con BM25 y fusión por RRF) con un cross-encoder cuantizado a <strong>int8</strong>, y se encuentra <strong>desplegado en producción</strong>.</p>
 
         <div class="finding-box">
-          <h4><i class="fas fa-lightbulb"></i> Hallazgo Central</h4>
-          <p>La búsqueda exhaustiva sobre el corpus completo no encontró plagio parafraseado entre tesis. El corpus CBI es <strong>~97% original</strong>. Lo que existe son patrones de boilerplate institucional (~58%), citas bibliográficas compartidas (~21%) y reformulaciones de fuentes comunes (~3%). El aporte principal del proyecto es la <strong>eficiencia de datos</strong>: con solo ~60 pares humanos se iguala el rendimiento de sistemas supervisados con ~180k pares.</p>
+          <h4><i class="fas fa-lightbulb"></i> Encuadre honesto y hallazgo central</h4>
+          <p>El aporte metodológico principal es la <strong>evaluación honesta</strong>: toda métrica se reporta con su conjunto de prueba etiquetado y con intervalos de confianza, descartando cifras infladas por fuga de datos o balanceo artificial. Bajo ese encuadre, el mejor modelo afinado (BETO v3) alcanza <strong>F1 = 0.842</strong>, <em>empatando</em> —dentro del intervalo de confianza— con la línea base previa; el aporte no es superar esa cifra, sino la <strong>eficiencia de datos</strong> (lograrlo con decenas de pares anotados en lugar de cientos de miles). Dos hallazgos sostienen la tesis central, <em>«el dato supera a la arquitectura»</em>: los datos sintéticos <strong>degradan</strong> el desempeño, y una búsqueda exhaustiva muestra que <strong>el corpus es original</strong> —la copia parafraseada entre tesis es prácticamente nula—, por lo que la similitud temática no debe confundirse con plagio.</p>
         </div>
       </div>
     </section>
@@ -542,39 +518,39 @@
     <section class="section thesis-section section-dark" id="architecture">
       <div class="container">
         <h2><i class="fas fa-sitemap"></i> Arquitectura</h2>
-        <p>El sistema opera en tres capas secuenciales, donde cada una filta candidatos para la siguiente:</p>
+        <p>El sistema se organiza en dos etapas complementarias que resuelven el compromiso entre velocidad y precisión: <strong>recuperar</strong> candidatos (rápido, con un bi-codificador) y <strong>clasificar</strong> solo esos pocos (preciso, con un codificador cruzado). Así el modelo caro se ejecuta pocas veces y el sistema escala al corpus completo.</p>
 
         <div class="architecture-diagram fade-in">
           <div class="arch-layers">
             <div class="arch-layer l1">
-              <div class="layer-icon"><i class="fas fa-search"></i></div>
+              <div class="layer-icon"><i class="fas fa-scissors"></i></div>
               <div>
-                <div class="layer-label">Fase 1 — BM25 + Jaccard Bigrama</div>
-                <div class="layer-desc">Recuperación inicial por similitud léxica. Cache de 70 MB. F1 = 0.989</div>
+                <div class="layer-label">1 — Fragmentar + Embeddings</div>
+                <div class="layer-desc">Ventanas de 400/200 tokens · bi-codificador MiniLM-L12-v2</div>
               </div>
             </div>
             <div class="arch-arrow"><i class="fas fa-chevron-down"></i></div>
             <div class="arch-layer l2">
               <div class="layer-icon"><i class="fas fa-vector-square"></i></div>
               <div>
-                <div class="layer-label">Fase 2 — FAISS (Índice Semántico)</div>
-                <div class="layer-desc">2,284,185 vectores · 4,954 tesis · 461 frag/tesis · MiniLM-L12-v2</div>
+                <div class="layer-label">2 — Recuperación híbrida (HNSW + BM25 → RRF)</div>
+                <div class="layer-desc">Semántica (HNSW/IVFPQ) + léxica (BM25) fusionadas por Reciprocal Rank Fusion</div>
               </div>
             </div>
             <div class="arch-arrow"><i class="fas fa-chevron-down"></i></div>
             <div class="arch-layer l3">
               <div class="layer-icon"><i class="fas fa-brain"></i></div>
               <div>
-                <div class="layer-label">Fase 3 — Clasificador (Seleccionable)</div>
-                <div class="layer-desc">XLM-R v4 calibrado · BETO v3 · Ensamble Soft-Voting</div>
+                <div class="layer-label">3 — Clasificar (cross-encoder int8)</div>
+                <div class="layer-desc">BETO · XLM-RoBERTa · ensamble — cuantizados a int8 (ONNX) para CPU</div>
               </div>
             </div>
             <div class="arch-arrow"><i class="fas fa-chevron-down"></i></div>
             <div class="arch-layer l4">
               <div class="layer-icon"><i class="fas fa-gavel"></i></div>
               <div>
-                <div class="layer-label">Árbitro LLM (Opcional)</div>
-                <div class="layer-desc">Groq Llama 3.3 70B — solo en zona de duda [0.35, 0.65]</div>
+                <div class="layer-label">Árbitro LLM (opcional) → Reporte</div>
+                <div class="layer-desc">Interviene solo en la zona de incertidumbre; reporte estilo «informe de similitud»</div>
               </div>
             </div>
           </div>
@@ -582,11 +558,15 @@
 
         <h3>Modos de Operación</h3>
         <ul>
-          <li><strong>Modo 1:</strong> Comparación directa de dos fragmentos de texto. El clasificador seleccionado emite una probabilidad de parafrasis.</li>
-          <li><strong>Modo 2:</strong> Búsqueda en el corpus completo de ~5,000 tesis. Indexación FAISS + recuperación de top-K candidatos + clasificación.</li>
+          <li><strong>Modo 1 — Clasificación de pares:</strong> recibe dos textos y responde si uno es paráfrasis del otro, con etiqueta (copia casi literal, paráfrasis o alta similitud por revisar) y probabilidad calibrada.</li>
+          <li><strong>Modo 2 — Documento completo:</strong> analiza una tesis (texto o PDF) contra el corpus interno de la división elegida (CBI, CBS o CSH), por fragmento o por tesis completa, con opción de activar el corpus científico externo.</li>
         </ul>
 
-        <p>El sistema incluye detección de <strong>duplicados exactos</strong> (MiniLM ≥ 0.97 + BLEU-2 ≥ 0.90), un <strong>boilerplate detector</strong> con 10 patrones regex UAM, y un <strong>reporte estilo "similarity report"</strong> con % global, secciones, zonas de calor, paginación y gráficas SVG.</p>
+        <h3>Corpus científico externo (federado)</h3>
+        <p>Además del corpus interno, el sistema compara contra <strong>~250 millones de obras</strong> consultando OpenAlex, Semantic Scholar y Crossref. Como operan en inglés, el fragmento se traduce (es → en) y la verificación se hace en-en, con descarga de texto completo en acceso abierto (con validaciones anti-SSRF) o comparación contra el <em>abstract</em> en obras cerradas.</p>
+
+        <h3>Sistema por divisiones y despliegue</h3>
+        <p>Cada división tiene sus propios índices, metadatos y modelo (CBI: 4,970 · CBS: 5,416 · CSH: 10,742 tesis). Como no caben las tres a la vez en memoria, se cargan de forma <strong>perezosa</strong> (solo la activa) y se <strong>evacúan</strong> al cambiar. El reporte titular cuenta <strong>solo lo confirmado</strong> por el clasificador: el <em>boilerplate</em> institucional y la bibliografía compartida se contabilizan aparte y no inflan la cifra. Despliegue en dos entornos: el <strong>canónico</strong> en Google Cloud (tres divisiones al 100%) y una <strong>demostración</strong> pública en Hugging Face Spaces.</p>
       </div>
     </section>
 
@@ -598,19 +578,23 @@
         <div class="tech-grid">
           <div class="tech-item">
             <i class="fas fa-language"></i>
-            <div><div class="tech-name">BETO (dccuchile)</div><div class="tech-use">Fine-tuning · F1 = 0.889</div></div>
+            <div><div class="tech-name">BETO (dccuchile)</div><div class="tech-use">Afinado · F1 = 0.842 (test limpio)</div></div>
           </div>
           <div class="tech-item">
             <i class="fas fa-globe"></i>
-            <div><div class="tech-name">XLM-RoBERTa</div><div class="tech-use">Backbone v4 · F1 = 0.941</div></div>
+            <div><div class="tech-name">XLM-RoBERTa</div><div class="tech-use">Backbone multilingüe · cross-encoder</div></div>
           </div>
           <div class="tech-item">
-            <i class="fas fa-database"></i>
-            <div><div class="tech-name">FAISS (Meta)</div><div class="tech-use">Índice 100% · 2.3M vectores</div></div>
+            <i class="fas fa-project-diagram"></i>
+            <div><div class="tech-name">HNSW / IVFPQ</div><div class="tech-use">Vecinos aproximados (semántica)</div></div>
           </div>
           <div class="tech-item">
             <i class="fas fa-search"></i>
-            <div><div class="tech-name">BM25 + RRF</div><div class="tech-use">Recuperación léxica</div></div>
+            <div><div class="tech-name">BM25 + RRF</div><div class="tech-use">Recuperación léxica + fusión</div></div>
+          </div>
+          <div class="tech-item">
+            <i class="fas fa-microchip"></i>
+            <div><div class="tech-name">ONNX int8</div><div class="tech-use">Cuantización · inferencia en CPU</div></div>
           </div>
           <div class="tech-item">
             <i class="fab fa-python"></i>
@@ -618,23 +602,19 @@
           </div>
           <div class="tech-item">
             <i class="fas fa-rocket"></i>
-            <div><div class="tech-name">Docker + PWA</div><div class="tech-use">Despliegue unificado</div></div>
+            <div><div class="tech-name">Docker + PWA</div><div class="tech-use">GCP (canónico) · HF Spaces (demo)</div></div>
           </div>
           <div class="tech-item">
             <i class="fas fa-tachometer-alt"></i>
-            <div><div class="tech-name">Groq Llama 3.3 70B</div><div class="tech-use">Árbitro en zona de duda</div></div>
+            <div><div class="tech-name">Árbitro LLM</div><div class="tech-use">Juicio en zona de incertidumbre</div></div>
           </div>
           <div class="tech-item">
             <i class="fas fa-leaf"></i>
-            <div><div class="tech-name">MiniLM-L12-v2</div><div class="tech-use">Embeddings FAISS</div></div>
+            <div><div class="tech-name">MiniLM-L12-v2</div><div class="tech-use">Bi-codificador (embeddings)</div></div>
           </div>
           <div class="tech-item">
-            <i class="fas fa-file-pdf"></i>
-            <div><div class="tech-name">PyMuPDF</div><div class="tech-use">Extracción de PDFs</div></div>
-          </div>
-          <div class="tech-item">
-            <i class="fas fa-chart-line"></i>
-            <div><div class="tech-name">MongoDB + Colab</div><div class="tech-use">Almacenamiento · GPU</div></div>
+            <i class="fas fa-cloud"></i>
+            <div><div class="tech-name">OpenAlex · S2 · Crossref</div><div class="tech-use">Corpus externo federado (~250M)</div></div>
           </div>
         </div>
       </div>
@@ -647,187 +627,142 @@
 
         <div class="metrics-grid">
           <div class="metric-card fade-in">
-            <div class="metric-value">0.889</div>
-            <div class="metric-label">BETO v8a — F1 (test humano)</div>
+            <div class="metric-value">0.842</div>
+            <div class="metric-label">BETO v3 — F1 (test_v3_limpio)</div>
           </div>
           <div class="metric-card fade-in delay-1">
-            <div class="metric-value">0.941</div>
-            <div class="metric-label">XLM-R v4 — F1 (test interno)</div>
+            <div class="metric-value">0.812</div>
+            <div class="metric-label">XLM-R v4 — F1 (test_v4 robusto)</div>
           </div>
           <div class="metric-card fade-in delay-2">
-            <div class="metric-value">0.999</div>
-            <div class="metric-label">Ensamble — AUROC</div>
+            <div class="metric-value">21,128</div>
+            <div class="metric-label">Tesis (CBI + CBS + CSH)</div>
           </div>
           <div class="metric-card fade-in delay-3">
-            <div class="metric-value">2.3M</div>
-            <div class="metric-label">Vectores FAISS</div>
+            <div class="metric-value">~250M</div>
+            <div class="metric-label">Obras · corpus externo</div>
           </div>
           <div class="metric-card fade-in">
-            <div class="metric-value">4,954</div>
-            <div class="metric-label">Tesis indexadas</div>
+            <div class="metric-value">~3%</div>
+            <div class="metric-label">Paráfrasis real (corpus original)</div>
           </div>
           <div class="metric-card fade-in delay-1">
-            <div class="metric-value">~97%</div>
-            <div class="metric-label">Corpus CBI original</div>
+            <div class="metric-value">int8</div>
+            <div class="metric-label">Cross-encoder en CPU</div>
           </div>
         </div>
 
-        <h3>Benchmarks — BETO v1 a v8 (test_v3_limpio, 38 pares)</h3>
+        <h3>Empate con la línea base (intervalos de confianza al 95%)</h3>
+        <p>Sobre el mismo conjunto (<code>test_v3_limpio</code>, 38 pares), el modelo contextual y las líneas base dan valores muy cercanos con <strong>IC95% ampliamente solapados</strong>: la diferencia <em>no es estadísticamente significativa</em>. El aporte no es superar la cifra, sino lograrla con órdenes de magnitud menos dato anotado.</p>
         <div style="overflow-x:auto;">
           <table class="model-table">
             <thead>
-              <tr>
-                <th>Modelo</th>
-                <th>Datos</th>
-                <th>F1</th>
-                <th>Precisión</th>
-                <th>Recall</th>
-                <th>FP</th>
-              </tr>
+              <tr><th>Sistema</th><th>F1</th><th>IC95% (bootstrap)</th><th>Dato anotado</th></tr>
             </thead>
             <tbody>
-              <tr><td>BETO v1</td><td>~20 pares gold</td><td>0.383</td><td>—</td><td>—</td><td>—</td></tr>
-              <tr><td>BETO v2</td><td>~40 pares gold</td><td>0.514</td><td>—</td><td>—</td><td>—</td></tr>
-              <tr><td>BETO v3</td><td>144 pares gold</td><td>0.842</td><td>0.800</td><td>0.889</td><td>2</td></tr>
-              <tr><td>BETO v4</td><td>5,000 frags. consecutivos</td><td>0.750</td><td>0.600</td><td>1.000</td><td>6</td></tr>
-              <tr><td>BETO v5</td><td>500 pares LLM</td><td>0.600</td><td>0.429</td><td>1.000</td><td>12</td></tr>
-              <tr><td>BETO v6</td><td>1,004 BT+LLM</td><td>0.783</td><td>0.643</td><td>1.000</td><td>5</td></tr>
-              <tr><td>BETO v7</td><td>2,000 BT puro</td><td>0.643</td><td>0.474</td><td>1.000</td><td>10</td></tr>
-              <tr class="highlight-row"><td>BETO v8a</td><td>155 gold+humano</td><td>0.889</td><td>0.889</td><td>0.889</td><td>1</td></tr>
-              <tr><td>BETO v8b</td><td>195 + neg. difíciles</td><td>0.818</td><td>0.692</td><td>1.000</td><td>4</td></tr>
+              <tr class="highlight-row"><td>BETO v3 (contextual)</td><td>0.842</td><td>[0.609, 1.000]</td><td>decenas de pares humanos</td></tr>
+              <tr><td>TF-IDF + coseno</td><td>0.842</td><td>[0.600, 1.000]</td><td>—</td></tr>
+              <tr><td>FastText + coseno</td><td>0.818</td><td>[0.588, 0.960]</td><td>cientos de miles</td></tr>
             </tbody>
           </table>
         </div>
 
+        <h3>Desempeño por conjunto de prueba</h3>
+        <p>Cada columna es un conjunto distinto y de dificultad creciente; los valores <strong>no son comparables entre columnas</strong>. La F1 baja hacia los conjuntos más realistas mientras el AUROC se mantiene: es un test más difícil, no un peor modelo.</p>
+        <div style="overflow-x:auto;">
+          <table class="model-table">
+            <thead>
+              <tr><th>Modelo</th><th>test_v3_limpio (38, fácil)</th><th>test_v4 (109, robusto)</th><th>test_v5 (225, realista)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>BETO v3</td><td>0.842 / 0.989</td><td>—</td><td>0.714 / 0.836</td></tr>
+              <tr><td>XLM-R v4</td><td>0.941 (ref.)</td><td>0.812 / 0.839</td><td>0.677 / 0.810</td></tr>
+              <tr><td>Ensamble</td><td>0.889 / 0.996</td><td>—</td><td>0.670 / 0.837</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:0.82rem; color:var(--text-muted); margin-top:6px;">Formato: F1 / AUROC. El titular honesto de XLM-R es el de <code>test_v4</code>.</p>
+        </div>
+
+        <div class="fig-grid">
+          <figure class="fig-card">
+            <img src="images/proyecto-terminal/fig_finetuning.png" alt="Progresión del afinamiento de BETO" loading="lazy">
+            <figcaption>Afinamiento de BETO: las versiones con datos humanos (verde) superan a las sintéticas (naranja). Ninguna ampliación sintética rebasa el <em>gold</em> humano de v3.</figcaption>
+          </figure>
+          <figure class="fig-card">
+            <img src="images/proyecto-terminal/fig_confusion_v3.png" alt="Matriz de confusión de BETO v3" loading="lazy">
+            <figcaption>Matriz de confusión de BETO v3 (38 pares): de 9 positivos detecta 8 (1 FN) y comete 2 FP → precisión 0.80, recall 0.889, F1 = 0.842.</figcaption>
+          </figure>
+          <figure class="fig-card">
+            <img src="images/proyecto-terminal/fig_tiempos.png" alt="Tiempo de análisis por división" loading="lazy">
+            <figcaption>Tiempo de análisis de una tesis completa por división. El costo crece con el tamaño del corpus (CSH: 10.7M fragmentos), dominado por la recuperación léxica y la carga única.</figcaption>
+          </figure>
+        </div>
+
         <h3>Conclusiones Experimentales</h3>
         <ul>
-          <li><strong>Datos humanos reales &gt; datos sintéticos:</strong> Ninguna estrategia de aumento sintético (LLM ni back-translation) supera al gold estándar humano.</li>
-          <li><strong>XLM-R &gt; BETO:</strong> El backbone multilingüe XLM-RoBERTa supera a BETO en el test ampliado (109 pares).</li>
-          <li><strong>Ensamble robusto:</strong> Soft-voting entre XLM-R y BETO v3 alcanza AUROC 0.999, eliminando falsos positivos.</li>
-          <li><strong>Calibración crítica:</strong> Temperature scaling (T = 5.15) reduce ECE de 0.246 a 0.076.</li>
-          <li><strong>Eficiencia de datos:</strong> ~60 pares humanos bastan para igualar a Luna (TF-IDF con ~180k pares).</li>
+          <li><strong>El dato supera a la arquitectura:</strong> a esta escala, el dato humano de calidad pesa más que el modelo o su especialización por dominio (que no aportó mejora significativa).</li>
+          <li><strong>Los sintéticos degradan:</strong> ninguna ampliación por LLM ni por retro-traducción supera al <em>gold</em> humano; varias lo empeoran por sesgo de distribución.</li>
+          <li><strong>Eficiencia de datos:</strong> decenas de pares humanos igualan a la línea base con cientos de miles de pares algorítmicos.</li>
+          <li><strong>El corpus es original:</strong> la búsqueda exhaustiva no halló plagio parafraseado; ~58% boilerplate, ~21% bibliografía compartida y solo ~3% paráfrasis real entre candidatos.</li>
+          <li><strong>Honestidad estadística:</strong> cada afirmación (empate, no-mejora, degradación) se sostiene con intervalos de confianza al 95%.</li>
         </ul>
       </div>
     </section>
 
-    <!-- Reportes semanales -->
-    <section class="section thesis-section" id="reportes">
+    <!-- El sistema desplegado -->
+    <section class="section thesis-section" id="capturas">
       <div class="container">
-        <h2><i class="fas fa-file-pdf"></i> Reportes Semanales</h2>
-        <p>El proyecto se documentó semana a semana. Cada reporte recoge la metodología, los experimentos y los resultados de esa etapa. Haz clic en una tarjeta para abrir el documento en el visor inferior, o ábrelo en una pestaña nueva.</p>
+        <h2><i class="fas fa-desktop"></i> El sistema desplegado</h2>
+        <p>Interfaz del detector en producción: los dos modos de uso, la selección de división y clasificador, el corpus científico externo y el reporte estilo «informe de similitud».</p>
+        <div class="shots-grid">
+          <figure class="shot-card"><img src="images/proyecto-terminal/cap_landing_escritorio.png" alt="Página de inicio del detector" loading="lazy"><figcaption>Inicio — presentación y accesos</figcaption></figure>
+          <figure class="shot-card"><img src="images/proyecto-terminal/cap_sistema_escritorio.png" alt="Modo 1: comparar dos textos" loading="lazy"><figcaption>Modo 1 — comparar dos textos</figcaption></figure>
+          <figure class="shot-card"><img src="images/proyecto-terminal/cap_m2_buscar_escritorio.png" alt="Modo 2: buscar en el corpus" loading="lazy"><figcaption>Modo 2 — buscar en el corpus</figcaption></figure>
+          <figure class="shot-card"><img src="images/proyecto-terminal/cap_func_escritorio.png" alt="Reporte de similitud" loading="lazy"><figcaption>Reporte de similitud</figcaption></figure>
+          <figure class="shot-card"><img src="images/proyecto-terminal/cap_ejemplos_escritorio.png" alt="Ejemplos y evidencia" loading="lazy"><figcaption>Ejemplos y evidencia</figcaption></figure>
+        </div>
+      </div>
+    </section>
 
-        <div class="reports-grid" id="reports-grid">
+    <!-- Documento final -->
+    <section class="section thesis-section" id="documento">
+      <div class="container">
+        <h2><i class="fas fa-file-pdf"></i> Documento Final</h2>
+        <p>El reporte final del Proyecto Terminal de Investigación I: planteamiento, estado del arte, metodología, diseño e implementación, evaluación honesta con intervalos de confianza y despliegue del sistema. Ábrelo en el visor o descárgalo en PDF.</p>
 
-          <article class="report-card active" data-pdf="doc/reportes/semana-1y2.pdf" data-title="Semana 1 y 2 — Construcción del corpus">
-            <span class="report-week"><i class="fas fa-calendar-week"></i> Semana 1 y 2</span>
-            <h3>Construcción del corpus TESIUAMI</h3>
-            <p>Scraping del catálogo TESIUAMI (CBI · CBS · CSH): <strong>21,286 registros</strong> y <strong>5,062 PDFs</strong> de CBI descargados. Análisis de la tesis base de David Luna (2022) y glosario de términos del proyecto.</p>
-            <div class="report-actions">
-              <a class="report-link" href="doc/reportes/semana-1y2.pdf" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()"><i class="fas fa-external-link-alt"></i> Abrir</a>
-              <a class="report-link" href="doc/reportes/semana-1y2.pdf" download onclick="event.stopPropagation()"><i class="fas fa-download"></i> Descargar</a>
-            </div>
-          </article>
-
-          <article class="report-card" data-pdf="doc/reportes/semana-3.pdf" data-title="Semana 3 — MongoDB, LLMs e In-Context Learning">
-            <span class="report-week"><i class="fas fa-calendar-week"></i> Semana 3</span>
-            <h3>MongoDB, LLMs e ICL</h3>
-            <p>Base no relacional (MongoDB) con PDFs + texto extraído (pipeline PDF→texto, <strong>97.9%</strong> de éxito). <strong>11 experimentos</strong> con LLMs e In-Context Learning. BETO fine-tuned en PAWS-X (<strong>F1 = 0.893</strong>). Reporte de 90 páginas.</p>
-            <div class="report-actions">
-              <a class="report-link" href="doc/reportes/semana-3.pdf" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()"><i class="fas fa-external-link-alt"></i> Abrir</a>
-              <a class="report-link" href="doc/reportes/semana-3.pdf" download onclick="event.stopPropagation()"><i class="fas fa-download"></i> Descargar</a>
-            </div>
-          </article>
-
-          <article class="report-card" data-pdf="doc/reportes/semana-4.pdf" data-title="Semana 4 — Evaluación controlada y ensamble">
-            <span class="report-week"><i class="fas fa-calendar-week"></i> Semana 4</span>
-            <h3>Evaluación controlada y ensamble</h3>
-            <p>Evaluación con <strong>10 réplicas</strong>, BETO fine-tuned sobre TESIUAMI y ensamble AND (<strong>F1 = 0.882</strong>). Cumplimiento de 8/8 requerimientos del asesor e inventario de 30 scripts. Reporte de 55 páginas.</p>
-            <div class="report-actions">
-              <a class="report-link" href="doc/reportes/semana-4.pdf" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()"><i class="fas fa-external-link-alt"></i> Abrir</a>
-              <a class="report-link" href="doc/reportes/semana-4.pdf" download onclick="event.stopPropagation()"><i class="fas fa-download"></i> Descargar</a>
-            </div>
-          </article>
-
-          <article class="report-card" data-pdf="doc/reportes/semana-5.pdf" data-title="Semana 5 — Estado del arte y sistema desplegable">
-            <span class="report-week"><i class="fas fa-calendar-week"></i> Semana 5</span>
-            <h3>Estado del arte y sistema desplegable</h3>
-            <p>Revisión de artículos científicos (datos sintéticos con LLMs, PAWS / PAWS-X, ParaFusion). Primer sistema desplegable (BETO v3, <strong>F1 = 0.842</strong> + RAG con MiniLM), equivalente moderno al sistema Django + Angular de la tesis base.</p>
-            <div class="report-actions">
-              <a class="report-link" href="doc/reportes/semana-5.pdf" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()"><i class="fas fa-external-link-alt"></i> Abrir</a>
-              <a class="report-link" href="doc/reportes/semana-5.pdf" download onclick="event.stopPropagation()"><i class="fas fa-download"></i> Descargar</a>
-            </div>
-          </article>
-
-          <article class="report-card" data-pdf="doc/reportes/semana-6.pdf" data-title="Semana 6 — Corpus humano y escalado">
-            <span class="report-week"><i class="fas fa-calendar-week"></i> Semana 6</span>
-            <h3>Corpus humano y escalado</h3>
-            <p>Corpus de paráfrasis humanas ratificadas, back-translation en cascada (MarianMT), clasificación de tipos de paráfrasis y fundamentos de BLEU / BERTScore / BETO. Escalado al corpus completo y sistemas desplegables v2 y v3.</p>
-            <div class="report-actions">
-              <a class="report-link" href="doc/reportes/semana-6.pdf" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()"><i class="fas fa-external-link-alt"></i> Abrir</a>
-              <a class="report-link" href="doc/reportes/semana-6.pdf" download onclick="event.stopPropagation()"><i class="fas fa-download"></i> Descargar</a>
-            </div>
-          </article>
-
-          <article class="report-card" data-pdf="doc/reportes/semana-7.pdf" data-title="Semana 7 — Sistema v4">
-            <span class="report-week"><i class="fas fa-calendar-week"></i> Semana 7</span>
-            <h3>Sistema v4</h3>
-            <p>Sistema de <strong>doble modo</strong> con índice FAISS al 100% (<strong>2.3M vectores</strong>), ensambles, árbitro LLM y explicabilidad. Desplegable con <strong>Docker</strong> y base <strong>PWA</strong> instalable en Android.</p>
-            <div class="report-actions">
-              <a class="report-link" href="doc/reportes/semana-7.pdf" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()"><i class="fas fa-external-link-alt"></i> Abrir</a>
-              <a class="report-link" href="doc/reportes/semana-7.pdf" download onclick="event.stopPropagation()"><i class="fas fa-download"></i> Descargar</a>
-            </div>
-          </article>
-
-          <article class="report-card" data-pdf="doc/reportes/semana-8.pdf" data-title="Semana 8 — Sistema v5 (mejorado)">
-            <span class="report-week"><i class="fas fa-calendar-week"></i> Semana 8</span>
-            <h3>Sistema v5 — mejorado</h3>
-            <p>Optimización del sistema: búsqueda <strong>HNSW</strong> (~240× más rápida, recall 0.97), búsqueda <strong>híbrida BM25 + HNSW</strong> (fusión RRF léxico-semántica) e <strong>IA explicativa anclada</strong> (distingue copia literal de paráfrasis).</p>
-            <div class="report-actions">
-              <a class="report-link" href="doc/reportes/semana-8.pdf" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()"><i class="fas fa-external-link-alt"></i> Abrir</a>
-              <a class="report-link" href="doc/reportes/semana-8.pdf" download onclick="event.stopPropagation()"><i class="fas fa-download"></i> Descargar</a>
-            </div>
-          </article>
-
-          <article class="report-card" data-pdf="doc/reportes/semana-9.pdf" data-title="Semana 9 — Despliegue en producción y optimización">
-            <span class="report-week"><i class="fas fa-calendar-week"></i> Semana 9</span>
-            <h3>Despliegue en producción y optimización</h3>
-            <p>Sistema v6 <strong>desplegado en Hugging Face Spaces</strong> (Docker + Gradio): investigación de arquitecturas paralelas y serverless, corrección de <strong>sobresuscripción de hilos</strong>, perfilado y <strong>cuantización int8</strong> medida, y comparación cross-lingüe con modelos y corpus científicos.</p>
-            <div class="report-actions">
-              <a class="report-link" href="doc/reportes/semana-9.pdf" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()"><i class="fas fa-external-link-alt"></i> Abrir</a>
-              <a class="report-link" href="doc/reportes/semana-9.pdf" download onclick="event.stopPropagation()"><i class="fas fa-download"></i> Descargar</a>
-              <a class="report-link" href="https://purpplealien-deteccion-parafrasis.hf.space/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" style="color:#00ff88;"><i class="fas fa-rocket"></i> Ver desplegado</a>
-            </div>
-          </article>
-
+        <div class="link-buttons">
+          <a href="doc/proyecto-terminal-tesis.pdf" class="btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Abrir en pestaña nueva</a>
+          <a href="doc/proyecto-terminal-tesis.pdf" class="btn btn-outline" download><i class="fas fa-download"></i> Descargar PDF</a>
         </div>
 
         <div class="pdf-viewer-wrap">
           <div class="pdf-viewer-bar">
-            <span class="pdf-title" id="pdf-title"><i class="fas fa-file-pdf"></i> Semana 1 y 2 — Construcción del corpus</span>
-            <a class="report-link" id="pdf-open" href="doc/reportes/semana-1y2.pdf" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Abrir en pestaña nueva</a>
+            <span class="pdf-title"><i class="fas fa-file-pdf"></i> Reporte Final — Detección de Paráfrasis mediante LLM</span>
+            <a class="report-link" href="doc/proyecto-terminal-tesis.pdf" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Abrir en pestaña nueva</a>
           </div>
-          <iframe class="pdf-viewer-frame" id="pdf-frame" src="doc/reportes/semana-1y2.pdf#view=FitH" title="Visor de reportes semanales" loading="lazy"></iframe>
+          <iframe class="pdf-viewer-frame" src="doc/proyecto-terminal-tesis.pdf#view=FitH" title="Reporte final del Proyecto Terminal" loading="lazy"></iframe>
         </div>
       </div>
     </section>
+
 
     <!-- CTA -->
     <section class="section thesis-section" id="links">
       <div class="container" style="text-align:center;">
         <h2 style="justify-content:center;"><i class="fas fa-external-link-alt"></i> Enlaces</h2>
-        <p style="margin:0 auto 24px; max-width:500px;">Prueba el detector funcionando en vivo, explora el código fuente o contacta para más información.</p>
+        <p style="margin:0 auto 24px; max-width:520px;">Prueba el detector en el demo público, explora el sistema completo desplegado o descarga el documento final.</p>
         <div class="link-buttons" style="justify-content:center;">
           <a href="https://purpplealien-deteccion-parafrasis.hf.space/" class="btn" target="_blank" rel="noopener noreferrer" style="background:linear-gradient(135deg,#61dafb,#c678dd); color:#0d1117; font-weight:600;">
-            <i class="fas fa-rocket"></i> Demo en vivo
+            <i class="fas fa-rocket"></i> Demo en vivo (HF)
           </a>
-          <a href="https://github.com/PurppleAlien" class="btn btn-outline" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-github"></i> GitHub
+          <a href="https://parafrasis-uami.duckdns.org/" class="btn btn-outline" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-server"></i> Proyecto completo
+          </a>
+          <a href="doc/proyecto-terminal-tesis.pdf" class="btn btn-outline" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-file-pdf"></i> Documento final
           </a>
           <a href="portafolio.html" class="btn btn-outline">
             <i class="fas fa-arrow-left"></i> Volver al Portafolio
-          </a>
-          <a href="contacto.html" class="btn btn-outline">
-            <i class="fas fa-envelope"></i> Contacto
           </a>
         </div>
       </div>
@@ -866,35 +801,6 @@
   <script type="module" src="js/hero3d.js"></script>
   <script src="js/mega-nav.js" defer></script>
   <script src="js/cursor.js" defer></script>
-
-  <!-- Visor de reportes semanales -->
-  <script>
-    (function () {
-      var grid  = document.getElementById('reports-grid');
-      var frame = document.getElementById('pdf-frame');
-      var title = document.getElementById('pdf-title');
-      var open  = document.getElementById('pdf-open');
-      if (!grid || !frame) return;
-
-      grid.addEventListener('click', function (e) {
-        var card = e.target.closest('.report-card');
-        if (!card) return;
-        var pdf = card.getAttribute('data-pdf');
-        var txt = card.getAttribute('data-title') || 'Reporte';
-        if (!pdf) return;
-
-        frame.setAttribute('src', pdf + '#view=FitH');
-        title.innerHTML = '<i class="fas fa-file-pdf"></i> ' + txt;
-        open.setAttribute('href', pdf);
-
-        grid.querySelectorAll('.report-card').forEach(function (c) { c.classList.remove('active'); });
-        card.classList.add('active');
-
-        document.querySelector('.pdf-viewer-wrap')
-          .scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      });
-    })();
-  </script>
 
   <script src="js/command-palette.js" defer></script>
   <script src="js/status-bar.js" defer></script>
