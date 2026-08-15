@@ -479,23 +479,23 @@
 
     <!-- Hero -->
     <section class="thesis-hero fade-in">
-      <span class="badge"><i class="fas fa-graduation-cap"></i> Proyecto Terminal de Investigación I</span>
-      <h1>Detección Inteligente de Paráfrasis</h1>
-      <p>Detector de paráfrasis y copia sobre el corpus de tesis <strong>TESIUAMI</strong> de la UAM Iztapalapa (las tres divisiones: CBI, CBS y CSH), con modelos de lenguaje afinados (BETO, XLM-RoBERTa), recuperación híbrida (HNSW + BM25 + RRF) y cross-encoders int8. Evaluado con un <strong>protocolo estadísticamente honesto</strong> y desplegado en producción.</p>
+      <span class="badge"><i class="fas fa-graduation-cap"></i> <span data-i18n="pt.hero.badge">Proyecto Terminal de Investigación I</span></span>
+      <h1 data-i18n="pt.hero.title">Detección Inteligente de Paráfrasis</h1>
+      <p data-i18n-html="pt.hero.desc">Detector de paráfrasis y copia sobre el corpus de tesis <strong>TESIUAMI</strong> de la UAM Iztapalapa (las tres divisiones: CBI, CBS y CSH), con modelos de lenguaje afinados (BETO, XLM-RoBERTa), recuperación híbrida (HNSW + BM25 + RRF) y cross-encoders int8. Evaluado con un <strong>protocolo estadísticamente honesto</strong> y desplegado en producción.</p>
       <div class="hero-meta">
-        <span><i class="fas fa-university"></i> UAM Iztapalapa · Lic. en Computación</span>
-        <span><i class="fas fa-user-tie"></i> Asesor: Dr. Benjamin Moreno Montiel</span>
-        <span><i class="fas fa-calendar"></i> Reporte Final · Agosto 2026</span>
+        <span><i class="fas fa-university"></i> <span data-i18n="pt.hero.meta1">UAM Iztapalapa · Lic. en Computación</span></span>
+        <span><i class="fas fa-user-tie"></i> <span data-i18n="pt.hero.meta2">Asesor: Dr. Benjamin Moreno Montiel</span></span>
+        <span><i class="fas fa-calendar"></i> <span data-i18n="pt.hero.meta3">Reporte Final · Agosto 2026</span></span>
       </div>
       <div class="link-buttons" style="justify-content:center;">
         <a href="https://purpplealien-deteccion-parafrasis.hf.space/" class="btn" target="_blank" rel="noopener noreferrer" style="background:linear-gradient(135deg,#61dafb,#c678dd); color:#0d1117; font-weight:600;">
-          <i class="fas fa-rocket"></i> Probar el demo en vivo
+          <i class="fas fa-rocket"></i> <span data-i18n="pt.hero.btnDemo">Probar el demo en vivo</span>
         </a>
         <a href="https://parafrasis-uami.duckdns.org/" class="btn btn-outline" target="_blank" rel="noopener noreferrer">
-          <i class="fas fa-server"></i> Proyecto completo
+          <i class="fas fa-server"></i> <span data-i18n="pt.hero.btnFull">Proyecto completo</span>
         </a>
         <a href="#documento" class="btn btn-outline">
-          <i class="fas fa-file-pdf"></i> Documento final
+          <i class="fas fa-file-pdf"></i> <span data-i18n="pt.hero.btnDoc">Documento final</span>
         </a>
       </div>
     </section>
@@ -503,13 +503,13 @@
     <!-- Overview -->
     <section class="section thesis-section" id="overview">
       <div class="container">
-        <h2><i class="fas fa-crosshairs"></i> Resumen</h2>
-        <p>Este proyecto aborda la detección automática de paráfrasis y copia sobre el corpus de tesis <strong>TESIUAMI</strong> de la UAM Iztapalapa, empleando modelos de lenguaje de gran escala y modelos tipo Transformer afinados (BETO, XLM-RoBERTa), en contraste con el enfoque previo basado en redes convolucionales y <em>embeddings</em> estáticos de la tesis base de David Luna.</p>
-        <p>Se construyó un <strong>sistema de doble modo</strong> que (a) clasifica pares de textos como paráfrasis o no, y (b) analiza documentos completos contra un corpus interno de <strong>21,128 tesis</strong> de las tres divisiones (CBI, CBS y CSH) y contra un corpus científico externo de <strong>~250 millones</strong> de obras (OpenAlex, Semantic Scholar y Crossref). El sistema combina recuperación híbrida (semántica con HNSW, léxica con BM25 y fusión por RRF) con un cross-encoder cuantizado a <strong>int8</strong>, y se encuentra <strong>desplegado en producción</strong>.</p>
+        <h2><i class="fas fa-crosshairs"></i> <span data-i18n="pt.ov.h2">Resumen</span></h2>
+        <p data-i18n-html="pt.ov.p1">Este proyecto aborda la detección automática de paráfrasis y copia sobre el corpus de tesis <strong>TESIUAMI</strong> de la UAM Iztapalapa, empleando modelos de lenguaje de gran escala y modelos tipo Transformer afinados (BETO, XLM-RoBERTa), en contraste con el enfoque previo basado en redes convolucionales y <em>embeddings</em> estáticos de la tesis base de David Luna.</p>
+        <p data-i18n-html="pt.ov.p2">Se construyó un <strong>sistema de doble modo</strong> que (a) clasifica pares de textos como paráfrasis o no, y (b) analiza documentos completos contra un corpus interno de <strong>21,128 tesis</strong> de las tres divisiones (CBI, CBS y CSH) y contra un corpus científico externo de <strong>~250 millones</strong> de obras (OpenAlex, Semantic Scholar y Crossref). El sistema combina recuperación híbrida (semántica con HNSW, léxica con BM25 y fusión por RRF) con un cross-encoder cuantizado a <strong>int8</strong>, y se encuentra <strong>desplegado en producción</strong>.</p>
 
         <div class="finding-box">
-          <h4><i class="fas fa-lightbulb"></i> Encuadre honesto y hallazgo central</h4>
-          <p>El aporte metodológico principal es la <strong>evaluación honesta</strong>: toda métrica se reporta con su conjunto de prueba etiquetado y con intervalos de confianza, descartando cifras infladas por fuga de datos o balanceo artificial. Bajo ese encuadre, el mejor modelo afinado (BETO v3) alcanza <strong>F1 = 0.842</strong>, <em>empatando</em> —dentro del intervalo de confianza— con la línea base previa; el aporte no es superar esa cifra, sino la <strong>eficiencia de datos</strong> (lograrlo con decenas de pares anotados en lugar de cientos de miles). Dos hallazgos sostienen la tesis central, <em>«el dato supera a la arquitectura»</em>: los datos sintéticos <strong>degradan</strong> el desempeño, y una búsqueda exhaustiva muestra que <strong>el corpus es original</strong> —la copia parafraseada entre tesis es prácticamente nula—, por lo que la similitud temática no debe confundirse con plagio.</p>
+          <h4><i class="fas fa-lightbulb"></i> <span data-i18n="pt.find.h4">Encuadre honesto y hallazgo central</span></h4>
+          <p data-i18n-html="pt.find.p">El aporte metodológico principal es la <strong>evaluación honesta</strong>: toda métrica se reporta con su conjunto de prueba etiquetado y con intervalos de confianza, descartando cifras infladas por fuga de datos o balanceo artificial. Bajo ese encuadre, el mejor modelo afinado (BETO v3) alcanza <strong>F1 = 0.842</strong>, <em>empatando</em> —dentro del intervalo de confianza— con la línea base previa; el aporte no es superar esa cifra, sino la <strong>eficiencia de datos</strong> (lograrlo con decenas de pares anotados en lugar de cientos de miles). Dos hallazgos sostienen la tesis central, <em>«el dato supera a la arquitectura»</em>: los datos sintéticos <strong>degradan</strong> el desempeño, y una búsqueda exhaustiva muestra que <strong>el corpus es original</strong> —la copia parafraseada entre tesis es prácticamente nula—, por lo que la similitud temática no debe confundirse con plagio.</p>
         </div>
       </div>
     </section>
@@ -517,104 +517,104 @@
     <!-- Architecture -->
     <section class="section thesis-section section-dark" id="architecture">
       <div class="container">
-        <h2><i class="fas fa-sitemap"></i> Arquitectura</h2>
-        <p>El sistema se organiza en dos etapas complementarias que resuelven el compromiso entre velocidad y precisión: <strong>recuperar</strong> candidatos (rápido, con un bi-codificador) y <strong>clasificar</strong> solo esos pocos (preciso, con un codificador cruzado). Así el modelo caro se ejecuta pocas veces y el sistema escala al corpus completo.</p>
+        <h2><i class="fas fa-sitemap"></i> <span data-i18n="pt.arch.h2">Arquitectura</span></h2>
+        <p data-i18n-html="pt.arch.p">El sistema se organiza en dos etapas complementarias que resuelven el compromiso entre velocidad y precisión: <strong>recuperar</strong> candidatos (rápido, con un bi-codificador) y <strong>clasificar</strong> solo esos pocos (preciso, con un codificador cruzado). Así el modelo caro se ejecuta pocas veces y el sistema escala al corpus completo.</p>
 
         <div class="architecture-diagram fade-in">
           <div class="arch-layers">
             <div class="arch-layer l1">
               <div class="layer-icon"><i class="fas fa-scissors"></i></div>
               <div>
-                <div class="layer-label">1 — Fragmentar + Embeddings</div>
-                <div class="layer-desc">Ventanas de 400/200 tokens · bi-codificador MiniLM-L12-v2</div>
+                <div class="layer-label" data-i18n="pt.arch.l1t">1 — Fragmentar + Embeddings</div>
+                <div class="layer-desc" data-i18n="pt.arch.l1d">Ventanas de 400/200 tokens · bi-codificador MiniLM-L12-v2</div>
               </div>
             </div>
             <div class="arch-arrow"><i class="fas fa-chevron-down"></i></div>
             <div class="arch-layer l2">
               <div class="layer-icon"><i class="fas fa-vector-square"></i></div>
               <div>
-                <div class="layer-label">2 — Recuperación híbrida (HNSW + BM25 → RRF)</div>
-                <div class="layer-desc">Semántica (HNSW/IVFPQ) + léxica (BM25) fusionadas por Reciprocal Rank Fusion</div>
+                <div class="layer-label" data-i18n="pt.arch.l2t">2 — Recuperación híbrida (HNSW + BM25 → RRF)</div>
+                <div class="layer-desc" data-i18n="pt.arch.l2d">Semántica (HNSW/IVFPQ) + léxica (BM25) fusionadas por Reciprocal Rank Fusion</div>
               </div>
             </div>
             <div class="arch-arrow"><i class="fas fa-chevron-down"></i></div>
             <div class="arch-layer l3">
               <div class="layer-icon"><i class="fas fa-brain"></i></div>
               <div>
-                <div class="layer-label">3 — Clasificar (cross-encoder int8)</div>
-                <div class="layer-desc">BETO · XLM-RoBERTa · ensamble — cuantizados a int8 (ONNX) para CPU</div>
+                <div class="layer-label" data-i18n="pt.arch.l3t">3 — Clasificar (cross-encoder int8)</div>
+                <div class="layer-desc" data-i18n="pt.arch.l3d">BETO · XLM-RoBERTa · ensamble — cuantizados a int8 (ONNX) para CPU</div>
               </div>
             </div>
             <div class="arch-arrow"><i class="fas fa-chevron-down"></i></div>
             <div class="arch-layer l4">
               <div class="layer-icon"><i class="fas fa-gavel"></i></div>
               <div>
-                <div class="layer-label">Árbitro LLM (opcional) → Reporte</div>
-                <div class="layer-desc">Interviene solo en la zona de incertidumbre; reporte estilo «informe de similitud»</div>
+                <div class="layer-label" data-i18n="pt.arch.l4t">Árbitro LLM (opcional) → Reporte</div>
+                <div class="layer-desc" data-i18n="pt.arch.l4d">Interviene solo en la zona de incertidumbre; reporte estilo «informe de similitud»</div>
               </div>
             </div>
           </div>
         </div>
 
-        <h3>Modos de Operación</h3>
+        <h3 data-i18n="pt.arch.modosH">Modos de Operación</h3>
         <ul>
-          <li><strong>Modo 1 — Clasificación de pares:</strong> recibe dos textos y responde si uno es paráfrasis del otro, con etiqueta (copia casi literal, paráfrasis o alta similitud por revisar) y probabilidad calibrada.</li>
-          <li><strong>Modo 2 — Documento completo:</strong> analiza una tesis (texto o PDF) contra el corpus interno de la división elegida (CBI, CBS o CSH), por fragmento o por tesis completa, con opción de activar el corpus científico externo.</li>
+          <li data-i18n-html="pt.arch.modo1"><strong>Modo 1 — Clasificación de pares:</strong> recibe dos textos y responde si uno es paráfrasis del otro, con etiqueta (copia casi literal, paráfrasis o alta similitud por revisar) y probabilidad calibrada.</li>
+          <li data-i18n-html="pt.arch.modo2"><strong>Modo 2 — Documento completo:</strong> analiza una tesis (texto o PDF) contra el corpus interno de la división elegida (CBI, CBS o CSH), por fragmento o por tesis completa, con opción de activar el corpus científico externo.</li>
         </ul>
 
-        <h3>Corpus científico externo (federado)</h3>
-        <p>Además del corpus interno, el sistema compara contra <strong>~250 millones de obras</strong> consultando OpenAlex, Semantic Scholar y Crossref. Como operan en inglés, el fragmento se traduce (es → en) y la verificación se hace en-en, con descarga de texto completo en acceso abierto (con validaciones anti-SSRF) o comparación contra el <em>abstract</em> en obras cerradas.</p>
+        <h3 data-i18n="pt.arch.extH">Corpus científico externo (federado)</h3>
+        <p data-i18n-html="pt.arch.extP">Además del corpus interno, el sistema compara contra <strong>~250 millones de obras</strong> consultando OpenAlex, Semantic Scholar y Crossref. Como operan en inglés, el fragmento se traduce (es → en) y la verificación se hace en-en, con descarga de texto completo en acceso abierto (con validaciones anti-SSRF) o comparación contra el <em>abstract</em> en obras cerradas.</p>
 
-        <h3>Sistema por divisiones y despliegue</h3>
-        <p>Cada división tiene sus propios índices, metadatos y modelo (CBI: 4,970 · CBS: 5,416 · CSH: 10,742 tesis). Como no caben las tres a la vez en memoria, se cargan de forma <strong>perezosa</strong> (solo la activa) y se <strong>evacúan</strong> al cambiar. El reporte titular cuenta <strong>solo lo confirmado</strong> por el clasificador: el <em>boilerplate</em> institucional y la bibliografía compartida se contabilizan aparte y no inflan la cifra. Despliegue en dos entornos: el <strong>canónico</strong> en Google Cloud (tres divisiones al 100%) y una <strong>demostración</strong> pública en Hugging Face Spaces.</p>
+        <h3 data-i18n="pt.arch.divH">Sistema por divisiones y despliegue</h3>
+        <p data-i18n-html="pt.arch.divP">Cada división tiene sus propios índices, metadatos y modelo (CBI: 4,970 · CBS: 5,416 · CSH: 10,742 tesis). Como no caben las tres a la vez en memoria, se cargan de forma <strong>perezosa</strong> (solo la activa) y se <strong>evacúan</strong> al cambiar. El reporte titular cuenta <strong>solo lo confirmado</strong> por el clasificador: el <em>boilerplate</em> institucional y la bibliografía compartida se contabilizan aparte y no inflan la cifra. Despliegue en dos entornos: el <strong>canónico</strong> en Google Cloud (tres divisiones al 100%) y una <strong>demostración</strong> pública en Hugging Face Spaces.</p>
       </div>
     </section>
 
     <!-- Technologies -->
     <section class="section thesis-section" id="technologies">
       <div class="container">
-        <h2><i class="fas fa-cogs"></i> Tecnologías</h2>
+        <h2><i class="fas fa-cogs"></i> <span data-i18n="pt.tech.h2">Tecnologías</span></h2>
 
         <div class="tech-grid">
           <div class="tech-item">
             <i class="fas fa-language"></i>
-            <div><div class="tech-name">BETO (dccuchile)</div><div class="tech-use">Afinado · F1 = 0.842 (test limpio)</div></div>
+            <div><div class="tech-name">BETO (dccuchile)</div><div class="tech-use" data-i18n="pt.tech.u1">Afinado · F1 = 0.842 (test limpio)</div></div>
           </div>
           <div class="tech-item">
             <i class="fas fa-globe"></i>
-            <div><div class="tech-name">XLM-RoBERTa</div><div class="tech-use">Backbone multilingüe · cross-encoder</div></div>
+            <div><div class="tech-name">XLM-RoBERTa</div><div class="tech-use" data-i18n="pt.tech.u2">Backbone multilingüe · cross-encoder</div></div>
           </div>
           <div class="tech-item">
             <i class="fas fa-project-diagram"></i>
-            <div><div class="tech-name">HNSW / IVFPQ</div><div class="tech-use">Vecinos aproximados (semántica)</div></div>
+            <div><div class="tech-name">HNSW / IVFPQ</div><div class="tech-use" data-i18n="pt.tech.u3">Vecinos aproximados (semántica)</div></div>
           </div>
           <div class="tech-item">
             <i class="fas fa-search"></i>
-            <div><div class="tech-name">BM25 + RRF</div><div class="tech-use">Recuperación léxica + fusión</div></div>
+            <div><div class="tech-name">BM25 + RRF</div><div class="tech-use" data-i18n="pt.tech.u4">Recuperación léxica + fusión</div></div>
           </div>
           <div class="tech-item">
             <i class="fas fa-microchip"></i>
-            <div><div class="tech-name">ONNX int8</div><div class="tech-use">Cuantización · inferencia en CPU</div></div>
+            <div><div class="tech-name">ONNX int8</div><div class="tech-use" data-i18n="pt.tech.u5">Cuantización · inferencia en CPU</div></div>
           </div>
           <div class="tech-item">
             <i class="fab fa-python"></i>
-            <div><div class="tech-name">Python · PyTorch</div><div class="tech-use">Entrenamiento e inferencia</div></div>
+            <div><div class="tech-name">Python · PyTorch</div><div class="tech-use" data-i18n="pt.tech.u6">Entrenamiento e inferencia</div></div>
           </div>
           <div class="tech-item">
             <i class="fas fa-rocket"></i>
-            <div><div class="tech-name">Docker + PWA</div><div class="tech-use">GCP (canónico) · HF Spaces (demo)</div></div>
+            <div><div class="tech-name">Docker + PWA</div><div class="tech-use" data-i18n="pt.tech.u7">GCP (canónico) · HF Spaces (demo)</div></div>
           </div>
           <div class="tech-item">
             <i class="fas fa-tachometer-alt"></i>
-            <div><div class="tech-name">Árbitro LLM</div><div class="tech-use">Juicio en zona de incertidumbre</div></div>
+            <div><div class="tech-name">Árbitro LLM</div><div class="tech-use" data-i18n="pt.tech.u8">Juicio en zona de incertidumbre</div></div>
           </div>
           <div class="tech-item">
             <i class="fas fa-leaf"></i>
-            <div><div class="tech-name">MiniLM-L12-v2</div><div class="tech-use">Bi-codificador (embeddings)</div></div>
+            <div><div class="tech-name">MiniLM-L12-v2</div><div class="tech-use" data-i18n="pt.tech.u9">Bi-codificador (embeddings)</div></div>
           </div>
           <div class="tech-item">
             <i class="fas fa-cloud"></i>
-            <div><div class="tech-name">OpenAlex · S2 · Crossref</div><div class="tech-use">Corpus externo federado (~250M)</div></div>
+            <div><div class="tech-name">OpenAlex · S2 · Crossref</div><div class="tech-use" data-i18n="pt.tech.u10">Corpus externo federado (~250M)</div></div>
           </div>
         </div>
       </div>
@@ -623,56 +623,56 @@
     <!-- Results -->
     <section class="section thesis-section section-dark" id="results">
       <div class="container">
-        <h2><i class="fas fa-chart-bar"></i> Resultados Clave</h2>
+        <h2><i class="fas fa-chart-bar"></i> <span data-i18n="pt.res.h2">Resultados Clave</span></h2>
 
         <div class="metrics-grid">
           <div class="metric-card fade-in">
             <div class="metric-value">0.842</div>
-            <div class="metric-label">BETO v3 — F1 (test_v3_limpio)</div>
+            <div class="metric-label" data-i18n="pt.res.m1">BETO v3 — F1 (test_v3_limpio)</div>
           </div>
           <div class="metric-card fade-in delay-1">
             <div class="metric-value">0.812</div>
-            <div class="metric-label">XLM-R v4 — F1 (test_v4 robusto)</div>
+            <div class="metric-label" data-i18n="pt.res.m2">XLM-R v4 — F1 (test_v4 robusto)</div>
           </div>
           <div class="metric-card fade-in delay-2">
             <div class="metric-value">21,128</div>
-            <div class="metric-label">Tesis (CBI + CBS + CSH)</div>
+            <div class="metric-label" data-i18n="pt.res.m3">Tesis (CBI + CBS + CSH)</div>
           </div>
           <div class="metric-card fade-in delay-3">
             <div class="metric-value">~250M</div>
-            <div class="metric-label">Obras · corpus externo</div>
+            <div class="metric-label" data-i18n="pt.res.m4">Obras · corpus externo</div>
           </div>
           <div class="metric-card fade-in">
             <div class="metric-value">~3%</div>
-            <div class="metric-label">Paráfrasis real (corpus original)</div>
+            <div class="metric-label" data-i18n="pt.res.m5">Paráfrasis real (corpus original)</div>
           </div>
           <div class="metric-card fade-in delay-1">
             <div class="metric-value">int8</div>
-            <div class="metric-label">Cross-encoder en CPU</div>
+            <div class="metric-label" data-i18n="pt.res.m6">Cross-encoder en CPU</div>
           </div>
         </div>
 
-        <h3>Empate con la línea base (intervalos de confianza al 95%)</h3>
-        <p>Sobre el mismo conjunto (<code>test_v3_limpio</code>, 38 pares), el modelo contextual y las líneas base dan valores muy cercanos con <strong>IC95% ampliamente solapados</strong>: la diferencia <em>no es estadísticamente significativa</em>. El aporte no es superar la cifra, sino lograrla con órdenes de magnitud menos dato anotado.</p>
+        <h3 data-i18n="pt.res.tieH">Empate con la línea base (intervalos de confianza al 95%)</h3>
+        <p data-i18n-html="pt.res.tieP">Sobre el mismo conjunto (<code>test_v3_limpio</code>, 38 pares), el modelo contextual y las líneas base dan valores muy cercanos con <strong>IC95% ampliamente solapados</strong>: la diferencia <em>no es estadísticamente significativa</em>. El aporte no es superar la cifra, sino lograrla con órdenes de magnitud menos dato anotado.</p>
         <div style="overflow-x:auto;">
           <table class="model-table">
             <thead>
-              <tr><th>Sistema</th><th>F1</th><th>IC95% (bootstrap)</th><th>Dato anotado</th></tr>
+              <tr><th data-i18n="pt.res.t1h1">Sistema</th><th>F1</th><th data-i18n="pt.res.t1h3">IC95% (bootstrap)</th><th data-i18n="pt.res.t1h4">Dato anotado</th></tr>
             </thead>
             <tbody>
-              <tr class="highlight-row"><td>BETO v3 (contextual)</td><td>0.842</td><td>[0.609, 1.000]</td><td>decenas de pares humanos</td></tr>
-              <tr><td>TF-IDF + coseno</td><td>0.842</td><td>[0.600, 1.000]</td><td>—</td></tr>
-              <tr><td>FastText + coseno</td><td>0.818</td><td>[0.588, 0.960]</td><td>cientos de miles</td></tr>
+              <tr class="highlight-row"><td data-i18n="pt.res.t1c1">BETO v3 (contextual)</td><td>0.842</td><td>[0.609, 1.000]</td><td data-i18n="pt.res.t1c1d">decenas de pares humanos</td></tr>
+              <tr><td data-i18n="pt.res.t1c2">TF-IDF + coseno</td><td>0.842</td><td>[0.600, 1.000]</td><td>—</td></tr>
+              <tr><td data-i18n="pt.res.t1c3">FastText + coseno</td><td>0.818</td><td>[0.588, 0.960]</td><td data-i18n="pt.res.t1c3d">cientos de miles</td></tr>
             </tbody>
           </table>
         </div>
 
-        <h3>Desempeño por conjunto de prueba</h3>
-        <p>Cada columna es un conjunto distinto y de dificultad creciente; los valores <strong>no son comparables entre columnas</strong>. La F1 baja hacia los conjuntos más realistas mientras el AUROC se mantiene: es un test más difícil, no un peor modelo.</p>
+        <h3 data-i18n="pt.res.perfH">Desempeño por conjunto de prueba</h3>
+        <p data-i18n-html="pt.res.perfP">Cada columna es un conjunto distinto y de dificultad creciente; los valores <strong>no son comparables entre columnas</strong>. La F1 baja hacia los conjuntos más realistas mientras el AUROC se mantiene: es un test más difícil, no un peor modelo.</p>
         <div style="overflow-x:auto;">
           <table class="model-table">
             <thead>
-              <tr><th>Modelo</th><th>test_v3_limpio (38, fácil)</th><th>test_v4 (109, robusto)</th><th>test_v5 (225, realista)</th></tr>
+              <tr><th data-i18n="pt.res.t2h1">Modelo</th><th data-i18n="pt.res.t2h2">test_v3_limpio (38, fácil)</th><th data-i18n="pt.res.t2h3">test_v4 (109, robusto)</th><th data-i18n="pt.res.t2h4">test_v5 (225, realista)</th></tr>
             </thead>
             <tbody>
               <tr><td>BETO v3</td><td>0.842 / 0.989</td><td>—</td><td>0.714 / 0.836</td></tr>
@@ -680,31 +680,31 @@
               <tr><td>Ensamble</td><td>0.889 / 0.996</td><td>—</td><td>0.670 / 0.837</td></tr>
             </tbody>
           </table>
-          <p style="font-size:0.82rem; color:var(--text-muted); margin-top:6px;">Formato: F1 / AUROC. El titular honesto de XLM-R es el de <code>test_v4</code>.</p>
+          <p style="font-size:0.82rem; color:var(--text-muted); margin-top:6px;" data-i18n-html="pt.res.t2note">Formato: F1 / AUROC. El titular honesto de XLM-R es el de <code>test_v4</code>.</p>
         </div>
 
         <div class="fig-grid">
           <figure class="fig-card">
             <img src="images/proyecto-terminal/fig_finetuning.png" alt="Progresión del afinamiento de BETO" loading="lazy">
-            <figcaption>Afinamiento de BETO: las versiones con datos humanos (verde) superan a las sintéticas (naranja). Ninguna ampliación sintética rebasa el <em>gold</em> humano de v3.</figcaption>
+            <figcaption data-i18n-html="pt.res.fig1">Afinamiento de BETO: las versiones con datos humanos (verde) superan a las sintéticas (naranja). Ninguna ampliación sintética rebasa el <em>gold</em> humano de v3.</figcaption>
           </figure>
           <figure class="fig-card">
             <img src="images/proyecto-terminal/fig_confusion_v3.png" alt="Matriz de confusión de BETO v3" loading="lazy">
-            <figcaption>Matriz de confusión de BETO v3 (38 pares): de 9 positivos detecta 8 (1 FN) y comete 2 FP → precisión 0.80, recall 0.889, F1 = 0.842.</figcaption>
+            <figcaption data-i18n-html="pt.res.fig2">Matriz de confusión de BETO v3 (38 pares): de 9 positivos detecta 8 (1 FN) y comete 2 FP → precisión 0.80, recall 0.889, F1 = 0.842.</figcaption>
           </figure>
           <figure class="fig-card">
             <img src="images/proyecto-terminal/fig_tiempos.png" alt="Tiempo de análisis por división" loading="lazy">
-            <figcaption>Tiempo de análisis de una tesis completa por división. El costo crece con el tamaño del corpus (CSH: 10.7M fragmentos), dominado por la recuperación léxica y la carga única.</figcaption>
+            <figcaption data-i18n-html="pt.res.fig3">Tiempo de análisis de una tesis completa por división. El costo crece con el tamaño del corpus (CSH: 10.7M fragmentos), dominado por la recuperación léxica y la carga única.</figcaption>
           </figure>
         </div>
 
-        <h3>Conclusiones Experimentales</h3>
+        <h3 data-i18n="pt.res.conclH">Conclusiones Experimentales</h3>
         <ul>
-          <li><strong>El dato supera a la arquitectura:</strong> a esta escala, el dato humano de calidad pesa más que el modelo o su especialización por dominio (que no aportó mejora significativa).</li>
-          <li><strong>Los sintéticos degradan:</strong> ninguna ampliación por LLM ni por retro-traducción supera al <em>gold</em> humano; varias lo empeoran por sesgo de distribución.</li>
-          <li><strong>Eficiencia de datos:</strong> decenas de pares humanos igualan a la línea base con cientos de miles de pares algorítmicos.</li>
-          <li><strong>El corpus es original:</strong> la búsqueda exhaustiva no halló plagio parafraseado; ~58% boilerplate, ~21% bibliografía compartida y solo ~3% paráfrasis real entre candidatos.</li>
-          <li><strong>Honestidad estadística:</strong> cada afirmación (empate, no-mejora, degradación) se sostiene con intervalos de confianza al 95%.</li>
+          <li data-i18n-html="pt.res.c1"><strong>El dato supera a la arquitectura:</strong> a esta escala, el dato humano de calidad pesa más que el modelo o su especialización por dominio (que no aportó mejora significativa).</li>
+          <li data-i18n-html="pt.res.c2"><strong>Los sintéticos degradan:</strong> ninguna ampliación por LLM ni por retro-traducción supera al <em>gold</em> humano; varias lo empeoran por sesgo de distribución.</li>
+          <li data-i18n-html="pt.res.c3"><strong>Eficiencia de datos:</strong> decenas de pares humanos igualan a la línea base con cientos de miles de pares algorítmicos.</li>
+          <li data-i18n-html="pt.res.c4"><strong>El corpus es original:</strong> la búsqueda exhaustiva no halló plagio parafraseado; ~58% boilerplate, ~21% bibliografía compartida y solo ~3% paráfrasis real entre candidatos.</li>
+          <li data-i18n-html="pt.res.c5"><strong>Honestidad estadística:</strong> cada afirmación (empate, no-mejora, degradación) se sostiene con intervalos de confianza al 95%.</li>
         </ul>
       </div>
     </section>
@@ -712,14 +712,14 @@
     <!-- El sistema desplegado -->
     <section class="section thesis-section" id="capturas">
       <div class="container">
-        <h2><i class="fas fa-desktop"></i> El sistema desplegado</h2>
-        <p>Interfaz del detector en producción: los dos modos de uso, la selección de división y clasificador, el corpus científico externo y el reporte estilo «informe de similitud».</p>
+        <h2><i class="fas fa-desktop"></i> <span data-i18n="pt.shots.h2">El sistema desplegado</span></h2>
+        <p data-i18n="pt.shots.p">Interfaz del detector en producción: los dos modos de uso, la selección de división y clasificador, el corpus científico externo y el reporte estilo «informe de similitud».</p>
         <div class="shots-grid">
-          <figure class="shot-card"><img src="images/proyecto-terminal/cap_landing_escritorio.png" alt="Página de inicio del detector" loading="lazy"><figcaption>Inicio — presentación y accesos</figcaption></figure>
-          <figure class="shot-card"><img src="images/proyecto-terminal/cap_sistema_escritorio.png" alt="Modo 1: comparar dos textos" loading="lazy"><figcaption>Modo 1 — comparar dos textos</figcaption></figure>
-          <figure class="shot-card"><img src="images/proyecto-terminal/cap_m2_buscar_escritorio.png" alt="Modo 2: buscar en el corpus" loading="lazy"><figcaption>Modo 2 — buscar en el corpus</figcaption></figure>
-          <figure class="shot-card"><img src="images/proyecto-terminal/cap_func_escritorio.png" alt="Reporte de similitud" loading="lazy"><figcaption>Reporte de similitud</figcaption></figure>
-          <figure class="shot-card"><img src="images/proyecto-terminal/cap_ejemplos_escritorio.png" alt="Ejemplos y evidencia" loading="lazy"><figcaption>Ejemplos y evidencia</figcaption></figure>
+          <figure class="shot-card"><img src="images/proyecto-terminal/cap_landing_escritorio.png" alt="Página de inicio del detector" loading="lazy"><figcaption data-i18n="pt.shots.cap1">Inicio — presentación y accesos</figcaption></figure>
+          <figure class="shot-card"><img src="images/proyecto-terminal/cap_sistema_escritorio.png" alt="Modo 1: comparar dos textos" loading="lazy"><figcaption data-i18n="pt.shots.cap2">Modo 1 — comparar dos textos</figcaption></figure>
+          <figure class="shot-card"><img src="images/proyecto-terminal/cap_m2_buscar_escritorio.png" alt="Modo 2: buscar en el corpus" loading="lazy"><figcaption data-i18n="pt.shots.cap3">Modo 2 — buscar en el corpus</figcaption></figure>
+          <figure class="shot-card"><img src="images/proyecto-terminal/cap_func_escritorio.png" alt="Reporte de similitud" loading="lazy"><figcaption data-i18n="pt.shots.cap4">Reporte de similitud</figcaption></figure>
+          <figure class="shot-card"><img src="images/proyecto-terminal/cap_ejemplos_escritorio.png" alt="Ejemplos y evidencia" loading="lazy"><figcaption data-i18n="pt.shots.cap5">Ejemplos y evidencia</figcaption></figure>
         </div>
       </div>
     </section>
@@ -727,18 +727,18 @@
     <!-- Documento final -->
     <section class="section thesis-section" id="documento">
       <div class="container">
-        <h2><i class="fas fa-file-pdf"></i> Documento Final</h2>
-        <p>El reporte final del Proyecto Terminal de Investigación I: planteamiento, estado del arte, metodología, diseño e implementación, evaluación honesta con intervalos de confianza y despliegue del sistema. Ábrelo en el visor o descárgalo en PDF.</p>
+        <h2><i class="fas fa-file-pdf"></i> <span data-i18n="pt.doc.h2">Documento Final</span></h2>
+        <p data-i18n="pt.doc.p">El reporte final del Proyecto Terminal de Investigación I: planteamiento, estado del arte, metodología, diseño e implementación, evaluación honesta con intervalos de confianza y despliegue del sistema. Ábrelo en el visor o descárgalo en PDF.</p>
 
         <div class="link-buttons">
-          <a href="doc/proyecto-terminal-tesis.pdf" class="btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Abrir en pestaña nueva</a>
-          <a href="doc/proyecto-terminal-tesis.pdf" class="btn btn-outline" download><i class="fas fa-download"></i> Descargar PDF</a>
+          <a href="doc/proyecto-terminal-tesis.pdf" class="btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> <span data-i18n="pt.doc.btnOpen">Abrir en pestaña nueva</span></a>
+          <a href="doc/proyecto-terminal-tesis.pdf" class="btn btn-outline" download><i class="fas fa-download"></i> <span data-i18n="pt.doc.btnDl">Descargar PDF</span></a>
         </div>
 
         <div class="pdf-viewer-wrap">
           <div class="pdf-viewer-bar">
-            <span class="pdf-title"><i class="fas fa-file-pdf"></i> Reporte Final — Detección de Paráfrasis mediante LLM</span>
-            <a class="report-link" href="doc/proyecto-terminal-tesis.pdf" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Abrir en pestaña nueva</a>
+            <span class="pdf-title"><i class="fas fa-file-pdf"></i> <span data-i18n="pt.doc.viewer">Reporte Final — Detección de Paráfrasis mediante LLM</span></span>
+            <a class="report-link" href="doc/proyecto-terminal-tesis.pdf" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> <span data-i18n="pt.doc.viewerOpen">Abrir en pestaña nueva</span></a>
           </div>
           <iframe class="pdf-viewer-frame" src="doc/proyecto-terminal-tesis.pdf#view=FitH" title="Reporte final del Proyecto Terminal" loading="lazy"></iframe>
         </div>
@@ -749,20 +749,20 @@
     <!-- CTA -->
     <section class="section thesis-section" id="links">
       <div class="container" style="text-align:center;">
-        <h2 style="justify-content:center;"><i class="fas fa-external-link-alt"></i> Enlaces</h2>
-        <p style="margin:0 auto 24px; max-width:520px;">Prueba el detector en el demo público, explora el sistema completo desplegado o descarga el documento final.</p>
+        <h2 style="justify-content:center;"><i class="fas fa-external-link-alt"></i> <span data-i18n="pt.cta.h2">Enlaces</span></h2>
+        <p style="margin:0 auto 24px; max-width:520px;" data-i18n="pt.cta.p">Prueba el detector en el demo público, explora el sistema completo desplegado o descarga el documento final.</p>
         <div class="link-buttons" style="justify-content:center;">
           <a href="https://purpplealien-deteccion-parafrasis.hf.space/" class="btn" target="_blank" rel="noopener noreferrer" style="background:linear-gradient(135deg,#61dafb,#c678dd); color:#0d1117; font-weight:600;">
-            <i class="fas fa-rocket"></i> Demo en vivo (HF)
+            <i class="fas fa-rocket"></i> <span data-i18n="pt.cta.demo">Demo en vivo (HF)</span>
           </a>
           <a href="https://parafrasis-uami.duckdns.org/" class="btn btn-outline" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-server"></i> Proyecto completo
+            <i class="fas fa-server"></i> <span data-i18n="pt.cta.full">Proyecto completo</span>
           </a>
           <a href="doc/proyecto-terminal-tesis.pdf" class="btn btn-outline" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-file-pdf"></i> Documento final
+            <i class="fas fa-file-pdf"></i> <span data-i18n="pt.cta.doc">Documento final</span>
           </a>
           <a href="portafolio.html" class="btn btn-outline">
-            <i class="fas fa-arrow-left"></i> Volver al Portafolio
+            <i class="fas fa-arrow-left"></i> <span data-i18n="pt.cta.back">Volver al Portafolio</span>
           </a>
         </div>
       </div>
