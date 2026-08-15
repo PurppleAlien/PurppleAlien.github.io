@@ -28,14 +28,14 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0" crossorigin="anonymous" referrerpolicy="no-referrer">
 
   <!-- Shared styles -->
   <link rel="stylesheet" href="assets/css/shared.css?v=4">
   <link rel="stylesheet" href="assets/css/cursor.css">
 
   <!-- Precarga del módulo Three.js (acelera la carga de la escena 3D) -->
-  <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js">
+  <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" integrity="sha384-61S/Nu32S3E5+n+KpCOTb2eRYps6fVKm+9Gz1QBvSePFthb46f063Aa/qe/lykFZ" crossorigin="anonymous">
 
   <!-- Import map para Three.js (escena 3D de fondo, js/hero3d.js) -->
   <script type="importmap">
@@ -618,8 +618,8 @@
         <!-- Project 5 — Task API (FastAPI) -->
         <div class="project-card fade-in delay-1" data-category="programacion web">
           <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&h=400&fit=crop"
-                 alt="Task API" loading="lazy">
+            <img src="images/task-api/swagger.png"
+                 alt="Task API — documentación Swagger" loading="lazy">
           </div>
           <div class="project-content">
             <span class="project-category">API · Python</span>
@@ -711,8 +711,15 @@
         <!-- Project 19 — Pseudocode Compiler -->
         <div class="project-card fade-in" data-category="programacion">
           <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop"
-                 alt="Pseudocode Compiler" loading="lazy">
+            <div class="term-mock" aria-hidden="true">
+              <div class="tm-bar"><span class="tm-red"></span><span class="tm-yel"></span><span class="tm-grn"></span></div>
+              <div class="tm-dim">/* lexer.l — Flex */</div>
+              <div><span class="tm-accent">"mientras"</span>  { return MIENTRAS; }</div>
+              <div><span class="tm-accent">[0-9]+</span>       { yylval = atoi(yytext); return NUM; }</div>
+              <div class="tm-dim">/* parser.y — Bison LALR(1) */</div>
+              <div>expr : expr <span class="tm-prompt">'+'</span> term { $$ = $1 + $3; }</div>
+              <div class="tm-dim">$ ./compilar prog.psc &gt; prog.c</div>
+            </div>
           </div>
           <div class="project-content">
             <span class="project-category">Compiladores</span>
@@ -730,8 +737,15 @@
         <!-- Project 20 — Programación Concurrente -->
         <div class="project-card fade-in delay-1" data-category="programacion">
           <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=600&h=400&fit=crop"
-                 alt="Programación Concurrente" loading="lazy">
+            <div class="term-mock" aria-hidden="true">
+              <div class="tm-bar"><span class="tm-red"></span><span class="tm-yel"></span><span class="tm-grn"></span></div>
+              <div class="tm-dim">// ordenamiento paralelo con fork()</div>
+              <div><span class="tm-prompt">pid_t</span> p = <span class="tm-accent">fork</span>();</div>
+              <div><span class="tm-prompt">if</span> (p == 0) merge_sort(lo, mid);</div>
+              <div><span class="tm-prompt">else</span>       merge_sort(mid, hi);</div>
+              <div><span class="tm-accent">wait</span>(NULL); merge(lo, mid, hi);</div>
+              <div class="tm-dim">// alg. genético · coloración de grafos</div>
+            </div>
           </div>
           <div class="project-content">
             <span class="project-category">Sistemas</span>
@@ -749,8 +763,14 @@
         <!-- Project 21 — Sistemas Operativos -->
         <div class="project-card fade-in delay-2" data-category="programacion sistemas">
           <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=600&h=400&fit=crop"
-                 alt="Sistemas Operativos" loading="lazy">
+            <div class="term-mock" aria-hidden="true">
+              <div class="tm-bar"><span class="tm-red"></span><span class="tm-yel"></span><span class="tm-grn"></span></div>
+              <div class="tm-dim">// memoria compartida POSIX + hilos</div>
+              <div><span class="tm-prompt">int</span> fd = <span class="tm-accent">shm_open</span>("/buf", O_CREAT|O_RDWR, 0600);</div>
+              <div><span class="tm-accent">ftruncate</span>(fd, N); mmap(0, N, PROT_RW, ...);</div>
+              <div><span class="tm-accent">pthread_create</span>(&amp;t, 0, worker, arg);</div>
+              <div class="tm-dim">// análisis MBR/GPT · APFS · NTFS (ncurses)</div>
+            </div>
           </div>
           <div class="project-content">
             <span class="project-category">Sistemas</span>
@@ -1275,7 +1295,7 @@
   <div id="modal-taskapi" class="modal" role="dialog" aria-modal="true">
     <div class="modal-content">
       <div class="modal-close" id="close-taskapi" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
-      <div class="modal-image"><img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=700&h=300&fit=crop" alt="Task API" loading="lazy"></div>
+      <div class="modal-image"><img src="images/task-api/swagger.png" alt="Task API — documentación Swagger" loading="lazy"></div>
       <div class="modal-body">
         <span class="modal-category">API · Python</span>
         <h2>Task API — FastAPI</h2>
@@ -1546,9 +1566,9 @@
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" integrity="sha384-HOvlOYPIs/zjoIkWUGXkVmXsjr8GuZLV+Q+rcPwmJOVZVpvTSXQChiN4t9Euv9Vc" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" integrity="sha384-P8VzCVnT9NBUkMrpcIZrJbA7EBjJvh/fJS6PmP+4nLIM284DtsImIv8D0fFjIkeh" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" integrity="sha384-O55L/6rhHr9CFvrxqv5luxOCcmVaBmETbZbJDP+Do8T0pztTACsFBD/IXCNkj7DV" crossorigin="anonymous"></script>
   <script src="js/scroll-fx.js"></script>
   <script src="js/page-init.js"></script>
   <!-- Escena 3D de fondo + cursor cometa + transición de página -->
