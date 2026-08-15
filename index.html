@@ -1868,27 +1868,27 @@
   <section class="featured-research" id="featured-research">
     <div class="container">
       <div class="fr-card fade-in">
-        <span class="fr-eyebrow"><i class="fas fa-graduation-cap"></i> Proyecto Terminal de Investigación · UAM Iztapalapa</span>
-        <h2 class="fr-title">Detección Inteligente de Paráfrasis con LLMs</h2>
-        <p class="fr-desc">Sistema de doble modo para detectar paráfrasis y copia sobre el corpus TESIUAMI de la UAM Iztapalapa (21,128 tesis · CBI, CBS y CSH) más un corpus científico externo de ~250M obras. Recuperación híbrida (HNSW + BM25 + RRF) y cross-encoders int8 (BETO, XLM-R). Evaluación con un protocolo honesto —intervalos de confianza, sin fuga de datos ni balanceo— y un hallazgo central: el corpus es <strong>original</strong> (la paráfrasis real entre tesis es ~3%).</p>
+        <span class="fr-eyebrow"><i class="fas fa-graduation-cap"></i> <span data-i18n="idx.fr.eyebrow">Proyecto Terminal de Investigación · UAM Iztapalapa</span></span>
+        <h2 class="fr-title" data-i18n="idx.fr.title">Detección Inteligente de Paráfrasis con LLMs</h2>
+        <p class="fr-desc" data-i18n-html="idx.fr.desc">Sistema de doble modo para detectar paráfrasis y copia sobre el corpus TESIUAMI de la UAM Iztapalapa (21,128 tesis · CBI, CBS y CSH) más un corpus científico externo de ~250M obras. Recuperación híbrida (HNSW + BM25 + RRF) y cross-encoders int8 (BETO, XLM-R). Evaluación con un protocolo honesto —intervalos de confianza, sin fuga de datos ni balanceo— y un hallazgo central: el corpus es <strong>original</strong> (la paráfrasis real entre tesis es ~3%).</p>
         <div class="fr-metrics">
-          <div class="fr-metric"><div class="v">0.842</div><div class="l">F1 · BETO v3 (test limpio)</div></div>
-          <div class="fr-metric"><div class="v">21,128</div><div class="l">Tesis · 3 divisiones</div></div>
-          <div class="fr-metric"><div class="v">~250M</div><div class="l">Obras · corpus externo</div></div>
-          <div class="fr-metric"><div class="v">int8</div><div class="l">Cross-encoder en CPU</div></div>
+          <div class="fr-metric"><div class="v">0.842</div><div class="l" data-i18n="idx.fr.m1">F1 · BETO v3 (test limpio)</div></div>
+          <div class="fr-metric"><div class="v">21,128</div><div class="l" data-i18n="idx.fr.m2">Tesis · 3 divisiones</div></div>
+          <div class="fr-metric"><div class="v">~250M</div><div class="l" data-i18n="idx.fr.m3">Obras · corpus externo</div></div>
+          <div class="fr-metric"><div class="v">int8</div><div class="l" data-i18n="idx.fr.m4">Cross-encoder en CPU</div></div>
         </div>
         <div class="project-tags fr-tags">
           <span class="project-tag">Python</span><span class="project-tag">BETO / XLM-R</span><span class="project-tag">HNSW</span><span class="project-tag">BM25 · RRF</span><span class="project-tag">RAG</span><span class="project-tag">Docker</span>
         </div>
         <div class="hero-cta">
           <a href="https://purpplealien-deteccion-parafrasis.hf.space/" class="btn" target="_blank" rel="noopener noreferrer" style="background:linear-gradient(135deg,#61dafb,#c678dd); color:#0d1117; font-weight:600;">
-            <i class="fas fa-rocket"></i> <span>Probar el demo en vivo</span>
+            <i class="fas fa-rocket"></i> <span data-i18n="idx.fr.btnDemo">Probar el demo en vivo</span>
           </a>
           <a href="proyecto-terminal.html" class="btn btn-outline">
-            <i class="fas fa-flask"></i> <span>Ver el proyecto</span>
+            <i class="fas fa-flask"></i> <span data-i18n="idx.fr.btnView">Ver el proyecto</span>
           </a>
           <a href="https://parafrasis-uami.duckdns.org/" class="btn btn-outline" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-server"></i> <span>Proyecto completo</span>
+            <i class="fas fa-server"></i> <span data-i18n="idx.fr.btnFull">Proyecto completo</span>
           </a>
         </div>
       </div>
@@ -1925,14 +1925,14 @@
                  alt="Detector de paráfrasis desplegado" loading="lazy">
           </div>
           <div class="project-content">
-            <span class="project-category" style="display:inline-block; padding:3px 12px; background:rgba(97,218,251,0.08); border:1px solid rgba(97,218,251,0.2); border-radius:20px; font-size:0.75rem; font-family:var(--font-mono); color:var(--neon); margin-bottom:12px;"><i class="fas fa-graduation-cap"></i> Investigación · UAM Iztapalapa</span>
-            <h3>Proyecto Terminal — Detección de Paráfrasis</h3>
-            <p>Detector de paráfrasis y copia sobre el corpus TESIUAMI (21,128 tesis · 3 divisiones) con recuperación híbrida HNSW + BM25 + RRF y cross-encoders int8. Evaluación honesta (F1 = 0.842) y sistema desplegado en producción.</p>
+            <span class="project-category" style="display:inline-block; padding:3px 12px; background:rgba(97,218,251,0.08); border:1px solid rgba(97,218,251,0.2); border-radius:20px; font-size:0.75rem; font-family:var(--font-mono); color:var(--neon); margin-bottom:12px;"><i class="fas fa-graduation-cap"></i> <span data-i18n="idx.pcard.cat">Investigación · UAM Iztapalapa</span></span>
+            <h3 data-i18n="idx.pcard.title">Proyecto Terminal — Detección de Paráfrasis</h3>
+            <p data-i18n="idx.pcard.desc">Detector de paráfrasis y copia sobre el corpus TESIUAMI (21,128 tesis · 3 divisiones) con recuperación híbrida HNSW + BM25 + RRF y cross-encoders int8. Evaluación honesta (F1 = 0.842) y sistema desplegado en producción.</p>
             <div class="project-tags">
               <span class="project-tag">BETO</span><span class="project-tag">XLM-R</span><span class="project-tag">HNSW</span><span class="project-tag">RRF</span><span class="project-tag">NLP</span><span class="project-tag">Python</span>
             </div>
             <a href="proyecto-terminal.html" class="btn" style="background:linear-gradient(135deg,#61dafb,#3d85c6); color:#0d1117; font-weight:600;">
-              <i class="fas fa-external-link-alt"></i> <span>Ver Proyecto</span>
+              <i class="fas fa-external-link-alt"></i> <span data-i18n="idx.pcard.btn">Ver Proyecto</span>
             </a>
           </div>
         </div>

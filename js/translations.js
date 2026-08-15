@@ -1305,6 +1305,120 @@ window.pageTranslations = {
   });
 })();
 
+/* --- index.html featured-research + paraphrase card (merged) --- */
+(function(){
+  var t = window.pageTranslations;
+  Object.assign(t.es, {
+    "idx.fr.eyebrow": "Proyecto Terminal de Investigación · UAM Iztapalapa",
+    "idx.fr.title": "Detección Inteligente de Paráfrasis con LLMs",
+    "idx.fr.desc": "Sistema de doble modo para detectar paráfrasis y copia sobre el corpus TESIUAMI de la UAM Iztapalapa (21,128 tesis · CBI, CBS y CSH) más un corpus científico externo de ~250M obras. Recuperación híbrida (HNSW + BM25 + RRF) y cross-encoders int8 (BETO, XLM-R). Evaluación con un protocolo honesto —intervalos de confianza, sin fuga de datos ni balanceo— y un hallazgo central: el corpus es <strong>original</strong> (la paráfrasis real entre tesis es ~3%).",
+    "idx.fr.m1": "F1 · BETO v3 (test limpio)",
+    "idx.fr.m2": "Tesis · 3 divisiones",
+    "idx.fr.m3": "Obras · corpus externo",
+    "idx.fr.m4": "Cross-encoder en CPU",
+    "idx.fr.btnDemo": "Probar el demo en vivo",
+    "idx.fr.btnView": "Ver el proyecto",
+    "idx.fr.btnFull": "Proyecto completo",
+    "idx.pcard.cat": "Investigación · UAM Iztapalapa",
+    "idx.pcard.title": "Proyecto Terminal — Detección de Paráfrasis",
+    "idx.pcard.desc": "Detector de paráfrasis y copia sobre el corpus TESIUAMI (21,128 tesis · 3 divisiones) con recuperación híbrida HNSW + BM25 + RRF y cross-encoders int8. Evaluación honesta (F1 = 0.842) y sistema desplegado en producción.",
+    "idx.pcard.btn": "Ver Proyecto",
+  });
+  Object.assign(t.en, {
+    "idx.fr.eyebrow": "Research Terminal Project · UAM Iztapalapa",
+    "idx.fr.title": "Intelligent Paraphrase Detection with LLMs",
+    "idx.fr.desc": "A dual-mode system to detect paraphrase and copy over the TESIUAMI thesis corpus at UAM Iztapalapa (21,128 theses · CBI, CBS and CSH) plus an external scientific corpus of ~250M works. Hybrid retrieval (HNSW + BM25 + RRF) and int8 cross-encoders (BETO, XLM-R). Evaluated under an honest protocol —confidence intervals, no data leakage or balancing— with a central finding: the corpus is <strong>original</strong> (real paraphrase between theses is ~3%).",
+    "idx.fr.m1": "F1 · BETO v3 (clean test)",
+    "idx.fr.m2": "Theses · 3 divisions",
+    "idx.fr.m3": "Works · external corpus",
+    "idx.fr.m4": "Cross-encoder on CPU",
+    "idx.fr.btnDemo": "Try the live demo",
+    "idx.fr.btnView": "View the project",
+    "idx.fr.btnFull": "Full system",
+    "idx.pcard.cat": "Research · UAM Iztapalapa",
+    "idx.pcard.title": "Terminal Project — Paraphrase Detection",
+    "idx.pcard.desc": "Paraphrase and copy detector over the TESIUAMI corpus (21,128 theses · 3 divisions) with hybrid HNSW + BM25 + RRF retrieval and int8 cross-encoders. Honest evaluation (F1 = 0.842) and a system deployed to production.",
+    "idx.pcard.btn": "View Project",
+  });
+})();
+
+/* --- portafolio.html new cards/modals + shared button labels (merged) --- */
+(function(){
+  var t = window.pageTranslations;
+  Object.assign(t.es, {
+    "pf.par.cat": "Investigación · UAM Iztapalapa",
+    "pf.par.title": "Proyecto Terminal — Detección de Paráfrasis",
+    "pf.par.desc": "Detector de paráfrasis y copia sobre el corpus TESIUAMI (21,128 tesis · CBI, CBS y CSH) más un corpus externo de ~250M obras. Recuperación híbrida HNSW + BM25 + RRF y cross-encoders int8 (BETO, XLM-R). Evaluación honesta con intervalos de confianza (F1 = 0.842) y sistema desplegado en producción.",
+    "ui.viewProject": "Ver Proyecto",
+    "ui.demo": "Demo",
+    "pf.nef.cat": "Salud · IA & Full-Stack",
+    "pf.nef.title": "NefroCare — Nutrición Nefrológica",
+    "pf.nef.desc": "Plataforma de nutrición para pacientes con enfermedad renal crónica, fundamentada en las guías clínicas KDOQI 2020. La lógica clínica reside en un motor de reglas determinista y un optimizador genético; la IA (LLM + RAG) solo explica. Backend FastAPI (139 pruebas), PWA instalable, panel del profesional y tamizaje de PEW. Desplegada en producción.",
+    "ui.app": "App",
+    "pf.cyb.cat": "Ciberseguridad · CLI & API",
+    "pf.cyb.title": "CyberSuite — Red + Blue Team educativa",
+    "pf.cyb.desc": "Suite de ciberseguridad full-spectrum con enfoque educativo: cada herramienta funciona y además explica qué hace, por qué y cómo. Núcleo único en Python (DRY) con 11 módulos (red, forense, WiFi) expuestos por CLI (Typer + Rich) y API REST (FastAPI). Un guard de scope bloquea por defecto objetivos no autorizados. Solo para auditoría autorizada, CTF y homelab.",
+    "ui.code": "Código",
+    "ui.viewCode": "Ver Código",
+    "ui.contact": "Contactar",
+    "pf.nefm.cat": "Salud · IA & Full-Stack",
+    "pf.nefm.title": "NefroCare — Plataforma de Nutrición Nefrológica",
+    "pf.nefm.desc": "Aplicación de nutrición y dieta para pacientes con enfermedad renal crónica (ERC), fundamentada en las guías clínicas <strong>KDOQI 2020</strong> y asistida por IA. La lógica clínica es <strong>determinista</strong>: un motor de reglas calcula las metas por perfil y un optimizador genético arma el plan bajo restricciones duras; un validador revalida todo plan antes de persistirlo. La IA (LLM + RAG + NER, vía Hugging Face/Ollama) solo formatea y explica — ninguna restricción clínica depende de un modelo. Incluye tamizaje de PEW, panel del profesional, gráficas de evolución bioquímica, recetario mexicano validado, asistente por voz (TTS/STT) y PWA instalable.",
+    "pf.nefm.d1": "FastAPI · 139 pruebas",
+    "pf.nefm.d2": "PWA (HTML/CSS/JS + SW)",
+    "pf.nefm.d3h": "IA",
+    "ui.status": "Estado",
+    "pf.nefm.d4": "Desplegada en producción",
+    "ui.appLive": "App en vivo",
+    "pf.cybm.cat": "Ciberseguridad · CLI & API",
+    "pf.cybm.title": "CyberSuite — Suite Educativa Red + Blue Team",
+    "pf.cybm.desc": "Suite de ciberseguridad <strong>full-spectrum</strong> (red team + blue team) con enfoque educativo: cada herramienta no solo funciona, sino que explica <em>qué</em> hace, <em>por qué</em> y <em>cómo</em> por dentro (<code>cybersuite info &lt;módulo&gt;</code>). Un único núcleo en Python concentra la lógica (principio DRY) y se expone por tres capas: <strong>CLI</strong> (Typer + Rich), <strong>API REST</strong> (FastAPI) y un dashboard web (fase posterior). Añadir una herramienta = crear una clase <code>Module</code>; el registro la descubre sola. Incluye módulos de red, forensia (hash, carving, entropía, pcap, metadatos, strings, auth-log) y WiFi. Un <strong>guard de scope</strong> bloquea por defecto objetivos que no controlas.",
+    "pf.cybm.d1h": "Núcleo",
+    "pf.cybm.d1": "Python · registro de plugins",
+    "pf.cybm.d2h": "Capas",
+    "pf.cybm.d3h": "Módulos",
+    "pf.cybm.d3": "11 (red · forense · WiFi)",
+    "pf.cybm.d4h": "Ética",
+    "pf.cybm.d4": "Guard de scope · uso autorizado",
+  });
+  Object.assign(t.en, {
+    "pf.par.cat": "Research · UAM Iztapalapa",
+    "pf.par.title": "Terminal Project — Paraphrase Detection",
+    "pf.par.desc": "Paraphrase and copy detector over the TESIUAMI corpus (21,128 theses · CBI, CBS and CSH) plus an external corpus of ~250M works. Hybrid HNSW + BM25 + RRF retrieval and int8 cross-encoders (BETO, XLM-R). Honest evaluation with confidence intervals (F1 = 0.842) and a system deployed to production.",
+    "ui.viewProject": "View Project",
+    "ui.demo": "Demo",
+    "pf.nef.cat": "Health · AI & Full-Stack",
+    "pf.nef.title": "NefroCare — Nephrology Nutrition",
+    "pf.nef.desc": "Nutrition platform for patients with chronic kidney disease, grounded in the KDOQI 2020 clinical guidelines. The clinical logic lives in a deterministic rules engine and a genetic optimizer; the AI (LLM + RAG) only explains. FastAPI backend (139 tests), installable PWA, professional panel and PEW screening. Deployed to production.",
+    "ui.app": "App",
+    "pf.cyb.cat": "Cybersecurity · CLI & API",
+    "pf.cyb.title": "CyberSuite — Educational Red + Blue Team",
+    "pf.cyb.desc": "Full-spectrum, educational cybersecurity suite: each tool works and also explains what it does, why and how. A single Python core (DRY) with 11 modules (network, forensics, WiFi) exposed via CLI (Typer + Rich) and REST API (FastAPI). A scope guard blocks unauthorized targets by default. For authorized auditing, CTF and homelab only.",
+    "ui.code": "Code",
+    "ui.viewCode": "View Code",
+    "ui.contact": "Contact",
+    "pf.nefm.cat": "Health · AI & Full-Stack",
+    "pf.nefm.title": "NefroCare — Nephrology Nutrition Platform",
+    "pf.nefm.desc": "Nutrition and diet application for patients with chronic kidney disease (CKD), grounded in the <strong>KDOQI 2020</strong> clinical guidelines and AI-assisted. The clinical logic is <strong>deterministic</strong>: a rules engine computes per-profile targets and a genetic optimizer builds the plan under hard constraints; a validator re-checks every plan before persisting it. The AI (LLM + RAG + NER, via Hugging Face/Ollama) only formats and explains — no clinical constraint depends on a model. Includes PEW screening, a professional panel, biochemical evolution charts, a validated Mexican recipe book, a voice assistant (TTS/STT) and an installable PWA.",
+    "pf.nefm.d1": "FastAPI · 139 tests",
+    "pf.nefm.d2": "PWA (HTML/CSS/JS + SW)",
+    "pf.nefm.d3h": "AI",
+    "ui.status": "Status",
+    "pf.nefm.d4": "Deployed to production",
+    "ui.appLive": "Live app",
+    "pf.cybm.cat": "Cybersecurity · CLI & API",
+    "pf.cybm.title": "CyberSuite — Educational Red + Blue Team Suite",
+    "pf.cybm.desc": "Full-spectrum cybersecurity suite (red team + blue team) with an educational focus: each tool not only works, but explains <em>what</em> it does, <em>why</em> and <em>how</em> under the hood (<code>cybersuite info &lt;module&gt;</code>). A single Python core holds the logic (DRY principle) and is exposed through three layers: <strong>CLI</strong> (Typer + Rich), <strong>REST API</strong> (FastAPI) and a web dashboard (later phase). Adding a tool = creating a <code>Module</code> class; the registry discovers it on its own. Includes network, forensics (hash, carving, entropy, pcap, metadata, strings, auth-log) and WiFi modules. A <strong>scope guard</strong> blocks targets you don't control by default.",
+    "pf.cybm.d1h": "Core",
+    "pf.cybm.d1": "Python · plugin registry",
+    "pf.cybm.d2h": "Layers",
+    "pf.cybm.d3h": "Modules",
+    "pf.cybm.d3": "11 (network · forensics · WiFi)",
+    "pf.cybm.d4h": "Ethics",
+    "pf.cybm.d4": "Scope guard · authorized use",
+  });
+})();
+
 /* Keep backward-compat with old main.js */
 window.translations = window.pageTranslations;
 window.elementsToTranslate = {};
