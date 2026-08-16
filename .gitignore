@@ -16,6 +16,7 @@ doc/*.aux
 doc/*.log
 doc/*.out
 doc/*.toc
+doc/*.synctex.gz
 .gstack/
 
 # Archivos personales / versiones anteriores (archivados en local, no se publican)

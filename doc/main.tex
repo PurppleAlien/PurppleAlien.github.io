@@ -105,18 +105,22 @@
 % ============================================================
 \selectlanguage{spanish}
 
-\cvheader{Ingeniero de Software \& IA/ML \;$\mid$\; PLN $\cdot$ LLMs $\cdot$ Full-Stack}
+\cvheader{Ingeniero de Software \& IA/ML \;$\mid$\; PLN $\cdot$ LLMs $\cdot$ Full-Stack Java · Spring Boot  · Microservices}
          {Ciudad de M\'{e}xico, M\'{e}xico \; (GMT-6)}
 
 % ── RESUMEN ──────────────────────────────────────────────────────────────────
 \section*{Resumen Profesional}
 \justifying
 \small
-Estudiante de \'{u}ltimo a\~{n}o de la Licenciatura en Computaci\'{o}n (UAM-Iztapalapa, 100\% de cr\'{e}ditos previsto: dic 2026, t\'{i}tulo en tr\'{a}mite), especializado en Inteligencia Artificial, Procesamiento de Lenguaje Natural (PLN) y desarrollo de software aumentado por IA. Complet\'{e} un Proyecto Terminal de nivel investigaci\'{o}n construyendo un sistema de detecci\'{o}n de par\'{a}frasis y plagio de doble modo sobre un corpus institucional de $\sim$5{,}000 tesis — combinando aprendizaje profundo, recuperaci\'{o}n vectorial, fine-tuning de transformers y despliegue web containerizado.
+Estudiante de \'{u}ltimo a\~{n}o de la Licenciatura en Computaci\'{o}n (UAM-Iztapalapa, 100\% de cr\'{e}ditos previsto: dic 2026, t\'{i}tulo en tr\'{a}mite), especializado en Inteligencia Artificial, Procesamiento de Lenguaje Natural (PLN) y desarrollo de software aumentado por IA. Complet\'{e} un Proyecto Terminal de nivel investigaci\'{o}n construyendo un sistema de detecci\'{o}n de par\'{a}frasis y plagio de doble modo sobre el corpus institucional TESIUAMI (\textbf{21{,}128 tesis} de las tres divisiones, CBI/CBS/CSH) y un corpus cient\'{i}fico externo de $\sim$250 millones de obras — combinando modelos de lenguaje de gran escala, recuperaci\'{o}n h\'{i}brida, fine-tuning de transformers y despliegue en producci\'{o}n.
 
 Tras cubrir cr\'{e}ditos en Matem\'{a}ticas Aplicadas y Computaci\'{o}n (UNAM), dediqu\'{e} varios a\~{n}os a trabajo, proyectos propios y autoaprendizaje continuo; a finales de 2020 formalic\'{e} mi vocaci\'{o}n por el c\'{o}mputo ingresando a la Licenciatura en Computaci\'{o}n (UAM-I).
 
-Utilizo activamente metodolog\'{i}as aumentadas por IA: ingenier\'{i}a de contexto, flujos agentic, generaci\'{o}n de c\'{o}digo asistida y dise\~{n}o multi-agente. Concibo la IA como un multiplicador estrat\'{e}gico para analizar problemas complejos, validar soluciones y transformar ideas en productos funcionales. Busco integrarme como ML/NLP o Backend Engineer en un equipo remoto donde llevar modelos y sistemas de IA a producci\'{o}n.
+Utilizo activamente metodolog\'{i}as aumentadas por IA: ingenier\'{i}a de contexto, flujos agentic, generaci\'{o}n de c\'{o}digo asistida y dise\~{n}o multi-agente. Concibo la IA como un multiplicador estrat\'{e}gico para analizar problemas complejos, validar soluciones y transformar ideas en productos funcionales. Busco integrarme como ML/NLP o Backend Engineer en un equipo donde aportar experiencia pr\'{a}ctica en Java/Spring Boot, microservicios, APIs y sistemas distribuidos, y continuar creciendo en pr\'{a}cticas de DevOps, CI/CD y arquitectura empresarial.
+
+Experiencia en desarrollo backend y full-stack, especializado en Java, Spring Boot, APIs REST, arquitecturas de microservicios, bases de datos SQL y Docker. Desde 2022 desarrollo sistemas de software para clientes y proyectos propios, incluyendo plataformas de gesti\'{o}n, facturaci\'{o}n y comercio electr\'{o}nico desplegadas en producci\'{o}n.
+
+He desarrollado arquitecturas con hasta 8 microservicios Spring Boot, API Gateway, RabbitMQ, JWT, WebSockets y Docker Compose, adem\'{a}s de proyectos acad\'{e}micos y personales en Java utilizando Gradle y patrones como MVC.
 
 \decorule
 
@@ -132,25 +136,25 @@ Utilizo activamente metodolog\'{i}as aumentadas por IA: ingenier\'{i}a de contex
        {2011 -- 2016}
        {Universidad Nacional Aut\'{o}noma de M\'{e}xico (UNAM), FES Acatl\'{a}n}
        {Cr\'{e}ditos cubiertos; base s\'{o}lida en matem\'{a}ticas (c\'{a}lculo, \'{a}lgebra lineal, probabilidad y estad\'{i}stica) que sustenta mi trabajo en IA/ML. Titulaci\'{o}n en proceso de retomar.}
+       
+       \newpage
 
 %% ── PROYECTO CLAVE ─────────────────────────────────────────────────────
 \section*{Proyecto Terminal I: Sistema de Detecci\'{o}n de Par\'{a}frasis y Plagio}
 \justifying
 \small
-Sistema NLP de doble modo (clasificaci\'{o}n por pares + b\'{u}squeda en corpus) para detecci\'{o}n de plagio acad\'{e}mico en la UAM-I. Desplegado sobre $\sim$5{,}000 tesis con un \'{i}ndice sem\'{a}ntico FAISS de \textbf{2.28M vectores al 100\% de cobertura}.
+Sistema NLP de doble modo (clasificaci\'{o}n por pares + an\'{a}lisis de documentos completos) para detecci\'{o}n de plagio acad\'{e}mico en la UAM-I: corpus institucional TESIUAMI de \textbf{21{,}128 tesis} de las tres divisiones (CBI, CBS y CSH) m\'{a}s un corpus cient\'{i}fico externo de $\sim$250 millones de obras (OpenAlex, Semantic Scholar y Crossref).
 \vspace{0.12cm}
 \begin{itemize}
-    \item \textbf{Arquitectura:} Bi-encoder MiniLM + FAISS $\rightarrow$ cross-encoder XLM-RoBERTa/BETO $\rightarrow$ \'{a}rbitro LLM opcional (Llama 3.3 70B) en la zona de duda $[0.35, 0.65]$.
-    \item \textbf{Modelos:} XLM-RoBERTa fine-tuned y calibrado (T=5.15, ECE 0.076), BETO v8a (F1=0.889), ensamble soft-voting con \textbf{AUROC 0.999}. Evaluaci\'{o}n rigurosa con intervalos bootstrap y auditor\'{i}a de fuga de datos.
-    \item \textbf{Hallazgo:} El corpus CBI es $\sim$97\% original (solo $\sim$3\% par\'{a}frasis real). El aporte central es eficiencia de datos: \textbf{60 pares humanos igualan a 180K pares algor\'{i}tmicos}.
-    \item \textbf{Entrega:} App web unificada con Docker, PWA, reportes por secciones, mapas de calor y explicabilidad LLM.
+    \item \textbf{Arquitectura:} recuperaci\'{o}n h\'{i}brida (sem\'{a}ntica con HNSW + l\'{e}xica con BM25, fusi\'{o}n RRF) + clasificador cruzado (cross-encoder) cuantizado a int8, con modelos XLM-RoBERTa/BETO afinados.
+    \item \textbf{Modelos:} BETO v3 fine-tuned (\textbf{F1 = 0.842} sobre el conjunto de prueba limpio), evaluado con intervalos de confianza (IC95\%) y auditor\'{i}a de fuga de datos; empata la l\'{i}nea base previa con \'{o}rdenes de magnitud menos datos anotados.
+    \item \textbf{Hallazgo:} la tesis central es \emph{``el dato supera a la arquitectura''}: los datos sint\'{e}ticos degradan el desempe\~{n}o y la b\'{u}squeda exhaustiva muestra que el corpus es original — la similitud tem\'{a}tica no debe confundirse con plagio.
+    \item \textbf{Entrega:} sistema \textbf{desplegado en producci\'{o}n}, reproducible (Docker), dise\~{n}ado como apoyo al revisor humano.
 \end{itemize}
 \vspace{0.1cm}
-{\small\itshape\color{textsec} Stack: Python, PyTorch, Hugging Face Transformers, sentence-transformers, FAISS, MongoDB, Docker.\\ M\'{a}s detalles: \href{https://purpplealien.github.io/proyecto-terminal.html}{purpplealien.github.io/proyecto-terminal.html}}
+{\small\itshape\color{textsec} Stack: Python, PyTorch, Hugging Face Transformers, sentence-transformers, FAISS (HNSW), BM25, MongoDB, Docker.\\ M\'{a}s detalles: \href{https://purpplealien.github.io/proyecto-terminal.html}{purpplealien.github.io/proyecto-terminal.html}}
 
 
-
-\newpage
 %% ── HABILIDADES TÉCNICAS ──────────────────────────────────────────────────
 \section*{Habilidades T\'{e}cnicas}
 \small
@@ -184,7 +188,10 @@ Sistema NLP de doble modo (clasificaci\'{o}n por pares + b\'{u}squeda en corpus)
        {Jul 2016 -- Ago 2019}
        {SYSARK}
        {Instalaci\'{o}n y configuraci\'{o}n de CCTV y control de acceso; coordinaci\'{o}n de proyectos y entregas en sitio.}
-
+       
+       
+       
+\newpage
 %% ── PROYECTOS PERSONALES ───────────────────────────────────────────────────
 \section*{Proyectos Personales Destacados}
 \entrysimple{Sistemas de Gesti\'{o}n Full-Stack}
@@ -218,7 +225,7 @@ Bases de Datos \;$\mid$\; Simulaci\'{o}n Discreta \;$\mid$\; Redes \;$\mid$\; Di
 
 \vspace{0.15cm}
 \noindent
-{\small\color{textsec} Nacionalidad mexicana. Disponible para roles remotos de ML/NLP Engineer y Backend (Python/Java), nivel junior a mid. Disponibilidad inmediata, tiempo completo, 100\% remoto.}
+{\small\color{textsec} Nacionalidad mexicana. Disponible para roles de ML/NLP Engineer y Backend (Python/Java), nivel junior a mid. Disponibilidad inmediata.}
 
 % ============================================================
 %  SEPARADOR
@@ -243,18 +250,22 @@ Bases de Datos \;$\mid$\; Simulaci\'{o}n Discreta \;$\mid$\; Redes \;$\mid$\; Di
 % ============================================================
 \selectlanguage{english}
 
-\cvheader{Software \& AI/ML Engineer \;$\mid$\; NLP $\cdot$ LLMs $\cdot$ Full-Stack}
+\cvheader{Software \& AI/ML Engineer \;$\mid$\; NLP $\cdot$ LLMs $\cdot$ Full-Stack Java · Spring Boot  · Microservices}
          {Mexico City, Mexico \; (GMT-6)}
 
 % ── SUMMARY ──────────────────────────────────────────────────────────────────
 \section*{Professional Summary}
 \justifying
 \small
-Final-year Computer Science student at Universidad Aut\'{o}noma Metropolitana (UAM-I, 100\% of credits expected Dec 2026, degree in progress), specialized in Artificial Intelligence, Natural Language Processing (NLP), and AI-augmented software development. Completed a research-grade Bachelor's thesis building a production-level, dual-mode paraphrase and plagiarism detection system over an institutional corpus of $\sim$5{,}000 theses — combining deep learning, vector retrieval, transformer fine-tuning, and containerized web deployment.
+Final-year Computer Science student at Universidad Aut\'{o}noma Metropolitana (UAM-I, 100\% of credits expected Dec 2026, degree in progress), specialized in Artificial Intelligence, Natural Language Processing (NLP), and AI-augmented software development. Completed a research-grade Bachelor's thesis building a dual-mode paraphrase and plagiarism detection system over the institutional TESIUAMI corpus (\textbf{21{,}128 theses} across all three divisions, CBI/CBS/CSH) plus an external scientific corpus of $\sim$250 million works — combining large language models, hybrid retrieval, transformer fine-tuning, and production deployment.
 
 Completed the coursework for a first degree in Applied Mathematics and Computing (UNAM); then spent several years working, building personal projects and self-studying before formalizing this focus with the B.Sc. in Computer Science (UAM-I) in late 2020.
 
-Actively uses AI-augmented methodologies: context engineering, agentic workflows, AI-assisted code generation, and multi-agent system design. Views AI as a strategic multiplier for analyzing complex problems, validating solutions, and transforming ideas into functional products. Seeking to join a remote team as an ML/NLP or Backend Engineer, taking AI models and systems to production.
+Actively uses AI-augmented methodologies: context engineering, agentic workflows, AI-assisted code generation, and multi-agent system design. Views AI as a strategic multiplier for analyzing complex problems, validating solutions, and transforming ideas into functional products. Seeking to join a team as an ML/NLP or Backend Engineer where I can contribute hands-on experience in Java/Spring Boot, microservices, APIs, and distributed systems, while continuing to grow in DevOps, CI/CD, and enterprise architecture practices.
+
+Backend and full-stack development experience, specialized in Java, Spring Boot, REST APIs, microservices architectures, SQL databases, and Docker. Since 2022 I have built software systems for clients and personal projects, including management, invoicing, and e-commerce platforms deployed in production.
+
+I have designed architectures with up to 8 Spring Boot microservices, API Gateway, RabbitMQ, JWT, WebSockets, and Docker Compose, alongside academic and personal projects in Java using Gradle and patterns such as MVC.
 
 \decorule
 
@@ -271,23 +282,24 @@ Actively uses AI-augmented methodologies: context engineering, agentic workflows
        {Universidad Nacional Aut\'{o}noma de M\'{e}xico (UNAM), FES Acatl\'{a}n}
        {Coursework completed; strong mathematical foundation (calculus, linear algebra, probability and statistics) underpinning my AI/ML work. Degree completion in progress.}
 
+
+\newpage
 %% ── KEY PROJECT ─────────────────────────────────────────────────────────
 \section*{Capstone Project I: Paraphrase \& Plagiarism Detection System}
 \justifying
 \small
-End-to-end, dual-mode NLP system (pairwise classification + corpus search) for academic plagiarism detection at UAM-I. Deployed over $\sim$5{,}000 theses with a FAISS semantic index of \textbf{2.28M vectors at 100\% corpus coverage}.
+Dual-mode NLP system (pairwise classification + full-document analysis) for academic plagiarism detection at UAM-I: the institutional TESIUAMI corpus of \textbf{21{,}128 theses} across all three divisions (CBI, CBS, and CSH) plus an external scientific corpus of $\sim$250 million works (OpenAlex, Semantic Scholar, and Crossref).
 \vspace{0.12cm}
 \begin{itemize}
-    \item \textbf{Architecture:} Bi-encoder MiniLM + FAISS $\rightarrow$ cross-encoder XLM-RoBERTa/BETO $\rightarrow$ optional LLM arbiter (Llama 3.3 70B) in the decision boundary $[0.35, 0.65]$.
-    \item \textbf{Models:} Fine-tuned XLM-RoBERTa (calibrated, T=5.15, ECE 0.076), BETO v8a (F1=0.889), soft-voting ensemble with \textbf{AUROC 0.999}. Rigorous evaluation with bootstrapped confidence intervals and data-leakage audit.
-    \item \textbf{Key finding:} The CBI corpus is $\sim$97\% original (only $\sim$3\% real paraphrase). Core contribution is data efficiency: \textbf{60 human pairs match 180K algorithmic pairs}.
-    \item \textbf{Delivery:} Unified web app with Docker, PWA, section-level similarity reports, heatmaps, and LLM-powered explainability.
+    \item \textbf{Architecture:} hybrid retrieval (HNSW semantic + BM25 lexical, RRF fusion) with an int8-quantized cross-encoder classifier, using fine-tuned XLM-RoBERTa/BETO models.
+    \item \textbf{Models:} fine-tuned BETO v3 (\textbf{F1 = 0.842} on a clean test set), evaluated with confidence intervals (95\% CI) and a data-leakage audit; matches the previous baseline with orders of magnitude less annotated data.
+    \item \textbf{Key finding:} the thesis is that ``data beats architecture'': synthetic data degrades performance and an exhaustive corpus search shows the corpus is original — thematic similarity must not be confused with plagiarism.
+    \item \textbf{Delivery:} system \textbf{deployed in production}, reproducible (Docker), designed to support human reviewers.
 \end{itemize}
 \vspace{0.1cm}
-{\small\itshape\color{textsec} Stack: Python, PyTorch, Hugging Face Transformers, sentence-transformers, FAISS, MongoDB, Docker.\\ More details: \href{https://purpplealien.github.io/proyecto-terminal.html}{purpplealien.github.io/proyecto-terminal.html}}
+{\small\itshape\color{textsec} Stack: Python, PyTorch, Hugging Face Transformers, sentence-transformers, FAISS (HNSW), BM25, MongoDB, Docker.\\ More details: \href{https://purpplealien.github.io/proyecto-terminal.html}{purpplealien.github.io/proyecto-terminal.html}}
 
 
-\newpage
 
 %% ── TECHNICAL SKILLS ──────────────────────────────────────────────────────
 \section*{Technical Skills}
@@ -323,6 +335,8 @@ End-to-end, dual-mode NLP system (pairwise classification + corpus search) for a
        {SYSARK}
        {Installation and configuration of CCTV and access-control systems; on-site project coordination and delivery.}
 
+
+\newpage
 %% ── PERSONAL PROJECTS ───────────────────────────────────────────────────────
 \section*{Highlighted Personal Projects}
 \entrysimple{Full-Stack Management Systems}
@@ -356,6 +370,6 @@ Databases \;$\mid$\; Discrete Simulation \;$\mid$\; Networks \;$\mid$\; Algorith
 
 \vspace{0.15cm}
 \noindent
-{\small\color{textsec} Mexican nationality. Available for remote ML/NLP Engineer and Backend (Python/Java) roles, junior to mid level. Immediately available, full-time, fully remote.}
+{\small\color{textsec} Mexican nationality. Available for ML/NLP Engineer and Backend (Python/Java) roles, junior to mid level. Immediately available.}
 
 \end{document}
