@@ -101,7 +101,7 @@
       '<div class="mnp-inner">' +
         '<div class="mnp-header">' +
           '<a href="index.html" class="mnp-logo">' +
-            '<img src="images/mifoto.jpg" alt="Antonio Soria" class="mnp-logo-photo">' +
+            '<img src="images/mifoto.jpg" width="750" height="1000" alt="Antonio Soria" class="mnp-logo-photo">' +
             '<span class="mnp-logo-text">Antonio Soria<em>matemático &amp; dev</em></span>' +
           '</a>' +
           '<button class="mnp-close" id="mnp-close" aria-label="Cerrar menú"><i class="fas fa-times"></i></button>' +

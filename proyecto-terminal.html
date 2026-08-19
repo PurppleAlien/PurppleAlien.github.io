@@ -12,6 +12,15 @@
   <meta property="og:title" content="Proyecto Terminal — Antonio Soria">
   <meta property="og:description" content="Detección Inteligente de Paráfrasis mediante LLMs — Proyecto Terminal de Antonio Soria.">
   <meta property="og:locale" content="es_MX">
+  <meta property="og:image" content="https://purpplealien.github.io/images/og-cover.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Antonio Soria — matematico y programador">
+  <meta property="og:site_name" content="Antonio Soria">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Proyecto Terminal — Antonio Soria">
+  <meta name="twitter:description" content="Detección Inteligente de Paráfrasis mediante LLMs — Proyecto Terminal de Antonio Soria.">
+  <meta name="twitter:image" content="https://purpplealien.github.io/images/og-cover.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,7 +50,8 @@
   }
   </script>
 
-  <script src="js/translations.js"></script>
+  <script src="js/i18n/common.js" defer></script>
+  <script src="js/i18n/proyecto-terminal.js" defer></script>
 
   <style>
     /* ── Thesis page specific ── */
@@ -426,6 +436,7 @@
 
 </head>
 <body class="dark-mode fx3d">
+  <a class="skip-link" href="#contenido" data-i18n="nav.skip">Saltar al contenido</a>
 
   <!-- 3D background -->
   <div class="hero-3d loading" id="hero-3d" aria-hidden="true"></div>
@@ -437,7 +448,7 @@
     <div class="nav-container">
       <a href="index.html" class="logo">
         <div class="logo-image">
-          <img src="images/mifoto.jpg" alt="Antonio Soria">
+          <img src="images/mifoto.jpg" width="750" height="1000" alt="Antonio Soria">
         </div>
         <span class="logo-text">Antonio <span>Soria</span></span>
       </a>
@@ -475,7 +486,7 @@
   </nav>
 
   <!-- ===== MAIN ===== -->
-  <main class="main-content">
+  <main class="main-content" id="contenido" tabindex="-1">
 
     <!-- Hero -->
     <section class="thesis-hero fade-in">
@@ -685,15 +696,15 @@
 
         <div class="fig-grid">
           <figure class="fig-card">
-            <img src="images/proyecto-terminal/fig_finetuning.png" alt="Progresión del afinamiento de BETO" loading="lazy">
+            <img src="images/proyecto-terminal/fig_finetuning.png" width="1162" height="619" alt="Progresión del afinamiento de BETO" loading="lazy">
             <figcaption data-i18n-html="pt.res.fig1">Afinamiento de BETO: las versiones con datos humanos (verde) superan a las sintéticas (naranja). Ninguna ampliación sintética rebasa el <em>gold</em> humano de v3.</figcaption>
           </figure>
           <figure class="fig-card">
-            <img src="images/proyecto-terminal/fig_confusion_v3.png" alt="Matriz de confusión de BETO v3" loading="lazy">
+            <img src="images/proyecto-terminal/fig_confusion_v3.png" width="504" height="448" alt="Matriz de confusión de BETO v3" loading="lazy">
             <figcaption data-i18n-html="pt.res.fig2">Matriz de confusión de BETO v3 (38 pares): de 9 positivos detecta 8 (1 FN) y comete 2 FP → precisión 0.80, recall 0.889, F1 = 0.842.</figcaption>
           </figure>
           <figure class="fig-card">
-            <img src="images/proyecto-terminal/fig_tiempos.png" alt="Tiempo de análisis por división" loading="lazy">
+            <img src="images/proyecto-terminal/fig_tiempos.png" width="1035" height="555" alt="Tiempo de análisis por división" loading="lazy">
             <figcaption data-i18n-html="pt.res.fig3">Tiempo de análisis de una tesis completa por división. El costo crece con el tamaño del corpus (CSH: 10.7M fragmentos), dominado por la recuperación léxica y la carga única.</figcaption>
           </figure>
         </div>
@@ -715,11 +726,11 @@
         <h2><i class="fas fa-desktop"></i> <span data-i18n="pt.shots.h2">El sistema desplegado</span></h2>
         <p data-i18n="pt.shots.p">Interfaz del detector en producción: los dos modos de uso, la selección de división y clasificador, el corpus científico externo y el reporte estilo «informe de similitud».</p>
         <div class="shots-grid">
-          <figure class="shot-card"><img src="images/proyecto-terminal/cap_landing_escritorio.png" alt="Página de inicio del detector" loading="lazy"><figcaption data-i18n="pt.shots.cap1">Inicio — presentación y accesos</figcaption></figure>
-          <figure class="shot-card"><img src="images/proyecto-terminal/cap_sistema_escritorio.png" alt="Modo 1: comparar dos textos" loading="lazy"><figcaption data-i18n="pt.shots.cap2">Modo 1 — comparar dos textos</figcaption></figure>
-          <figure class="shot-card"><img src="images/proyecto-terminal/cap_m2_buscar_escritorio.png" alt="Modo 2: buscar en el corpus" loading="lazy"><figcaption data-i18n="pt.shots.cap3">Modo 2 — buscar en el corpus</figcaption></figure>
-          <figure class="shot-card"><img src="images/proyecto-terminal/cap_func_escritorio.png" alt="Reporte de similitud" loading="lazy"><figcaption data-i18n="pt.shots.cap4">Reporte de similitud</figcaption></figure>
-          <figure class="shot-card"><img src="images/proyecto-terminal/cap_ejemplos_escritorio.png" alt="Ejemplos y evidencia" loading="lazy"><figcaption data-i18n="pt.shots.cap5">Ejemplos y evidencia</figcaption></figure>
+          <figure class="shot-card"><img src="images/proyecto-terminal/cap_landing_escritorio.png" width="1440" height="1024" alt="Página de inicio del detector" loading="lazy"><figcaption data-i18n="pt.shots.cap1">Inicio — presentación y accesos</figcaption></figure>
+          <figure class="shot-card"><img src="images/proyecto-terminal/cap_sistema_escritorio.png" width="1440" height="1100" alt="Modo 1: comparar dos textos" loading="lazy"><figcaption data-i18n="pt.shots.cap2">Modo 1 — comparar dos textos</figcaption></figure>
+          <figure class="shot-card"><img src="images/proyecto-terminal/cap_m2_buscar_escritorio.png" width="1440" height="1120" alt="Modo 2: buscar en el corpus" loading="lazy"><figcaption data-i18n="pt.shots.cap3">Modo 2 — buscar en el corpus</figcaption></figure>
+          <figure class="shot-card"><img src="images/proyecto-terminal/cap_func_escritorio.png" width="1440" height="1120" alt="Reporte de similitud" loading="lazy"><figcaption data-i18n="pt.shots.cap4">Reporte de similitud</figcaption></figure>
+          <figure class="shot-card"><img src="images/proyecto-terminal/cap_ejemplos_escritorio.png" width="1440" height="1120" alt="Ejemplos y evidencia" loading="lazy"><figcaption data-i18n="pt.shots.cap5">Ejemplos y evidencia</figcaption></figure>
         </div>
       </div>
     </section>

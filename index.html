@@ -18,6 +18,15 @@
   <meta property="og:title" content="Antonio Soria — Matemático y Programador">
   <meta property="og:description" content="Matemático y Programador especializado en algoritmia, IA y desarrollo de sistemas.">
   <meta property="og:locale" content="es_MX">
+  <meta property="og:image" content="https://purpplealien.github.io/images/og-cover.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Antonio Soria — matematico y programador">
+  <meta property="og:site_name" content="Antonio Soria">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Antonio Soria — Matemático y Programador">
+  <meta name="twitter:description" content="Matemático y Programador especializado en algoritmia, IA y desarrollo de sistemas.">
+  <meta name="twitter:image" content="https://purpplealien.github.io/images/og-cover.png">
 
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Person","name":"Antonio Soria","jobTitle":"Matemático y Programador","alumniOf":[{"@type":"CollegeOrUniversity","name":"UNAM FES Acatlán"},{"@type":"CollegeOrUniversity","name":"UAM Iztapalapa"}],"url":"https://purpplealien.github.io","sameAs":["https://github.com/PurppleAlien","https://www.linkedin.com/in/antonio-sould/"]}
@@ -57,7 +66,8 @@
   <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" integrity="sha384-61S/Nu32S3E5+n+KpCOTb2eRYps6fVKm+9Gz1QBvSePFthb46f063Aa/qe/lykFZ" crossorigin="anonymous">
 
   <!-- Translations (load first) -->
-  <script src="js/translations.js"></script>
+  <script src="js/i18n/common.js" defer></script>
+  <script src="js/i18n/index.js" defer></script>
 
   <style>
     /* ================================================================
@@ -1596,6 +1606,7 @@
 
 </head>
 <body class="dark-mode">
+  <a class="skip-link" href="#contenido" data-i18n="nav.skip">Saltar al contenido</a>
 
   <!-- Fondo vivo de glifos: fijo, detrás de todo (js/glyph-flow.js) -->
   <canvas id="glyph-flow" aria-hidden="true"></canvas>
@@ -1630,7 +1641,7 @@
         </button>
         <a href="#home" class="logo">
           <div class="logo-image">
-            <img src="images/mifoto.jpg" alt="Antonio Soria" loading="lazy">
+            <img src="images/mifoto.jpg" width="750" height="1000" alt="Antonio Soria" loading="lazy">
           </div>
           <span class="logo-text">Antonio <span>Soria</span></span>
         </a>
@@ -1666,6 +1677,8 @@
   </nav>
 
 
+  <main id="contenido" tabindex="-1">
+
   <!-- ===== HERO ===== -->
   <section class="hero" id="home">
     <!-- Corner decorations -->
@@ -1679,7 +1692,7 @@
 
     <div class="hero-content">
       <div class="profile-ring fade-in">
-        <img src="images/pic01.jpg" alt="Antonio Soria" loading="eager">
+        <img src="images/pic01.jpg" width="750" height="1000" alt="Antonio Soria" loading="eager">
       </div>
 
       <h1 id="hero-title">Antonio <span class="name-accent">Soria</span></h1>
@@ -1795,7 +1808,7 @@
       <h2 class="section-title" data-i18n="idx.about.title">Sobre Mí</h2>
       <div class="about-content">
         <div class="profile-image fade-in">
-          <img src="images/mifoto.jpg" alt="Antonio Soria" loading="lazy">
+          <img src="images/mifoto.jpg" width="750" height="1000" alt="Antonio Soria" loading="lazy">
         </div>
         <div class="profile-text fade-in delay-1">
           <p data-i18n="idx.about.p1">Soy un matemático y desarrollador con una sólida formación en matemáticas aplicadas y computación. Mi trayectoria académica combina el rigor matemático con la aplicación práctica en el campo de la programación.</p>
@@ -1921,7 +1934,7 @@
 
         <div class="project-card fade-in">
           <div class="project-image">
-            <img src="images/proyecto-terminal/cap_sistema_escritorio.png"
+            <img src="images/proyecto-terminal/cap_sistema_escritorio.png" width="1440" height="1100"
                  alt="Detector de paráfrasis desplegado" loading="lazy">
           </div>
           <div class="project-content">
@@ -1939,7 +1952,7 @@
 
         <div class="project-card fade-in delay-1">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/vetrinaria/main/documentacion%20tecnica/img/vet-dashboard.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/vetrinaria/main/documentacion%20tecnica/img/vet-dashboard.png" width="1280" height="800"
                  alt="Vetrinaria — Next.js" loading="lazy">
           </div>
           <div class="project-content">
@@ -1957,7 +1970,7 @@
 
         <div class="project-card fade-in delay-2">
           <div class="project-image">
-            <img src="images/farmacia-sistema.png"
+            <img src="images/farmacia-sistema.png" width="1366" height="470"
                  alt="Farmacia Online" loading="lazy">
           </div>
           <div class="project-content">
@@ -1974,7 +1987,7 @@
 
         <div class="project-card fade-in delay-2">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/veterinary-clinic-management-system/main/docs/images/04-clientes.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/veterinary-clinic-management-system/main/docs/images/04-clientes.png" width="1440" height="900"
                  alt="Veterinary Clinic" loading="lazy">
           </div>
           <div class="project-content">
@@ -1991,7 +2004,7 @@
 
         <div class="project-card fade-in">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/marianito-2d-platformer/main/documentacion/captura_mundo_castillo_browser.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/marianito-2d-platformer/main/documentacion/captura_mundo_castillo_browser.png" width="1328" height="617"
                  alt="Marianito 2D" loading="lazy">
           </div>
           <div class="project-content">
@@ -2008,7 +2021,7 @@
 
         <div class="project-card fade-in delay-1">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/low-poly_3D_game/main/Documentacion/dia.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/low-poly_3D_game/main/Documentacion/dia.png" width="2753" height="1796"
                  alt="Low-Poly 3D" loading="lazy">
           </div>
           <div class="project-content">
@@ -2025,7 +2038,7 @@
 
         <div class="project-card fade-in delay-2">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Problema_de_Rutas_Algoritmos_BFS_UCS_A%2A_vercion_2/Assets/img/BFS_PozaRica_a_Huatulco.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Problema_de_Rutas_Algoritmos_BFS_UCS_A%2A_vercion_2/Assets/img/BFS_PozaRica_a_Huatulco.png" width="1099" height="746"
                  alt="Algoritmos IA" loading="lazy">
           </div>
           <div class="project-content">
@@ -2042,7 +2055,7 @@
 
         <div class="project-card fade-in">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/dental-clinic-management-system/main/docs/odontograma2.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/dental-clinic-management-system/main/docs/odontograma2.png" width="1914" height="1132"
                  alt="Sistema Dental" loading="lazy">
           </div>
           <div class="project-content">
@@ -2059,7 +2072,7 @@
 
         <div class="project-card fade-in delay-1">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/ecommerce-microservicios-architecture/main/doc/pagina_carrito.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/ecommerce-microservicios-architecture/main/doc/pagina_carrito.png" width="1919" height="1116"
                  alt="E-commerce Microservicios" loading="lazy">
           </div>
           <div class="project-content">
@@ -2229,6 +2242,8 @@
       </div>
     </div>
   </section>
+
+  </main>
 
   <!-- ===== FOOTER ===== -->
   <footer>

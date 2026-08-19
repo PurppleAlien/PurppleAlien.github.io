@@ -28,6 +28,9 @@
   --radius-lg: 20px;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --header-h: 72px;
+  --focus-ring: #61dafb;
+  --focus-ring-w: 3px;
+  --focus-ring-offset: 3px;
   --font-mono: 'Source Code Pro', 'Fira Code', monospace;
   --font-sans: 'Roboto', sans-serif;
   --font-display: 'Oswald', sans-serif;
@@ -1675,3 +1678,68 @@ body.fx3d #hero-3d canvas { display: block; width: 100% !important; height: 100%
   .section-title { font-size: 1.55rem; }
 }
 
+
+
+/* ============================================================
+   FOCO VISIBLE — accesibilidad de teclado
+   Un único anillo para todo el sitio. Se usa :focus-visible para que
+   aparezca al tabular y no al hacer clic con el ratón.
+============================================================ */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: var(--focus-ring-w) solid var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: 4px;
+}
+
+/* Los controles con la apariencia nativa reseteada (range, select, inputs
+   de la terminal y del formulario) llevan `outline: none`; se les devuelve
+   el anillo de forma explícita para que sigan siendo alcanzables a ciegas. */
+.genart-bar input[type="range"]:focus-visible,
+.genart-bar select:focus-visible,
+.cf-input:focus-visible,
+#term-input:focus-visible,
+#speed-slider:focus-visible {
+  outline: var(--focus-ring-w) solid var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* Navegadores sin :focus-visible: se conserva el foco clásico. */
+@supports not selector(:focus-visible) {
+  a:focus, button:focus, input:focus,
+  select:focus, textarea:focus, [tabindex]:focus {
+    outline: var(--focus-ring-w) solid var(--focus-ring);
+    outline-offset: var(--focus-ring-offset);
+  }
+}
+
+/* ============================================================
+   SKIP LINK — primer tabulador de cada página
+============================================================ */
+.skip-link {
+  /* fixed, no absolute: con absolute el enlace se desplaza con el documento y
+     no llega a verse cuando se tabula con la página ya scrolleada. */
+  position: fixed;
+  left: 8px;
+  top: -100px;
+  z-index: 10000;
+  padding: 12px 20px;
+  background: var(--focus-ring);
+  color: #0d1117;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 0 0 8px 8px;
+  text-decoration: none;
+  transition: top 0.18s ease;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+main[tabindex="-1"]:focus { outline: none; }

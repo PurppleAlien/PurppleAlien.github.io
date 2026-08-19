@@ -12,6 +12,15 @@
   <meta property="og:title" content="Portafolio — Antonio Soria">
   <meta property="og:description" content="Proyectos de Antonio Soria: algoritmos de IA, sistemas de gestión, juegos y más.">
   <meta property="og:locale" content="es_MX">
+  <meta property="og:image" content="https://purpplealien.github.io/images/og-cover.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Antonio Soria — matematico y programador">
+  <meta property="og:site_name" content="Antonio Soria">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Portafolio — Antonio Soria">
+  <meta name="twitter:description" content="Proyectos de Antonio Soria: algoritmos de IA, sistemas de gestión, juegos y más.">
+  <meta name="twitter:image" content="https://purpplealien.github.io/images/og-cover.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,7 +57,8 @@
   </script>
 
   <!-- Translations -->
-  <script src="js/translations.js"></script>
+  <script src="js/i18n/common.js" defer></script>
+  <script src="js/i18n/portafolio.js" defer></script>
 
   <style>
     /* ── Portfolio-specific ── */
@@ -359,6 +369,7 @@
 
 </head>
 <body class="dark-mode fx3d">
+  <a class="skip-link" href="#contenido" data-i18n="nav.skip">Saltar al contenido</a>
 
   <!-- Escena 3D de fondo (página completa, vuelo de cámara con scroll) -->
   <div class="hero-3d loading" id="hero-3d" aria-hidden="true"></div>
@@ -370,7 +381,7 @@
     <div class="nav-container">
       <a href="index.html" class="logo">
         <div class="logo-image">
-          <img src="images/mifoto.jpg" alt="Antonio Soria">
+          <img src="images/mifoto.jpg" width="750" height="1000" alt="Antonio Soria">
         </div>
         <span class="logo-text">Antonio <span>Soria</span></span>
       </a>
@@ -408,7 +419,7 @@
   </nav>
 
   <!-- ===== MAIN ===== -->
-  <main class="main-content">
+  <main class="main-content" id="contenido" tabindex="-1">
 
     <!-- Hero -->
     <section class="page-hero container fade-in">
@@ -438,7 +449,7 @@
         <!-- Project 0 — Proyecto Terminal (Tesis) -->
         <div class="project-card fade-in" data-category="ia">
           <div class="project-image">
-            <img src="images/proyecto-terminal/cap_sistema_escritorio.png"
+            <img src="images/proyecto-terminal/cap_sistema_escritorio.png" width="1440" height="1100"
                  alt="Detector de paráfrasis desplegado" loading="lazy">
           </div>
           <div class="project-content">
@@ -463,7 +474,7 @@
         <!-- Project — NefroCare (IA + Full-Stack) -->
         <div class="project-card fade-in" data-category="ia sistemas web">
           <div class="project-image">
-            <img src="images/nefrocare/pwa_plan.png"
+            <img src="images/nefrocare/pwa_plan.png" width="390" height="1672"
                  alt="NefroCare — plan nutricional" loading="lazy">
           </div>
           <div class="project-content">
@@ -521,7 +532,7 @@
         <!-- Project 1 — Farmacia Online (Microservicios) -->
         <div class="project-card fade-in" data-category="sistemas programacion">
           <div class="project-image">
-            <img src="images/farmacia-sistema.png"
+            <img src="images/farmacia-sistema.png" width="1366" height="470"
                  alt="Farmacia Online" loading="lazy">
           </div>
           <div class="project-content">
@@ -546,7 +557,7 @@
         <!-- Project 2 — Veterinary Clinic -->
         <div class="project-card fade-in delay-1" data-category="sistemas programacion">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/veterinary-clinic-management-system/main/docs/images/04-clientes.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/veterinary-clinic-management-system/main/docs/images/04-clientes.png" width="1440" height="900"
                  alt="Veterinary Clinic" loading="lazy">
           </div>
           <div class="project-content">
@@ -570,7 +581,7 @@
         <!-- Project 3 — Marianito 2D Platformer -->
         <div class="project-card fade-in delay-2" data-category="programacion">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/marianito-2d-platformer/main/documentacion/captura_mundo_castillo_browser.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/marianito-2d-platformer/main/documentacion/captura_mundo_castillo_browser.png" width="1328" height="617"
                  alt="Marianito 2D" loading="lazy">
           </div>
           <div class="project-content">
@@ -594,7 +605,7 @@
         <!-- Project 4 — Satreria (PWA) -->
         <div class="project-card fade-in" data-category="web programacion">
           <div class="project-image">
-            <img src="images/sastreria-sistema.png"
+            <img src="images/sastreria-sistema.png" width="1366" height="900"
                  alt="Satreria Digital" loading="lazy">
           </div>
           <div class="project-content">
@@ -618,7 +629,7 @@
         <!-- Project 5 — Task API (FastAPI) -->
         <div class="project-card fade-in delay-1" data-category="programacion web">
           <div class="project-image">
-            <img src="images/task-api/swagger.png"
+            <img src="images/task-api/swagger.png" width="1440" height="1500"
                  alt="Task API — documentación Swagger" loading="lazy">
           </div>
           <div class="project-content">
@@ -642,7 +653,7 @@
         <!-- Project 6 — Algoritmos de IA -->
         <div class="project-card fade-in" data-category="ia programacion">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Problema_de_Rutas_Algoritmos_BFS_UCS_A%2A_vercion_2/Assets/img/BFS_PozaRica_a_Huatulco.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Problema_de_Rutas_Algoritmos_BFS_UCS_A%2A_vercion_2/Assets/img/BFS_PozaRica_a_Huatulco.png" width="1099" height="746"
                  alt="Algoritmos de IA" loading="lazy">
           </div>
           <div class="project-content">
@@ -665,7 +676,7 @@
         <!-- Project 2 — Sistema Dental -->
         <div class="project-card fade-in delay-1" data-category="sistemas programacion">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/dental-clinic-management-system/main/docs/odontograma2.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/dental-clinic-management-system/main/docs/odontograma2.png" width="1914" height="1132"
                  alt="Sistema Dental" loading="lazy">
           </div>
           <div class="project-content">
@@ -688,7 +699,7 @@
         <!-- Project 3 — Low-Poly 3D -->
         <div class="project-card fade-in delay-2" data-category="programacion">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/low-poly_3D_game/main/Documentacion/dia.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/low-poly_3D_game/main/Documentacion/dia.png" width="2753" height="1796"
                  alt="Low-Poly Game" loading="lazy">
           </div>
           <div class="project-content">
@@ -791,7 +802,7 @@
         <!-- Project 22 — E-commerce Microservicios -->
         <div class="project-card fade-in" data-category="programacion sistemas">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/ecommerce-microservicios-architecture/main/doc/pagina_carrito.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/ecommerce-microservicios-architecture/main/doc/pagina_carrito.png" width="1919" height="1116"
                  alt="E-commerce Microservicios" loading="lazy">
           </div>
           <div class="project-content">
@@ -810,7 +821,7 @@
         <!-- Project 23 — JJRR Roofing -->
         <div class="project-card fade-in delay-1" data-category="web">
           <div class="project-image">
-            <img src="images/roofing-sistema.jpg"
+            <img src="images/roofing-sistema.jpg" width="1200" height="790"
                  alt="JJRR Roofing" loading="lazy">
           </div>
           <div class="project-content">
@@ -829,7 +840,7 @@
         <!-- Project 24 — Vetrinaria (Next.js) -->
         <div class="project-card fade-in delay-2" data-category="web sistemas programacion">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/vetrinaria/main/documentacion%20tecnica/img/vet-dashboard.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/vetrinaria/main/documentacion%20tecnica/img/vet-dashboard.png" width="1280" height="800"
                  alt="Vetrinaria — Next.js" loading="lazy">
           </div>
           <div class="project-content">
@@ -849,7 +860,7 @@
         <!-- Project 25 — MCC Marketplace -->
         <div class="project-card fade-in" data-category="programacion sistemas web">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/MCC/main/doc/pagina_carrito.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/MCC/main/doc/pagina_carrito.png" width="1919" height="1116"
                  alt="MCC Marketplace" loading="lazy">
           </div>
           <div class="project-content">
@@ -877,7 +888,7 @@
         <!-- Project 4 — Conecta 4 -->
         <div class="project-card fade-in" data-category="ia">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Juego_Game_Conecta4/Assets/img/gana_amarillo.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Juego_Game_Conecta4/Assets/img/gana_amarillo.png" width="585" height="683"
                  alt="Conecta 4" loading="lazy">
           </div>
           <div class="project-content">
@@ -900,7 +911,7 @@
         <!-- Project 5 — Wang -->
         <div class="project-card fade-in delay-1" data-category="matematicas ia">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Algoritmo_de_wong_logica_computacional_%20vercion_2/Assets/img/inicio.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Algoritmo_de_wong_logica_computacional_%20vercion_2/Assets/img/inicio.png" width="942" height="759"
                  alt="Algoritmo de Wang" loading="lazy">
           </div>
           <div class="project-content">
@@ -923,7 +934,7 @@
         <!-- Project 6 — Buscaminas -->
         <div class="project-card fade-in delay-2" data-category="ia programacion">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Juego_Game_Buscaminas/Assets/img/intermedio.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Juego_Game_Buscaminas/Assets/img/intermedio.png" width="641" height="797"
                  alt="Buscaminas" loading="lazy">
           </div>
           <div class="project-content">
@@ -949,7 +960,7 @@
         <!-- Project 7 — Gato Minimax -->
         <div class="project-card fade-in" data-category="ia">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/juego_Gato_ALGORITHM_Minimax/Assets/img/empate.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/juego_Gato_ALGORITHM_Minimax/Assets/img/empate.png" width="470" height="634"
                  alt="Gato con Minimax" loading="lazy">
           </div>
           <div class="project-content">
@@ -968,7 +979,7 @@
         <!-- Project 8 — Gato Negamax -->
         <div class="project-card fade-in delay-1" data-category="ia">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/JUEGO_Gato_ALGORITHM_NegamaX/Assets/img/ejecucion_nivel_dificil.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/JUEGO_Gato_ALGORITHM_NegamaX/Assets/img/ejecucion_nivel_dificil.png" width="497" height="672"
                  alt="Gato con Negamax" loading="lazy">
           </div>
           <div class="project-content">
@@ -987,7 +998,7 @@
         <!-- Project 9 — Sopa de Letras -->
         <div class="project-card fade-in delay-2" data-category="ia programacion">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Juego_Game_Sopa%20de%20letras%20java/Assets/img/sopa_completa.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Juego_Game_Sopa%20de%20letras%20java/Assets/img/sopa_completa.png" width="1226" height="839"
                  alt="Sopa de Letras" loading="lazy">
           </div>
           <div class="project-content">
@@ -1006,7 +1017,7 @@
         <!-- Project 10 — Misioneros y Caníbales -->
         <div class="project-card fade-in" data-category="ia">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Juego_Game_Misioneros_y_Canibsales/Assets/img/inicio.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Juego_Game_Misioneros_y_Canibsales/Assets/img/inicio.png" width="860" height="521"
                  alt="Misioneros y Caníbales" loading="lazy">
           </div>
           <div class="project-content">
@@ -1025,7 +1036,7 @@
         <!-- Project 11 — 4-Puzzle -->
         <div class="project-card fade-in delay-1" data-category="ia">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Juego_Game_4-PulzeJava/Assets/img/inicio.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Juego_Game_4-PulzeJava/Assets/img/inicio.png" width="1164" height="860"
                  alt="4-Puzzle" loading="lazy">
           </div>
           <div class="project-content">
@@ -1044,7 +1055,7 @@
         <!-- Project 12 — 8-Puzzle -->
         <div class="project-card fade-in delay-2" data-category="ia">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Juego_Game_8Puzle_Interactive/Assets/img/inicio_mezclar_puzzle.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Juego_Game_8Puzle_Interactive/Assets/img/inicio_mezclar_puzzle.png" width="933" height="678"
                  alt="8-Puzzle" loading="lazy">
           </div>
           <div class="project-content">
@@ -1063,7 +1074,7 @@
         <!-- Project 13 — Puzzle DFS -->
         <div class="project-card fade-in" data-category="ia">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Juego_Game_PuzzleDFS_Recursivo/Assets/img/inicio.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Juego_Game_PuzzleDFS_Recursivo/Assets/img/inicio.png" width="752" height="517"
                  alt="Puzzle DFS" loading="lazy">
           </div>
           <div class="project-content">
@@ -1082,7 +1093,7 @@
         <!-- Project 14 — N-Reinas -->
         <div class="project-card fade-in delay-1" data-category="ia">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/N-Reinas_visualizer/Assets/img/ejecucion_1.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/N-Reinas_visualizer/Assets/img/ejecucion_1.png" width="891" height="652"
                  alt="N-Reinas" loading="lazy">
           </div>
           <div class="project-content">
@@ -1101,7 +1112,7 @@
         <!-- Project 15 — Rutas v1 -->
         <div class="project-card fade-in delay-2" data-category="ia">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Problema_de_Rutas_Algoritmos_BFS_UCS_A%2A_vercion_1/Assets/img/BFS_Acapulco_DF.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Problema_de_Rutas_Algoritmos_BFS_UCS_A%2A_vercion_1/Assets/img/BFS_Acapulco_DF.png" width="859" height="793"
                  alt="Rutas v1" loading="lazy">
           </div>
           <div class="project-content">
@@ -1120,7 +1131,7 @@
         <!-- Project 16 — Rutas v2 -->
         <div class="project-card fade-in" data-category="ia">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Problema_de_Rutas_Algoritmos_BFS_UCS_A%2A_vercion_2/Assets/img/A%2A_Pachuca_a_Huatulco.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Problema_de_Rutas_Algoritmos_BFS_UCS_A%2A_vercion_2/Assets/img/A%2A_Pachuca_a_Huatulco.png" width="1095" height="745"
                  alt="Rutas v2" loading="lazy">
           </div>
           <div class="project-content">
@@ -1139,7 +1150,7 @@
         <!-- Project 17 — Wang v1 -->
         <div class="project-card fade-in delay-1" data-category="matematicas ia">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Algoritmo_de_wong_logica_computacional_%20vercion_1/Assets/img/demostracion.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Algoritmo_de_wong_logica_computacional_%20vercion_1/Assets/img/demostracion.png" width="484" height="700"
                  alt="Wang v1" loading="lazy">
           </div>
           <div class="project-content">
@@ -1158,7 +1169,7 @@
         <!-- Project 18 — Programación Lineal -->
         <div class="project-card fade-in delay-2" data-category="matematicas ia">
           <div class="project-image">
-            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Programacion_lineal/Assets/img/inicio_BacktrackingCarpinteria.png"
+            <img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Programacion_lineal/Assets/img/inicio_BacktrackingCarpinteria.png" width="891" height="588"
                  alt="Programación Lineal" loading="lazy">
           </div>
           <div class="project-content">
@@ -1187,7 +1198,7 @@
   <div id="modal-farmacia" class="modal" role="dialog" aria-modal="true">
     <div class="modal-content">
       <div class="modal-close" id="close-farmacia" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
-      <div class="modal-image"><img src="images/farmacia-sistema.png" alt="Farmacia Online" loading="lazy"></div>
+      <div class="modal-image"><img src="images/farmacia-sistema.png" width="1366" height="470" alt="Farmacia Online" loading="lazy"></div>
       <div class="modal-body">
         <span class="modal-category" data-i18n="cat.cloud">Cloud · Microservicios</span>
         <h2 data-i18n="modal.t1">Farmacia Online</h2>
@@ -1214,7 +1225,7 @@
   <div id="modal-vet" class="modal" role="dialog" aria-modal="true">
     <div class="modal-content">
       <div class="modal-close" id="close-vet" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
-      <div class="modal-image"><img src="https://raw.githubusercontent.com/PurppleAlien/veterinary-clinic-management-system/main/docs/images/04-clientes.png" alt="Veterinary Clinic" loading="lazy"></div>
+      <div class="modal-image"><img src="https://raw.githubusercontent.com/PurppleAlien/veterinary-clinic-management-system/main/docs/images/04-clientes.png" width="1440" height="900" alt="Veterinary Clinic" loading="lazy"></div>
       <div class="modal-body">
         <span class="modal-category" data-i18n="cat.websys">Sistemas Web</span>
         <h2 data-i18n="modal.t2">Veterinary Clinic Management</h2>
@@ -1241,7 +1252,7 @@
   <div id="modal-marianito2d" class="modal" role="dialog" aria-modal="true">
     <div class="modal-content">
       <div class="modal-close" id="close-marianito2d" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
-      <div class="modal-image"><img src="https://raw.githubusercontent.com/PurppleAlien/marianito-2d-platformer/main/documentacion/captura_mundo_castillo_browser.png" alt="Marianito 2D" loading="lazy"></div>
+      <div class="modal-image"><img src="https://raw.githubusercontent.com/PurppleAlien/marianito-2d-platformer/main/documentacion/captura_mundo_castillo_browser.png" width="1328" height="617" alt="Marianito 2D" loading="lazy"></div>
       <div class="modal-body">
         <span class="modal-category" data-i18n="cat.gamejava">Videojuegos · Java</span>
         <h2 data-i18n="modal.t3">Marianito — 2D Platformer</h2>
@@ -1268,7 +1279,7 @@
   <div id="modal-satreria" class="modal" role="dialog" aria-modal="true">
     <div class="modal-content">
       <div class="modal-close" id="close-satreria" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
-      <div class="modal-image"><img src="images/sastreria-sistema.png" alt="Satreria" loading="lazy"></div>
+      <div class="modal-image"><img src="images/sastreria-sistema.png" width="1366" height="900" alt="Satreria" loading="lazy"></div>
       <div class="modal-body">
         <span class="modal-category" data-i18n="cat.webpwa">Web · PWA</span>
         <h2 data-i18n="modal.t4">Sastrería Digital</h2>
@@ -1295,7 +1306,7 @@
   <div id="modal-taskapi" class="modal" role="dialog" aria-modal="true">
     <div class="modal-content">
       <div class="modal-close" id="close-taskapi" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
-      <div class="modal-image"><img src="images/task-api/swagger.png" alt="Task API — documentación Swagger" loading="lazy"></div>
+      <div class="modal-image"><img src="images/task-api/swagger.png" width="1440" height="1500" alt="Task API — documentación Swagger" loading="lazy"></div>
       <div class="modal-body">
         <span class="modal-category" data-i18n="cat.apipy">API · Python</span>
         <h2 data-i18n="modal.t5">Task API — FastAPI</h2>
@@ -1322,7 +1333,7 @@
   <div id="modal-1" class="modal" role="dialog" aria-modal="true">
     <div class="modal-content">
       <div class="modal-close" id="close-1" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
-      <div class="modal-image"><img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Problema_de_Rutas_Algoritmos_BFS_UCS_A%2A_vercion_2/Assets/img/BFS_PozaRica_a_Huatulco.png" alt="Algoritmos de IA" loading="lazy"></div>
+      <div class="modal-image"><img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Problema_de_Rutas_Algoritmos_BFS_UCS_A%2A_vercion_2/Assets/img/BFS_PozaRica_a_Huatulco.png" width="1099" height="746" alt="Algoritmos de IA" loading="lazy"></div>
       <div class="modal-body">
         <span class="modal-category" data-i18n="cat.aiprog">IA &amp; Programación</span>
         <h2 data-i18n="modal.t6">Algoritmos de IA en Java</h2>
@@ -1348,7 +1359,7 @@
   <div id="modal-2" class="modal" role="dialog" aria-modal="true">
     <div class="modal-content">
       <div class="modal-close" id="close-2" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
-      <div class="modal-image"><img src="https://raw.githubusercontent.com/PurppleAlien/dental-clinic-management-system/main/docs/odontograma2.png" alt="Sistema Dental" loading="lazy"></div>
+      <div class="modal-image"><img src="https://raw.githubusercontent.com/PurppleAlien/dental-clinic-management-system/main/docs/odontograma2.png" width="1914" height="1132" alt="Sistema Dental" loading="lazy"></div>
       <div class="modal-body">
         <span class="modal-category" data-i18n="cat.websys">Sistemas Web</span>
         <h2 data-i18n="modal.t7">Sistema de Gestión Dental</h2>
@@ -1373,7 +1384,7 @@
   <div id="modal-3" class="modal" role="dialog" aria-modal="true">
     <div class="modal-content">
       <div class="modal-close" id="close-3" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
-      <div class="modal-image"><img src="https://raw.githubusercontent.com/PurppleAlien/low-poly_3D_game/main/Documentacion/dia.png" alt="Low-Poly Game" loading="lazy"></div>
+      <div class="modal-image"><img src="https://raw.githubusercontent.com/PurppleAlien/low-poly_3D_game/main/Documentacion/dia.png" width="2753" height="1796" alt="Low-Poly Game" loading="lazy"></div>
       <div class="modal-body">
         <span class="modal-category" data-i18n="cat.games">Videojuegos</span>
         <h2 data-i18n="modal.t8">KirbyWorld — Low-Poly 3D</h2>
@@ -1398,7 +1409,7 @@
   <div id="modal-4" class="modal" role="dialog" aria-modal="true">
     <div class="modal-content">
       <div class="modal-close" id="close-4" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
-      <div class="modal-image"><img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Juego_Game_Conecta4/Assets/img/gana_amarillo.png" alt="Conecta 4" loading="lazy"></div>
+      <div class="modal-image"><img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Juego_Game_Conecta4/Assets/img/gana_amarillo.png" width="585" height="683" alt="Conecta 4" loading="lazy"></div>
       <div class="modal-body">
         <span class="modal-category" data-i18n="cat.ai">Inteligencia Artificial</span>
         <h2 data-i18n="modal.t9">Conecta 4 con Negamax</h2>
@@ -1423,7 +1434,7 @@
   <div id="modal-5" class="modal" role="dialog" aria-modal="true">
     <div class="modal-content">
       <div class="modal-close" id="close-5" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
-      <div class="modal-image"><img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Algoritmo_de_wong_logica_computacional_%20vercion_2/Assets/img/inicio.png" alt="Wang Algorithm" loading="lazy"></div>
+      <div class="modal-image"><img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Algoritmo_de_wong_logica_computacional_%20vercion_2/Assets/img/inicio.png" width="942" height="759" alt="Wang Algorithm" loading="lazy"></div>
       <div class="modal-body">
         <span class="modal-category" data-i18n="cat.mathlogic">Matemáticas &amp; Lógica</span>
         <h2 data-i18n="modal.t10">Algoritmo de Wang</h2>
@@ -1448,7 +1459,7 @@
   <div id="modal-6" class="modal" role="dialog" aria-modal="true">
     <div class="modal-content">
       <div class="modal-close" id="close-6" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
-      <div class="modal-image"><img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Juego_Game_Buscaminas/Assets/img/intermedio.png" alt="Buscaminas" loading="lazy"></div>
+      <div class="modal-image"><img src="https://raw.githubusercontent.com/PurppleAlien/Inteligencia-Artificial/main/Juego_Game_Buscaminas/Assets/img/intermedio.png" width="641" height="797" alt="Buscaminas" loading="lazy"></div>
       <div class="modal-body">
         <span class="modal-category" data-i18n="cat.progai">Programación &amp; IA</span>
         <h2 data-i18n="modal.t11">Buscaminas con Backtracking</h2>
@@ -1473,7 +1484,7 @@
   <div id="modal-nefrocare" class="modal" role="dialog" aria-modal="true">
     <div class="modal-content">
       <div class="modal-close" id="close-nefrocare" role="button" aria-label="Cerrar"><i class="fas fa-times"></i></div>
-      <div class="modal-image"><img src="images/nefrocare/pwa_plan.png" alt="NefroCare — plan nutricional" loading="lazy"></div>
+      <div class="modal-image"><img src="images/nefrocare/pwa_plan.png" width="390" height="1672" alt="NefroCare — plan nutricional" loading="lazy"></div>
       <div class="modal-body">
         <span class="modal-category" data-i18n="pf.nefm.cat">Salud · IA &amp; Full-Stack</span>
         <h2 data-i18n="pf.nefm.title">NefroCare — Plataforma de Nutrición Nefrológica</h2>
@@ -1485,11 +1496,11 @@
           <div class="detail-item"><h4 data-i18n="ui.status">Estado</h4><p data-i18n="pf.nefm.d4">Desplegada en producción</p></div>
         </div>
         <div style="display:flex; gap:8px; overflow-x:auto; padding:4px 0 10px; margin-bottom:8px;">
-          <img src="images/nefrocare/pwa_metas.png" alt="Metas nutricionales" loading="lazy" style="height:150px; border-radius:10px; border:1px solid rgba(97,218,251,0.2);">
-          <img src="images/nefrocare/pwa_platillo.png" alt="Detalle de platillo" loading="lazy" style="height:150px; border-radius:10px; border:1px solid rgba(97,218,251,0.2);">
-          <img src="images/nefrocare/pwa_evolucion.png" alt="Evolución bioquímica" loading="lazy" style="height:150px; border-radius:10px; border:1px solid rgba(97,218,251,0.2);">
-          <img src="images/nefrocare/pwa_chat.png" alt="Asistente" loading="lazy" style="height:150px; border-radius:10px; border:1px solid rgba(97,218,251,0.2);">
-          <img src="images/nefrocare/pwa_prof_lista.png" alt="Panel del profesional" loading="lazy" style="height:150px; border-radius:10px; border:1px solid rgba(97,218,251,0.2);">
+          <img src="images/nefrocare/pwa_metas.png" width="390" height="844" alt="Metas nutricionales" loading="lazy" style="height:150px; border-radius:10px; border:1px solid rgba(97,218,251,0.2);">
+          <img src="images/nefrocare/pwa_platillo.png" width="390" height="2332" alt="Detalle de platillo" loading="lazy" style="height:150px; border-radius:10px; border:1px solid rgba(97,218,251,0.2);">
+          <img src="images/nefrocare/pwa_evolucion.png" width="390" height="1307" alt="Evolución bioquímica" loading="lazy" style="height:150px; border-radius:10px; border:1px solid rgba(97,218,251,0.2);">
+          <img src="images/nefrocare/pwa_chat.png" width="390" height="915" alt="Asistente" loading="lazy" style="height:150px; border-radius:10px; border:1px solid rgba(97,218,251,0.2);">
+          <img src="images/nefrocare/pwa_prof_lista.png" width="390" height="844" alt="Panel del profesional" loading="lazy" style="height:150px; border-radius:10px; border:1px solid rgba(97,218,251,0.2);">
         </div>
         <div class="modal-tags">
           <span class="modal-tag">FastAPI</span><span class="modal-tag">Algoritmo Genético</span>
